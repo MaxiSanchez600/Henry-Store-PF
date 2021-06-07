@@ -1,6 +1,6 @@
 import './App.scss';
 // import { Provider } from "react-redux";
-// import store from "./store/index";
+//import store from "./redux/store/index";
 
 function App() {
   return (
