@@ -83,7 +83,7 @@ Podemos dividir esta seccion en herramientas de organizacion y metodologia de tr
 
 ## Tecnologias
 Decidimos trabajar con las tecnologias aprendidas durante el bootcamp para afianzar los conocimientos.
-* Frontend: Se desarrollo utilizando React, Redux y (definir preprocesador CSS).
+* Frontend: Se desarrollo utilizando React, Redux y SASS.
 * Backend: Se desarrollo utilizando Node.JS, Express, Sequelize, Firebase para los login y las API's de Mercadopago, Mercadoenvios y Coinbase.
 * Base de datos: Se desarrollo mediante PostgreSQL.
 
