@@ -1,9 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const routes = require('./src/routes/index.js');
-const errorHandler = require ('./src/utils/middlewares/errorHandler.js');
-const setHeaders = require ('./src/utils/middlewares/setHeaders.js');
+const routes = require('./routes/index.js');
+const errorHandler = require ('./utils/middlewares/errorHandler.js');
+const setHeaders = require ('./utils/middlewares/setHeaders.js');
 const server = express();
 
 server.name = 'API';
