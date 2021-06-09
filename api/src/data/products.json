@@ -8,24 +8,34 @@
         "unit_stock":12,
         "henry_coin":10,
         "weight":100,
-        "size":["s","m","l","xl"],
-        "promotion":false
+        "promotion":false,
+        "category": "Buso",
+        "subcategorys": {
+            "color": ["Negro"],
+            "size":["s","m","l","xl"],
+            "genero": "unisex"
+        }
     },
     {
         "id": 2,
-        "name": "Camisa",
+        "name": "Chomba",
         "price": 22.3,
         "description": "Camisa para Hombre, cuello camisero, manga corta, silueta amplia, elaborada en Chalis, con estampado de Henry",
         "image": "https://ibb.co/4JFs2Wm",
         "unit_stock":12,
         "henry_coin":8,
         "weight":80,
-        "size":["s","m","l","xl"],
-        "promotion":false
+        "promotion":false,
+        "category": "Chomba",
+        "subcategorys": {
+            "color": ["Blanco", "Negro"],
+            "size":["s","m","l","xl"],
+            "genero": "unisex"
+        }
     },
     {
         "id": 3,
-        "name": "Camiseta",
+        "name": "Remera",
         "price": 55.99,
         "description": " Camiseta manga corta, Silueta semi ajustada,Estampada en frente y puños rectilíneos.En jersey, algodón orgánico, fibra natural durable, biodegradable y fresca. ",
         "image": "https://ibb.co/jJ1ZzNH",
@@ -33,7 +43,29 @@
         "henry_coin":9,
         "weight":70,
         "size":["s","m","l","xl"],
-        "promotion":false
+        "promotion":false,
+        "category": "Remera",
+        "subcategorys": {
+            "color": ["Blanco", "Negro"],
+            "size":["s","m","l","xl"],
+            "genero": "unisex"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Cuaderno",
+        "price": 15.99,
+        "description": "Cuaderno argollado blanco de Pasta dura, Rayado de 100 hojas, mediano con Medidas: 23 cm x 16.5 cm x 1.1 cm en empaque ",
+        "image": "https://ibb.co/ccnhMRH",
+        "unit_stock":12,
+        "henry_coin":2,
+        "weight":30,
+        "size":"",
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Blanco", "Negro", "Amarillo"]
+        }
     },
     {
         "id": 4,
@@ -45,7 +77,11 @@
         "henry_coin":2,
         "weight":30,
         "size":"",
-        "promotion":false
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Blanco"]
+        }
     },
     {
         "id": 5,
@@ -57,7 +93,11 @@
         "henry_coin":2,
         "weight":30,
         "size":"",
-        "promotion":false   
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Negro"]
+        }
     },
     {
         "id": 6,
@@ -69,7 +109,13 @@
         "henry_coin":15,
         "weight":20,
         "size":"",
-        "promotion":false   
+        "promotion":false,
+        "category": "Gorras",
+        "subcategorys": {
+            "color": ["Blanco"],
+            "size":["s","m","l"],
+            "genero": "unisex"
+        }
     },
     {
         "id": 7,
@@ -81,7 +127,13 @@
         "henry_coin":15,
         "weight":20,
         "size":"",
-        "promotion":false   
+        "promotion":false,
+        "category": "Gorras",
+        "subcategorys": {
+            "color": ["Negro"],
+            "size":["s","m","l"],
+            "genero": "unisex"
+        }
     },
     {
         "id": 8,
@@ -93,7 +145,12 @@
         "henry_coin":25,
         "weight":1,
         "size":"",
-        "promotion":false   
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Negro"],
+            "genero": "unisex"
+        }   
     },
     {
         "id": 9,
@@ -105,7 +162,11 @@
         "henry_coin":20,
         "weight":400,
         "size":"",
-        "promotion":false
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Blanco", "Negro"]
+        }
     },
     {
         "id": 10,
@@ -117,7 +178,11 @@
         "henry_coin":8,
         "weight":350,
         "size":"",
-        "promotion":false
+        "promotion":false,
+        "category": "Accesorios",
+        "subcategorys": {
+            "color": ["Blanco", "Negro", "Amarillo"]
+        }
     }
     
 ]
