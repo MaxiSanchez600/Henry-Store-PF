@@ -6,7 +6,7 @@ function App() {
   return (
     // <Provider store = {store}>
       <div className="App">
-        <h1>Henry Store</h1>
+        <h1>Henry Store / Maxi</h1>
       </div>
     // </Provider>
   );
