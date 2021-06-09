@@ -16,7 +16,7 @@ function App() {
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
         <Provider store={store}>
           <BrowserRouter>
-          <h1>Henry Store</h1>
+          <h1>Henry Store!</h1>
           </BrowserRouter>
         </Provider>
       </FirebaseAppProvider>
