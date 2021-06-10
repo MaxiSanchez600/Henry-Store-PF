@@ -4,10 +4,11 @@ const path = require('path');
 const { Router } = require('express');
 const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory, ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Roles, Favorites, Wishlist } = require('../db.js')
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const authRoute = require('./auth.js');
 
 
 const router = Router();
+router.use('/auth',authRoute)
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
