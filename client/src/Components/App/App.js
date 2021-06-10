@@ -5,7 +5,9 @@ import { Provider } from 'react-redux'
 import store from '../../Redux/store/index.js'
 import firebaseConfig from '../../Config/firebase-config.js'
 import { FirebaseAppProvider } from 'reactfire'
-
+import NavBar from "../NavBar/NavBar";
+import { Suspense } from "react";
+import "firebase/auth";
 // ! COMPONENTS
 // import Navbar from "../NavBar/NavBar";
 
@@ -13,13 +15,16 @@ import { FirebaseAppProvider } from 'reactfire'
 function App() {
   return (
     <div className="App">
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <Provider store={store}>
-          <BrowserRouter>
-          <h1>Henry Store!</h1>
-          </BrowserRouter>
-        </Provider>
-      </FirebaseAppProvider>
+      <Suspense fallback={"Cargando..."}>
+        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+          <Provider store={store}>
+            <BrowserRouter>
+              <NavBar/>
+            <h1>Henry Store!</h1>
+            </BrowserRouter>
+          </Provider>
+        </FirebaseAppProvider>
+      </Suspense>
     </div>
   );
 }

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from "react";
+import AuthGithub from "../Authentication/AuthGithub";
+import AuthGoogle from "../Authentication/AuthGoogle";
+import Modal from "../Modal/Modal";
 
 const NavBar = () => {
-    return (
-        <div>
-            RENDER NAVBAR
-        </div>
-    );
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  console.log("isModalOpened", isModalOpened);
+
+  return (
+    <div>
+      RENDER NAVBAR
+      <button onClick={() => setIsModalOpened(true)}>Sing in</button>
+      <button onClick={() => setIsModalOpened(true)}>Sing up</button>
+      <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
+         
+          <AuthGoogle/>
+          <AuthGithub/> 
+      </Modal>
+    </div>
+  );
 };
 
 export default NavBar;
