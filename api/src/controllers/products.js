@@ -8,12 +8,21 @@ const filtersCreator = (name, category, size, priceRange, color, sex, type) => {
         filters.include = [{
             model: Tags,
             where: {
-                name: {
+                name_tag: {
                     [Op.like]: `%${name.toLowerCase()}%`
                 }
             },
             required: true
-        }]
+        }];
+    }
+    if(name === 'not passed' && category !== 'not passed') {
+        filters.include = [{
+            model: Categories,
+            where: {
+                name_category: name
+            },
+            required: true
+        }];
     }
 }
 
