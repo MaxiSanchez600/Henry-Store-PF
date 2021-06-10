@@ -28,7 +28,26 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Modelo } = sequelize.models;
+const { products, categories, subCategories, caracteristics, tags, productCaracteristic } = sequelize.models;
+//Relacion Tags Productos
+tags.belongsToMany(products, {through: 'productTags'});
+products.belongsToMany(tags, {through: 'productTags'});
+
+//Relacion Productos Categories
+categories.belongsToMany(products, {through: 'productCategory'});
+products.belongsToMany(categories, {through: 'productCategory'});
+
+//Relacion Categories SubCategories - Genero Getters y Setters
+categories.hasMany(subCategories);
+subCategories.belongsTo(categories);
+
+
+//Relacion Productos Caracteristics
+products.belongsToMany(caracteristics, {through: productCaracteristic});
+caracteristics.belongsToMany(products, {through: productCaracteristic});
+//RemeraHenry.addproductCaracteristic(Talle, {through : {value_caracteristic : 'L'}})
+
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
