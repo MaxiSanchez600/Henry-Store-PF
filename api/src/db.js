@@ -8,15 +8,16 @@ const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbNa
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, '/models'))
+fs.readdirSync(path.join(__dirname, '/Models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(__dirname, '/Models', file)));
   });
 
 // Injectamos la conexion (sequelize) a todos los modelos
@@ -28,25 +29,39 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { products, categories, subCategories, caracteristics, tags, productCaracteristic } = sequelize.models;
+const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory, ProductTags } = sequelize.models;
+
 //Relacion Tags Productos
-tags.belongsToMany(products, {through: 'productTags'});
-products.belongsToMany(tags, {through: 'productTags'});
+Tags.belongsToMany(Products, {through: ProductTags});
+Products.belongsToMany(Tags, {through: ProductTags});
 
 //Relacion Productos Categories
-categories.belongsToMany(products, {through: 'productCategory'});
-products.belongsToMany(categories, {through: 'productCategory'});
+Categories.belongsToMany(Products, {through: ProductCategory});
+Products.belongsToMany(Categories, { through: ProductCategory });
 
 //Relacion Categories SubCategories - Genero Getters y Setters
-categories.hasMany(subCategories);
-subCategories.belongsTo(categories);
+Categories.hasMany(SubCategories);
+SubCategories.belongsTo(Categories); 
 
 
 //Relacion Productos Caracteristics
-products.belongsToMany(caracteristics, {through: productCaracteristic});
-caracteristics.belongsToMany(products, {through: productCaracteristic});
+Products.belongsToMany(Caracteristics, {through: ProductCaracteristic});
+Caracteristics.belongsToMany(Products, {through: ProductCaracteristic});
 //RemeraHenry.addproductCaracteristic(Talle, {through : {value_caracteristic : 'L'}})
 
+let categories = Categories.create({
+  name_category: 'Ropa'
+}).then(
+  (category) => {
+    SubCategories.create({
+      name_sub_category: 'Pantalón',
+      description: 'Ropa de vestir'
+    }).then(
+      (subCategory) => {
+        category.addSubCategories(subCategory)
+      }
+    )
+  })
 
 
 // Aca vendrian las relaciones

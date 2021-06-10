@@ -95,9 +95,22 @@ module.exports = (sequelize) => {
   })
 
   sequelize.define('productCaracteristic', {
+    idProductCaracteristic: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     value_caracteristic: {
       type: DataTypes.STRING,
       allowNull: false
+    }
+  })
+
+  sequelize.define('productCategory', {
+    idProductCategory: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     }
   })
 
@@ -114,6 +127,15 @@ module.exports = (sequelize) => {
       allowNull: false,
     }
   })
+
+  sequelize.define('productTags', {
+    idProductTag: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    }
+  })
+
 };
 
 
