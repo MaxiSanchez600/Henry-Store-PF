@@ -4,25 +4,40 @@ const Op = Sequelize.Op;
 
 const filtersCreator = (name, category, size, priceRange, color, sex, type) => {
     var filters = {};
+    var includes = [];
     if(name !== 'not passed' && category === 'not passed') {
-        filters.include = [{
-            model: Tags,
-            where: {
-                name_tag: {
-                    [Op.like]: `%${name.toLowerCase()}%`
-                }
-            },
-            required: true
-        }];
+        filters.include = [
+            ...includes,    //podría quitarse ya que son los primeros e irian vacios
+            {
+                model: Tags,
+                where: {
+                    name_tag: {
+                        [Op.like]: `%${name.toLowerCase()}%`
+                    }
+                },
+                required: true
+            }
+        ];
     }
     if(name === 'not passed' && category !== 'not passed') {
-        filters.include = [{
-            model: Categories,
-            where: {
-                name_category: name
-            },
-            required: true
-        }];
+        filters.include = [
+            ...includes,    //podría quitarse ya que son los primeros e irian vacios
+            {
+                model: Categories,
+                where: {
+                    name_category: name
+                },
+                required: true
+            }
+        ];
+    }
+    if(size !== 'not passed') {
+        filters.include = [
+            ...includes,
+            {
+                model: Caracteristics
+            }
+        ]
     }
 }
 
