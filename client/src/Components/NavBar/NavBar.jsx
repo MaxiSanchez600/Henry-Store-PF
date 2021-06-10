@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Auth from "../Authentication/Auth";
-import AuthGithub from "../Authentication/AuthGithub";
-import AuthGoogle from "../Authentication/AuthGoogle";
+import Login from "../Authentication/Login";
 import Modal from "../Modal/Modal";
 
 const NavBar = () => {
@@ -12,13 +11,9 @@ const NavBar = () => {
     <div>
       RENDER NAVBAR
       <button onClick={() => setIsModalOpened(true)}>Sing in</button>
-      <button onClick={() => setIsModalOpened(true)}>Sing up</button>
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
-         {/* <Auth/> */}
-          {/* <AuthGoogle/> */}
-          <br/>
-          <br/>
-          <AuthGithub/> 
+        <Login/>
+          <Auth/> 
       </Modal>
     </div>
   );
