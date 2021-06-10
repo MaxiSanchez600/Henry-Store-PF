@@ -6,7 +6,10 @@ const SignInForms = () => {
   const auth = useAuth;
   const uiConfig = {
     signInFlow: "popup",
-    signInOptions: [auth.GithubAuthProvider.PROVIDER_ID],
+    signInOptions: [
+      auth.GoogleAuthProvider.PROVIDER_ID,
+      auth.GithubAuthProvider.PROVIDER_ID
+    ],
     callbacks: {
      
       // FUNCION LUEGO DE QUE SE COMPLETO EL INICIO DE SESION

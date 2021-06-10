@@ -1,8 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import { SuspenseWithPerf, useAuth } from "reactfire";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 const SignInForm = () => {
+  const [isSignedIn, setisSignedIn] = useState(false);
+
   const auth = useAuth;
   const uiConfig = {
     signInFlow: "popup",

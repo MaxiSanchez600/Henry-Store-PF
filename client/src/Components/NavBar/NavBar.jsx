@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Auth from "../Authentication/Auth";
 import AuthGithub from "../Authentication/AuthGithub";
 import AuthGoogle from "../Authentication/AuthGoogle";
 import Modal from "../Modal/Modal";
@@ -13,8 +14,10 @@ const NavBar = () => {
       <button onClick={() => setIsModalOpened(true)}>Sing in</button>
       <button onClick={() => setIsModalOpened(true)}>Sing up</button>
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
-         
-          <AuthGoogle/>
+         {/* <Auth/> */}
+          {/* <AuthGoogle/> */}
+          <br/>
+          <br/>
           <AuthGithub/> 
       </Modal>
     </div>
