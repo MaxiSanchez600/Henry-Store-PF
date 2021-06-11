@@ -5,16 +5,16 @@ const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
 //Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize(`postgres://niclafoj:dwo8FTAn1rUijBkFSz-6m39g8gh1AS7x@motty.db.elephantsql.com/niclafoj`, {
+const sequelize = new Sequelize(`postgres://pxviipje:bzlJzdrU0ZP3rA3a2orVXKj3WfHbWqO7@motty.db.elephantsql.com/pxviipje`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 
 //Conexion Local => Pruebas
-// const sequelize = new Sequelize(postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// });
+//  const sequelize = new Sequelize('postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}', {
+//    logging: false, // set to console.log to see the raw SQL queries
+//    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//  });
 
 const basename = path.basename(__filename);
 
@@ -38,43 +38,44 @@ modelDefiners.forEach(model => model(sequelize));
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory,
-  ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Roles, Favorites, Wishlist } = sequelize.models;
+const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
+  ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
+  Wishlist, Image } = sequelize.models;
 
 
-//Relacion Tags Productos
-Tags.belongsToMany(Products, {through: ProductTags});
-Products.belongsToMany(Tags, {through: ProductTags});
+//Relacion Tag Productos
+Tag.belongsToMany(Product, {through: ProductTag});
+Product.belongsToMany(Tag, {through: ProductTag});
 
-//Relacion Productos Categories
-Categories.belongsToMany(Products, {through: ProductCategory});
-Products.belongsToMany(Categories, { through: ProductCategory});
+//Relacion Productos Category
+Category.belongsToMany(Product, {through: ProductCategory});
+Product.belongsToMany(Category, { through: ProductCategory});
 
-//Relacion Categories SubCategories - Genero Getters y Setters
-Categories.hasMany(SubCategories);
-SubCategories.belongsTo(Categories); 
+//Relacion Category SubCategory - Genero Getters y Setters
+Category.hasMany(SubCategory);
+SubCategory.belongsTo(Category); 
 
-//Relacion Productos Caracteristics
-Products.belongsToMany(Caracteristics, {through: ProductCaracteristic});
-Caracteristics.belongsToMany(Products, {through: ProductCaracteristic});
+//Relacion Productos Caracteristic
+Product.belongsToMany(Caracteristic, {through: ProductCaracteristic});
+Caracteristic.belongsToMany(Product, {through: ProductCaracteristic});
 
-//let categories = Categories.create({
+//let category = Category.create({
 //  name_category: 'Ropa'
 //}).then(
  // (category) => {
-   // SubCategories.create({
+   // SubCategory.create({
      // name_sub_category: 'Pantalón',
       //description: 'Ropa de vestir'
     //}).then(
      // (subCategory) => {
-       // category.addSubCategories(subCategory)
+       // category.addSubCategory(subCategory)
      // }
    // )
   //})
 
 //Relacion Productos Promotions
-KindPromotion.belongsToMany(Products, {through: ProductPromotion});
-Products.belongsToMany(KindPromotion, {through: ProductPromotion});
+KindPromotion.belongsToMany(Product, {through: ProductPromotion});
+Product.belongsToMany(KindPromotion, {through: ProductPromotion});
 
 //Product.AddKindPromotion('2x1', {through: {
   //'date_start': 'zzzz',
@@ -84,46 +85,50 @@ Products.belongsToMany(KindPromotion, {through: ProductPromotion});
 
 
 //Relacion Productos Review
-Products.hasMany(Reviews);
-Reviews.belongsTo(Products);
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
 //Relacion Usuarios Review
-Users.hasMany(Reviews);
-Reviews.belongsTo(Users);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 //Relacion Usuarios Identificacion
-DocumentType.hasMany(Users);
-Users.belongsTo(DocumentType);
+DocumentType.hasMany(User);
+User.belongsTo(DocumentType);
 
 //Anadir identificacion a usuario => UserCreado.AddDocumentType => dni => demas identificaciones
 
 
 //Relacion Usuario Rol
-Roles.hasMany(Users);
-Users.belongsTo(Roles);
+Role.hasMany(User);
+User.belongsTo(Role);
 
-//Anadir rol a usuario => UserCreado.AddRoles() => 0,1,2 depende si es User, Admin, SuperAdmin
+//Anadir rol a usuario => UserCreado.AddRole() => 0,1,2 depende si es User, Admin, SuperAdmin
 
 
 //Relacion Usuario Status
-UserStatus.hasMany(Users);
-Users.belongsTo(UserStatus);
+UserStatus.hasMany(User);
+User.belongsTo(UserStatus);
 
 //Anadir status a usuario => UserCreado.AddUserStatus() => 0,1,2 depende si es creado, actual, borrado
 
 //Relacion Usuario Favoritos
-Users.belongsToMany(Products, {through: Favorites})
-Products.belongsToMany(Users, {through: Favorites})
+User.belongsToMany(Product, {through: Favorite})
+Product.belongsToMany(User, {through: Favorite})
 
 //Relacion Producto Favoritos
-Users.belongsToMany(Products, {through: Wishlist})
-Products.belongsToMany(Users, {through: Wishlist})
+User.belongsToMany(Product, {through: Wishlist})
+Product.belongsToMany(User, {through: Wishlist})
 
 
-//Precarga Roles
-Roles.count().then((value) =>{
+//Relacion Producto Foto
+Product.hasMany(Image);
+Image.belongsTo(Product);
+
+//Precarga Role
+Role.count().then((value) =>{
   if(value < 3){
-    let arrayconst = [Roles.create({rol: 'user'}), Roles.create({rol: 'admin'}), Roles.create({rol: 'superadmin'})]
+    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo el rol' + element)
       await element
@@ -143,9 +148,9 @@ Roles.count().then((value) =>{
  })
 
 //Precarga Categorias
-Categories.count().then((value) => {
+Category.count().then((value) => {
   if(value < 3){
-    let arrayconst = [Categories.create({name_category: 'Ropa'}), Categories.create({name_category: 'Accesorios'}), Categories.create({name_category: 'Otros'})]
+    let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo la categoria' + element)
       await element
@@ -166,65 +171,65 @@ DocumentType.count().then((value) =>{
 
 //Precarga SubCategorias
 const subarray = ['remera', 'pantalon', 'camisa']
-SubCategories.count().then((value) =>{
+SubCategory.count().then((value) =>{
   if(value < 9){ 
-    const uno = SubCategories.create({
+    const uno = SubCategory.create({
       name_sub_category: 'Remera',
       description: 'Descripcion de remera',
       categoryIdCategory: 1
     })
-    const dos = SubCategories.create({
+    const dos = SubCategory.create({
       name_sub_category: 'Pantalon',
       description: 'Descripcion de pantalon',
       categoryIdCategory: 1
     })
-    const tres = SubCategories.create({
+    const tres = SubCategory.create({
       name_sub_category: 'Buso',
       description: 'Descripcion de buso',
       categoryIdCategory: 1
     })
-    const cuatro = SubCategories.create({
+    const cuatro = SubCategory.create({
       name_sub_category: 'Camisa',
       description: 'Descripcion de camisa',
       categoryIdCategory: 1
     })
-    const cinco = SubCategories.create({
+    const cinco = SubCategory.create({
       name_sub_category: 'Gorra',
       description: 'Descripcion de gorra',
       categoryIdCategory: 1
     })
-    const seis = SubCategories.create({
+    const seis = SubCategory.create({
       name_sub_category: 'Taza',
       description: 'Descripcion de taza',
       categoryIdCategory: 2
     })
-    const siete = SubCategories.create({
+    const siete = SubCategory.create({
       name_sub_category: 'Cuaderno',
       description: 'Descripcion de cuaderno',
       categoryIdCategory: 2
     })
-    const ocho = SubCategories.create({
+    const ocho = SubCategory.create({
       name_sub_category: 'Lentes',
       description: 'Descripcion de lentes',
       categoryIdCategory: 2
     })
-    const nueve = SubCategories.create({
+    const nueve = SubCategory.create({
       name_sub_category: 'PowerBank',
       description: 'Descripcion de powerbank',
       categoryIdCategory: 3
     })
     Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
-      console.log('Se cargaron las subcategories' + values)
+      console.log('Se cargaron las subcategory' + values)
     })
   }
 })
 
-//Precarga de caracteristics
-Caracteristics.count().then((value) =>{
+//Precarga de caracteristic
+Caracteristic.count().then((value) =>{
   if(value < 4){
     let constarray = ['color', 'size', 'genero', 'type']
     constarray.forEach(element => {
-      Caracteristics.create({
+      Caracteristic.create({
         name_caracteristic: element
       })
     })

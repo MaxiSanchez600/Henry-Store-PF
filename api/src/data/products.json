@@ -8,10 +8,11 @@
         "unit_stock": 12,
         "henry_coin": 10,
         "weight": 100,
+        "size": 50,
         "promotion":false,
-        "category": [{"id": "1", "name":"Ropa"}],
+        "category": [{"id": "1", "name":"Ropa"}], 
         "tags": ["buso", "henry",  "ropa"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["negro"],
             "size":["s","m","l","xl"],
             "genero": "unisex",
@@ -27,10 +28,11 @@
         "unit_stock":12,
         "henry_coin":8,
         "weight":80,
+        "size": 50,
         "promotion":false,
         "category": [{"id": "1", "name":"Ropa"}],
         "tags": ["chomba", "camisa",  "henry", "blanco", "negro", "ropa"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro"],
             "size":["s","m","l","xl"],
             "genero": "unisex",
@@ -46,10 +48,11 @@
         "unit_stock":12,
         "henry_coin":9,
         "weight":70,
+        "size": 50,
         "promotion":false,
         "category": [{"id": "1", "name":"Ropa"}],
         "tags": ["remera", "polera",  "henry", "blanco", "negro", "ropa"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro"],
             "size":["s","m","l","xl"],
             "genero": "unisex",
@@ -65,10 +68,11 @@
         "unit_stock": 12,
         "henry_coin": 2,
         "weight": 30,
+        "size": 50,
         "promotion":false,
         "category": [{"id": "2", "name":"Accesorios"}],
         "tags": ["cuaderno", "cohete",  "henry", "blanco", "negro", "accesorios"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro", "amarillo"],
             "type": "cuaderno"
         }
@@ -82,10 +86,11 @@
         "unit_stock": 12,
         "henry_coin": 15,
         "weight": 20,
+        "size": 50,
         "promotion":false,
         "category": [{"id": "1", "name":"Ropa"}],
         "tags": ["gorra", "ropa",  "Henry", "blanco", "negro"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro"],
             "size":["s","m","l"],
             "genero": "unisex",
@@ -101,10 +106,11 @@
         "unit_stock": 12,
         "henry_coin": 15,
         "weight": 20,
+        "size": 50,
         "promotion":false,
         "category": [{"id": "1", "name":"Ropa"}],
         "tags": ["gorra", "cohete",  "henry", "negro", "ropa"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["negro"],
             "size":["s","m","l"],
             "genero": "unisex",
@@ -119,11 +125,12 @@
         "image": ["https://ibb.co/tcp4Jt6"],
         "unit_stock": 12,
         "henry_coin": 25,
-        "weight": 1,
+        "weight": 10,
+        "size": 50,
         "promotion": false,
         "category": [{"id": "2", "name":"Accesorios"}],
         "tags": ["lentes", "anteojos",  "cohete", "blanco", "negro", "accesorios"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["negro", "blanco"],
             "type": "lentes"
         }   
@@ -137,10 +144,11 @@
         "unit_stock": 12,
         "henry_coin": 20,
         "weight": 400,
+        "size": 50,
         "promotion": false,
         "category": [{"id": "3", "name":"Otros"}],
         "tags": ["cargador", "portatil", "otros", "blanco", "negro"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro"],
             "type": "tecnologia"
         }
@@ -154,10 +162,11 @@
         "unit_stock": 12,
         "henry_coin": 8,
         "weight": 350,
+        "size": 50,
         "promotion": false,
         "category": [{"id": "2", "name":"Accesorios"}],
         "tags": ["accesorios", "taza",  "ceramica", "cohete", "negro", "blanco", "amarillo"],
-        "sub_category": {
+        "caracteristics": {
             "color": ["blanco", "negro", "amarillo"],
             "type": "taza"
         }
