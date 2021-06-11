@@ -301,6 +301,19 @@ module.exports = (sequelize) => {
     }
   })
 
+
+  //Nacionalidades
+  sequelize.define('Nacionality', {
+    id_nacionality: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    name_nacionality: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  })
 };
 
 
