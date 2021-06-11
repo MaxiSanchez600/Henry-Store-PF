@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import "./Modal.scss";
 
+
 const Modal = ({ isOpened, children, onClose }) => {
   if (!isOpened) {
     return null;
@@ -16,6 +17,7 @@ const Modal = ({ isOpened, children, onClose }) => {
           <div className="modal-content">{children}</div>
         </div>
       </div>
+    
     </div>,
     document.getElementById("portal")
   );
