@@ -2,7 +2,7 @@ const { Product } = require('../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
-const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, type, caracteristics) => {
+const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, caracteristics, orderType, orderDirection) => {
     var filters = {};
     // var includes = [];
 
@@ -12,11 +12,6 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, type, carac
         },
         {
             model: Categories,
-            include: [
-                {
-                    model: SubCategories
-                }
-            ]
         },
         {
             model: Caracteristics
@@ -60,12 +55,12 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, type, carac
             }
         }
     }
-    if(type !== 'not passed') { // comprobar si se necesita required: true acá
-        filters.include[1].include[0].where = {
-            name_sub_category: type
-        };
-        filters.include[1].include[0].required = true;
-    }
+    // if(type !== 'not passed') { // comprobar si se necesita required: true acá
+    //     filters.include[1].include[0].where = {
+    //         name_sub_category: type
+    //     };
+    //     filters.include[1].include[0].required = true;
+    // }
     if(Object.keys(caracteristics).length > 0) {    //algo asi seria esto, necesita mil chequeos, y si no traer todo y filtrar fuera de la db
         filters.include[2].where = {
             name_caracteristic: {
@@ -74,11 +69,18 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, type, carac
         };
         filters.include[2].through = {
             where: {
-                value_caracteristic: Object.values(caracteristics)
+                value_caracteristic: {
+                    [Op.or]: Object.values(caracteristics)
+                } 
             }
         };
         // filters.include[2].required = true; --> ver si esto es necesario
     }
+    if(orderType !== 'not passed') {
+        filters.order = [[orderType, orderDirection]];
+    }
+
+    return filters;
 
 
     // if(name !== 'not passed' && category === 'not passed') {
@@ -116,6 +118,17 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, type, carac
     //     ]
     // }
 }
+
+    /**
+    machete sobre hardcodeo:
+    categories: 
+    id_category     name_category
+        1               'ropa'
+        2               'accesorios'
+        3               'otros'
+
+    --> completar
+    */
 
 const productController = {
     getAll: async (req, res, next) => {
@@ -156,10 +169,10 @@ const productController = {
                 category = ' not passed',
                 rangePriceMin = 'not passed',
                 rangePriceMax = 'not passed',
-                type = 'not passed',
+                // type = 'not passed',
                 page = 1,
                 orderType = 'not passed',
-                orderDirection = 'not passed',
+                orderDirection = 'ASC',
                 ...caracteristics
             } = req.query;
 
@@ -169,11 +182,36 @@ const productController = {
 
             //si por query no me llega nada devuelvo la pagina 1 del catalogo completo ordenado alfabitamente por nombre
             const products = await Product.findAll({
-                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, type, caracteristics),
+                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, caracteristics, orderType, orderDirection),
                 // order: [[orderType, orderDirection]],
-                // offset: current,
-                // limit: perPage
+                offset: current,
+                limit: perPage
             });
+
+            // el objeto que quiero devolver:
+            /**
+            res = {
+                products: [
+                    {
+                        "id": 1,
+                        "name": "Buso Henry",
+                        "price": 109.95,
+                        "description": "Buzo elaborado en algodón perchado, de suave textura, estilo moderno , amplio bolsillo delantero, con estampado de Henry",
+                        "image": "https://ibb.co/jbLWf1t",
+                        "unit_stock": 12,
+                        "henry_coin": 10,
+                        "weight": 100,
+                        "size": 2,
+                        "promotion":false,
+                        "categories": [{id_category: 1, category_ name: 'ropa'}],
+                        
+                    }
+                ]
+            }
+            */
+
+
+
         } catch (error) {
             return next(error);
         }
