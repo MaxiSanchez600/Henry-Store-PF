@@ -1,5 +1,5 @@
 // ! MODULES
-import "./App.scss";
+import "../../Sass/Main.scss";
 import { Provider } from 'react-redux'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import store from '../../Redux/store/index.js'
