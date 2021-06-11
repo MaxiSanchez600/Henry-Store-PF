@@ -5,7 +5,7 @@ const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
 //Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize(`postgres://pxviipje:bzlJzdrU0ZP3rA3a2orVXKj3WfHbWqO7@motty.db.elephantsql.com/pxviipje`, {
+const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -56,8 +56,8 @@ Category.hasMany(SubCategory);
 SubCategory.belongsTo(Category); 
 
 //Relacion Productos Caracteristic
-Product.belongsToMany(Caracteristic, {through: ProductCaracteristic});
-Caracteristic.belongsToMany(Product, {through: ProductCaracteristic});
+Product.belongsToMany(Caracteristic, {through: {model: ProductCaracteristic, unique: false}});
+Caracteristic.belongsToMany(Product, {through: {model: ProductCaracteristic, unique: false}});
 
 //let category = Category.create({
 //  name_category: 'Ropa'
@@ -176,47 +176,47 @@ SubCategory.count().then((value) =>{
     const uno = SubCategory.create({
       name_sub_category: 'Remera',
       description: 'Descripcion de remera',
-      categoryIdCategory: 1
+      CategoryIdCategory: 1
     })
     const dos = SubCategory.create({
       name_sub_category: 'Pantalon',
       description: 'Descripcion de pantalon',
-      categoryIdCategory: 1
+      CategoryIdCategory: 1
     })
     const tres = SubCategory.create({
       name_sub_category: 'Buso',
       description: 'Descripcion de buso',
-      categoryIdCategory: 1
+      CategoryIdCategory: 1
     })
     const cuatro = SubCategory.create({
       name_sub_category: 'Camisa',
       description: 'Descripcion de camisa',
-      categoryIdCategory: 1
+      CategoryIdCategory: 1
     })
     const cinco = SubCategory.create({
       name_sub_category: 'Gorra',
       description: 'Descripcion de gorra',
-      categoryIdCategory: 1
+      CategoryIdCategory: 1
     })
     const seis = SubCategory.create({
       name_sub_category: 'Taza',
       description: 'Descripcion de taza',
-      categoryIdCategory: 2
+      CategoryIdCategory: 2
     })
     const siete = SubCategory.create({
       name_sub_category: 'Cuaderno',
       description: 'Descripcion de cuaderno',
-      categoryIdCategory: 2
+      CategoryIdCategory: 2
     })
     const ocho = SubCategory.create({
       name_sub_category: 'Lentes',
       description: 'Descripcion de lentes',
-      categoryIdCategory: 2
+      CategoryIdCategory: 2
     })
     const nueve = SubCategory.create({
       name_sub_category: 'PowerBank',
       description: 'Descripcion de powerbank',
-      categoryIdCategory: 3
+      CategoryIdCategory: 3
     })
     Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
       console.log('Se cargaron las subcategory' + values)
