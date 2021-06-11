@@ -30,7 +30,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory,
-  ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Roles, Favorites, Wishlist } = sequelize.models;
+  ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Role, Favorites, Wishlist } = sequelize.models;
 
 //Relacion Tags Productos
 Tags.belongsToMany(Products, {through: ProductTags});
@@ -90,8 +90,8 @@ Users.belongsTo(DocumentType);
 
 
 //Relacion Usuario Rol
-Roles.hasMany(Users);
-Users.belongsTo(Roles);
+Role.hasMany(Users);
+Users.belongsTo(Role);
 
 //Anadir rol a usuario => UserCreado.AddRoles() => 0,1,2 depende si es User, Admin, SuperAdmin
 
@@ -111,17 +111,17 @@ Users.belongsToMany(Products, {through: Wishlist})
 Products.belongsToMany(Users, {through: Wishlist})
 
 //Precarga Roles
-Roles.count().then((value) =>{
+Role.count().then((value) =>{
   if(value < 3){
-    const uno = Roles.create({
+    const uno = Role.create({
       id_rol: 0,
       rol: 'user'
     })
-    const dos = Roles.create({
+    const dos = Role.create({
       id_rol: 1,
       rol: 'admin'
     })
-    const tres = Roles.create({
+    const tres = Role.create({
       id_rol: 2,
       rol: 'superadmin'
     })

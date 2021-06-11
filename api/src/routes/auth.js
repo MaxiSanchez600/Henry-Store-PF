@@ -7,3 +7,5 @@ const router = Router();
 router.post('/register',postUser)
 router.get('/login',getUserInfo)
 router.put('/login',putUserInfo)
+
+module.exports = router;

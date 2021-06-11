@@ -1,31 +1,25 @@
-import { User, Roles, Status } from '../db.js'
+
+const UserCreator = require ('./controllersUtils/registerCreator.js');
 
 function postUser (req,res,next) {
     let { registerOrigin, username, email, firstname, lastname } = req.body;
     switch (registerOrigin){
         case 'github':{
-            User.create({username})
-            .then((userCreated)=>{
-                console.log(`Usuario ${username} creado desde github`)
-                userCreated.setRoles(1)
-                userCreated.setUserStatus(/*PREGUNTAR A MAXI QUE ESTADOS HAY */)
-            })
-        }
+            UserCreator(res, next, username);
+            break;
+        };
         case 'google':{
-            User.create({
-                email,
-                name = firstname,
-                last_name = lastname
-            })
-            .then()
-        }
+            UserCreator(res, next, null, email, firstname, lastname);
+            break;
+        };
         default:{
-            //entro con email/contraseña
-        }
-    }
-}
+            UserCreator(res, next, null,email);
+            break;
+        };
+    };
+};
 
 
 module.exports ={
     postUser
-}
+};

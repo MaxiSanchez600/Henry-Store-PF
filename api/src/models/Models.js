@@ -252,7 +252,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('roles', {
+  sequelize.define('role', {
     id_rol: {
       type: DataTypes.INTEGER,
       primaryKey: true,
