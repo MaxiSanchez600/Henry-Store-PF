@@ -110,63 +110,48 @@ Products.belongsToMany(Users, {through: Favorites})
 Users.belongsToMany(Products, {through: Wishlist})
 Products.belongsToMany(Users, {through: Wishlist})
 
+
+
 //Precarga Roles
 Roles.count().then((value) =>{
   if(value < 3){
-    const uno = Roles.create({
-      id_rol: 0,
-      rol: 'user'
-    })
-    const dos = Roles.create({
-      id_rol: 1,
-      rol: 'admin'
-    })
-    const tres = Roles.create({
-      id_rol: 2,
-      rol: 'superadmin'
-    })
-    Promise.all([uno, dos, tres]).then((values)=> {
-      console.log('Se cargaron los roles ' + values)
+    let arrayconst = [Roles.create({rol: 'user'}), Roles.create({rol: 'admin'}), Roles.create({rol: 'superadmin'})]
+    arrayconst.map(async (element) =>{
+      console.log('Se cargo el rol' + element)
+      await element
     })
   }
 })
 
 //Precarga Status
-UserStatus.count().then((value) => {
-  if(value < 3){
-    const uno = UserStatus.create({
-      id_status: 0,
-      name_status: 'registrado'
-    })
-    const dos = UserStatus.create({
-      id_status: 1,
-      name_status: 'creado'
-    })
-    const tres = UserStatus.create({
-      id_status: 2,
-      name_status: 'borrado'
-    })
-    Promise.all([uno, dos, tres]).then((values)=> {
-      console.log('Se cargaron los status ' + values)
-    })
-  }
-})
-
+ UserStatus.count().then((value) => {
+   if(value < 3){
+     let arrayconst = [UserStatus.create({name_status: 'incompleto'}), UserStatus.create({name_status: 'completo'}), UserStatus.create({name_status: 'eliminado'})]
+     arrayconst.map(async (element) =>{
+       console.log('Se cargo el estado' + element)
+       await element
+     })
+   }
+ })
 
 //Precarga Categorias
 Categories.count().then((value) => {
   if(value < 3){
-    const uno = Categories.create({
-      name_category: 'ropa'
+    let arrayconst = [Categories.create({name_category: 'Ropa'}), Categories.create({name_category: 'Accesorios'}), Categories.create({name_category: 'Otros'})]
+    arrayconst.map(async (element) =>{
+      console.log('Se cargo la categoria' + element)
+      await element
     })
-    const dos = Categories.create({
-      name_category: 'accesorios'
-    })
-    const tres = Categories.create({
-      name_category: 'otros'
-    })
-    Promise.all([uno, dos, tres]).then((values)=> {
-      console.log('Se cargaron las categories' + values)
+  }
+})
+
+//Precarga documentTypes
+DocumentType.count().then((value) =>{
+  if(value < 4){
+    let arrayconst = [DocumentType.create({name_document_type: 'dni'}), DocumentType.create({name_document_type: 'run'}), DocumentType.create({name_document_type: 'cc'}),  DocumentType.create({name_document_type: 'ife'})]
+    arrayconst.map(async (element) =>{
+      console.log('Se cargo el documenttype' + element)
+      await element
     })
   }
 })
@@ -174,10 +159,70 @@ Categories.count().then((value) => {
 //Precarga SubCategorias
 const subarray = ['remera', 'pantalon', 'camisa']
 SubCategories.count().then((value) =>{
-  if(value < 10){ 
-    
+  if(value < 9){ 
+    const uno = SubCategories.create({
+      name_sub_category: 'Remera',
+      description: 'Descripcion de remera',
+      categoryIdCategory: 1
+    })
+    const dos = SubCategories.create({
+      name_sub_category: 'Pantalon',
+      description: 'Descripcion de pantalon',
+      categoryIdCategory: 1
+    })
+    const tres = SubCategories.create({
+      name_sub_category: 'Buso',
+      description: 'Descripcion de buso',
+      categoryIdCategory: 1
+    })
+    const cuatro = SubCategories.create({
+      name_sub_category: 'Camisa',
+      description: 'Descripcion de camisa',
+      categoryIdCategory: 1
+    })
+    const cinco = SubCategories.create({
+      name_sub_category: 'Gorra',
+      description: 'Descripcion de gorra',
+      categoryIdCategory: 1
+    })
+    const seis = SubCategories.create({
+      name_sub_category: 'Taza',
+      description: 'Descripcion de taza',
+      categoryIdCategory: 2
+    })
+    const siete = SubCategories.create({
+      name_sub_category: 'Cuaderno',
+      description: 'Descripcion de cuaderno',
+      categoryIdCategory: 2
+    })
+    const ocho = SubCategories.create({
+      name_sub_category: 'Lentes',
+      description: 'Descripcion de lentes',
+      categoryIdCategory: 2
+    })
+    const nueve = SubCategories.create({
+      name_sub_category: 'PowerBank',
+      description: 'Descripcion de powerbank',
+      categoryIdCategory: 3
+    })
+    Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
+      console.log('Se cargaron las subcategories' + values)
+    })
   }
 })
+
+//Precarga de caracteristics
+Caracteristics.count().then((value) =>{
+  if(value < 4){
+    let constarray = ['color', 'size', 'genero', 'type']
+    constarray.forEach(element => {
+      Caracteristics.create({
+        name_caracteristic: element
+      })
+    })
+  }
+})
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
