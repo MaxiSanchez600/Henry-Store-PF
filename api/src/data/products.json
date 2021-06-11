@@ -1,190 +1,166 @@
 [
     {
         "id": 1,
-        "name": "Buso - Color Negro",
+        "name": "Buso Henry",
         "price": 109.95,
         "description": "Buzo elaborado en algodón perchado, de suave textura, estilo moderno , amplio bolsillo delantero, con estampado de Henry",
-        "image": "https://ibb.co/jbLWf1t",
-        "unit_stock":12,
-        "henry_coin":10,
-        "weight":100,
+        "image": ["https://ibb.co/jbLWf1t"],
+        "unit_stock": 12,
+        "henry_coin": 10,
+        "weight": 100,
         "promotion":false,
-        "category": "Buso",
-        "subcategorys": {
-            "color": ["Negro"],
+        "category": [{"id": "1", "name":"Ropa"}],
+        "tags": ["buso", "henry",  "ropa"],
+        "sub_category": {
+            "color": ["negro"],
             "size":["s","m","l","xl"],
-            "genero": "unisex"
+            "genero": "unisex",
+            "type": "buso"
         }
     },
     {
         "id": 2,
-        "name": "Chomba",
+        "name": "Chomba Henry",
         "price": 22.3,
         "description": "Camisa para Hombre, cuello camisero, manga corta, silueta amplia, elaborada en Chalis, con estampado de Henry",
-        "image": "https://ibb.co/4JFs2Wm",
+        "image": ["https://ibb.co/4JFs2Wm"],
         "unit_stock":12,
         "henry_coin":8,
         "weight":80,
         "promotion":false,
-        "category": "Chomba",
-        "subcategorys": {
-            "color": ["Blanco", "Negro"],
+        "category": [{"id": "1", "name":"Ropa"}],
+        "tags": ["chomba", "camisa",  "henry", "blanco", "negro", "ropa"],
+        "sub_category": {
+            "color": ["blanco", "negro"],
             "size":["s","m","l","xl"],
-            "genero": "unisex"
+            "genero": "unisex",
+            "type": "remera"
         }
     },
     {
         "id": 3,
-        "name": "Remera",
+        "name": "Remera Henry",
         "price": 55.99,
         "description": " Camiseta manga corta, Silueta semi ajustada,Estampada en frente y puños rectilíneos.En jersey, algodón orgánico, fibra natural durable, biodegradable y fresca. ",
-        "image": "https://ibb.co/jJ1ZzNH",
+        "image": ["https://ibb.co/jJ1ZzNH"],
         "unit_stock":12,
         "henry_coin":9,
         "weight":70,
-        "size":["s","m","l","xl"],
         "promotion":false,
-        "category": "Remera",
-        "subcategorys": {
-            "color": ["Blanco", "Negro"],
+        "category": [{"id": "1", "name":"Ropa"}],
+        "tags": ["remera", "polera",  "henry", "blanco", "negro", "ropa"],
+        "sub_category": {
+            "color": ["blanco", "negro"],
             "size":["s","m","l","xl"],
-            "genero": "unisex"
+            "genero": "unisex",
+            "type": "remera"
         }
     },
     {
         "id": 4,
-        "name": "Cuaderno",
+        "name": "Cuaderno Cohete Henry",
         "price": 15.99,
         "description": "Cuaderno argollado blanco de Pasta dura, Rayado de 100 hojas, mediano con Medidas: 23 cm x 16.5 cm x 1.1 cm en empaque ",
-        "image": "https://ibb.co/ccnhMRH",
-        "unit_stock":12,
-        "henry_coin":2,
-        "weight":30,
-        "size":"",
+        "image": ["https://ibb.co/ccnhMRH", "https://ibb.co/JrCwpHJ"],
+        "unit_stock": 12,
+        "henry_coin": 2,
+        "weight": 30,
         "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Blanco", "Negro", "Amarillo"]
-        }
-    },
-    {
-        "id": 4,
-        "name": "Cuaderno Blanco",
-        "price": 15.99,
-        "description": "Cuaderno argollado blanco de Pasta dura, Rayado de 100 hojas, mediano con Medidas: 23 cm x 16.5 cm x 1.1 cm en empaque ",
-        "image": "https://ibb.co/ccnhMRH",
-        "unit_stock":12,
-        "henry_coin":2,
-        "weight":30,
-        "size":"",
-        "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Blanco"]
+        "category": [{"id": "2", "name":"Accesorios"}],
+        "tags": ["cuaderno", "cohete",  "henry", "blanco", "negro", "accesorios"],
+        "sub_category": {
+            "color": ["blanco", "negro", "amarillo"],
+            "type": "cuaderno"
         }
     },
     {
         "id": 5,
-        "name": "Cuaderno Negro",
-        "price": 695,
-        "description": "Cuaderno argollado negro de Pasta dura, Rayado de 100 hojas, mediano con Medidas: 23 cm x 16.5 cm x 1.1 cm en empaque",
-        "image": "https://ibb.co/JrCwpHJ",
-        "unit_stock":12,
-        "henry_coin":2,
-        "weight":30,
-        "size":"",
+        "name": "Gorra Henry",
+        "price": 168,
+        "description": "Gorra Acrílica Henry (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
+        "image": ["https://ibb.co/6tTnpPq"],
+        "unit_stock": 12,
+        "henry_coin": 15,
+        "weight": 20,
         "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Negro"]
+        "category": [{"id": "1", "name":"Ropa"}],
+        "tags": ["gorra", "ropa",  "Henry", "blanco", "negro"],
+        "sub_category": {
+            "color": ["blanco", "negro"],
+            "size":["s","m","l"],
+            "genero": "unisex",
+            "type": "gorra"
         }
     },
     {
         "id": 6,
-        "name": "Gorra Blanca",
-        "price": 168,
-        "description": "Gorra Acrílica Henry (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
-        "image": "https://ibb.co/6tTnpPq",
-        "unit_stock":12,
-        "henry_coin":15,
-        "weight":20,
-        "size":"",
+        "name": "Gorra Cohete Henry",
+        "price": 9.99,
+        "description": "Gorra Negra Henry Acrílica (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
+        "image": ["https://ibb.co/QXh9smw"],
+        "unit_stock": 12,
+        "henry_coin": 15,
+        "weight": 20,
         "promotion":false,
-        "category": "Gorras",
-        "subcategorys": {
-            "color": ["Blanco"],
+        "category": [{"id": "1", "name":"Ropa"}],
+        "tags": ["gorra", "cohete",  "henry", "negro", "ropa"],
+        "sub_category": {
+            "color": ["negro"],
             "size":["s","m","l"],
-            "genero": "unisex"
+            "genero": "unisex",
+            "type": "gorra"
         }
     },
     {
         "id": 7,
-        "name": "Gorra Negra",
-        "price": 9.99,
-        "description": "Gorra Negra Henry Acrílica (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
-        "image": "https://ibb.co/QXh9smw",
-        "unit_stock":12,
-        "henry_coin":15,
-        "weight":20,
-        "size":"",
-        "promotion":false,
-        "category": "Gorras",
-        "subcategorys": {
-            "color": ["Negro"],
-            "size":["s","m","l"],
-            "genero": "unisex"
-        }
-    },
-    {
-        "id": 8,
-        "name": "Lentes",
+        "name": "Lentes Cohete",
         "price": 10.99,
         "description": "Las lentes polarizadas Northweek están fabricadas con Triacetato de Celulosa de origen alemán que aporta alta flexibilidad y protección UV400. Nuestro armazón de policarbonato de alta calidad se adapta perfectamente al contorno facial y tiene una elevada durabilidad y resistencia.",
-        "image": "https://ibb.co/tcp4Jt6",
-        "unit_stock":12,
-        "henry_coin":25,
-        "weight":1,
-        "size":"",
-        "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Negro"],
-            "genero": "unisex"
+        "image": ["https://ibb.co/tcp4Jt6"],
+        "unit_stock": 12,
+        "henry_coin": 25,
+        "weight": 1,
+        "promotion": false,
+        "category": [{"id": "2", "name":"Accesorios"}],
+        "tags": ["lentes", "anteojos",  "cohete", "blanco", "negro", "accesorios"],
+        "sub_category": {
+            "color": ["negro", "blanco"],
+            "type": "lentes"
         }   
     },
     {
-        "id": 9,
-        "name": "Power Bank",
+        "id": 8,
+        "name": "Cargador portatil Power Bank Henry Cohete",
         "price": 64,
         "description": "Power Bank Bateria Externa Cargador Portátil PZX11200 mAh USB Linterna Azul No sufras por batería nunca más, con esta batería con diseño ultra delgado para llevarla a donde quieras. Con puerto de carga USB, para que estés preparado para cualquier eventualidad que se presente",
-        "image": "https://ibb.co/rcCjtmF",
-        "unit_stock":12,
-        "henry_coin":20,
-        "weight":400,
-        "size":"",
-        "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Blanco", "Negro"]
+        "image": ["https://ibb.co/rcCjtmF"],
+        "unit_stock": 12,
+        "henry_coin": 20,
+        "weight": 400,
+        "promotion": false,
+        "category": [{"id": "3", "name":"Otros"}],
+        "tags": ["cargador", "portatil", "otros", "blanco", "negro"],
+        "sub_category": {
+            "color": ["blanco", "negro"],
+            "type": "tecnologia"
         }
     },
     {
-        "id": 10,
-        "name": "Taza Ceramica",
+        "id": 9,
+        "name": "Taza Ceramica Cohete Henry",
         "price": 109,
         "description": "Diseño tan simple pero elegante, la taza es de tamaño inteligente con 16 onzas, peso correcto, resistente",
-        "image": "https://ibb.co/S5y83x8",
-        "unit_stock":12,
-        "henry_coin":8,
-        "weight":350,
-        "size":"",
-        "promotion":false,
-        "category": "Accesorios",
-        "subcategorys": {
-            "color": ["Blanco", "Negro", "Amarillo"]
+        "image": ["https://ibb.co/S5y83x8"],
+        "unit_stock": 12,
+        "henry_coin": 8,
+        "weight": 350,
+        "promotion": false,
+        "category": [{"id": "2", "name":"Accesorios"}],
+        "tags": ["accesorios", "taza",  "ceramica", "cohete", "negro", "blanco", "amarillo"],
+        "sub_category": {
+            "color": ["blanco", "negro", "amarillo"],
+            "type": "taza"
         }
     }
     
 ]
-
-
