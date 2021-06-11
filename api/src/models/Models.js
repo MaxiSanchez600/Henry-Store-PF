@@ -20,10 +20,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    picture: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     unit_stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -206,21 +202,27 @@ module.exports = (sequelize) => {
     },
     email:{
       type:DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      unique: true,
     },
     phone:{
       type:DataTypes.STRING,
       allowNull: true
     },
-    user_name:{
+    username:{
       type:DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      unique: true,
     },
     identification: {
       type:DataTypes.STRING,
       allowNull: true
     },
     nacionality:{
+      type:DataTypes.STRING,
+      allowNull: true
+    },
+    image:{
       type:DataTypes.STRING,
       allowNull: true
     }
@@ -255,7 +257,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('Roles', {
+  sequelize.define('Role', {
     id_rol: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -283,6 +285,19 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    }
+  })
+
+  //Users Pic
+  sequelize.define('Image', {
+    id_image: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name_image:{
+      type: DataTypes.STRING,
+      allowNull: false
     }
   })
 

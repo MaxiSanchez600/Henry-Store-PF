@@ -11,10 +11,10 @@ const sequelize = new Sequelize(`postgres://niclafoj:dwo8FTAn1rUijBkFSz-6m39g8gh
 });
 
 //Conexion Local => Pruebas
-// const sequelize = new Sequelize(postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// });
+//  const sequelize = new Sequelize('postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}', {
+//    logging: false, // set to console.log to see the raw SQL queries
+//    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//  });
 
 const basename = path.basename(__filename);
 
@@ -39,7 +39,8 @@ modelDefiners.forEach(model => model(sequelize));
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory,
-  ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Roles, Favorites, Wishlist } = sequelize.models;
+  ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Role, Favorites,
+  Wishlist, Image } = sequelize.models;
 
 
 //Relacion Tags Productos
@@ -99,10 +100,10 @@ Users.belongsTo(DocumentType);
 
 
 //Relacion Usuario Rol
-Roles.hasMany(Users);
-Users.belongsTo(Roles);
+Role.hasMany(Users);
+Users.belongsTo(Role);
 
-//Anadir rol a usuario => UserCreado.AddRoles() => 0,1,2 depende si es User, Admin, SuperAdmin
+//Anadir rol a usuario => UserCreado.AddRole() => 0,1,2 depende si es User, Admin, SuperAdmin
 
 
 //Relacion Usuario Status
@@ -120,10 +121,14 @@ Users.belongsToMany(Products, {through: Wishlist})
 Products.belongsToMany(Users, {through: Wishlist})
 
 
-//Precarga Roles
-Roles.count().then((value) =>{
+//Relacion Producto Foto
+Products.hasMany(Image);
+Image.belongsTo(Products);
+
+//Precarga Role
+Role.count().then((value) =>{
   if(value < 3){
-    let arrayconst = [Roles.create({rol: 'user'}), Roles.create({rol: 'admin'}), Roles.create({rol: 'superadmin'})]
+    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo el rol' + element)
       await element
