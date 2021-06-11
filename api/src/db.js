@@ -4,10 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
-const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+//Conexion a Elephant => Agarrar Datos
+const sequelize = new Sequelize(`postgres://niclafoj:dwo8FTAn1rUijBkFSz-6m39g8gh1AS7x@motty.db.elephantsql.com/niclafoj`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+
+//Conexion Local => Pruebas
+// const sequelize = new Sequelize(postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
 
 const basename = path.basename(__filename);
 
@@ -19,18 +26,21 @@ fs.readdirSync(path.join(__dirname, '/Models'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/Models', file)));
   });
-
+console.log(modelDefiners)
 // Injectamos la conexion (sequelize) a todos los modelos
+
 modelDefiners.forEach(model => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+
+ //Capitalizamos los nombres de los modelos ie: product => Product
+ let entries = Object.entries(sequelize.models);
+ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Products, Categories, SubCategories, Caracteristics, Tags, ProductCaracteristic, ProductCategory,
   ProductTags, KindPromotion, ProductPromotion, Reviews, Users, DocumentType, UserStatus, Roles, Favorites, Wishlist } = sequelize.models;
+
 
 //Relacion Tags Productos
 Tags.belongsToMany(Products, {through: ProductTags});
@@ -43,7 +53,6 @@ Products.belongsToMany(Categories, { through: ProductCategory});
 //Relacion Categories SubCategories - Genero Getters y Setters
 Categories.hasMany(SubCategories);
 SubCategories.belongsTo(Categories); 
-
 
 //Relacion Productos Caracteristics
 Products.belongsToMany(Caracteristics, {through: ProductCaracteristic});
@@ -109,7 +118,6 @@ Products.belongsToMany(Users, {through: Favorites})
 //Relacion Producto Favoritos
 Users.belongsToMany(Products, {through: Wishlist})
 Products.belongsToMany(Users, {through: Wishlist})
-
 
 
 //Precarga Roles

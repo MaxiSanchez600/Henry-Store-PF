@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   //PRODUCTS Y CATEGORIES
-  sequelize.define('products', {
+  sequelize.define('Products', {
     id_product:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
 
   //CATEGORIES
 
-  sequelize.define('categories', {
+  sequelize.define('Categories', {
     id_category:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -65,7 +65,7 @@ module.exports = (sequelize) => {
   })
 
 
-  sequelize.define('subCategories', {
+  sequelize.define('SubCategories', {
     id_sub_category:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -82,7 +82,7 @@ module.exports = (sequelize) => {
   })
 
 
-  sequelize.define('caracteristics', {
+  sequelize.define('Caracteristics', {
     id_caracteristic: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -94,7 +94,7 @@ module.exports = (sequelize) => {
     },
   })
 
-  sequelize.define('productCaracteristic', {
+  sequelize.define('ProductCaracteristic', {
     idProductCaracteristic: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -106,7 +106,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('productCategory', {
+  sequelize.define('ProductCategory', {
     idProductCategory: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -116,7 +116,7 @@ module.exports = (sequelize) => {
 
   //TAGS
 
-  sequelize.define('tags', {
+  sequelize.define('Tags', {
     id_tag:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -128,7 +128,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('productTags', {
+  sequelize.define('ProductTags', {
     idProductTag: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -138,7 +138,7 @@ module.exports = (sequelize) => {
 
   //PROMOTION
 
-  sequelize.define('kindPromotion', {
+  sequelize.define('KindPromotion', {
     id_kind_promotion:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -150,7 +150,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('productPromotion', {
+  sequelize.define('ProductPromotion', {
     id_product_promotion:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -172,7 +172,7 @@ module.exports = (sequelize) => {
 
   //REVIEW
 
-  sequelize.define('reviews', {
+  sequelize.define('Reviews', {
     id_review:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -190,7 +190,7 @@ module.exports = (sequelize) => {
 
   //USUARIO
 
-  sequelize.define('users', {
+  sequelize.define('Users', {
     id_user:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -228,7 +228,7 @@ module.exports = (sequelize) => {
 
   //DOCUMENT TYPE
   
-  sequelize.define('documentType', {
+  sequelize.define('DocumentType', {
     id_document_type:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -242,7 +242,7 @@ module.exports = (sequelize) => {
 
   //STATUS ROL
 
-  sequelize.define('userStatus', {
+  sequelize.define('UserStatus', {
     id_status:{
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -255,7 +255,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('roles', {
+  sequelize.define('Roles', {
     id_rol: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -270,7 +270,7 @@ module.exports = (sequelize) => {
 
   //Wishlist Favorites
 
-  sequelize.define('favorites', {
+  sequelize.define('Favorites', {
     id_favorite: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -278,7 +278,7 @@ module.exports = (sequelize) => {
     }
   })
 
-  sequelize.define('wishlist', {
+  sequelize.define('Wishlist', {
     id_wishlist: {
       type: DataTypes.INTEGER,
       primaryKey: true,
