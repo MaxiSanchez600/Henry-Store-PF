@@ -5,7 +5,7 @@ const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
 //Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize(`postgres://niclafoj:dwo8FTAn1rUijBkFSz-6m39g8gh1AS7x@motty.db.elephantsql.com/niclafoj`, {
+const sequelize = new Sequelize(`postgres://pxviipje:bzlJzdrU0ZP3rA3a2orVXKj3WfHbWqO7@motty.db.elephantsql.com/pxviipje`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -45,18 +45,18 @@ const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic
 
 //Relacion Tag Productos
 Tag.belongsToMany(Product, {through: ProductTag});
-Products.belongsToMany(Tag, {through: ProductTag});
+Product.belongsToMany(Tag, {through: ProductTag});
 
 //Relacion Productos Category
 Category.belongsToMany(Product, {through: ProductCategory});
-Products.belongsToMany(Category, { through: ProductCategory});
+Product.belongsToMany(Category, { through: ProductCategory});
 
 //Relacion Category SubCategory - Genero Getters y Setters
 Category.hasMany(SubCategory);
 SubCategory.belongsTo(Category); 
 
 //Relacion Productos Caracteristic
-Products.belongsToMany(Caracteristic, {through: ProductCaracteristic});
+Product.belongsToMany(Caracteristic, {through: ProductCaracteristic});
 Caracteristic.belongsToMany(Product, {through: ProductCaracteristic});
 
 //let category = Category.create({
@@ -75,7 +75,7 @@ Caracteristic.belongsToMany(Product, {through: ProductCaracteristic});
 
 //Relacion Productos Promotions
 KindPromotion.belongsToMany(Product, {through: ProductPromotion});
-Products.belongsToMany(KindPromotion, {through: ProductPromotion});
+Product.belongsToMany(KindPromotion, {through: ProductPromotion});
 
 //Product.AddKindPromotion('2x1', {through: {
   //'date_start': 'zzzz',
@@ -85,8 +85,8 @@ Products.belongsToMany(KindPromotion, {through: ProductPromotion});
 
 
 //Relacion Productos Review
-Products.hasMany(Review);
-Review.belongsTo(Products);
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
 //Relacion Usuarios Review
 User.hasMany(Review);
@@ -114,16 +114,16 @@ User.belongsTo(UserStatus);
 
 //Relacion Usuario Favoritos
 User.belongsToMany(Product, {through: Favorite})
-Products.belongsToMany(User, {through: Favorite})
+Product.belongsToMany(User, {through: Favorite})
 
 //Relacion Producto Favoritos
 User.belongsToMany(Product, {through: Wishlist})
-Products.belongsToMany(User, {through: Wishlist})
+Product.belongsToMany(User, {through: Wishlist})
 
 
 //Relacion Producto Foto
-Products.hasMany(Image);
-Image.belongsTo(Products);
+Product.hasMany(Image);
+Image.belongsTo(Product);
 
 //Precarga Role
 Role.count().then((value) =>{
