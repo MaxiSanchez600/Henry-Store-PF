@@ -226,6 +226,8 @@ module.exports = (sequelize) => {
     }
   })
 
+  //DOCUMENT TYPE
+  
   sequelize.define('documentType', {
     id_document_type:{
       type: DataTypes.INTEGER,
@@ -244,7 +246,8 @@ module.exports = (sequelize) => {
     id_status:{
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false
+      autoIncrement: true,
+      allowNull: true
   },
     name_status:{
       type: DataTypes.STRING,
@@ -256,7 +259,8 @@ module.exports = (sequelize) => {
     id_rol: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false    
+      autoIncrement: true,
+      allowNull: true   
     },
     rol: {
       type: DataTypes.STRING,
