@@ -20,7 +20,7 @@ const NavBar = () => {
   
   return (
     <div>
-      RENDER NAVBAR
+      RENDER NAVBAR: 
       <button onClick={() => setIsModalOpened(true)}>Sing in</button>
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
          <Auth/> 

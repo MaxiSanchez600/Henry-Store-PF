@@ -24,8 +24,8 @@ function App() {
         <FirebaseAppProvider firebaseConfig={firebaseConfig}>
           <Provider store={store}>
             <BrowserRouter>
-              <NavBar/>
-            <h1>Henry Store!</h1>
+              {/* <NavBar/> */}
+              <Route exact path="/" component={Home} />
             </BrowserRouter>
           </Provider>
         </FirebaseAppProvider>
