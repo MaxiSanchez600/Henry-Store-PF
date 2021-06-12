@@ -6,7 +6,7 @@ function getUserInfo (req,res,next) {
     if(username){
         let sendUser = {};
         User.findOne({where:{username}})
-        .then((userCreated)=>firstInfoSearcher(userCreated, sendUser))
+        .then((userCreated)=> firstInfoSearcher(userCreated, sendUser))
         .then((response)=> secoundInfoSearcher(response, res, sendUser))
         .catch((e)=>next(e))
     };

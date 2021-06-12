@@ -3,7 +3,7 @@ const { getDocumentTypes, getNacionalities } = require('../controllers/getterInf
 
 const router = Router();
 
-router.get('/identifications',getDocumentTypes);
+router.get('/documenttypes',getDocumentTypes);
 router.get('/nacionalities',getNacionalities);
 
 module.exports = router;
