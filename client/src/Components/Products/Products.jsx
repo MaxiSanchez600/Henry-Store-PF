@@ -20,7 +20,6 @@ function Products({ ListProducts, getAllFilteredProducts }) {
                     <img src={product.image[0]} alt="" className="product_image" id={product.index} />
                     <div className="product_name">{product.name}</div>
                     <div class="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
-                    
                     <div className="product_price"><h5>{product.price} USD</h5> </div>
                     <div className="product_stock"><h5>{product.unit_stock} Units</h5></div>
                     <div className="product_henry_coin"><h5>{product.henry_coin} Henry Coin</h5></div>

@@ -9,14 +9,16 @@ import Ubication from '../../Components/Ubication/Ubication'
 
 function Home() {
     return (
-        <div>
+        <div className="content_Home" >
             <Header />
-            <Ubication/>
+            <Ubication />
             <Navbar />
             <SearchBar />
             <div className="body_Home">
-                <Filters />
-                <Products />
+                <div className="webcontent_home">
+                    <Filters />
+                    <Products />
+                </div>
             </div>
             <Footer />
         </div>

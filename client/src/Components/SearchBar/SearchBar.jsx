@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
@@ -18,7 +17,7 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
 
     // else if (e.target.value === " ") {
     //   setSearch(e.target.value);
-      
+
     // }
     else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
   }
@@ -35,17 +34,19 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
     sendFiltersToActions({ ...queriesFromReducer });
   }
 
+  // ! CONTENT
   return (
-    <div>
+    <div className="content_SearchBar">
       <form onSubmit={e => handleSubmit(e)}>
         <input
+        className="input_search"
           name="tag"
           type="text"
-          placeholder="Buscá el producto que quieras..."
+          placeholder="Buscar productos, accesorios..."
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <input type="submit" value="Buscar" />
+        <input className="button_search" type="submit" value="Buscar" />
       </form>
       {
         search ?

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "firebase/auth";
 import { useFirebaseApp, useUser, SuspenseWithPerf, useAuth } from "reactfire";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import "./Auth.scss";
+// import "./Auth.scss";
 import {REGISTER_URL} from "../../Assets/constans.js"
 import CompleteForm from "./CompleteForm"
 

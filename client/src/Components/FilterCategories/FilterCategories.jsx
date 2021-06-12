@@ -30,8 +30,9 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
     sendFiltersToActions({ ...removedFilters });
   }
 
+  // ! CONTENT
   return (
-    <div>
+    <div className="FilterCategories">
       <select name="category" onChange={e => handleOptions(e)} placeholder="Categorias...">
         <option value="ropa">Ropa</option>
         <option value="accesorios">Accesorios</option>
