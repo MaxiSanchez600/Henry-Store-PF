@@ -1,11 +1,9 @@
 // import axios from "axios";
 
 import PRODUCTS from "../../Assets/products.json";
-
 const LOCALHOST = "";
 
 export async function allProductsFilteredService(allQueries) {
-
   console.log("allQueries desde service: ", allQueries);
 
   if (allQueries) {
