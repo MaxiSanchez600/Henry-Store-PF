@@ -8,26 +8,28 @@ import { FirebaseAppProvider } from 'reactfire'
 
 // ! PAGES
 import Product_Detail from '../../Pages/Product_Detail/Product_Detail'
-import Registration from '../../Pages/Registration/Registration'
 import Home from "../../Pages/Home/Home";
-import Login from '../../Pages/Login/Login'
+import NavBar from "../NavBar/NavBar";
+import { Suspense } from "react";
+import "firebase/auth";
+
+// ! COMPONENTS
+// import Navbar from "../NavBar/NavBar";
 
 // ! CONTENT
 function App() {
   return (
     <div className="App">
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <Provider store={store}>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/registration" component={Registration} />
-              <Route exact path="/item/:id" component={Product_Detail} />
-            </Switch>
-          </BrowserRouter>
-        </Provider>
-      </FirebaseAppProvider>
+      <Suspense fallback={"Cargando..."}>
+        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+          <Provider store={store}>
+            <BrowserRouter>
+              <NavBar/>
+            <h1>Henry Store!</h1>
+            </BrowserRouter>
+          </Provider>
+        </FirebaseAppProvider>
+      </Suspense>
     </div>
   );
 }
