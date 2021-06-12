@@ -8,25 +8,37 @@ import CompleteForm from "./CompleteForm"
 
 
 
-const Auth = () => {
 
-  const initialState = {
-    email: "",
-    password: "",
-  };
-  const stateInfo = {
-    email: "",
-    username :"",
-    firstname:"",
-    lastname:"",
-    image:"",
-    registerOrigin:""
-  };
+const SignInForm = () => {
   
-  const [form, setForm] = useState(initialState);
+  const auth = useAuth;
+  const uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      auth.GoogleAuthProvider.PROVIDER_ID,
+      auth.GithubAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      // FUNCION LUEGO DE QUE SE COMPLETO EL INICIO DE SESION
+      signInSuccessWithAuthResult: (e) => {
+        //console.log(e);
+      },
+    },
+  };
+  return <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth()} />;
+};
+
+const state = {
+  email: "",
+  password: "",
+};
+
+const CreateAccount = () => {
+
+  const [form, setForm] = useState(state);
   const firebase = useFirebaseApp();
   const { data: user } = useUser();
-  const [info, setInfo] = useState(stateInfo);
+  
 
   const handleOnChange = (e) => {
     setForm({
@@ -35,86 +47,32 @@ const Auth = () => {
     });
   };
 
-  const SignInForm = () => {
-  
-    const auth = useAuth;
-    const uiConfig = {
-      signInFlow: "popup",
-      signInOptions: [
-        auth.GoogleAuthProvider.PROVIDER_ID,
-        auth.GithubAuthProvider.PROVIDER_ID,
-      ],
-      callbacks: {
-        // FUNCION LUEGO DE QUE SE COMPLETO EL INICIO DE SESION
-        signInSuccessWithAuthResult: (e) => {
-          console.log(e);
-          let i=e.additionalUserInfo;
-
-          switch (i.providerId) {
-            case "google.com":{
-              setInfo({
-                ...info,
-                email: i.profile.email ,
-                firstname:i.profile.given_name,
-                lastname:i.profile.family_name,
-                image:i.profile.picture,
-                registerOrigin:i.providerId
-              });
-              break;
-            }
-
-            case "github.com":{
-              setInfo({
-                ...info,
-                username :i.username,
-                image:i.profile.avatar_url,
-                registerOrigin:i.providerId,
-              });
-              break;
-            }
-          
-            default:{
-              setInfo({
-                ...info,
-                email: e.user.email ,
-              });
-              console.log(info)
-              break;
-            }
-            
-          }
-
-          //data=e.additionalUserInfo;
-        },
-      },
-    };
-    return <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth()} />;
-  };
-
   const createAccount = async (e) => {
     e.preventDefault();
    
-    await firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(form.email, form.password)
       .then(r=>{console.log(r)})
       .catch (function(error){
         alert(error);
       }) 
+    setForm(state);
 
-    //setForm(state);
     try {
       let config={
         method:"POST",
-            body:JSON.stringify(info),
+            body:JSON.stringify(form),
             headers:{
                 "Accept":"application/json",
                 "Content-Type":"application/json"
               },
             }
             await fetch(REGISTER_URL,config)
-           // setInfo(stateInfo);
           } catch (error) {
             alert(error);
           }
+
   };
 
   const login = async (e) => {
@@ -147,7 +105,7 @@ const Auth = () => {
     <div>
       {!user && (
         <div>
-          <h2 className="title">Log In </h2>
+          <h2 className="title">create Account</h2>
           <form className="formu">
             <div>
               <div>
@@ -167,11 +125,11 @@ const Auth = () => {
             </div>
           </div>
           <div className="ForgotPass">
-           <button onClick={()=>forgotPassword(form.email)}>Forgot Password?</button>
-     
+            <label onClick={()=>forgotPassword(form.email)}>Forgot Password?</label>
+            
           </div>
           <div>
-            <SuspenseWithPerf 
+            <SuspenseWithPerf
               traceId={"firebase-user-wait"}
               fallback={<p>loading...</p>}>
               <SignInForm />
@@ -180,13 +138,9 @@ const Auth = () => {
         </div>
       )}
 
-      {user && 
-      <>
-      <CompleteForm/>
-      
-      </> }
+      {user && <CompleteForm/> }
     </div>
   );
 };
 
-export default Auth;
+export default CreateAccount;
