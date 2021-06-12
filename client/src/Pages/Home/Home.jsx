@@ -7,7 +7,6 @@ import SearchBar from '../../Components/SearchBar/SearchBar'
 import Filter from '../../Components/Filter/Filter'
 import Ubication from '../../Components/Ubication/Ubication'
 
-
 function Home() {
     return (
         <div>
@@ -24,4 +23,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;

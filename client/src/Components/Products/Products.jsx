@@ -3,17 +3,19 @@ import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import ListProducts from '../../Assets/products.json'
+import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
-function Products() {
+
+function Products({ ListProducts, getAllFilteredProducts }) {
 
     useEffect(() => {
-
+        if (!ListProducts.length) getAllFilteredProducts();
     }, [])
 
     // ! CONTENT   
     return <div className="content cards_container_products">
         {ListProducts.map((product, index) => {
-            return <Link to={`/item/${product.id}`}>
+            return <Link to={`/item/${product.id}`}  key={product.id}>
                 <div className="product_card">
                     <img src={product.image[0]} alt="" className="product_image" id={product.index} />
                     <div className="product_name">{product.name}</div>
@@ -27,9 +29,20 @@ function Products() {
             </Link>
         })
         }
-
     </div>
 
 }
 
-export default Products
+function mapStateToProps(state) {
+    return {
+        ListProducts: state.products
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getAllFilteredProducts: (allQueries) => dispatch(getAllFilteredProducts(allQueries))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

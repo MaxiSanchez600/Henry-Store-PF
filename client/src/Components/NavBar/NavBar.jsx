@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Auth from "../Authentication/Auth";
 import "firebase/auth";
-import { useFirebaseApp,useUser } from "reactfire";
+import { useFirebaseApp, useUser } from "reactfire";
 
 import Modal from "../Modal/Modal";
+
+// COMPONENTES
+import FilterCategories from "../FilterCategories/FilterCategories";
+import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -13,32 +17,31 @@ const NavBar = () => {
   const firebase = useFirebaseApp();
 
 
-  const logOut=async()=>{
+  const logOut = async () => {
     await firebase.auth().signOut();
   }
 
-  
+
   return (
     <div className="contain_NavBar">
-      <button>Categoria</button>
+      <FilterCategories />
       <button>Ofertas</button>
       <button>Historial</button>
       <button>Vender</button>
       <button>Ayuda/PQR</button>
 
-
       <button className="button_login" onClick={() => setIsModalOpened(true)}>Sing in</button>
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
-         <Auth/> 
+        <Auth />
       </Modal>
-      {user&&
-      <>
-      <button onClick={logOut}>logOut</button>
-      <h2>{`Bienvenido ${user.displayName}`}</h2>
-      <div className="image">
-          <img src={user.photoURL} alt="not found" />
-      </div>
-      </>
+      {user &&
+        <>
+          <button onClick={logOut}>logOut</button>
+          <h2>{`Bienvenido ${user.displayName}`}</h2>
+          <div className="image">
+            <img src={user.photoURL} alt="not found" />
+          </div>
+        </>
       }
     </div>
   );

@@ -1,25 +1,38 @@
 // ! ACTIONS
-import {GET_PRODUCTS} from '../actions/actions';
+import { GET_PRODUCTS, FILTER_PRODUCTS } from '../actions/actions';
 
 
 const initialState = {
-    recipes: [],
+    products: [],
+    queries: {}
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-       
-        case GET_PRODUCTS:                  // * Receibe all list of products from backend
+
+        // * Receibe all list of products from backend
+        case GET_PRODUCTS:
             return {
                 ...state,
-                recipes: action.payload,
+                products: action.payload,
             };
 
-        default:                            // * default
+        // * Receibe all_list with filter
+        case FILTER_PRODUCTS:
+            console.log("LLEGA PAYLOAD AL REDUCER: ", action);
+            console.log("------------------------------");
+            return {
+                ...state,
+                products: [...action.payload],
+                queries: { ...action.queries }
+            }
+
+        // * default
+        default:
             return {
                 ...state,
             };
     }
-};
+}
 
 export default rootReducer;
