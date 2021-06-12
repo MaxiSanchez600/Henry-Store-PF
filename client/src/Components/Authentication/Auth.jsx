@@ -135,7 +135,7 @@ const Auth = () => {
         </div>
       )}
 
-      {user && <CompleteForm/> }
+            {user && <CompleteForm/> }
     </div>
   );
 };

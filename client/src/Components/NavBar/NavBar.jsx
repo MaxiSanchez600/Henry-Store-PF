@@ -22,19 +22,15 @@ const NavBar = () => {
     <div>
       RENDER NAVBAR
       <button onClick={() => setIsModalOpened(true)}>Sing in</button>
-
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
          <Auth/> 
-   
       </Modal>
       {user&&
       <>
-      
       <button onClick={logOut}>logOut</button>
-
       <h2>{`Bienvenido ${user.displayName}`}</h2>
       <div className="image">
-                <img src={user.photoURL} alt="not found" />
+          <img src={user.photoURL} alt="not found" />
       </div>
       </>
       }
