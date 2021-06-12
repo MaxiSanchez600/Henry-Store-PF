@@ -1,16 +1,21 @@
 @import '../../Sass/variables';
 
-.header {
-    top:0;
-    left:0;
-    height:3rem;
+.content_Header {
+    top: 0;
+    left: 0;
+    height: 6rem;
     width: 100%;
-    box-shadow: 0 0 5px 1px rgba(0,0,0,0);
-    background-color: $yellow_main;
+    background-color: #FFFF01;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 45px
+    z-index: 1;
+
+    .body_Header {
+        max-width: 1200px;
+        margin-left: 10%;
+        margin-bottom: 3%;
+    }
+
 }
 
 

@@ -24,7 +24,6 @@ function App() {
         <FirebaseAppProvider firebaseConfig={firebaseConfig}>
           <Provider store={store}>
             <BrowserRouter>
-              {/* <NavBar/> */}
               <Route exact path="/" component={Home} />
             </BrowserRouter>
           </Provider>

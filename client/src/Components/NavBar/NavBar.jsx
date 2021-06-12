@@ -19,9 +19,15 @@ const NavBar = () => {
 
   
   return (
-    <div>
-      RENDER NAVBAR: 
-      <button onClick={() => setIsModalOpened(true)}>Sing in</button>
+    <div className="contain_NavBar">
+      <button>Categoria</button>
+      <button>Ofertas</button>
+      <button>Historial</button>
+      <button>Vender</button>
+      <button>Ayuda/PQR</button>
+
+
+      <button className="button_login" onClick={() => setIsModalOpened(true)}>Sing in</button>
       <Modal isOpened={isModalOpened} onClose={() => setIsModalOpened(false)}>
          <Auth/> 
       </Modal>
