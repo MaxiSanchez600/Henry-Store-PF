@@ -40,7 +40,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image } = sequelize.models;
+  Wishlist, Image, Nacionality} = sequelize.models;
 
 
 //Relacion Tag Productos
@@ -124,6 +124,10 @@ Product.belongsToMany(User, {through: Wishlist})
 //Relacion Producto Foto
 Product.hasMany(Image);
 Image.belongsTo(Product);
+
+//Relacion Usuario Nacionalidad
+Nacionality.hasMany(User);
+User.belongsTo(Nacionality);
 
 //Precarga Role
 Role.count().then((value) =>{
@@ -231,6 +235,18 @@ Caracteristic.count().then((value) =>{
     constarray.forEach(element => {
       Caracteristic.create({
         name_caracteristic: element
+      })
+    })
+  }
+})
+
+//Precarga de Nacionalidades
+Nacionality.count().then((value) =>{
+  if(value < 4){
+    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile']
+    constarray.forEach(element => {
+      Nacionality.create({
+        name_nacionality: element
       })
     })
   }
