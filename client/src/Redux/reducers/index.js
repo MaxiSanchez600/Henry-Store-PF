@@ -10,12 +10,12 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        // * Receibe all list of products from backend
-        case GET_PRODUCTS:
-            return {
-                ...state,
-                products: action.payload,
-            };
+        // * Receibe all list of products from backend //DONT USED
+        // case GET_PRODUCTS:
+        //     return {
+        //         ...state,
+        //         products: action.payload,
+        //     };
 
         // * Receibe all_list with filter
         case FILTER_PRODUCTS:

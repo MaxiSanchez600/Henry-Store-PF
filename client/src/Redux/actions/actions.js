@@ -9,18 +9,18 @@ import { PRODUCTS_URL } from '../../Config/index';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 
-/* =============== ACTIONS =============== */
-// ! GET LIST PRODUCTS // DONT USED
-export function getProducts() {
-  return function (dispatch) {
-    return axios.get(PRODUCTS_URL).then((response) => {
-      dispatch({
-        type: GET_PRODUCTS,
-        payload: response.data,
-      });
-    });
-  };
-}
+/* ============================== ACTIONS ============================================== */
+// ! GET LIST PRODUCTS // ***** DONT USED
+// export function getProducts() {
+//   return function (dispatch) {
+//     return axios.get(PRODUCTS_URL).then((response) => {
+//       dispatch({
+//         type: GET_PRODUCTS,
+//         payload: response.data,
+//       });
+//     });
+//   };
+// }
 
 // =======================================================================================
 // ! GET LIST PRODUCTS WITH FILTERS // PENDING VERIFY FOR GET PRODUCT ONLY

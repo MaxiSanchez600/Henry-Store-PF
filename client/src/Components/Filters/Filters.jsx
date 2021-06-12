@@ -5,6 +5,8 @@ import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
+
+  // ! ***** FILTERS ****
   const [filtersToSend, setFiltersToSend] = useState({
     // type: "",
     // rangePriceMin: 0,
@@ -20,10 +22,6 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
   // const [selectedFilter, setSelectedFilter] = useState("");
 
   function handleFilters(e) {
-    console.log("filter name -> e.target.name: ", e.target.name);
-    console.log("filter type -> e.target.type: ", e.target.type);
-    console.log("filter value -> e.target.value: ", e.target.value);
-
     setFiltersToSend({
       ...filtersToSend,
       [e.target.name]: e.target.value
@@ -48,6 +46,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
     sendFiltersToActions(queriesFromReducer);
   }
 
+  // ! ***** CONTENT ****
   return (
     <form onSubmit={e => handleSubmit(e)}>
       {
@@ -61,6 +60,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           </div>
         ))
       }
+      <div>Subcategoria
       <select name="type" onChange={e => handleFilters(e)}>
         <option name="type" value="buso">Buso</option>
         <option name="type" value="cuaderno">Cuaderno</option>
@@ -70,7 +70,8 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
         <option name="type" value="taza">Taza</option>
         <option name="type" value="tecnologia">Tecnologia</option>
       </select>
-      <input type="submit" value="Filtrar por tipo" />
+      </div>
+      {/* <input type="submit" value="Filtrar por tipo" /> */}
       <input
         name="rangePriceMin"
         type="number"
@@ -97,13 +98,13 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
         onChange={e => handleFilters(e)}
         min={0}
       />
-      <input type="submit" value="Filtrar por precio" />
+      {/* <input type="submit" value="Filtrar por precio" /> */}
       <select name="color" onChange={e => handleFilters(e)}>
         <option value="blanco">Blanco</option>
         <option value="negro">Negro</option>
         <option value="amarillo">Amarillo</option>
       </select>
-      <input type="submit" value="Filtrar por color" />
+      {/* <input type="submit" value="Filtrar por color" /> */}
       {
         queriesFromReducer.category === "ropa" ?
           <div>
@@ -122,6 +123,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           </div> : ""
       }
     </form>
+  
   );
 }
 

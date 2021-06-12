@@ -10,6 +10,7 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
   function handleSearch(e) {
     console.log("search name -> e.target.name: ", e.target.name);
     console.log("search value -> e.target.value: ", e.target.value);
+    setSearch(e.target.value);
     if (!e.target.value) {
       const { tag, ...removedTagQuery } = { ...queriesFromReducer };
       sendFiltersToActions({ ...removedTagQuery });

@@ -14,7 +14,8 @@ import "firebase/auth";
 // ! COMPONENTS
 import Registration from '../../Pages/Registration/Registration'
 import ProductsContainer from "../../Pages/ProductsContainer/ProductsContainer";
-import Login from '../../Pages/Login/Login'
+import Login from '../../Pages/Login/Login';
+import Filters from '../../Components/Filters/Filters';
 
 // ! CONTENT
 function App() {

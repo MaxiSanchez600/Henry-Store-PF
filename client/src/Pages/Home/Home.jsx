@@ -4,7 +4,7 @@ import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer'
 import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
-import Filter from '../../Components/Filter/Filter'
+import Filters from '../../Components/Filters/Filters'
 import Ubication from '../../Components/Ubication/Ubication'
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
             <Navbar />
             <SearchBar />
             <div className="body_Home">
-                <Filter />
+                <Filters />
                 <Products />
             </div>
             <Footer />
