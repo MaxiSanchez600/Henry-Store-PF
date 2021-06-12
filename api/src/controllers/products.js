@@ -1,26 +1,22 @@
-const { Product } = require('../db');
+const { Product, Tag, Category, Caracteristic, ProductCaracteristic } = require('../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
-const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, caracteristics, orderType, orderDirection) => {
+const filtersCreator = (tag, category, rangePriceMin, rangePriceMax) => {
     var filters = {};
-    // var includes = [];
 
     filters.include = [
         {
-            model: Tags
+            model: Tag,
         },
         {
-            model: Categories,
+            model: Category,
         },
-        {
-            model: Caracteristics
-        }
     ];
     if(tag !== 'not passed') {
         filters.include[0].where = {
             name_tag: {
-                [Op.like]: `%${tag.toLowerCase()}%`
+                [Op.like]: `%${tag}%`   //Op.ilike
             }
         };
         filters.include[0].required = true;
@@ -31,147 +27,45 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, caracterist
         };
         filters.include[1].required = true;
     }
-    if(rangePriceMin !== 'not passed' && rangePriceMax !== 'not passed') { // checkear si se necesita required: true acá
+    if(rangePriceMin !== 'not passed' && rangePriceMax !== 'not passed') {
         filters.where = {
             price: {
                 [Op.and]: {
-                    [Op.gte]: parseInt(rangePriceMin),    //checkear si las props de Op estan bien, si no probar con Op.gt y Op.lt
+                    [Op.gte]: parseInt(rangePriceMin),  
                     [Op.lte]: parseInt(rangePriceMax)
                 }
             }
         }
     }
-    if(rangePriceMin !== 'not passed' && rangePriceMax === 'not passed') { // checkear si se necesita required: true acá
+    if(rangePriceMin !== 'not passed' && rangePriceMax === 'not passed') { 
         filters.where = {
             price: {
                 [Op.gte]: parseInt(rangePriceMin)   
             }
         }
     }
-    if(rangePriceMin === 'not passed' && rangePriceMax !== 'not passed') { // checkear si se necesita required: true acá
+    if(rangePriceMin === 'not passed' && rangePriceMax !== 'not passed') { 
         filters.where = {
             price: {
                 [Op.lte]: parseInt(rangePriceMax)
             }
         }
     }
-    // if(type !== 'not passed') { // comprobar si se necesita required: true acá
-    //     filters.include[1].include[0].where = {
-    //         name_sub_category: type
-    //     };
-    //     filters.include[1].include[0].required = true;
-    // }
-    if(Object.keys(caracteristics).length > 0) {    //algo asi seria esto, necesita mil chequeos, y si no traer todo y filtrar fuera de la db
-        filters.include[2].where = {
-            name_caracteristic: {
-                [Op.or]: Object.keys(caracteristics)
-            }
-        };
-        filters.include[2].through = {
-            where: {
-                value_caracteristic: {
-                    [Op.or]: Object.values(caracteristics)
-                } 
-            }
-        };
-        // filters.include[2].required = true; --> ver si esto es necesario
-    }
-    if(orderType !== 'not passed') {
-        filters.order = [[orderType, orderDirection]];
-    }
 
     return filters;
-
-
-    // if(name !== 'not passed' && category === 'not passed') {
-    //     filters.include = [
-    //         ...includes,    //podría quitarse ya que son los primeros e irian vacios
-    //         {
-    //             model: Tags,
-    //             where: {
-    //                 name_tag: {
-    //                     [Op.like]: `%${name.toLowerCase()}%`
-    //                 }
-    //             },
-    //             required: true
-    //         }
-    //     ];
-    // }
-    // if(name === 'not passed' && category !== 'not passed') {
-    //     filters.include = [
-    //         ...includes,    //podría quitarse ya que son los primeros e irian vacios
-    //         {
-    //             model: Categories,
-    //             where: {
-    //                 name_category: name
-    //             },
-    //             required: true
-    //         }
-    //     ];
-    // }
-    // if(size !== 'not passed') {
-    //     filters.include = [
-    //         ...includes,
-    //         {
-    //             model: Caracteristics
-    //         }
-    //     ]
-    // }
 }
-
-    /**
-    machete sobre hardcodeo:
-    categories: 
-    id_category     name_category
-        1               'ropa'
-        2               'accesorios'
-        3               'otros'
-
-    --> completar
-    */
 
 const productController = {
     getAll: async (req, res, next) => {
-        /*
-        lo que me llega desde el front:
-        CASO 1:
-        req.query = {
-            tag: 'henry' ---> busqueda por tags (el tag se compone de la categoria, colores, (sexo) y la desestructuracion del name)
-            category: undefined --> budqueda por categoría
-            rangePriceMin: '10', --> filtrado en producto
-            rangePriceMax: '50', --> filtrado en producto
-            type: 'buso' --> filtrado por subcategoria
-            page: 1 --> paginacion del back
-            orderType: undefined,
-            orderDirection: undefined
-            color: 'negro', --> filtrado en caracteristica ||caracteristicName1 = caracteristicValue1
-            size: 's', --> filtrado en caracteristica ||caracteristicName2 = caracteristicValue2
-            sex: undefined, --> filtrado en caracteristica ||caracteristicName3 = caracteristicValue3
-
-        }
-
-        CASO 2:
-        req.query = {
-            tag: undefined ---> busqueda por tags
-            category: ropa --> budqueda por categoría
-            rangePriceMin: undefined, --> filtrado en producto
-            rangePriceMax: 50, --> filtrado en producto
-            type: undefined --> filtrado por subcategoria
-            page: 1 --> paginacion del back
-            orderType: 'price',
-            orderDirection: undefined
-            sex: unisex, --> filtrado en caracteristica || caracteristicName1 = caracteristicValue1
-        }
-        */
+        
         try {
             const {
                 tag = 'not passed',
-                category = ' not passed',
+                category = 'not passed',
                 rangePriceMin = 'not passed',
                 rangePriceMax = 'not passed',
-                // type = 'not passed',
                 page = 1,
-                orderType = 'not passed',
+                orderType = 'id_product',
                 orderDirection = 'ASC',
                 ...caracteristics
             } = req.query;
@@ -180,37 +74,73 @@ const productController = {
             const perPage = 10;
             const current = (page * perPage) - perPage;
 
-            //si por query no me llega nada devuelvo la pagina 1 del catalogo completo ordenado alfabitamente por nombre
+            //uso filtersCreator para filtrar por tags, categorias o rangos de precios en una primera estancia
             const products = await Product.findAll({
-                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, caracteristics, orderType, orderDirection),
-                // order: [[orderType, orderDirection]],
-                offset: current,
-                limit: perPage
+                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax),
             });
 
-            // el objeto que quiero devolver:
-            /**
-            res = {
-                products: [
-                    {
-                        "id": 1,
-                        "name": "Buso Henry",
-                        "price": 109.95,
-                        "description": "Buzo elaborado en algodón perchado, de suave textura, estilo moderno , amplio bolsillo delantero, con estampado de Henry",
-                        "image": "https://ibb.co/jbLWf1t",
-                        "unit_stock": 12,
-                        "henry_coin": 10,
-                        "weight": 100,
-                        "size": 2,
-                        "promotion":false,
-                        "categories": [{id_category: 1, category_ name: 'ropa'}],
-                        
-                    }
-                ]
+            // guardo solo los id de la primera instancia de filtro
+            let productsId = [];
+            for(let i = 0; i <= products.length - 1; i++) {
+                productsId.push(products[i].id_product)
             }
-            */
+            // console.log(productsId);  
 
+            // si tengo caracteristicas para filtrar entro acá
+            if(Object.keys(caracteristics).length > 0) {
+                //primero busco los id de las caracteristicas que me importan
+                var caracteristicComplete = [];
+                const caracteristicsSearch = await Caracteristic.findAll();
+                for( let j = 0; j <= Object.keys(caracteristics).length - 1; j++) {
+                    for(let k = 0; k <= caracteristicsSearch.length - 1; k++) {
+                        if(Object.keys(caracteristics)[j] === caracteristicsSearch[k].name_caracteristic) {
+                            caracteristicComplete.push({
+                                id: caracteristicsSearch[k].id_caracteristic,
+                                name: Object.keys(caracteristics)[j],
+                                value: Object.values(caracteristics)[j]        
+                            })
+                        }
+                    }
+                }
+                // console.log(caracteristicComplete);
 
+                // hago un bucle de filtrado por cada una de las características, por cada vez que filtro guardo los id resultado en prodctsId
+                // las filtraciones se detienen cuando ya no hay mas caracteristicas para filtrar o porque productsId quedó vació (no se encontró nada)
+                for(let l = 0; l <= caracteristicComplete.length - 1; l++) {
+                    if(productsId.length > 0) {
+                        var productsFiltered = await ProductCaracteristic.findAll({
+                            where: {
+                                ProductIdProduct: {
+                                    [Op.or]: productsId
+                                },
+                                CaracteristicIdCaracteristic: caracteristicComplete[l].id,
+                                value_caracteristic: caracteristicComplete[l].value
+                            }
+                        });
+                        productsId = [];
+                        for(let m = 0; m <= productsFiltered.length - 1; m++) {
+                            productsId.push(productsFiltered[m].ProductIdProduct);
+                        }
+                    }
+                    console.log(productsId);
+                }
+            }
+
+            //  luego de haber pasado por todos los filtrados, busco los id de productsId, con un ordenamiento y paginado, o si no devuelvo un array vacío
+            if(productsId.length > 0) {
+                const result = await Product.findAll({
+                    where: {
+                        id_product: {
+                            [Op.or]: productsId
+                        }
+                    },
+                    order: [[orderType, orderDirection]],
+                    offset: current,
+                    limit: perPage
+                });
+                return res.send(result);
+            }
+            return res.send([]);
 
         } catch (error) {
             return next(error);
