@@ -5,11 +5,11 @@ function postUser (req,res,next) {
     let { registerOrigin, username, email, firstname, lastname, image } = req.body;
     console.log(req.body);
     switch (registerOrigin){
-        case 'github':{
+        case 'github.com':{
             UserCreator(res, next, username);
             break;
         };
-        case 'google':{
+        case 'google.com':{
             UserCreator(res, next, null, email, firstname, lastname, image);
             break;
         };
