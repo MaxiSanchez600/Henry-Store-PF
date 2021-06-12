@@ -1,10 +1,15 @@
 import React from 'react';
 
+// COMPONENTES
+import FilterCategories from "../FilterCategories/FilterCategories";
+import SearchBar from "../SearchBar/SearchBar";
+
 const NavBar = () => {
     return (
-        <div>
-            SOY NAVBAR
-        </div>
+        <nav>
+            <SearchBar />
+            <FilterCategories />
+        </nav>
     );
 };
 

@@ -1,7 +1,6 @@
-import React from 'react'
-import Products from '../../Components/Products/Products'
-import Navbar from '../../Components/NavBar/NavBar'
-import SearchBar from '../../Components/SearchBar/SearchBar'
+import React from 'react';
+
+import Navbar from '../../Components/NavBar/NavBar';
 
 
 function Home() {
@@ -9,10 +8,8 @@ function Home() {
         <div>
             <h1>Henry Store!</h1>
             <Navbar/>
-            <SearchBar/>
-            <Products/>
         </div>
     )
 }
 
-export default Home
+export default Home;
