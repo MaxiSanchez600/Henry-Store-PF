@@ -76,13 +76,13 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       <div className="name_filter">
         <h3>Subcategoria:</h3>
         <select className="list_select" name="type" onChange={e => handleFilters(e)}>
-          <option value="3">Buso</option>
-          <option value="cuaderno">Cuaderno</option>
-          <option value="5">Gorra</option>
-          <option value="lentes">Lentes</option>
-          <option value="remera">Remera</option>
-          <option value="taza">Taza</option>
-          <option value="tecnologia">Tecnologia</option>
+          <option value="Buso">Buso</option>
+          <option value="Cuaderno">Cuaderno</option>
+          <option value="Gorra">Gorra</option>
+          <option value="Lentes">Lentes</option>
+          <option value="Remera">Remera</option>
+          <option value="Taza">Taza</option>
+          <option value="Tecnologia">Tecnologia</option>
         </select>
       </div>
       {/* <input type="submit" value="Filtrar por tipo" /> */}

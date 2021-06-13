@@ -17,7 +17,7 @@ const productController = {
                 orderDirection = 'ASC',
                 ...caracteristics
             } = req.query;
-
+            // console.log("req.query: ", req.query);
             //nos aseguramos que no haya problema con los rangos de precio
             if(rangePriceMax === '') {
                 rangePriceMax = 'not passed';
@@ -143,9 +143,15 @@ const productController = {
                     }
                 }
 
-                return res.send(productsFinal);
+                return res.send({
+                    data: productsFinal,
+                    queries: req.query
+                });
             }
-            return res.send([]);
+            return res.send({
+                data: [],
+                queries: req.query
+            });
 
         } catch (error) {
             return next(error);
