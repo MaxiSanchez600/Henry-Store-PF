@@ -6,7 +6,7 @@ function Header() {
     return (
         <div className="content_Header">
             <div className="body_Header">
-            <Link to="/ok">  <img src={Logo_Henry_black} alt="" width="200px" srcset="" /></Link>
+            <Link to="/">  <img src={Logo_Henry_black} alt="" width="200px" srcset="" /></Link>
             </div>
         </div>
     )
