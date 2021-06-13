@@ -8,7 +8,6 @@ import Modal from "../Modal/Modal";
 
 // ! COMPONENTES
 import FilterCategories from "../FilterCategories/FilterCategories";
-import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const [ModalLogin, setModalLogin] = useState(false);
@@ -20,23 +19,24 @@ const NavBar = () => {
   const logOut = async () => {
     await firebase.auth().signOut();
   }
-
+ 
   // ! CONTENT
   return (
     <div>
       <div className="contain_NavBar">
-        <FilterCategories />
-        <button>Ofertas</button>
-        <button>Historial</button>
-        <button>Vender</button>
-        <button>Ayuda/PQR</button>
+        <div className="menu_left">
+          <FilterCategories />
+        </div>
+        <div className="menu_rigth">
+          {!user &&
+            <>
+              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
+              <button className="menu_category" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
+            </>
+          }
+        </div>
       </div>
-      {!user &&
-        <>
-          <button onClick={() => setModalLogin(true)}>INGRESAR</button>
-          <button onClick={() => setModalRegister(true)}>REGISTRO</button>
-        </>
-      }
+
 
       <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)}>
         <Login isOpened={ModalLogin} loginClose={() => setModalLogin(false)} registerOpen={() => setModalRegister(true)} />
@@ -47,12 +47,16 @@ const NavBar = () => {
       </Modal>
 
       {user &&
-        <>
-          <h2>Bienvenido</h2>
+        <div className="user_perfil">
           <img className="image" src={user.photoURL || logo} alt="not found" />
-          <button onClick={logOut}>Cerrar Sesión</button>
-        </>
+          <div className="user_buttons">
+          <p>{user.providerData[0].displayName}</p>
+          <button className="button_logout" onClick={logOut}><span class="iconify" data-icon="ant-design:close-circle-filled" data-inline="false"></span></button>
+          </div>
+          
+          </div>
       }
+  
     </div>
   );
 };

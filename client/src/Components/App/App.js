@@ -8,6 +8,8 @@ import { FirebaseAppProvider } from 'reactfire'
 
 // ! PAGES
 import Home from "../../Pages/Home/Home";
+import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
+import GeoLocation from "../../Components/GeoLocation/GeoLocation";
 import { Suspense } from "react";
 import "firebase/auth";
 
@@ -23,6 +25,8 @@ function App() {
           <Provider store={store}>
             <BrowserRouter>
               <Route exact path="/" component={Home} />
+              <Route exact path="/location" component={GeoLocation} />
+              <Route exact path="/item/:id" component={Product_Detail} />
             </BrowserRouter>
           </Provider>
         </FirebaseAppProvider>

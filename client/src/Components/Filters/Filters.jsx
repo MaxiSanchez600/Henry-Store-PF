@@ -49,17 +49,20 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
   // ! ****************** CONTENT ****************** */
   return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
-      {
-        Object.keys(filtersToSend).map((filterName) => (
-          <div key={filterName} className="box_filter">
-            <p>{`${filterName}: ${filtersToSend[filterName]}`}</p>
-            <button
+      <div className="container_box">
+        {
+          Object.keys(filtersToSend).map((filterName) => (
+            <div key={filterName} className="box_filter">
+              <p>{`${filterName}: ${filtersToSend[filterName]}`}</p>
+              <button
+            className="button_filtered"
               name={filterName}
               onClick={e => closeSelectedFilterButton(e)}
-            >X</button>
-          </div>
-        ))
-      }
+            >x</button>
+            </div>
+          ))
+        }
+      </div>
       {/* SUBCATEGORIA*/}
       <div className="name_filter"><h3>Subcategoria:</h3>
         <select className="list_select" name="type" onChange={e => handleFilters(e)}>
@@ -107,7 +110,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       </div>
       {/* <input type="submit" value="Filtrar por precio" /> */}
 
-    {/* COLOR*/}
+      {/* COLOR*/}
       <div className="name_filter"> <h3>Color Principal:</h3>
         <select className="list_select" name="color" onChange={e => handleFilters(e)}>
           <option value="blanco">Blanco</option>
@@ -118,13 +121,14 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       {/* <input type="submit" value="Filtrar por color" /> */}
       {
         queriesFromReducer.category === "ropa" ?
-          <div>
-            <select name="sex" onChange={e => handleFilters(e)}>
+          <div className="name_filter"><h3>Genero:</h3>
+            <select className="list_select" name="sex" onChange={e => handleFilters(e)}>
               <option value="unisex">Unisex</option>
               <option value="hombre">Hombre</option>
               <option value="mujer">Mujer</option>
             </select>
-            <select name="talle" onChange={e => handleFilters(e)}>
+            <h3>Talla:</h3>
+            <select className="list_select" name="talle" onChange={e => handleFilters(e)}>
               <option value="s">S</option>
               <option value="m">M</option>
               <option value="l">L</option>

@@ -1,5 +1,14 @@
-@import '../../Sass/variables';
+@import "../../Sass/variables";
 
-.FilterCategories{
-    
+.FilterCategories {
+    display: flex;
+    .menu_category {
+        margin: 0 10px 0 10px;
+        border-style: none;
+        background-color: transparent;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }

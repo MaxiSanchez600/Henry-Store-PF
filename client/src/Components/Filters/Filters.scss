@@ -1,6 +1,6 @@
-@import '../../Sass/variables';
+@import "../../Sass/variables";
 
-.content_Filters{
+.content_Filters {
     max-width: 294px;
     min-width: 230px;
     padding-right: 14px;
@@ -10,11 +10,16 @@
     -webkit-flex: 1 1;
     flex: 1 1;
 
-    .range_price{
+    .container_box {
+        background-color: #f7f7f7;
+        border-radius: 1rem;
+    }
+
+    .range_price {
         border: 1px solid black;
         border-radius: 3em;
         width: 100%;
-        font-family: 'Avenir_Roman';
+        font-family: "Avenir_Roman";
         align-items: flex-end;
         margin: 10px;
         outline: none;
@@ -23,16 +28,16 @@
         font-size: 15px;
     }
 
-    .name_filter{
+    .name_filter {
         text-align-last: center;
         margin-block-end: 3em;
     }
 
-    .list_select{
+    .list_select {
         border: 1px solid black;
         border-radius: 3em;
         width: 100%;
-        font-family: 'Avenir_Roman';
+        font-family: "Avenir_Roman";
         align-items: flex-end;
         margin: 10px;
         outline: none;
@@ -42,10 +47,42 @@
         align-items: center;
     }
 
-    .box_filter{
-        font-family:'Avenir_Book';
-        display:flex;
-        font-size: 20px;
+    .box_filter {
+        font-family: "Avenir_Book";
+        display: flex;
+        font-size: 12px;
         height: min-content;
+        justify-content: center;
     }
+
+    .button_filtered {
+        width: 20px;
+        height: 20px;
+        line-height: 1.33;
+        border-radius: 50px;
+        margin: 10px;
+        transition: 0.3s all ease;
+        border: 1px solid gray;
+
+        &:hover {
+            cursor: pointer;
+            border: 1px solid rgb(255, 254, 254);
+            background-color: rgb(202, 202, 202);
+            color:white
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

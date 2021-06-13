@@ -24,5 +24,21 @@
        }
 
        .button_search {
+              width: fit-content;
+              border-style: none;
+              font-family: "Avenir_Roman";
+              background: transparent;
+              vertical-align: bottom;
+              font-size: 1.8rem;
+              transition: 0.5s all ease;
+              cursor: pointer;
+
+              &:hover {
+                     transform: scale(1.1);
+              }
+
+              &:focus {
+                    transform: rotate(45deg);
+              }
        }
 }

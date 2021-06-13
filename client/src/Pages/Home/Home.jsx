@@ -5,13 +5,13 @@ import Footer from '../../Components/Footer/Footer'
 import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Filters from '../../Components/Filters/Filters'
-import Ubication from '../../Components/Ubication/Ubication'
+import GeoLocation from '../../Components/GeoLocation/GeoLocation'
 
 function Home() {
     return (
         <div className="content_Home" >
             <Header />
-            <Ubication />
+            <GeoLocation/>
             <Navbar />
             <SearchBar />
             <div className="body_Home">

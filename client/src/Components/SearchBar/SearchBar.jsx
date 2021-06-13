@@ -39,14 +39,14 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
     <div className="content_SearchBar">
       <form onSubmit={e => handleSubmit(e)}>
         <input
-        className="input_search"
+          className="input_search"
           name="tag"
           type="text"
           placeholder="Buscar productos, accesorios..."
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <input className="button_search" type="submit" value="Buscar" />
+        <button className="button_search" type="submit"><span class="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
       </form>
       {
         search ?
