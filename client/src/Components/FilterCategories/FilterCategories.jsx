@@ -8,15 +8,15 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   function handleOptions(e) {
-    console.log("e.target.value: ", e.target.value);
+    // console.log("e.target.value: ", e.target.value);
     switch (e.target.value) {
-      case "ropa":
-        console.log("category ropa");
+      case "Ropa":
+        // console.log("category Ropa");
         sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
         break;
       default:
-        console.log("other category");
-        const { sex, talle, ...otherCategoriesFilters } = { ...queriesFromReducer };
+        // console.log("other category");
+        const { genero, size, ...otherCategoriesFilters } = { ...queriesFromReducer };
         sendFiltersToActions({ ...otherCategoriesFilters, [e.target.name]: e.target.value });
         break;
     }
@@ -26,17 +26,17 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   function closeSelectedFilterButton(e) {
     e.preventDefault();
     setSelectedCategory("");
-    const { sex, talle, category, ...removedFilters } = { ...queriesFromReducer };
+    const { genero, size, category, ...removedFilters } = { ...queriesFromReducer };
     sendFiltersToActions({ ...removedFilters });
   }
 
   // ! CONTENT
   return (
     <div className="FilterCategories">
-      <select className="menu_category" name="category" onChange={e => handleOptions(e)} placeholder="Categorias...">
-        <option value="ropa">Ropa</option>
-        <option value="accesorios">Accesorios</option>
-        <option value="otros">Otros</option>
+      <select className="menu_category" name="category" onChange={e => handleOptions(e)}>
+        <option value="Ropa">Ropa</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Otros">Otros</option>
       </select>
 
       <button className="menu_category">Ofertas</button>

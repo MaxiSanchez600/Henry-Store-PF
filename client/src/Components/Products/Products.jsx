@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
-import { getAllFilteredProducts, getProducts } from '../../Redux/actions/actions';
+import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 
 function Products({ ListProducts, getAllFilteredProducts, getProducts }) {

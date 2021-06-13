@@ -1,7 +1,12 @@
 // ! MODULES
 import "../../Sass/Main.scss";
 import { Provider } from 'react-redux'
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  // Switch,
+  Route,
+  // Redirect
+} from "react-router-dom";
 import store from '../../Redux/store/index.js'
 import {config} from '../../Config/firebase-config.js'
 import { FirebaseAppProvider } from 'reactfire'
