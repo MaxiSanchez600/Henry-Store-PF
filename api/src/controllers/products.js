@@ -94,7 +94,7 @@ const productController = {
                         { model: Tag, attributes: ['id_tag', 'name_tag'], through: { attributes: [] } },
                         { model: Category, attributes: ['id_category', 'name_category'], through: { attributes: [] } },
                         { model: Caracteristic, attributes: ['id_caracteristic', 'name_caracteristic'], through: { attributes: ['value_caracteristic'] } },   
-                        { model: Image, /*attributes: ['id_image', 'name_image'], through: { attributes: [] }*/ }
+                        { model: Image, attributes: ['id_image', 'name_image']  }
                     ],
                     order: [[orderType, orderDirection]],
                     offset: current,
