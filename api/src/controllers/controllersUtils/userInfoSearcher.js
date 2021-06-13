@@ -1,33 +1,36 @@
-const { Users, Role, UserStatus, DocumentType } = require('../../db.js')
-const { Op } = require("sequelize")
+const { Role, UserStatus, DocumentType, Nacionality } = require('../../db.js')
 
-function userInfoSearcher (res, next, username, email) {
-    let sendUser = {};
+function firstInfoSearcher (userFound,sendUser){
+        let documentStr = '';
+        let nacionalityStr = '';
 
-    Users.findOne({where:{[Op.or]:[{email:email},{user_name:username}]}}) //revisar
-    .then((userFinded)=>{
-        sendUser.id = userFinded.id_user;
-        sendUser.name = userFinded.name;
-        sendUser.lastname = userFinded.last_name;
-        sendUser.email = userFinded.email;
-        sendUser.phone = userFinded.phone;
-        sendUser.username = userFinded.user_name;
-        sendUser.identification = userFinded.identification;
-        sendUser.nacionality = userFinded.nacionality;
+        sendUser.id = userFound.id_user;
+        sendUser.name = userFound.name;
+        sendUser.lastname = userFound.last_name;
+        sendUser.email = userFound.email;
+        sendUser.phone = userFound.phone;
+        sendUser.username = userFound.username;
+        sendUser.identification = userFound.identification;
+        sendUser.image = userFound.image;
 
-        let documentStr = DocumentType.findByPk(userFinded.documentTypeIdDocumentType);
-        let roleStr = Role.findByPk(userFinded.roleIdRol);
-        let statusStr = UserStatus.findByPk(userFinded.userStatusIdStatus);
-        return Promise.all([documentStr, roleStr, statusStr]);
-    })
-    .then((response)=>{
-        // sendUser.documentType = response[0].name_document_type; 
-        sendUser.role = response[1].rol;
-        sendUser.status = response[2].name_status;
-        res.send(sendUser)
-        sendUser = {}; //reset
-    })
-    .catch((e)=>next(e))
+        let roleStr = Role.findByPk(userFound.RoleIdRol);
+        let statusStr = UserStatus.findByPk(userFound.UserStatusIdStatus);
+        userFound.DocumentTypeIdDocumentType ? documentStr = DocumentType.findByPk(userFound.DocumentTypeIdDocumentType) : null;
+        userFound.NacionalityIdNacionality ? nacionalityStr = Nacionality.findByPk(userFound.NacionalityIdNacionality) : null;
+        return Promise.all([documentStr, roleStr, statusStr, nacionalityStr]);
     }
 
-module.exports = userInfoSearcher
+function secoundInfoSearcher (response,res,sendUser){
+    sendUser.documentType = response[0].name_document_type; 
+    sendUser.role = response[1].rol;
+    sendUser.status = response[2].name_status;
+    sendUser.nacionality = response[3].name_nacionality;
+    
+    res.send(sendUser)
+    sendUser = {}; //reset
+}
+
+module.exports = {
+    firstInfoSearcher,
+    secoundInfoSearcher
+}
