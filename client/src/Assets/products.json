@@ -1,292 +1,625 @@
 [
     {
-        "id": 1,
-        "name": "Buso Henry",
-        "price": 109.95,
-        "description": "Buzo elaborado en algodón perchado, de suave textura, estilo moderno , amplio bolsillo delantero, con estampado de Henry",
-        "image": [
-            "https://i.ibb.co/9cqVgCP/buso.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 10,
-        "weight": 100,
-        "promotion": false,
-        "category": "ropa",
-        "tags": [
-            "buso",
-            "henry",
-            "ropa"
-        ],
-        "sub_category": {
-            "color": [
-                "negro"
-            ],
-            "size": [
-                "s",
-                "m",
-                "l",
-                "xl"
-            ],
-            "genero": "unisex",
-            "type": "buso"
-        }
-    },
-    {
-        "id": 2,
-        "name": "Chomba Henry",
-        "price": 22.3,
-        "description": "Camisa para Hombre, cuello camisero, manga corta, silueta amplia, elaborada en Chalis, con estampado de Henry",
-        "image": [
-            "https://i.ibb.co/TrwK1cv/camisa.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 8,
-        "weight": 80,
-        "promotion": false,
-        "category": "ropa",
-        "tags": [
-            "chomba",
-            "camisa",
-            "henry",
-            "blanco",
-            "negro",
-            "ropa"
-        ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro"
-            ],
-            "size": [
-                "s",
-                "m",
-                "l",
-                "xl"
-            ],
-            "genero": "unisex",
-            "type": "remera"
-        }
-    },
-    {
-        "id": 3,
-        "name": "Remera Henry",
-        "price": 55.99,
-        "description": " Camiseta manga corta, Silueta semi ajustada,Estampada en frente y puños rectilíneos.En jersey, algodón orgánico, fibra natural durable, biodegradable y fresca. ",
-        "image": [
-            "https://i.ibb.co/vXKvhFD/camiseta.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 9,
-        "weight": 70,
-        "promotion": false,
-        "category": "ropa",
-        "tags": [
-            "remera",
-            "polera",
-            "henry",
-            "blanco",
-            "negro",
-            "ropa"
-        ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro"
-            ],
-            "size": [
-                "s",
-                "m",
-                "l",
-                "xl"
-            ],
-            "genero": "unisex",
-            "type": "remera"
-        }
-    },
-    {
-        "id": 4,
-        "name": "Cuaderno Cohete Henry",
-        "price": 15.99,
-        "description": "Cuaderno argollado blanco de Pasta dura, Rayado de 100 hojas, mediano con Medidas: 23 cm x 16.5 cm x 1.1 cm en empaque ",
-        "image": [
-            "https://i.ibb.co/8DZgTGp/cuaderno-blanco.jpg",
-            "https://i.ibb.co/xz3tg6T/cuaderno.jpg"
-        ],
-        "unit_stock": 12,
+        "id_product": 1,
+        "name": "Gorra",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 500,
+        "unit_stock": 2,
         "henry_coin": 2,
-        "weight": 30,
-        "promotion": false,
-        "category": "accesorios",
-        "tags": [
-            "cuaderno",
-            "cohete",
-            "henry",
-            "blanco",
-            "negro",
-            "accesorios"
+        "weight": 2,
+        "size": 2,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
         ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro",
-                "amarillo"
-            ],
-            "type": "cuaderno"
-        }
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 1,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            },
+            {
+                "id_image": 165,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "M"
+                ]
+            }
+        ]
     },
     {
-        "id": 5,
-        "name": "Gorra Henry",
-        "price": 168,
-        "description": "Gorra Acrílica Henry (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
-        "image": [
-            "https://i.ibb.co/Lgckqts/gorra-blanca.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 15,
-        "weight": 20,
-        "promotion": false,
-        "category": "ropa",
-        "tags": [
-            "gorra",
-            "ropa",
-            "Henry",
-            "blanco",
-            "negro"
-        ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro"
-            ],
-            "size": [
-                "s",
-                "m",
-                "l"
-            ],
-            "genero": "unisex",
-            "type": "gorra"
-        }
-    },
-    {
-        "id": 6,
-        "name": "Gorra Cohete Henry",
-        "price": 9.99,
-        "description": "Gorra Negra Henry Acrílica (Dirl Grueso) Adulto Con cierre en Hebilla. Ideal para uso diario.",
-        "image": [
-            "https://i.ibb.co/6NGY6sC/gorra-negra.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 15,
-        "weight": 20,
-        "promotion": false,
-        "category": "ropa",
-        "tags": [
-            "gorra",
-            "cohete",
-            "henry",
-            "negro",
-            "ropa"
-        ],
-        "sub_category": {
-            "color": [
-                "negro"
-            ],
-            "size": [
-                "s",
-                "m",
-                "l"
-            ],
-            "genero": "unisex",
-            "type": "gorra"
-        }
-    },
-    {
-        "id": 7,
-        "name": "Lentes Cohete",
-        "price": 10.99,
-        "description": "Las lentes polarizadas Northweek están fabricadas con Triacetato de Celulosa de origen alemán que aporta alta flexibilidad y protección UV400. Nuestro armazón de policarbonato de alta calidad se adapta perfectamente al contorno facial y tiene una elevada durabilidad y resistencia.",
-        "image": [
-            "https://i.ibb.co/Np2syPq/lentes.jpg"
-        ],
-        "unit_stock": 12,
-        "henry_coin": 25,
+        "id_product": 3,
+        "name": "Zapato",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 700,
+        "unit_stock": 1,
+        "henry_coin": 1,
         "weight": 1,
-        "promotion": false,
-        "category": "accesorios",
-        "tags": [
-            "lentes",
-            "anteojos",
-            "cohete",
-            "blanco",
-            "negro",
-            "accesorios"
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 21,
+                "name_tag": "Zapato"
+            }
         ],
-        "sub_category": {
-            "color": [
-                "negro",
-                "blanco"
-            ],
-            "type": "lentes"
-        }
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 113,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "P",
+                    "Q"
+                ]
+            }
+        ]
     },
     {
-        "id": 8,
-        "name": "Cargador portatil Power Bank Henry Cohete",
-        "price": 64,
-        "description": "Power Bank Bateria Externa Cargador Portátil PZX11200 mAh USB Linterna Azul No sufras por batería nunca más, con esta batería con diseño ultra delgado para llevarla a donde quieras. Con puerto de carga USB, para que estés preparado para cualquier eventualidad que se presente",
-        "image": [
-            "https://i.ibb.co/fnhgS2q/Power-Bank.jpg"
+        "id_product": 6,
+        "name": "Buso",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 800,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 1,
+                "name_tag": "Henry"
+            },
+            {
+                "id_tag": 6,
+                "name_tag": "Accesorio"
+            }
         ],
-        "unit_stock": 12,
-        "henry_coin": 20,
-        "weight": 400,
-        "promotion": false,
-        "category": "otros",
-        "tags": [
-            "cargador",
-            "portatil",
-            "otros",
-            "blanco",
-            "negro"
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 3,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
         ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro"
-            ],
-            "type": "tecnologia"
-        }
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "M"
+                ]
+            }
+        ]
     },
     {
-        "id": 9,
-        "name": "Taza Ceramica Cohete Henry",
-        "price": 109,
-        "description": "Diseño tan simple pero elegante, la taza es de tamaño inteligente con 16 onzas, peso correcto, resistente",
-        "image": [
-            "https://i.ibb.co/vVqGjBG/taza-ceramica2.jpg"
+        "id_product": 10,
+        "name": "Ramera",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 100,
+        "unit_stock": 2,
+        "henry_coin": 2,
+        "weight": 2,
+        "size": 2,
+        "percentage_discount": 2,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 6,
+                "name_tag": "Accesorio"
+            }
         ],
-        "unit_stock": 12,
-        "henry_coin": 8,
-        "weight": 350,
-        "promotion": false,
-        "category": "accesorios",
-        "tags": [
-            "accesorios",
-            "taza",
-            "ceramica",
-            "cohete",
-            "negro",
-            "blanco",
-            "amarillo"
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 45,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
         ],
-        "sub_category": {
-            "color": [
-                "blanco",
-                "negro",
-                "amarillo"
-            ],
-            "type": "taza"
-        }
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Z"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 15,
+        "name": "Vestido",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 5000,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 90,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Z"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 21,
+        "name": "Taza",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 2500,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 69,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 28,
+        "name": "Cuaderno",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 1250,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 30,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "L"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Femenino"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 36,
+        "name": "Usb Henry",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 105,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 1,
+                "name_tag": "Henry"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 79,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "SS"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 45,
+        "name": "Zapato Rojo",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 250,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 138,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Q"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 55,
+        "name": "Ramera Henry Negra",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 350,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 52,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 66,
+        "name": "Ramera Roja",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 500,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 60,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 78,
+        "name": "Pantalon Corto",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 885,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 34,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 91,
+        "name": "Pantalon Largo",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 149,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 21,
+                "name_tag": "Zapato"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 39,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
     }
 ]

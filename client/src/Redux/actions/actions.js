@@ -10,9 +10,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 
 /* ============================== ACTIONS ============================================== */
-// ! GET LIST PRODUCTS WITH FILTERS // ***** DONT USED
 export function getAllFilteredProducts(allQueries) {
-
   return function (dispatch) {
     return allProductsFilteredService(allQueries)
       .then((response) => {
@@ -25,20 +23,4 @@ export function getAllFilteredProducts(allQueries) {
       });
   };
 }
-
-// =======================================================================================
-// ! GET LIST PRODUCTS WITH FILTERS 
-// export function getAllFilteredProducts(allQueries) {
-//   return function (dispatch) {
-//     return allProductsFilteredService(allQueries)
-//       .then((res) => {
-//         dispatch({
-//           type: FILTER_PRODUCTS,
-//           payload: res.data,
-//           queries: res.queries
-//         })
-//       })
-//   }
-// }
-
 // =======================================================================================

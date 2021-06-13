@@ -109,6 +109,7 @@ const productController = {
                         id_product: result[n].id_product,
                         name: result[n].name,
                         description: result[n].description,
+                        price: result[n].price,
                         unit_stock: result[n].unit_stock,
                         henry_coin: result[n].henry_coin,
                         weight: result[n].weight,

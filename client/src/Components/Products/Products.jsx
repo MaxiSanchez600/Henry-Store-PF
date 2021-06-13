@@ -6,23 +6,21 @@ import { connect } from 'react-redux'
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 
-function Products({ ListProducts, getAllFilteredProducts, getProducts }) {
+function Products({ ListProducts, getAllFilteredProducts }) {
 
     useEffect(() => {
         if (!ListProducts.length) getAllFilteredProducts();
-        // getProducts()
     }, [])
-
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
-    const productPerPage = 3
+    const productPerPage = 3;
     const pagesVisited = pageNumber * productPerPage
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return <Link to={`/item/${product.id_product}`} key={product.id_product}>
             <div className="product_card">
-                {/* <img src={product.image[0]} alt="" className="product_image" id={product.index} /> */}
-                <img src="https://brantford.es/wp-content/uploads/2018/10/Camisa-530.jpg" alt="" className="product_image" id={product.index} />
+                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
+               { console.log(product.price)}
                 <div className="product_name">{product.name}</div>
                 <div class="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                 <div className="product_price"><h5>{product.price} USD</h5> </div>
@@ -34,7 +32,6 @@ function Products({ ListProducts, getAllFilteredProducts, getProducts }) {
     })
     const pageCount = Math.ceil(ListProducts.length / productPerPage)
     const changePage = ({ selected }) => { setPageNumber(selected) }
-
 
     // ! CONTENT   
     return <div className="cards_container_products">
