@@ -43,15 +43,15 @@ const Register = ({onClose}) => {
   return (
     <div>
         <div>
-          <h2 className="title">Register</h2>
+          <h2 className="title">Registro</h2>
           <form className="formu" onSubmit={createAccount}>
               <div>
-                <input type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Put your email to Register"/>
+                <input type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
               </div>
               <div>
-                <input type="password" name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Put your password to Register"/>
+                <input type="password" name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
               </div>
-              <button type="submit" >Crear Cuenta</button>
+              <button type="submit" >Registrarme</button>
           </form>
         </div>
     </div>

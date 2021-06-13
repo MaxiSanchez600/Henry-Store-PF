@@ -1,22 +1,22 @@
 const { Role, UserStatus, DocumentType, Nacionality } = require('../../db.js')
 
-function firstInfoSearcher (userFinded,sendUser){
+function firstInfoSearcher (userFound,sendUser){
         let documentStr = '';
         let nacionalityStr = '';
 
-        sendUser.id = userFinded.id_user;
-        sendUser.name = userFinded.name;
-        sendUser.lastname = userFinded.last_name;
-        sendUser.email = userFinded.email;
-        sendUser.phone = userFinded.phone;
-        sendUser.username = userFinded.username;
-        sendUser.identification = userFinded.identification;
-        sendUser.image = userFinded.image;
+        sendUser.id = userFound.id_user;
+        sendUser.name = userFound.name;
+        sendUser.lastname = userFound.last_name;
+        sendUser.email = userFound.email;
+        sendUser.phone = userFound.phone;
+        sendUser.username = userFound.username;
+        sendUser.identification = userFound.identification;
+        sendUser.image = userFound.image;
 
-        let roleStr = Role.findByPk(userFinded.RoleIdRol);
-        let statusStr = UserStatus.findByPk(userFinded.UserStatusIdStatus);
-        userFinded.DocumentTypeIdDocumentType ? documentStr = DocumentType.findByPk(userFinded.DocumentTypeIdDocumentType) : null;
-        userFinded.NacionalityIdNacionality ? nacionalityStr = Nacionality.findByPk(userFinded.NacionalityIdNacionality) : null;
+        let roleStr = Role.findByPk(userFound.RoleIdRol);
+        let statusStr = UserStatus.findByPk(userFound.UserStatusIdStatus);
+        userFound.DocumentTypeIdDocumentType ? documentStr = DocumentType.findByPk(userFound.DocumentTypeIdDocumentType) : null;
+        userFound.NacionalityIdNacionality ? nacionalityStr = Nacionality.findByPk(userFound.NacionalityIdNacionality) : null;
         return Promise.all([documentStr, roleStr, statusStr, nacionalityStr]);
     }
 

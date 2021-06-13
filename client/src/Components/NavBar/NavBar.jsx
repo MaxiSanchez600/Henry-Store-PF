@@ -21,8 +21,12 @@ const NavBar = () => {
   return (
     <div>
       RENDER NAVBAR
-      <button onClick={() => setModalLogin(true)}>INGRESAR</button>
-      <button onClick={() => setModalRegister(true)}>REGISTRO</button>
+      {!user && 
+      <>
+        <button onClick={() => setModalLogin(true)}>INGRESAR</button>
+        <button onClick={() => setModalRegister(true)}>REGISTRO</button>
+      </>
+      }
       
       <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)}>
          <Login isOpened={ModalLogin} loginClose={() =>setModalLogin(false)} registerOpen={()=>setModalRegister(true)}/> 
