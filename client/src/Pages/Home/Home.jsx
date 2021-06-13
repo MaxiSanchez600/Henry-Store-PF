@@ -6,6 +6,7 @@ import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Filters from '../../Components/Filters/Filters'
 import Ubication from '../../Components/Ubication/Ubication'
+import Order from '../../Components/Order/Order'
 
 function Home() {
     return (
@@ -16,6 +17,7 @@ function Home() {
             <SearchBar />
             <div className="body_Home">
                 <Filters />
+                <Order />
                 <Products />
             </div>
             <Footer />

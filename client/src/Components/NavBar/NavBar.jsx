@@ -7,7 +7,7 @@ import Modal from "../Modal/Modal";
 
 // COMPONENTES
 import FilterCategories from "../FilterCategories/FilterCategories";
-import SearchBar from "../SearchBar/SearchBar";
+// import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);

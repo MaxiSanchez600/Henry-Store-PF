@@ -8,8 +8,8 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
-    console.log("search name -> e.target.name: ", e.target.name);
-    console.log("search value -> e.target.value: ", e.target.value);
+    // console.log("search name -> e.target.name: ", e.target.name);
+    // console.log("search value -> e.target.value: ", e.target.value);
     setSearch(e.target.value);
     if (!e.target.value) {
       const { tag, ...removedTagQuery } = { ...queriesFromReducer };

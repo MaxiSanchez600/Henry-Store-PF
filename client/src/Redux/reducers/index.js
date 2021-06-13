@@ -19,7 +19,7 @@ const rootReducer = (state = initialState, action) => {
 
         // * Receibe all_list with filter
         case FILTER_PRODUCTS:
-            console.log("LLEGA PAYLOAD AL REDUCER: ", action);
+            // console.log("LLEGA PAYLOAD AL REDUCER: ", action);
             console.log("------------------------------");
             return {
                 ...state,

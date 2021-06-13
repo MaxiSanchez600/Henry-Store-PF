@@ -25,11 +25,11 @@ export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 // =======================================================================================
 // ! GET LIST PRODUCTS WITH FILTERS // PENDING VERIFY FOR GET PRODUCT ONLY
 export function getAllFilteredProducts(allQueries) {
-  console.log("LLEGAN QUERIES AL ACTION -> allQueries: ", allQueries);
+  // console.log("LLEGAN QUERIES AL ACTION -> allQueries: ", allQueries);
   return function (dispatch) {
     return allProductsFilteredService(allQueries)
       .then((res) => {
-        console.log("VALOR DE RES DEVUELTO POR SERVICE -> : ", res);
+        // console.log("VALOR DE RES DEVUELTO POR SERVICE -> : ", res);
         dispatch({
           type: FILTER_PRODUCTS,
           payload: res.data,
