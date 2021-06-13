@@ -27,7 +27,7 @@ const productController = {
             }
 
             //seteo el limit y el offset, es decir, la pagina
-            const perPage = 10;
+            const perPage = 100;
             const current = (page * perPage) - perPage;
 
             //uso filtersCreator para filtrar por tags, categorias o rangos de precios en una primera estancia
