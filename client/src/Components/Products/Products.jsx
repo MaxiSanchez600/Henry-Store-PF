@@ -2,22 +2,21 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import ListProducts from '../../Assets/products.json'
-import { getAllFilteredProducts } from '../../Redux/actions/actions';
+import { getAllFilteredProducts, getProducts } from '../../Redux/actions/actions';
 
 
-function Products({ ListProducts, getAllFilteredProducts }) {
+function Products({ ListProducts, getAllFilteredProducts, getProducts }) {
 
     useEffect(() => {
         if (!ListProducts.length) getAllFilteredProducts();
+        // getProducts()
     }, [])
-
     // ! CONTENT   
     return <div className="content cards_container_products">
-        {ListProducts.map((product, index) => {
-            return <Link to={`/item/${product.id}`}  key={product.id}>
+        {ListProducts.map(product => {
+            return <Link to={`/item/${product.id_product}`} key={product.id_product}>
                 <div className="product_card">
-                    <img src={product.image[0]} alt="" className="product_image" id={product.index} />
+                    {/* <img src={product.image[0]} alt="" className="product_image" id={product.index} /> */}
                     <div className="product_name">{product.name}</div>
                     <div class="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                     <div className="product_price"><h5>{product.price} USD</h5> </div>
@@ -33,13 +32,12 @@ function Products({ ListProducts, getAllFilteredProducts }) {
 }
 
 function mapStateToProps(state) {
-    return {
-        ListProducts: state.products
-    }
+    return { ListProducts: state.products }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        // getProducts: products_list =>   dispatch(getProducts(products_list)),
         getAllFilteredProducts: (allQueries) => dispatch(getAllFilteredProducts(allQueries))
     }
 }

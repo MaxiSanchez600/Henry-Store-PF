@@ -63,13 +63,13 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       {/* SUBCATEGORIA*/}
       <div className="name_filter"><h3>Subcategoria:</h3>
         <select className="list_select" name="type" onChange={e => handleFilters(e)}>
-          <option name="type" value="buso">Buso</option>
-          <option name="type" value="cuaderno">Cuaderno</option>
-          <option name="type" value="gorra">Gorra</option>
-          <option name="type" value="lentes">Lentes</option>
-          <option name="type" value="remera">Remera</option>
-          <option name="type" value="taza">Taza</option>
-          <option name="type" value="tecnologia">Tecnologia</option>
+          <option value="buso">Buso</option>
+          <option value="cuaderno">Cuaderno</option>
+          <option value="gorra">Gorra</option>
+          <option value="lentes">Lentes</option>
+          <option value="remera">Remera</option>
+          <option value="taza">Taza</option>
+          <option value="tecnologia">Tecnologia</option>
         </select>
       </div>
       {/* <input type="submit" value="Filtrar por tipo" /> */}
@@ -81,12 +81,12 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           name="rangePriceMin"
           type="number"
           placeholder="Mínime"
-          // value={filtersToSend.rangePriceMin}
-          value={
-            filtersToSend.rangePriceMin > filtersToSend.rangePriceMax ?
-              filtersToSend.rangePriceMax :
-              filtersToSend.rangePriceMin
-          }
+          value={filtersToSend.rangePriceMin}
+          // value={
+          //   filtersToSend.rangePriceMin > filtersToSend.rangePriceMax ?
+          //     filtersToSend.rangePriceMax :
+          //     filtersToSend.rangePriceMin
+          // }
           onChange={e => handleFilters(e)}
           min={0}
         />
@@ -95,12 +95,12 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           name="rangePriceMax"
           type="number"
           placeholder="Máxime"
-          // value={filtersToSend.rangePriceMax}
-          value={
-            filtersToSend.rangePriceMax < filtersToSend.rangePriceMin ?
-              filtersToSend.rangePriceMin :
-              filtersToSend.rangePriceMax
-          }
+          value={filtersToSend.rangePriceMax}
+          // value={
+          //   filtersToSend.rangePriceMax < filtersToSend.rangePriceMin ?
+          //     filtersToSend.rangePriceMin :
+          //     filtersToSend.rangePriceMax
+          // }
           onChange={e => handleFilters(e)}
           min={0}
         />

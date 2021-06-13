@@ -1,6 +1,6 @@
-@import '../../Sass/variables';
+@import "../../Sass/variables";
 
-.content_SearchBar{
+.content_SearchBar {
        position: absolute;
        top: 0;
        left: 30%;
@@ -8,11 +8,21 @@
        font-size: 10px;
        z-index: 5;
 
-       .input_search{
-
+       .input_search {
+              position: relative;
+              border: 2px solid #5f8fa4;
+              height: 35px;
+              width: 300px;
+              border-radius: 50px;
+              padding-left: 31px;
+              padding-right: 11px;
+              padding-top: 4px;
+              padding-bottom: 4px;
+              font-size: 13px;
+              color: #555;
+              margin: 10px 5px 5px 5px;
        }
 
-       .button_search{
-              
+       .button_search {
        }
 }
