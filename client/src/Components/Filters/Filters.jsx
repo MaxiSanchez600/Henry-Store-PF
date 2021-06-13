@@ -16,7 +16,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
   // const [categoryFilters, setCategoryFilters] = useState({
   //   genero: "",
-  //   talle: "",
+  //   size: "",
   // });
 
   // const [selectedFilter, setSelectedFilter] = useState("");
@@ -39,7 +39,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
   function closeSelectedFilterButton(e) {
     e.preventDefault();
     // console.log("name of filter to be removed -> e.target.name: ", e.target.name);
-
+    if (!queriesFromReducer.category) console.log("NO HAY CATEGORY PRUEBA");
     delete queriesFromReducer[e.target.name];
     delete filtersToSend[e.target.name];
     setFiltersToSend({
@@ -55,74 +55,92 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
     sendFiltersToActions({ ...queriesFromReducer });
   }
 
-  // ! ***** CONTENT ****
-  return (
+  // ! ****************** CONTENT ****************** */
+  return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
-      {
-        Object.keys(filtersToSend).map((filterName) => (
-          <div key={filterName}>
-            <p>{`${filterName}: ${filtersToSend[filterName]}`}</p>
-            <button
-              name={filterName}
-              onClick={e => closeSelectedFilterButton(e)}
-            >x</button>
-          </div>
-        ))
-      }
-      <div>Subcategoria
-        <select name="type" onChange={e => handleFilters(e)}>
-          <option name="type" value="3">Buso</option>
-          <option name="type" value="cuaderno">Cuaderno</option>
-          <option name="type" value="5">Gorra</option>
-          <option name="type" value="lentes">Lentes</option>
-          <option name="type" value="remera">Remera</option>
-          <option name="type" value="taza">Taza</option>
-          <option name="type" value="tecnologia">Tecnologia</option>
+      <div className="container_box">
+        {
+          Object.keys(filtersToSend).map((filterName) => (
+            <div key={filterName} className="box_filter">
+              <p>{`${filterName}: ${filtersToSend[filterName]}`}</p>
+              <button
+                className="button_filtered"
+                name={filterName}
+                onClick={e => closeSelectedFilterButton(e)}
+              >x</button>
+            </div>
+          ))
+        }
+      </div>
+      {/* SUBCATEGORIA*/}
+      <div className="name_filter">
+        <h3>Subcategoria:</h3>
+        <select className="list_select" name="type" onChange={e => handleFilters(e)}>
+          <option value="3">Buso</option>
+          <option value="cuaderno">Cuaderno</option>
+          <option value="5">Gorra</option>
+          <option value="lentes">Lentes</option>
+          <option value="remera">Remera</option>
+          <option value="taza">Taza</option>
+          <option value="tecnologia">Tecnologia</option>
         </select>
       </div>
       {/* <input type="submit" value="Filtrar por tipo" /> */}
-      <input
-        name="rangePriceMin"
-        type="number"
-        placeholder="Precio minimo"
-        value={filtersToSend.rangePriceMin}
-        // value={
-        //   filtersToSend.rangePriceMin > filtersToSend.rangePriceMax ?
-        //     filtersToSend.rangePriceMax :
-        //     filtersToSend.rangePriceMin
-        // }
-        onChange={e => handleFilters(e)}
-        min={0}
-      />
-      <input
-        name="rangePriceMax"
-        type="number"
-        placeholder="Precio maximo"
-        value={filtersToSend.rangePriceMax}
-        // value={
-        //   filtersToSend.rangePriceMax < filtersToSend.rangePriceMin ?
-        //     filtersToSend.rangePriceMin :
-        //     filtersToSend.rangePriceMax
-        // }
-        onChange={e => handleFilters(e)}
-        min={0}
-      />
+
+      {/* PRECIO*/}
+      <div className="name_filter">
+        <h3>Precio:</h3>
+        <input
+          className="range_price"
+          name="rangePriceMin"
+          type="number"
+          placeholder="Precio minimo"
+          value={filtersToSend.rangePriceMin}
+          // value={
+          //   filtersToSend.rangePriceMin > filtersToSend.rangePriceMax ?
+          //     filtersToSend.rangePriceMax :
+          //     filtersToSend.rangePriceMin
+          // }
+          onChange={e => handleFilters(e)}
+          min={0}
+        />
+        <input
+          className="range_price"
+          name="rangePriceMax"
+          type="number"
+          placeholder="Precio maximo"
+          value={filtersToSend.rangePriceMax}
+          // value={
+          //   filtersToSend.rangePriceMax < filtersToSend.rangePriceMin ?
+          //     filtersToSend.rangePriceMin :
+          //     filtersToSend.rangePriceMax
+          // }
+          onChange={e => handleFilters(e)}
+          min={0}
+        />
+      </div>
       {/* <input type="submit" value="Filtrar por precio" /> */}
-      <select name="color" onChange={e => handleFilters(e)}>
-        <option value="Blanco">Blanco</option>
-        <option value="Negro">Negro</option>
-        <option value="Amarillo">Amarillo</option>
-      </select>
+
+      {/* COLOR*/}
+      <div className="name_filter"> <h3>Color Principal:</h3>
+        <select className="list_select" name="color" onChange={e => handleFilters(e)}>
+          <option value="Blanco">Blanco</option>
+          <option value="Negro">Negro</option>
+          <option value="Amarillo">Amarillo</option>
+        </select>
+      </div>
       {/* <input type="submit" value="Filtrar por color" /> */}
       {
         queriesFromReducer.category === "Ropa" ?
-          <div>
-            <select name="genero" onChange={e => handleFilters(e)}>
+          <div className="name_filter">
+            <h3>Genero:</h3>
+            <select className="list_select" name="genero" onChange={e => handleFilters(e)}>
               <option value="Unisex">Unisex</option>
               <option value="Hombre">Hombre</option>
               <option value="Mujer">Mujer</option>
             </select>
-            <select name="talle" onChange={e => handleFilters(e)}>
+            <h3>Talle:</h3>
+            <select className="list_select" name="size" onChange={e => handleFilters(e)}>
               <option value="S">S</option>
               <option value="M">M</option>
               <option value="L">L</option>
@@ -132,8 +150,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           </div> : ""
       }
     </form>
-
-  );
+  </div>
 }
 
 function mapStateToProps(state) {

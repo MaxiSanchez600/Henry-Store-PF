@@ -5,20 +5,22 @@ import Footer from '../../Components/Footer/Footer'
 import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Filters from '../../Components/Filters/Filters'
-import Ubication from '../../Components/Ubication/Ubication'
+import GeoLocation from '../../Components/GeoLocation/GeoLocation'
 import Order from '../../Components/Order/Order'
 
 function Home() {
     return (
-        <div>
+        <div className="content_Home" >
             <Header />
-            <Ubication/>
+            <GeoLocation/>
             <Navbar />
             <SearchBar />
             <div className="body_Home">
-                <Filters />
-                <Order />
-                <Products />
+                <div className="webcontent_home">
+                    <Filters />
+                    <Order />
+                    <Products />
+                </div>
             </div>
             <Footer />
         </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
@@ -8,8 +7,8 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
-    // console.log("search name -> e.target.name: ", e.target.name);
-    // console.log("search value -> e.target.value: ", e.target.value);
+    console.log("search name -> e.target.name: ", e.target.name);
+    console.log("search value -> e.target.value: ", e.target.value);
     setSearch(e.target.value);
     if (!e.target.value) {
       const { tag, ...removedTagQuery } = { ...queriesFromReducer };
@@ -18,7 +17,7 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
 
     // else if (e.target.value === " ") {
     //   setSearch(e.target.value);
-      
+
     // }
     else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
   }
@@ -35,17 +34,19 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
     sendFiltersToActions({ ...queriesFromReducer });
   }
 
+  // ! CONTENT
   return (
-    <div>
+    <div className="content_SearchBar">
       <form onSubmit={e => handleSubmit(e)}>
         <input
+          className="input_search"
           name="tag"
           type="text"
-          placeholder="Buscá el producto que quieras..."
+          placeholder="Buscar productos, accesorios..."
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <input type="submit" value="Buscar" />
+        <button className="button_search" type="submit"><span class="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
       </form>
       {
         search ?

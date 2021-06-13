@@ -10,13 +10,13 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   function handleOptions(e) {
     // console.log("e.target.value: ", e.target.value);
     switch (e.target.value) {
-      case "ropa":
-        // console.log("category ropa");
+      case "Ropa":
+        // console.log("category Ropa");
         sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
         break;
       default:
         // console.log("other category");
-        const { genero, talle, ...otherCategoriesFilters } = { ...queriesFromReducer };
+        const { genero, size, ...otherCategoriesFilters } = { ...queriesFromReducer };
         sendFiltersToActions({ ...otherCategoriesFilters, [e.target.name]: e.target.value });
         break;
     }
@@ -26,17 +26,23 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   function closeSelectedFilterButton(e) {
     e.preventDefault();
     setSelectedCategory("");
-    const { genero, talle, category, ...removedFilters } = { ...queriesFromReducer };
+    const { genero, size, category, ...removedFilters } = { ...queriesFromReducer };
     sendFiltersToActions({ ...removedFilters });
   }
 
+  // ! CONTENT
   return (
-    <div>
-      <select name="category" onChange={e => handleOptions(e)} placeholder="Categorias...">
+    <div className="FilterCategories">
+      <select className="menu_category" name="category" onChange={e => handleOptions(e)}>
         <option value="Ropa">Ropa</option>
         <option value="Accesorios">Accesorios</option>
         <option value="Otros">Otros</option>
       </select>
+
+      <button className="menu_category">Ofertas</button>
+      <button className="menu_category">Historial</button>
+      <button className="menu_category">Vender</button>
+      <button className="menu_category">Ayuda/PQR</button>
       {
         selectedCategory ?
           <div>

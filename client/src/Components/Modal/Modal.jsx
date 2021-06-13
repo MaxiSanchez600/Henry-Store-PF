@@ -17,7 +17,7 @@ const Modal = ({ isOpened, children, onClose }) => {
           <div className="modal-content">{children}</div>
         </div>
       </div>
-    
+
     </div>,
     document.getElementById("portal")
   );

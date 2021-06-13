@@ -1,4 +1,14 @@
-.body_Home{
-    display: flex;
-    flex-direction: row;
+.content_Home {
+    justify-content: center;
+
+    .body_Home {
+        max-height: 800px;
+        min-height: 765px;
+
+        .webcontent_home {
+            display: flex;
+            justify-content: center;
+            margin: 1% 10% 0 10%;
+        }
+    }
 }
