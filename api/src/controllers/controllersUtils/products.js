@@ -18,9 +18,9 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax) => {
             name_tag: {
                 [Op.or]: [
                     { [Op.like]: `%${tag}%` },   //Op.ilike ILIKE (case insensitive) (PG only)
-                    { [Op.like]: `%${tag.toLowerCase()}` },
-                    { [Op.like]: `%${tag.toUpperCase()}` },
-                    { [Op.like]: `%${tag[0].toUpperCase() + tag.slice(1).toLowerCase()}` }
+                    { [Op.like]: `%${tag.toLowerCase()}%` },
+                    { [Op.like]: `%${tag.toUpperCase()}%` },
+                    { [Op.like]: `%${tag[0].toUpperCase() + tag.slice(1).toLowerCase()}%` }
                 ]
             }
         };
