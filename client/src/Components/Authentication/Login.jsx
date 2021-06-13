@@ -74,9 +74,10 @@ const Login = ({loginClose, registerOpen}) => {
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(()=>setForm(initialState))
-      .catch (function(error){
+      .catch ((error)=>{
+        console.log(error)
         setForm(initialState)
-        alert(error);
+        alert(error.message);
       }) 
   };
 
