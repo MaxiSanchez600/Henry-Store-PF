@@ -101,29 +101,49 @@ const productController = {
                     limit: perPage
                 });
                 
+                // agregamos las caracteristicas sin usar el ORM
+                var productsFinal = [];
                 for(let n = 0; n <= result.length - 1; n++) {
+                    //primero clonamos cada objeto producto y lo introducimos en nuestro arreglo final
+                    productsFinal.push({
+                        id_product: result[n].id_product,
+                        name: result[n].name,
+                        description: result[n].description,
+                        unit_stock: result[n].unit_stock,
+                        henry_coin: result[n].henry_coin,
+                        weight: result[n].weight,
+                        size: result[n].size,
+                        percentage_discount: result[n].percentage_discount,
+                        promotion: result[n].promotion,
+                        Tags: result[n].Tags,
+                        Categories: result[n].Categories,
+                        Images: result[n].Images,
+                        Caracteristics: []
+                    });
                     for(let o = 0; o <= result[n].Caracteristics.length - 1; o++) {
+                        // para cada caracteristica dentro de un producto, ingresamos su id y su name
+                        productsFinal[n].Caracteristics.push({ id_caracteristic: result[n].Caracteristics[o].id_caracteristic, name_caracteristic: result[n].Caracteristics[o].name_caracteristic })
+                        // hacemos una consulta a ProductCaracteristic para traernos todos los valores que coincidan
+                        // simultaneamente con el id del producto y el id de la caracteristica
                         var allCaracteristicsProduct = await ProductCaracteristic.findAll({
                             where: {
                                 ProductIdProduct: result[n].id_product,
                                 CaracteristicIdCaracteristic: result[n].Caracteristics[o].id_caracteristic
                             }
                         });
+                        // recorremos el array de resultados con los valores para cada caracteristica de un producto
                         for(let p = 0; p <= allCaracteristicsProduct.length - 1; p++) {
+                            //añadimos los valores de una determinadad caracteristica dentro del arreglo Caracteristics
                             if(p === 0) {
-                                result[n].Caracteristics[o].values_caracteristic = [allCaracteristicsProduct[p].value_caracteristic];
+                                productsFinal[n].Caracteristics[o].values_caracteristic = [allCaracteristicsProduct[p].value_caracteristic];
                             } else {
-                                result[n].Caracteristics[o].values_caracteristic.push(allCaracteristicsProduct[p].value_caracteristic);
+                                productsFinal[n].Caracteristics[o].values_caracteristic.push(allCaracteristicsProduct[p].value_caracteristic);
                             }
                         }
                     }
                 }
-                // res.send(result[0].Caracteristics[0].values_caracteristic);
 
-                // const palantir = await ProductCaracteristic.findAll();
-                // // console.log(palantir);
-
-                return res.send(result);
+                return res.send(productsFinal);
             }
             return res.send([]);
 
@@ -134,93 +154,3 @@ const productController = {
 };
 
 module.exports = productController;
-
-/**
-[
-  {
-    "idProductCaracteristic": 1,
-    "value_caracteristic": "L",
-    "createdAt": "2021-06-11T15:08:14.000Z",
-    "updatedAt": "2021-06-11T15:08:15.000Z",
-    "ProductIdProduct": 1,
-    "CaracteristicIdCaracteristic": 2
-  },
-  {
-    "idProductCaracteristic": 4,
-    "value_caracteristic": "M",
-    "createdAt": "2021-06-11T15:08:32.000Z",
-    "updatedAt": "2021-06-11T15:08:32.000Z",
-    "ProductIdProduct": 1,
-    "CaracteristicIdCaracteristic": 2
-  },
-  {
-    "idProductCaracteristic": 7,
-    "value_caracteristic": "Rojo",
-    "createdAt": "2021-06-11T15:08:54.000Z",
-    "updatedAt": "2021-06-11T15:08:55.000Z",
-    "ProductIdProduct": 1,
-    "CaracteristicIdCaracteristic": 1
-  },
-  {
-    "idProductCaracteristic": 11,
-    "value_caracteristic": "Unisex",
-    "createdAt": "2021-06-11T15:09:24.000Z",
-    "updatedAt": "2021-06-11T15:09:25.000Z",
-    "ProductIdProduct": 1,
-    "CaracteristicIdCaracteristic": 3
-  },
-  {
-    "idProductCaracteristic": 17,
-    "value_caracteristic": "3",
-    "createdAt": "2021-06-11T15:17:25.000Z",
-    "updatedAt": "2021-06-11T15:17:26.000Z",
-    "ProductIdProduct": 1,
-    "CaracteristicIdCaracteristic": 4
-  },
-  {
-    "idProductCaracteristic": 23,
-    "value_caracteristic": "Blanco",
-    "createdAt": "2021-06-11T15:25:13.000Z",
-    "updatedAt": "2021-06-11T15:25:14.000Z",
-    "ProductIdProduct": 3,
-    "CaracteristicIdCaracteristic": 1
-  },
-  {
-    "idProductCaracteristic": 30,
-    "value_caracteristic": "Negro",
-    "createdAt": "2021-06-11T15:25:26.000Z",
-    "updatedAt": "2021-06-11T15:25:27.000Z",
-    "ProductIdProduct": 3,
-    "CaracteristicIdCaracteristic": 1
-  },
-  {
-    "idProductCaracteristic": 38,
-    "value_caracteristic": "5",
-    "createdAt": "2021-06-11T15:26:29.000Z",
-    "updatedAt": "2021-06-11T15:26:29.000Z",
-    "ProductIdProduct": 3,
-    "CaracteristicIdCaracteristic": 4
-  }
-]
-*/
-
-/**
-for(let n = 0; n <= result.length - 1; n++) {
-                    for(let o = 0; o <= result[n].Caracteristics.length - 1; o++) {
-                        var allCaracteristicsProduct = await ProductCaracteristic.findAll({
-                            where: {
-                                ProductIdProduct: result[n].id_product,
-                                CaracteristicIdCaracteristic: result[n].Caracteristics[o].id_caracteristic
-                            }
-                        });
-                        for(let p = 0; p <= allCaracteristicsProduct.length - 1; p++) {
-                            if(p === 0) {
-                                result[n].Caracteristics[o].values_caracteristic = [allCaracteristicsProduct[p].value_caracteristic];
-                            } else {
-                                result[n].Caracteristics[o].values_caracteristic.push(allCaracteristicsProduct[p].value_caracteristic);
-                            }
-                        }
-                        // res.send(result[n].Caracteristics[o].values_caracteristic);
-                    }
-                }
-*/
