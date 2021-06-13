@@ -7,7 +7,7 @@ const productController = {
     getAll: async (req, res, next) => {
         
         try {
-            const {
+            let {
                 tag = 'not passed',
                 category = 'not passed',
                 rangePriceMin = 'not passed',
@@ -17,6 +17,14 @@ const productController = {
                 orderDirection = 'ASC',
                 ...caracteristics
             } = req.query;
+
+            //nos aseguramos que no haya problema con los rangos de precio
+            if(rangePriceMax === '') {
+                rangePriceMax = 'not passed';
+            }
+            if(rangePriceMin === '') {
+                rangePriceMin = 'not passed';
+            }
 
             //seteo el limit y el offset, es decir, la pagina
             const perPage = 10;
