@@ -1,18 +1,24 @@
-import React, { useState } from "react";
 import "firebase/auth";
 import "./Auth.scss";
+import React, { useState } from "react";
 import {REGISTER_URL} from "../../Assets/constans.js"
 import axios from 'axios'
 import {firebase} from '../../Config/firebase-config'
 
 
-const Login = ({onClose}) => {
+const Login = ({loginClose, registerOpen}) => {
+
   const initialState = {
     email: "",
     password: "",
   };
+
   const [form, setForm] = useState(initialState);
 
+  let user = firebase.auth().currentUser;
+  if (user) {
+    loginClose()
+  }
   const handleOnChange = (e) => {
     setForm({
       ...form,
@@ -62,13 +68,14 @@ const Login = ({onClose}) => {
       });
   }
 
-  const login = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
    await firebase
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
-      .then(r=>{console.log(r)})
+      .then(()=>setForm(initialState))
       .catch (function(error){
+        setForm(initialState)
         alert(error);
       }) 
   };
@@ -86,24 +93,27 @@ const Login = ({onClose}) => {
     <div>
         <div>
           <h2 className="title">INGRESO</h2>
-          <form className="formu">
+          <form className="formu" onSubmit={handleSubmit}>
               <div>
                 <input type="text" name="email" id="email" value={form.email} required onChange={handleOnChange} placeholder="Email..."/>
               </div>
               <div>
                 <input type="password" name="password" id="password" value={form.password} required onChange={handleOnChange} placeholder="Contraseña..."/>
               </div>
-          </form>
           <div className="buttons">
             <div className="butt">
-              <button type="submit" onClick={login}>Iniciar sesión</button>
+              <button type="submit">Iniciar sesión</button>
             </div>
           </div>
+          </form>
           <div className="ForgotPass">
             <label>Olvidaste tu contraseña? </label>
            <a onClick={()=>forgotPassword(form.email)}>Recuperar</a>
            <br/>
-           <a onClick={onClose}>Registrate</a>
+           <a onClick={()=>{
+             registerOpen()
+             loginClose()
+             }}>Registrate</a>
           </div>
           <div>
             <h2>Otros métodos para ingresar...</h2>
