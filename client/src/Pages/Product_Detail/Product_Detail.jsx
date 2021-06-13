@@ -4,9 +4,6 @@ import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Footer from '../../Components/Footer/Footer'
 
-import './script'
-
-
 function Product_Detail() {
     return (
         <div className="content_Home">
@@ -21,31 +18,31 @@ function Product_Detail() {
         <div class = "product-imgs">
           <div class = "img-display">
             <div class = "img-showcase">
-              <img src ='https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_1.jpg' alt = "shoe image1"/>
+              {/* <img src ='https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_1.jpg' alt = "shoe image1"/>
               <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_2.jpg" alt = "shoe image2"/> 
               <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_3.jpg" alt = "shoe image3"/> 
-               <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_4.jpg" alt = "shoe image4"/> 
+               <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_4.jpg" alt = "shoe image4"/>  */}
             </div>
           </div>
           <div class = "img-select">
             <div class = "img-item">
               <a href = "#" data-id = "1">
-                <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_1.jpg" alt = "shoe image"/>
+                {/* <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_1.jpg" alt = "shoe image"/> */}
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "2">
-                <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_2.jpg" alt = "shoe image"/>
+                {/* <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_2.jpg" alt = "shoe image"/> */}
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "3">
-                <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_3.jpg" alt = "shoe image"/>
+                {/* <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_3.jpg" alt = "shoe image"/> */}
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "4">
-                <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_4.jpg" alt = "shoe image"/>
+                {/* <img src = "https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_4.jpg" alt = "shoe image"/> */}
               </a>
             </div>
           </div>
