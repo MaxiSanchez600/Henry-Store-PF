@@ -5,33 +5,33 @@ import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
 function Order({ queriesFromReducer, sendFiltersToActions }) {
 
-  const [orderProp, setOrderProp] = useState("");
   const [orderType, setOrderType] = useState("");
+  const [orderDirection, setOrderDirection] = useState("");
 
   function handleOrder(e) {
     // console.log("e.target.name: ", e.target.name);
     // console.log("e.target.value: ", e.target.value);
-    setOrderProp(e.target.name);
-    setOrderType(e.target.value);
-    sendFiltersToActions({ ...queriesFromReducer, orderProp: e.target.name, orderType: e.target.value });
+    setOrderType(e.target.name);
+    setOrderDirection(e.target.value);
+    sendFiltersToActions({ ...queriesFromReducer, orderType: e.target.name, orderDirection: e.target.value });
   }
 
   function closeOrderButton(e) {
     e.preventDefault();
-    setOrderProp("");
     setOrderType("");
-    const { orderProp, orderType, ...removedORderQueries } = { ...queriesFromReducer };
+    setOrderDirection("");
+    const { orderType, orderDirection, ...removedORderQueries } = { ...queriesFromReducer };
     sendFiltersToActions({ ...removedORderQueries });
   }
 
   return (
     <div>
       {
-        orderProp && orderType ?
+        orderType && orderDirection ?
           <div>
-            <p>{`${orderProp}: ${orderType}`}</p>
+            <p>{`${orderType}: ${orderDirection}`}</p>
             <button
-              name={orderProp}
+              name={orderType}
               onClick={e => closeOrderButton(e)}
             >x</button>
           </div> : ""

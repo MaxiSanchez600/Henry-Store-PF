@@ -18,9 +18,24 @@ export function getAllFilteredProducts(allQueries) {
         dispatch({
           type: FILTER_PRODUCTS,
           payload: response.data,
-          queries: allQueries
         });
       });
   };
 }
+
+// =======================================================================================
+// ! GET LIST PRODUCTS WITH FILTERS 
+// export function getAllFilteredProducts(allQueries) {
+//   return function (dispatch) {
+//     return allProductsFilteredService(allQueries)
+//       .then((res) => {
+//         dispatch({
+//           type: FILTER_PRODUCTS,
+//           payload: res..data,
+//           queries: res.queries
+//         })
+//       })
+//   }
+// }
+
 // =======================================================================================

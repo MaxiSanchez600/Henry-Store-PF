@@ -1,5 +1,8 @@
 // ! ACTIONS
-import { GET_PRODUCTS, FILTER_PRODUCTS } from '../actions/actions';
+import {
+    // GET_PRODUCTS,
+    FILTER_PRODUCTS
+} from '../actions/actions';
 
 
 const initialState = {
@@ -23,8 +26,8 @@ const rootReducer = (state = initialState, action) => {
             console.log("------------------------------");
             return {
                 ...state,
-                products: [...action.payload],
-                queries: { ...action.queries }
+                products: [...action.payload.data],
+                queries: { ...action.payload.queries }
             }
 
         // * default
