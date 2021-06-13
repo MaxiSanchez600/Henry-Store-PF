@@ -26,7 +26,6 @@ fs.readdirSync(path.join(__dirname, '/Models'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/Models', file)));
   });
-console.log(modelDefiners)
 // Injectamos la conexion (sequelize) a todos los modelos
 
 modelDefiners.forEach(model => model(sequelize));
