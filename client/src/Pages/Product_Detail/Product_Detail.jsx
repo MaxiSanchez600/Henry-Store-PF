@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom'
 function Product_Detail({ ListProducts, getAllFilteredProducts }) {
 
   const { id } = useParams();
-  const ID_Product = ListProducts.filter(el => el.id == id)[0]
+  const ID_Product = ListProducts.filter(el => el.id_product == id)[0]
   console.log("ID:", ID_Product)
   useEffect(() => {
     if (!ListProducts.length) getAllFilteredProducts();
@@ -38,32 +38,30 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
 
               </div>
               <div class="product-content">
-                <h2 class="product-title">nike shoes</h2>
-                <a href="#" class="product-link">visit nike store</a>
+                <h2 class="product-title">{ID_Product.name}</h2>
                 <div class="product-rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                  <span class="iconify" data-icon="noto:star" data-inline="false"></span>
+                  <span class="iconify" data-icon="noto:star" data-inline="false"></span>
+                  <span class="iconify" data-icon="noto:star" data-inline="false"></span>
+                  <span class="iconify" data-icon="noto:star" data-inline="false"></span>
+                  <span class="iconify" data-icon="noto:star" data-inline="false"></span>
                   <span>4.7(21)</span>
                 </div>
 
                 <div class="product-price">
-                  <p class="last-price">Old Price: <span>$257.00</span></p>
-                  <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+                  <p class="last-price">Old Price: <span>{ID_Product.price * 0.9}</span></p>
+                  <p class="new-price">New Price: <span>{ID_Product.price} (10%)</span></p>
                 </div>
 
                 <div class="product-detail">
-                  <h2>about this item: </h2>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+                  <h2>Descripción: </h2>
+                  <p>{ID_Product.description}</p>
                   <ul>
                     <li>Color: <span>Black</span></li>
-                    <li>Available: <span>in stock</span></li>
-                    <li>Category: <span>Shoes</span></li>
-                    <li>Shipping Area: <span>All over the world</span></li>
-                    <li>Shipping Fee: <span>Free</span></li>
+                    <li>Disponibilidad:: <span>in stock</span></li>
+                    <li>Categoria(s): <span>Shoes</span></li>
+                    <li>Áreas Envío: <span>All over the world</span></li>
+                    <li>Precio Envío: <span>Free</span></li>
                   </ul>
                 </div>
 
@@ -78,19 +76,19 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
                 <div class="social-links">
                   <p>Share At: </p>
                   <a href="#">
-                    <i class="fab fa-facebook-f"></i>
+                  <span class="iconify" data-icon="logos:facebook" data-inline="false"></span>
                   </a>
                   <a href="#">
-                    <i class="fab fa-twitter"></i>
+                    <span class="iconify" data-icon="logos:twitter" data-inline="false"></span>
                   </a>
                   <a href="#">
-                    <i class="fab fa-instagram"></i>
+                    <span class="iconify" data-icon="uil:instagram-alt" data-inline="false"></span>
                   </a>
                   <a href="#">
-                    <i class="fab fa-whatsapp"></i>
+                    <span class="iconify" data-icon="logos:whatsapp" data-inline="false"></span>
                   </a>
                   <a href="#">
-                    <i class="fab fa-pinterest"></i>
+                    <span class="iconify" data-icon="logos:pinterest" data-inline="false"></span>
                   </a>
                 </div>
               </div>
