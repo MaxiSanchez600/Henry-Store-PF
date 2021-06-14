@@ -47,10 +47,9 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
                   <span class="iconify" data-icon="noto:star" data-inline="false"></span>
                   <span>4.7(21)</span>
                 </div>
-
                 <div class="product-price">
-                  <p class="last-price">Old Price: <span>{ID_Product.price * 0.9}</span></p>
-                  <p class="new-price">New Price: <span>{ID_Product.price} (10%)</span></p>
+                  <p class="last-price">Old Price: <span>{ID_Product.price}</span></p>
+                  <p class="new-price">New Price: <span>{ID_Product.price * 0.9} (10%)</span></p>
                 </div>
 
                 <div class="product-detail">

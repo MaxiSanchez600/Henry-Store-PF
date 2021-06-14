@@ -1,33 +1,41 @@
-@import '../../Sass/variables';
+@import "../../Sass/variables";
 
 .contain_Ubication {
     position: absolute;
     top: 0;
-    font-family: 'Avenir_Roman';
+    font-family: "Avenir_Roman";
     cursor: pointer;
-    margin: 4em 0 0 12%;
+    margin: 5em 0 0 12%;
     width: 200px;
+    font-size: 0.7rem;
 
-    .Ubication_body{
+    .Ubication_body {
         border-radius: 1rem;
         padding: 3px;
 
-        &:hover{
+        &:hover {
             box-shadow: 1px 1px 5px 1px gray;
         }
-  
     }
 }
 
-.flagIcon{
+.flagIcon {
     display: inline-block;
+    box-sizing: content-box;
     box-sizing: initial;
     margin-left: 5px;
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
+    margin-right: 5px;
+    border-radius: 100%;
     border: 1px solid;
     position: relative;
     top: 7px;
     overflow: hidden;
+
+    img {
+        display: inline-block;
+        width: 1.7em;
+        height: 1.7em;
+        vertical-align: middle;
+        object-fit: cover;
+    }
 }

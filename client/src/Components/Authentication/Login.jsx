@@ -102,7 +102,7 @@ const Login = ({ loginClose, registerOpen }) => {
             <input type="password" name="password" id="password" value={form.password} required onChange={handleOnChange} placeholder="Contraseña..." />
           </div>
           <div className="buttons">
-            <div className="butt">
+            <div className="button_login">
               <button type="submit">Iniciar sesión</button>
             </div>
           </div>
@@ -111,7 +111,7 @@ const Login = ({ loginClose, registerOpen }) => {
           <label className="recovery_pass">Olvidaste tu contraseña?<a onClick={() => forgotPassword(form.email)}>Recuperar</a> </label>
           
           <br />
-          <a onClick={() => {
+          <a className="go_register" onClick={() => {
             registerOpen()
             loginClose()
           }}>Registrate</a>

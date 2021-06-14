@@ -51,7 +51,7 @@ const Register = ({onClose}) => {
               <div>
                 <input type="password" name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
               </div>
-              <button type="submit" >Registrarme</button>
+              <button className="button_register" type="submit" >Registrarme</button>
           </form>
         </div>
     </div>
