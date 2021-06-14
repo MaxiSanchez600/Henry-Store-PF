@@ -7,9 +7,8 @@ const GeoLocation = () =>{
   useEffect(()=>{
     const getLocation = async()=>{
       let res;
-      const ACCESS_KEY = '2de9ef829bf711637520426c8af36cbc';
       const publicIpAddress = await publicIP();
-      const url = `http://api.ipstack.com/${publicIpAddress}?access_key=${ACCESS_KEY}&format=1`;
+      const url = `https://ipapi.co/${publicIpAddress}/json/`;
       res = await fetch(url)
       res = await res.json();
       setLocationData(res)
@@ -18,18 +17,20 @@ const GeoLocation = () =>{
   },[])
   return (
     <div className="contain_Ubication">
-      <p>{locationData.city}/{locationData.country_code}
-        <span>
+      <div>{locationData.city}/{locationData.country}
+        <div className='flagIcon'>
           <ReactCountryFlag 
-            countryCode={locationData.country_code} 
+            countryCode={locationData.country} 
             svg 
             style={{
-                      width: '1.8em',
-                      height: '1.8em',
-                  }}/>
-        </span>  
-
-        </p>
+              width: '2em',
+              height: '2em',
+            }}  
+          />
+          
+        </div>  
+        <span>{locationData.currency}</span>
+        </div>
       
     </div>
   )

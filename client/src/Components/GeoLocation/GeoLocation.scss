@@ -5,8 +5,8 @@
     top: 0;
     font-family: 'Avenir_Roman';
     cursor: pointer;
-    z-index: 2;
     margin: 4em 0 0 12%;
+    width: 200px;
 
     .Ubication_body{
         border-radius: 1rem;
@@ -17,4 +17,17 @@
         }
   
     }
+}
+
+.flagIcon{
+    display: inline-block;
+    box-sizing: initial;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid;
+    position: relative;
+    top: 7px;
+    overflow: hidden;
 }
