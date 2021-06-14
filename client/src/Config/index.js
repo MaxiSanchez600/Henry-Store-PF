@@ -1,1 +1,1 @@
-export const PRODUCTS_URL = `http://localhost:3001/products?`;
+export const PRODUCTS_URL = `https://soyhenry-store.herokuapp.com/products?`;

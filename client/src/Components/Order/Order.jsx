@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import './Order.scss'
 
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
@@ -9,8 +10,6 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   const [orderDirection, setOrderDirection] = useState("");
 
   function handleOrder(e) {
-    // console.log("e.target.name: ", e.target.name);
-    // console.log("e.target.value: ", e.target.value);
     setOrderType(e.target.name);
     setOrderDirection(e.target.value);
     sendFiltersToActions({ ...queriesFromReducer, orderType: e.target.name, orderDirection: e.target.value });
@@ -25,20 +24,23 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   }
 
   return (
-    <div>
+    <div className="content_Order">
       {
         orderType && orderDirection ?
-          <div>
-            <p>{`${orderType}: ${orderDirection}`}</p>
-            <button
-              name={orderType}
-              onClick={e => closeOrderButton(e)}
-            >x</button>
-          </div> : ""
+          <div className="container_box">
+            <div className="box_filter">
+              <p>{`${orderType}: ${orderDirection}`}</p>
+              <button
+                className="button_filtered"
+                name={orderType}
+                onClick={e => closeOrderButton(e)}
+              >x</button>
+            </div> </div> : ""
       }
-      <select name="price" onChange={e => handleOrder(e)}>
-        <option value="ASC">Menor a mayor precio</option>
-        <option value="DESC">Mayor a menor precio</option>
+        <h3 >Ordenar Precio:</h3>
+      <select name="price" onChange={e => handleOrder(e)} className="list_select">
+        <option value="ASC">Menor precio</option>
+        <option value="DESC">Mayor precio</option>
       </select>
     </div>
   );

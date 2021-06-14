@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import Order from '../Order/Order'
 
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
@@ -72,6 +73,8 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           ))
         }
       </div>
+<Order/>
+
       {/* SUBCATEGORIA*/}
       <div className="name_filter">
         <h3>Subcategoria:</h3>

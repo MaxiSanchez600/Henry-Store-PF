@@ -1,5 +1,4 @@
 // ! MODULES
-// import axios from "axios";
 import { allProductsFilteredService } from "../services/products.service";
 
 // ! URLS 
@@ -22,20 +21,5 @@ export function getAllFilteredProducts(allQueries) {
       });
   };
 }
-
 // =======================================================================================
-// ! GET LIST PRODUCTS WITH FILTERS 
-// export function getAllFilteredProducts(allQueries) {
-//   return function (dispatch) {
-//     return allProductsFilteredService(allQueries)
-//       .then((res) => {
-//         dispatch({
-//           type: FILTER_PRODUCTS,
-//           payload: res..data,
-//           queries: res.queries
-//         })
-//       })
-//   }
-// }
 
-// =======================================================================================

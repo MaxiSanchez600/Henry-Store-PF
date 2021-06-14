@@ -1,26 +1,26 @@
-@import '../../Sass/variables';
+@import "../../Sass/variables";
 
 .content_Footer {
-    background-color: black;
+    background-color: #000;
     height: auto;
-
+    margin-top: 35rem;
 
     .logo {
         position: relative;
     }
 
-    .Footer_body{
+    .Footer_body {
         font-family: "Avenir_Roman";
         color: white;
 
-        .items{
+        .items {
             list-style: none;
             display: flex;
             justify-content: space-around;
         }
     }
 
-    .Footer_foot{
+    .Footer_foot {
         font-family: "Avenir_Book";
         color: gray;
         text-align: center;

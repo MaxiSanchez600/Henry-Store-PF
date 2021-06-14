@@ -32,7 +32,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
               <div class="product-imgs">
                 <div class="img-display">
                   <div class="img-showcase">
-                    {/* <img src='https://raw.githubusercontent.com/prabinmagar/product-detail-card-slider/master/shoes_images/shoe_1.jpg' alt="shoe image1" /> */}
+                    <img src={ID_Product.Images[0].name_image} alt="dont found" />
                   </div>
                 </div>
 

@@ -6,7 +6,7 @@ import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Filters from '../../Components/Filters/Filters'
 import GeoLocation from '../../Components/GeoLocation/GeoLocation'
-import Order from '../../Components/Order/Order'
+// import Order from '../../Components/Order/Order'
 
 function Home() {
     return (
@@ -18,7 +18,7 @@ function Home() {
             <div className="body_Home">
                 <div className="webcontent_home">
                     <Filters />
-                    <Order />
+                    {/* <Order /> */}
                     <Products />
                 </div>
             </div>

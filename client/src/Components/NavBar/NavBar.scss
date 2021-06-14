@@ -41,13 +41,17 @@
     font-family: "Avenir_Roman";
     font-size: 10px;
 
+.header_perfil{
+    display: flex;
+}
+
     .user_buttons {
         display: flex;
         text-align: center;
 
         .button_logout {
-            font-size: 1em;    
-            border: 1px solid #DDDDDD;
+            font-size: 1em;
+            border: 1px solid #dddddd;
             border-radius: 50%;
             display: inline-flex;
             justify-content: center;
@@ -59,18 +63,89 @@
             border-style: none;
             background-color: transparent;
 
-            &:hover{
-                color:rgb(165, 7, 7);
+            &:hover {
+                color: rgb(165, 7, 7);
                 transform: scale(1.1);
-                cursor:pointer;
+                cursor: pointer;
             }
         }
 
-        .iconify{
+        .iconify {
             font-size: 20px;
         }
-
-
-        
     }
+
+
+
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+        width: 150px;
+        height: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        background: red;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+        background: #e62222;
+    }
+
+    button,
+    button span {
+        transition: 200ms;
+    }
+
+    button .text {
+        transform: translateX(35px);
+        color: white;
+        font-weight: bold;
+    }
+
+    button .icon {
+        position: absolute;
+        border-left: 1px solid #c41b1b;
+        transform: translateX(110px);
+        height: 20px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button svg {
+        width: 15px;
+        fill: #eee;
+    }
+
+    button:hover {
+        background: #ff3636;
+    }
+
+    button:hover .text {
+        color: transparent;
+    }
+
+    button:hover .icon {
+        width: 150px;
+        border-left: none;
+        transform: translateX(0);
+    }
+
+    button:focus {
+        outline: none;
+    }
+}
+
+body {
+    background-image: linear-gradient(315deg, #ffffff 0%, #f8f8f8 74%);
 }

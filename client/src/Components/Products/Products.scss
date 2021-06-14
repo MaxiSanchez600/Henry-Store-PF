@@ -1,12 +1,22 @@
 @import "../../Sass/variables";
 
 .cards_container_products {
-  margin: 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  grid-gap: 2rem;
-  justify-content: center;
+  // margin: 1.5rem;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  // grid-gap: 2rem;
+  // justify-content: center;
   width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  
+  .all_Cards{
+    margin: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    grid-gap: 2rem;
+    justify-content: center;
+  }
 
   .product_card {
     position: relative;
@@ -86,7 +96,5 @@
 }
 
 .pagination {
-  position: absolute;
   top: 40rem;
-  width: 100%;
 }

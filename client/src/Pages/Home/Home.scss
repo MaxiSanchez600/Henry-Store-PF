@@ -2,13 +2,13 @@
     justify-content: center;
 
     .body_Home {
-        max-height: 800px;
-        min-height: 765px;
+       
 
         .webcontent_home {
-            display: flex;
+            -webkit-justify-content: center;
             justify-content: center;
-            margin: 1% 10% 0 10%;
+            margin: 1% 10% 0;
+            display: flex;
         }
     }
 }
