@@ -12,6 +12,7 @@
     "firebase": "^8.6.5",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
+    "react-country-flag": "^2.3.0",
     "react-dom": "^17.0.1",
     "react-firebaseui": "^5.0.2",
     "react-native-public-ip": "^1.0.2",
