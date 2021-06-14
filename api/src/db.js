@@ -11,7 +11,7 @@ const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Z
 });
 
 //Conexion Local => Pruebas
-//  const sequelize = new Sequelize('postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}', {
+//  const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
 //    logging: false, // set to console.log to see the raw SQL queries
 //    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 //  });
@@ -21,12 +21,11 @@ const basename = path.basename(__filename);
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, '/Models'))
+fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/Models', file)));
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
-console.log(modelDefiners)
 // Injectamos la conexion (sequelize) a todos los modelos
 
 modelDefiners.forEach(model => model(sequelize));

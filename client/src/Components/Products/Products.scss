@@ -1,0 +1,100 @@
+@import "../../Sass/variables";
+
+.cards_container_products {
+  // margin: 1.5rem;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  // grid-gap: 2rem;
+  // justify-content: center;
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  
+  .all_Cards{
+    margin: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    grid-gap: 2rem;
+    justify-content: center;
+  }
+
+  .product_card {
+    position: relative;
+    max-width: 355px;
+    width: 100%;
+    border-radius: 25px;
+    padding: 20px 30px 30px 30px;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    overflow: hidden;
+    transition: 0.2s all ease-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.product_name {
+  padding-left: 1rem;
+  width: 230px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: "Avenir_Black";
+  font-weight: 600;
+}
+
+.product_price {
+}
+
+.product_image {
+  height: 12rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.iconify.icon_cart {
+  font-size: 1.5rem;
+}
+
+.iconify.icon_heart {
+  font-size: 1.1rem;
+  transition: 0.3s all ease;
+  &:hover {
+    font-size: 1.5rem;
+  }
+}
+
+/* ! PAGINATION */
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #2b2eff;
+}
+
+.paginationActive a {
+  background-color: #2b2eff;
+  color: white;
+}
+
+.pagination {
+  top: 40rem;
+}

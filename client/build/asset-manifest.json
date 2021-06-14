@@ -1,0 +1,41 @@
+{
+  "files": {
+    "analytics.js": "/static/js/analytics.080471c0.chunk.js",
+    "analytics.js.map": "/static/js/analytics.080471c0.chunk.js.map",
+    "database.js": "/static/js/database.43e7384a.chunk.js",
+    "database.js.map": "/static/js/database.43e7384a.chunk.js.map",
+    "firestore.js": "/static/js/firestore.43e3fee4.chunk.js",
+    "firestore.js.map": "/static/js/firestore.43e3fee4.chunk.js.map",
+    "functions.js": "/static/js/functions.abe6fba7.chunk.js",
+    "functions.js.map": "/static/js/functions.abe6fba7.chunk.js.map",
+    "main.css": "/static/css/main.ec41cbb5.chunk.css",
+    "main.js": "/static/js/main.b92620de.chunk.js",
+    "main.js.map": "/static/js/main.b92620de.chunk.js.map",
+    "messaging.js": "/static/js/messaging.9fb25f6b.chunk.js",
+    "messaging.js.map": "/static/js/messaging.9fb25f6b.chunk.js.map",
+    "performance.js": "/static/js/performance.ac9f0d3a.chunk.js",
+    "performance.js.map": "/static/js/performance.ac9f0d3a.chunk.js.map",
+    "remoteConfig.js": "/static/js/remoteConfig.9c40241d.chunk.js",
+    "remoteConfig.js.map": "/static/js/remoteConfig.9c40241d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2ef67d0a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2ef67d0a.js.map",
+    "storage.js": "/static/js/storage.7d9c5da1.chunk.js",
+    "storage.js.map": "/static/js/storage.7d9c5da1.chunk.js.map",
+    "static/js/10.49b5cba7.chunk.js": "/static/js/10.49b5cba7.chunk.js",
+    "static/js/10.49b5cba7.chunk.js.map": "/static/js/10.49b5cba7.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ec41cbb5.chunk.css.map": "/static/css/main.ec41cbb5.chunk.css.map",
+    "static/js/10.49b5cba7.chunk.js.LICENSE.txt": "/static/js/10.49b5cba7.chunk.js.LICENSE.txt",
+    "static/media/Modal.scss": "/static/media/AvenirLTStd-Roman.0bfb049d.otf",
+    "static/media/Logo_H_black.8450c2fa.png": "/static/media/Logo_H_black.8450c2fa.png",
+    "static/media/Logo_Henry_black.cc575ea8.png": "/static/media/Logo_Henry_black.cc575ea8.png",
+    "static/media/Logo_Henry_white.47af587e.png": "/static/media/Logo_Henry_white.47af587e.png",
+    "static/media/Main.scss": "/static/media/checked.f83ed6f0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ef67d0a.js",
+    "static/js/10.49b5cba7.chunk.js",
+    "static/css/main.ec41cbb5.chunk.css",
+    "static/js/main.b92620de.chunk.js"
+  ]
+}

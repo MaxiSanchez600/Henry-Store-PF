@@ -1,0 +1,31 @@
+@import './variables';
+@import './typography';
+
+.button_addCart {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+    width: 211px;
+    height: 64px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    outline: none;
+}
+
+.button_success {
+}
+
+.button_cancel {
+
+}
+
+.button_search{
+    width: fit-content;
+    font-family: "Avenir_Roman";
+}
+
+.button_close {
+
+}

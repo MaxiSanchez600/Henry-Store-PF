@@ -1,6 +1,0 @@
-DB_USER=postgres
-DB_PASSWORD=Bluebuff123
-DB_HOST=localhost:5432
-DB_NAME=henrystore
-DB_PORT=3001
-

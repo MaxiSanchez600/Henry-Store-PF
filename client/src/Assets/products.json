@@ -1,0 +1,625 @@
+[
+    {
+        "id_product": 1,
+        "name": "Gorra",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 500,
+        "unit_stock": 2,
+        "henry_coin": 2,
+        "weight": 2,
+        "size": 2,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 1,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            },
+            {
+                "id_image": 165,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "M"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 3,
+        "name": "Zapato",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 700,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 21,
+                "name_tag": "Zapato"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 113,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "P",
+                    "Q"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 6,
+        "name": "Buso",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 800,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 1,
+                "name_tag": "Henry"
+            },
+            {
+                "id_tag": 6,
+                "name_tag": "Accesorio"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 3,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "M"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 10,
+        "name": "Ramera",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 100,
+        "unit_stock": 2,
+        "henry_coin": 2,
+        "weight": 2,
+        "size": 2,
+        "percentage_discount": 2,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 6,
+                "name_tag": "Accesorio"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 45,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Z"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 15,
+        "name": "Vestido",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 5000,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 90,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Z"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 21,
+        "name": "Taza",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 2500,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 69,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 28,
+        "name": "Cuaderno",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 1250,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 30,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "L"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Femenino"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 36,
+        "name": "Usb Henry",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 105,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 1,
+                "name_tag": "Henry"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 79,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "SS"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 45,
+        "name": "Zapato Rojo",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 250,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 138,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "Q"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 55,
+        "name": "Ramera Henry Negra",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 350,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 10,
+                "name_tag": "Camisa"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 52,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 66,
+        "name": "Ramera Roja",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 500,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 60,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Unisex"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 78,
+        "name": "Pantalon Corto",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 885,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 3,
+                "name_tag": "Gorra"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 34,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    },
+    {
+        "id_product": 91,
+        "name": "Pantalon Largo",
+        "description": "Lorem idjsidj iasjidj siuhdjiasj idji jasidjiasd",
+        "price": 149,
+        "unit_stock": 1,
+        "henry_coin": 1,
+        "weight": 1,
+        "size": 1,
+        "percentage_discount": 1,
+        "promotion": 1,
+        "Tags": [
+            {
+                "id_tag": 21,
+                "name_tag": "Zapato"
+            }
+        ],
+        "Categories": [],
+        "Images": [
+            {
+                "id_image": 39,
+                "name_image": "https://www.corbataslester.com/magazine/wp-content/uploads/2018/01/oxford.jpg"
+            }
+        ],
+        "Caracteristics": [
+            {
+                "id_caracteristic": 3,
+                "name_caracteristic": "genero",
+                "values_caracteristic": [
+                    "Masculino"
+                ]
+            },
+            {
+                "id_caracteristic": 2,
+                "name_caracteristic": "size",
+                "values_caracteristic": [
+                    "S"
+                ]
+            },
+            {
+                "id_caracteristic": 1,
+                "name_caracteristic": "color",
+                "values_caracteristic": [
+                    "Negro"
+                ]
+            }
+        ]
+    }
+]
