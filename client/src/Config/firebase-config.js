@@ -1,4 +1,6 @@
-const firebaseConfig = {
+import firebase from 'firebase';
+
+const config = {
     apiKey: "AIzaSyDA9oROP8tGSZKx6uwvTTzNqJIYWUC6asE",
     authDomain: "henry-store-ca75c.firebaseapp.com",
     projectId: "henry-store-ca75c",
@@ -8,4 +10,6 @@ const firebaseConfig = {
     measurementId: "G-5QGR5M9F4Y"
   };
 
-export default firebaseConfig
+firebase.initializeApp(config);
+
+export {firebase, config};

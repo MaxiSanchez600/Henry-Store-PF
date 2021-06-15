@@ -1,0 +1,153 @@
+.contain_NavBar {
+    position: absolute;
+    top: 6.4em;
+    left: 30%;
+    font-family: "Avenir_Roman";
+    font-size: 10px;
+    z-index: 1;
+    columns: 2;
+    column-gap: 1%;
+    right: 0;
+
+    .menu_left {
+    }
+
+    .menu_rigth {
+        float: right;
+    }
+
+    .button_login {
+        margin: 2% 0 0 95%;
+    }
+
+    .menu_category {
+        margin: 0 10px 0 10px;
+        border-style: none;
+        background-color: transparent;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .iconify {
+        font-size: 20px;
+        vertical-align: text-bottom;
+    }
+}
+
+.user_perfil {
+    position: absolute;
+    top: 1%;
+    right: 2em;
+    font-family: "Avenir_Roman";
+    font-size: 10px;
+
+.header_perfil{
+    display: flex;
+}
+
+    .user_buttons {
+        display: flex;
+        text-align: center;
+
+        .button_logout {
+            font-size: 1em;
+            border: 1px solid #dddddd;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+            transition: 0.5 all ease;
+            border-style: none;
+            background-color: transparent;
+
+            &:hover {
+                color: rgb(165, 7, 7);
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+
+        .iconify {
+            font-size: 20px;
+        }
+    }
+
+
+
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+        width: 150px;
+        height: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        background: red;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+        background: #e62222;
+    }
+
+    button,
+    button span {
+        transition: 200ms;
+    }
+
+    button .text {
+        transform: translateX(35px);
+        color: white;
+        font-weight: bold;
+    }
+
+    button .icon {
+        position: absolute;
+        border-left: 1px solid #c41b1b;
+        transform: translateX(110px);
+        height: 20px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button svg {
+        width: 15px;
+        fill: #eee;
+    }
+
+    button:hover {
+        background: #ff3636;
+    }
+
+    button:hover .text {
+        color: transparent;
+    }
+
+    button:hover .icon {
+        width: 150px;
+        border-left: none;
+        transform: translateX(0);
+    }
+
+    button:focus {
+        outline: none;
+    }
+}
+
+body {
+    background-image: linear-gradient(315deg, #ffffff 0%, #f8f8f8 74%);
+}

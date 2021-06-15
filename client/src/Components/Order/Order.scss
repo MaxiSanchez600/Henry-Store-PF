@@ -1,0 +1,55 @@
+
+.content_Order{
+    .name_filter {
+        text-align-last: center;
+        margin-block-end: 3em;
+    }
+    
+    .container_box{
+        background-color: #f7f7f7;
+        border-radius: 1rem;
+    }
+    
+    .list_select {
+        border: 1px solid black;
+        border-radius: 3em;
+        width: 100%;
+        font-family: "Avenir_Roman";
+        align-items: flex-end;
+        margin: 10px;
+        outline: none;
+        height: 40px;
+        padding: 0 25px;
+        font-size: 15px;
+        align-items: center;
+    }
+    
+    .box_filter {
+        font-family: "Avenir_Book";
+        display: flex;
+        font-size: 12px;
+        height: min-content;
+        justify-content: center;
+    }
+    
+    .button_filtered {
+        width: 20px;
+        height: 20px;
+        line-height: 1.33;
+        border-radius: 50px;
+        margin: 10px;
+        transition: 0.3s all ease;
+        border: 1px solid gray;
+    
+        &:hover {
+            cursor: pointer;
+            border: 1px solid rgb(255, 254, 254);
+            background-color: rgb(202, 202, 202);
+            color:white
+        }
+    }
+
+    h3{
+        text-align: center;
+    }
+}
