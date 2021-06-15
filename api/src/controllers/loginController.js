@@ -38,6 +38,7 @@ function putUserInfo (req,res,next) {
     .then((userFound)=>{
         userFound.setDocumentType(documentType);
         userFound.setNacionality(nacionality);
+        //si checkeo todos los datos cambiar estado a 2
         userFound.setUserStatus(2);
         res.sendStatus(200);
     })
