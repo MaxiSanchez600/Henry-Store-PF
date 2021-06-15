@@ -9,9 +9,14 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
 
   function handleOptions(e) {
     switch (e.target.value) {
+      case "":
+        closeSelectedFilterButton(e);
+        break;
+        
       case "Ropa":
         sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
         break;
+
       default:
         const { genero, size, ...otherCategoriesFilters } = { ...queriesFromReducer };
         sendFiltersToActions({ ...otherCategoriesFilters, [e.target.name]: e.target.value });
@@ -31,6 +36,7 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   return (
     <div className="FilterCategories">
       <select className="menu_category" name="category" onChange={e => handleOptions(e)}>
+        <option value="">Selecciona una categoria...</option>
         <option value="Ropa">Ropa</option>
         <option value="Accesorios">Accesorios</option>
         <option value="Otros">Otros</option>
