@@ -40,7 +40,6 @@ const productController = {
             for(let i = 0; i <= products.length - 1; i++) {
                 productsId.push(products[i].id_product)
             }
-            // console.log(productsId);  
 
             // si tengo caracteristicas para filtrar entro acá
             if(Object.keys(caracteristics).length > 0) {
@@ -58,7 +57,6 @@ const productController = {
                         }
                     }
                 }
-                // console.log(caracteristicComplete);
 
                 // hago un bucle de filtrado por cada una de las características, por cada vez que filtro guardo los id resultado en prodctsId
                 // las filtraciones se detienen cuando ya no hay mas caracteristicas para filtrar o porque productsId quedó vació (no se encontró nada)
@@ -78,7 +76,6 @@ const productController = {
                             productsId.push(productsFiltered[m].ProductIdProduct);
                         }
                     }
-                    // console.log(productsId);
                 }
             }
 

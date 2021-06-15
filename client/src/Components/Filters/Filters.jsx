@@ -24,7 +24,6 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
   function handleFilters(e) {
     // setSelectedFilter(e.target.name);
-    // console.log("e.target.value: ", e.target.value);
     setFiltersToSend({
       ...filtersToSend,
       [e.target.name]: e.target.value
@@ -39,7 +38,6 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
   function closeSelectedFilterButton(e) {
     e.preventDefault();
-    // console.log("name of filter to be removed -> e.target.name: ", e.target.name);
     if (!queriesFromReducer.category) console.log("NO HAY CATEGORY PRUEBA");
     delete queriesFromReducer[e.target.name];
     delete filtersToSend[e.target.name];
@@ -79,7 +77,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       <div className="name_filter">
         <h3>Subcategoria:</h3>
         <select className="list_select" name="type" onChange={e => handleFilters(e)}>
-          <option value="Buso">Buso</option>
+          <option value="Buzo">Buzo</option>
           <option value="Cuaderno">Cuaderno</option>
           <option value="Gorra">Gorra</option>
           <option value="Lentes">Lentes</option>

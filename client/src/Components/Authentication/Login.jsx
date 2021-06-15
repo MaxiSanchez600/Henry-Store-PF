@@ -1,7 +1,7 @@
 import "firebase/auth";
 import "./Auth.scss";
 import React, { useState } from "react";
-import { REGISTER_URL } from "../../Assets/constans.js"
+import { REGISTER_URL } from "../../Config/index"
 import axios from 'axios'
 import { firebase } from '../../Config/firebase-config'
 
@@ -44,8 +44,6 @@ const Login = ({ loginClose, registerOpen }) => {
         }
       }).catch((error) => {
         alert(error)
-        // var message = error.message
-        // var email = error.email;
       });
   }
 
@@ -75,7 +73,6 @@ const Login = ({ loginClose, registerOpen }) => {
       .signInWithEmailAndPassword(form.email, form.password)
       .then(() => setForm(initialState))
       .catch((error) => {
-        console.log(error)
         setForm(initialState)
         alert(error.message);
       })
