@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Order from '../Order/Order'
 
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 
@@ -24,7 +23,6 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
   function handleFilters(e) {
     // setSelectedFilter(e.target.name);
-    // console.log("e.target.value: ", e.target.value);
     setFiltersToSend({
       ...filtersToSend,
       [e.target.name]: e.target.value
@@ -39,16 +37,18 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
   function closeSelectedFilterButton(e) {
     e.preventDefault();
-    // console.log("name of filter to be removed -> e.target.name: ", e.target.name);
-    if (!queriesFromReducer.category) console.log("NO HAY CATEGORY PRUEBA");
+    if (!queriesFromReducer.category) {
+
+    }
+    const idToBeRemoved = document.getElementById(`${e.target.name}`);
+    if (idToBeRemoved) {
+      idToBeRemoved.value = "";
+    }
     delete queriesFromReducer[e.target.name];
     delete filtersToSend[e.target.name];
-    setFiltersToSend({
-      ...filtersToSend,
-      // [e.target.name]: e.target.value
-    });
-    // setSelectedFilter("");
+    setFiltersToSend({ ...filtersToSend });
     sendFiltersToActions({ ...queriesFromReducer });
+    // setSelectedFilter("");
   }
 
   function handleSubmit(e) {
@@ -73,13 +73,12 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           ))
         }
       </div>
-<Order/>
-
       {/* SUBCATEGORIA*/}
       <div className="name_filter">
         <h3>Subcategoria:</h3>
         <select className="list_select" name="type" onChange={e => handleFilters(e)}>
-          <option value="Buso">Buso</option>
+          <option value="">Subcategorias...</option>
+          <option value="Buzo">Buzo</option>
           <option value="Cuaderno">Cuaderno</option>
           <option value="Gorra">Gorra</option>
           <option value="Lentes">Lentes</option>
@@ -94,6 +93,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       <div className="name_filter">
         <h3>Precio:</h3>
         <input
+          id={`rangePriceMin`}
           className="range_price"
           name="rangePriceMin"
           type="number"
@@ -108,6 +108,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           min={0}
         />
         <input
+          id={`rangePriceMax`}
           className="range_price"
           name="rangePriceMax"
           type="number"
@@ -127,6 +128,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
       {/* COLOR*/}
       <div className="name_filter"> <h3>Color Principal:</h3>
         <select className="list_select" name="color" onChange={e => handleFilters(e)}>
+          <option value="">Color...</option>
           <option value="Blanco">Blanco</option>
           <option value="Negro">Negro</option>
           <option value="Amarillo">Amarillo</option>
@@ -138,12 +140,14 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
           <div className="name_filter">
             <h3>Genero:</h3>
             <select className="list_select" name="genero" onChange={e => handleFilters(e)}>
+              <option value="">Genero...</option>
               <option value="Unisex">Unisex</option>
               <option value="Hombre">Hombre</option>
               <option value="Mujer">Mujer</option>
             </select>
             <h3>Talle:</h3>
             <select className="list_select" name="size" onChange={e => handleFilters(e)}>
+              <option value="">Talle...</option>
               <option value="S">S</option>
               <option value="M">M</option>
               <option value="L">L</option>

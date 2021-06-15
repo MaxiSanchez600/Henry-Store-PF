@@ -8,14 +8,16 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   function handleOptions(e) {
-    // console.log("e.target.value: ", e.target.value);
     switch (e.target.value) {
+      case "":
+        closeSelectedFilterButton(e);
+        break;
+        
       case "Ropa":
-        // console.log("category Ropa");
         sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
         break;
+
       default:
-        // console.log("other category");
         const { genero, size, ...otherCategoriesFilters } = { ...queriesFromReducer };
         sendFiltersToActions({ ...otherCategoriesFilters, [e.target.name]: e.target.value });
         break;
@@ -34,6 +36,7 @@ function FilterCategories({ queriesFromReducer, sendFiltersToActions }) {
   return (
     <div className="FilterCategories">
       <select className="menu_category" name="category" onChange={e => handleOptions(e)}>
+        <option value="">Selecciona una categoria...</option>
         <option value="Ropa">Ropa</option>
         <option value="Accesorios">Accesorios</option>
         <option value="Otros">Otros</option>

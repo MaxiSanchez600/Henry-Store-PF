@@ -5,16 +5,16 @@ const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
 //Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+// const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
 
-//Conexion Local => Pruebas
-//  const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
-//    logging: false, // set to console.log to see the raw SQL queries
-//    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-//  });
+// Conexion Local => Pruebas
+ const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+   logging: false, // set to console.log to see the raw SQL queries
+   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+ });
 
 const basename = path.basename(__filename);
 
@@ -58,30 +58,9 @@ SubCategory.belongsTo(Category);
 Product.belongsToMany(Caracteristic, {through: {model: ProductCaracteristic, unique: false}});
 Caracteristic.belongsToMany(Product, {through: {model: ProductCaracteristic, unique: false}});
 
-//let category = Category.create({
-//  name_category: 'Ropa'
-//}).then(
- // (category) => {
-   // SubCategory.create({
-     // name_sub_category: 'Pantalón',
-      //description: 'Ropa de vestir'
-    //}).then(
-     // (subCategory) => {
-       // category.addSubCategory(subCategory)
-     // }
-   // )
-  //})
-
 //Relacion Productos Promotions
 KindPromotion.belongsToMany(Product, {through: ProductPromotion});
 Product.belongsToMany(KindPromotion, {through: ProductPromotion});
-
-//Product.AddKindPromotion('2x1', {through: {
-  //'date_start': 'zzzz',
-  //'date_end': 'zzzz',
-  //'date_register': 'zzzz',
-//}})
-
 
 //Relacion Productos Review
 Product.hasMany(Review);
@@ -95,21 +74,13 @@ Review.belongsTo(User);
 DocumentType.hasMany(User);
 User.belongsTo(DocumentType);
 
-//Anadir identificacion a usuario => UserCreado.AddDocumentType => dni => demas identificaciones
-
-
 //Relacion Usuario Rol
 Role.hasMany(User);
 User.belongsTo(Role);
 
-//Anadir rol a usuario => UserCreado.AddRole() => 0,1,2 depende si es User, Admin, SuperAdmin
-
-
 //Relacion Usuario Status
 UserStatus.hasMany(User);
 User.belongsTo(UserStatus);
-
-//Anadir status a usuario => UserCreado.AddUserStatus() => 0,1,2 depende si es creado, actual, borrado
 
 //Relacion Usuario Favoritos
 User.belongsToMany(Product, {through: Favorite})
@@ -119,7 +90,6 @@ Product.belongsToMany(User, {through: Favorite})
 User.belongsToMany(Product, {through: Wishlist})
 Product.belongsToMany(User, {through: Wishlist})
 
-
 //Relacion Producto Foto
 Product.hasMany(Image);
 Image.belongsTo(Product);
@@ -127,6 +97,7 @@ Image.belongsTo(Product);
 //Relacion Usuario Nacionalidad
 Nacionality.hasMany(User);
 User.belongsTo(Nacionality);
+
 
 //Precarga Role
 Role.count().then((value) =>{

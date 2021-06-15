@@ -13,7 +13,6 @@ export function getAllFilteredProducts(allQueries) {
   return function (dispatch) {
     return allProductsFilteredService(allQueries)
       .then((response) => {
-        console.log("response: ", response);
         dispatch({
           type: FILTER_PRODUCTS,
           payload: response.data,
