@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo_Henry_white from '../../Assets/images/Logo_Henry_white.png'
+import Logo_Henry_white from '../../Assets/Images/Logo_Henry_white.png'
 
 function Footer() {
     return (

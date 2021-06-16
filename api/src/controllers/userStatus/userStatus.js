@@ -31,31 +31,58 @@ function updateUserStatus (req,res,next) {
     let {id, status} = req.body;
     let formatStatus= formatString(status)
 
-    UserStatus.update({
-        name_status: formatStatus
-    },
-    {
+    UserStatus.findAll({
         where:{
-            id_status: id
+            name_status: {[Op.or]: [
+                {[Op.iLike]: 'incompleto'},
+                {[Op.iLike]: 'completo'},
+                {[Op.iLike]: 'baneado'},
+                {[Op.iLike]: 'deshabilitado'},
+                {[Op.iLike]: 'undefined'},
+            ]}
         }
     })
-    .then(()=>res.sendStatus(200))
+    .then(response=>{
+        let forbiddenStatus = response.map(status=>{
+            return status.id_status
+        })
+        if(forbiddenStatus.includes(id)){
+            return res.sendStatus(403);
+        }
+        UserStatus.update({
+            name_status: formatStatus
+        },
+        {
+            where:{
+                id_status: id
+            }
+        })
+        return res.sendStatus(200)
+    })
     .catch(e=>next(e));
 };
 
 function deleteUserStatus (req,res,next) {
     let {id} = req.body;
     let idStatusUndefined = null;
-    
-    UserStatus.findOne({
+    UserStatus.findAll({
         where:{
-            name_status: {[Op.iLike]: 'undefined'}
+            name_status: {[Op.or]: [
+                {[Op.iLike]: 'incompleto'},
+                {[Op.iLike]: 'completo'},
+                {[Op.iLike]: 'baneado'},
+                {[Op.iLike]: 'deshabilitado'},
+                {[Op.iLike]: 'undefined'},
+            ]}
         }
     })
     .then((result)=>{
-        idStatusUndefined = result.id_status;
-
-        if(id === idStatusUndefined){
+        let statusUndefined = result.find(e=>(e.name_status === 'undefined'||e.name_status === 'Undefined'))
+        idStatusUndefined = statusUndefined.id_status
+        let forbiddenStatus = result.map(status=>{
+            return status.id_status
+        })
+        if(forbiddenStatus.includes(id)){
             return res.sendStatus(403);
         }
         return User.findAll({
