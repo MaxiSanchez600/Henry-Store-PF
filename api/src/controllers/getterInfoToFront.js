@@ -1,4 +1,4 @@
-const { Nacionality, DocumentType } = require('../db.js')
+const { Nacionality, DocumentType, Category, SubCategory } = require('../db.js')
 
 function getNacionalities (req, res, next) {
     Nacionality.findAll()
@@ -30,7 +30,22 @@ function getDocumentTypes (req, res, next){
     .catch((e)=>next(e))
 };
 
+function getCategories (req, res, next) {
+    Category.findAll({
+        attributes: ['id_category', 'name_category'],
+        include: [{
+            model: SubCategory,
+            attributes: ['id_sub_category', 'name_sub_category', 'description']
+        }]
+    })
+    .then( response => {
+        res.send(response);
+    })
+    .catch(e => next(e));
+}
+
 module.exports = {
     getDocumentTypes,
-    getNacionalities
+    getNacionalities,
+    getCategories
 }
