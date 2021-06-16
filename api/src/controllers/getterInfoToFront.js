@@ -30,7 +30,9 @@ function getDocumentTypes (req, res, next){
     .catch((e)=>next(e))
 };
 
+
+
 module.exports = {
     getDocumentTypes,
-    getNacionalities
+    getNacionalities,
 }

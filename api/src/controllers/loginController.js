@@ -1,5 +1,5 @@
 const {firstInfoSearcher, secoundInfoSearcher} = require("./controllersUtils/userInfoSearcher");
-const { User } = require('../db.js')
+const { User } = require('../db.js');
 
 function getUserInfo (req,res,next) {
     let { username, email } = req.body;
@@ -23,26 +23,47 @@ function getUserInfo (req,res,next) {
 
 function putUserInfo (req,res,next) {
     let {id, firstname, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
-    User.update({
-        name: firstname,
-        last_name: lastname,
-        email,
-        image,
-        phone,
-        username,
-        identification,
-    },
-        {where:{id_user : id}}
-    )
-    .then(()=>User.findByPk(id))
+    User.findByPk(id)
     .then((userFound)=>{
-        userFound.setDocumentType(documentType);
-        userFound.setNacionality(nacionality);
-        //si checkeo todos los datos cambiar estado a 2
-        userFound.setUserStatus(2);
-        res.sendStatus(200);
+        if(firstname){
+            userFound.name = firstname;
+        };
+        if(lastname){
+            userFound.last_name = lastname;
+        };
+        if(email){
+            userFound.email = email;
+        };
+        if(image){
+            userFound.image = image;
+        };
+        if(phone){
+            userFound.phone = phone;
+        };
+        if(username){
+            userFound.username = username;
+        };
+        if(identification){
+            userFound.identification = identification;
+        };
+        if(nacionality){
+            userFound.setNacionality(nacionality)
+        };
+        if(documentType){
+            userFound.setDocumentType(documentType);
+        };
+        return userFound.save()
     })
-    .catch((e)=>next(e))
+    .then(async(response)=>{
+        let userToChangeStatus = {}
+        if(!Object.values(response.dataValues).includes(null)){
+            userToChangeStatus= await User.findByPk(id)
+            userToChangeStatus.setUserStatus(2)
+         }
+         res.send(userToChangeStatus)
+    })
+    .catch(e=>next(e))
+    
 }
 
 module.exports ={

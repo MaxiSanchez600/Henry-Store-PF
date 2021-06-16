@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getDocumentTypes, getNacionalities } = require('../controllers/getterInfoToFront.js');
+const { getDocumentTypes,  getNacionalities } = require('../controllers/getterInfoToFront.js');
 
 const router = Router();
 

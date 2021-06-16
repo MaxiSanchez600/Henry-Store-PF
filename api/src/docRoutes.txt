@@ -1,0 +1,25 @@
+TODAS LAS RUTAS COMIENZAN CON http://localhost:3001
+
+RUTAS ADMIN:
+
+GET A /admin/users:
+Devuelve un objeto con 2 props, count y row:
+- count(number): cantidad de users total en DB.
+- row: arreglo que contiene objetos, cada objeto es un user con todos sus datos.
+
+PUT A /admin/users/rol:
+Recibe por body un id(number) y role(string) . Busca el usuario con ese id y le setea el role que venga por string.
+Sirve para setear un rol admin u otro rol que crea el admin
+
+PUT A /admin/users/userstatus:
+Recibe por body un id(number) y status(string) . Busca el usuario con ese id y le setea el status que venga por string.
+Sirve para setear un estado de cuenta, entre ellos banearla
+
+-----------------------------------------------------------------------
+
+RUTAS INFO PARA RENDERIZAR EN FRONT:
+
+GET A /infofront/documenttypes:
+Devuelve un arreglo con objetos, cada objeto es un tipo de documento/identificacion que tiene...
+- id(number)
+- type(string)
