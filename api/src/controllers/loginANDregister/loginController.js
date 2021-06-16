@@ -71,7 +71,7 @@ function updateUserInfo (req,res,next) {
         let userToChangeStatus = {}
         if(!Object.values(response[0].dataValues).includes(null)){
             userToChangeStatus= await User.findByPk(id)
-            userToChangeStatus.setUserStatus(response[1].id_status) //cambiar ese 2
+            userToChangeStatus.setUserStatus(response[1].id_status) 
          }
          res.send(userToChangeStatus)
     })
