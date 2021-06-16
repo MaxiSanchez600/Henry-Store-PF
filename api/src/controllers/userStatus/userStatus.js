@@ -1,4 +1,4 @@
-let { UserStatus, User } = require ('../../db.js');
+const { UserStatus, User } = require ('../../db.js');
 const formatString = require ('../controllersUtils/formatString.js');
 const { Op } = require("sequelize");
 
@@ -54,30 +54,27 @@ function deleteUserStatus (req,res,next) {
     })
     .then((result)=>{
         idStatusUndefined = result.id_status;
-        
+
         if(id === idStatusUndefined){
             return res.sendStatus(403);
         }
-        let usersWithStatus = User.findAll({
+        return User.findAll({
             where:{
                 UserStatusIdStatus: id
             }
         })
-        let statusDeleted = UserStatus.destroy({
+    })
+    .then((usersWithStatus)=>{
+        usersWithStatus.forEach(user=>{
+            user.setUserStatus(idStatusUndefined);
+        })
+        return UserStatus.destroy({
             where:{
                 id_status: id
             }
         })
-        return Promise.all([usersWithStatus, statusDeleted])
     })
-    .then((response)=>{
-        if(Array.isArray(response)){
-            response[0].forEach(user=>{
-                user.setUserStatus(idStatusUndefined);
-            })
-            res.sendStatus(200)
-        }
-    })
+    .then(()=>res.sendStatus(200))
     .catch(e=>next(e));
 };
 

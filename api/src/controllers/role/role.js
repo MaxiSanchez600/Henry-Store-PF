@@ -62,7 +62,7 @@ function updateRole (req,res,next) {
 function deleteRole (req,res,next) {
     let {id} = req.body;
     let idRoleUser = null;
-    
+
     Role.findAll({
         where:{
             rol: {[Op.or]: [
@@ -72,7 +72,7 @@ function deleteRole (req,res,next) {
             ]}
         }
     })
-    .then((result)=>{ //PORQUE EL ASYNC!!!!!!!!!!!! SI NO NO FUNCIONA QUE ONDA!
+    .then((result)=>{
         let forbiddenRoles = result.map(role=>{
             return role.id_rol
         })
@@ -83,26 +83,23 @@ function deleteRole (req,res,next) {
         let roleUser = result.find(role=>(role.rol === 'user' || role.rol === 'User'))
         idRoleUser = roleUser.id_rol
 
-        let usersWithRole = User.findAll({
+        return User.findAll({
             where:{
                 RoleIdRol : id
             }
         })
-        let RoleDeleted = Role.destroy({
+    })
+    .then((usersWithRole)=>{
+        usersWithRole.forEach(user=>{
+            user.setRole(idRoleUser);
+        })
+        return Role.destroy({
             where:{
                 id_rol: id
             }
         })
-        return Promise.all([usersWithRole,RoleDeleted])
     })
-    .then((response)=>{
-        res.send(response)
-        if(Array.isArray(response)){
-            response[0].forEach(user=>{
-                user.setRole(idRoleUser);
-            })
-        }
-    })
+    .then(()=>res.sendStatus(200))
     .catch(e=>next(e));
 };
 

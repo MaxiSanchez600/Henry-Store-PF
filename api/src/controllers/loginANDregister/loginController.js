@@ -1,27 +1,35 @@
-const {firstInfoSearcher, secoundInfoSearcher} = require("./controllersUtils/userInfoSearcher");
-const { User } = require('../db.js');
+const {firstInfoSearcher, secoundInfoSearcher} = require("../controllersUtils/userInfoSearcher");
+const { User } = require('../../db.js');
 
-function getUserInfo (req,res,next) {
+function readUserInfo (req,res,next) {
     let { username, email } = req.body;
     if(username){
         let sendUser = {};
         User.findOne({where:{username}})
         .then((userFound)=> firstInfoSearcher(userFound, sendUser))
-        .then((response)=> secoundInfoSearcher(response, res, sendUser))
+        .then((response)=> secoundInfoSearcher(response, sendUser))
+        .then((result)=>{
+            res.send(result)
+            sendUser = {};
+        })
         .catch((e)=>next(e))
     };
     if(email){
         let sendUser = {};
         User.findOne({where:{email}})
         .then((userFound)=>firstInfoSearcher(userFound, sendUser))
-        .then((response)=> secoundInfoSearcher(response, res, sendUser))
+        .then((response)=> secoundInfoSearcher(response, sendUser))
+        .then((result)=>{
+            res.send(result)
+            sendUser = {};
+        })
         .catch((e)=>next(e))
     }
 }
 
 //---------------------------------------------
 
-function putUserInfo (req,res,next) {
+function updateUserInfo (req,res,next) {
     let {id, firstname, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
     User.findByPk(id)
     .then((userFound)=>{
@@ -67,6 +75,6 @@ function putUserInfo (req,res,next) {
 }
 
 module.exports ={
-    getUserInfo,
-    putUserInfo
+    readUserInfo,
+    updateUserInfo
 }

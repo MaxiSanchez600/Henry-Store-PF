@@ -1,9 +1,6 @@
 const { Role, UserStatus, DocumentType, Nacionality } = require('../../db.js')
 
 function firstInfoSearcher (userFound,sendUser){
-        let documentStr = '';
-        let nacionalityStr = '';
-
         sendUser.id = userFound.id_user;
         sendUser.name = userFound.name;
         sendUser.lastname = userFound.last_name;
@@ -15,19 +12,16 @@ function firstInfoSearcher (userFound,sendUser){
 
         let roleStr = Role.findByPk(userFound.RoleIdRol);
         let statusStr = UserStatus.findByPk(userFound.UserStatusIdStatus);
-        userFound.DocumentTypeIdDocumentType ? documentStr = DocumentType.findByPk(userFound.DocumentTypeIdDocumentType) : null;
-        userFound.NacionalityIdNacionality ? nacionalityStr = Nacionality.findByPk(userFound.NacionalityIdNacionality) : null;
+        let documentStr = DocumentType.findByPk(userFound.DocumentTypeIdDocumentType);
+        let nacionalityStr = Nacionality.findByPk(userFound.NacionalityIdNacionality);
         return Promise.all([documentStr, roleStr, statusStr, nacionalityStr]);
     }
 
-function secoundInfoSearcher (response,res,sendUser){
+function secoundInfoSearcher (response, sendUser){
     sendUser.documentType = response[0].name_document_type; 
     sendUser.role = response[1].rol;
     sendUser.status = response[2].name_status;
     sendUser.nacionality = response[3].name_nacionality;
-    
-    res.send(sendUser)
-    sendUser = {}; //reset
 }
 
 module.exports = {

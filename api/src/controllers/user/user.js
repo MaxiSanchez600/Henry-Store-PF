@@ -63,9 +63,63 @@ function updateStatusManyUsers (req,res,next) {
     .catch(e=>next(e));
 };
 
+function updateRoleManyUsers (req,res,next) {
+    let { idprevrole, idnewrole} = req.body;
+
+    User.findAll({
+        where:{
+            RoleIdRol: idprevrole
+        }
+    })
+    .then((usersFound)=>{
+        usersFound.forEach(user=>{
+            user.setRole(idnewrole)
+        })
+        res.sendStatus(200)
+    })
+    .catch(e=>next(e));
+};
+
+function updateNacionalityManyUsers (req,res,next) {
+    let { idprevnacionality, idnewnacionality} = req.body;
+
+    User.findAll({
+        where:{
+            NacionalityIdNacionality: idprevnacionality
+        }
+    })
+    .then((usersFound)=>{
+        usersFound.forEach(user=>{
+            user.setRole(idnewnacionality)
+        })
+        res.sendStatus(200)
+    })
+    .catch(e=>next(e));
+};
+
+function updateDocumentTypeManyUsers (req,res,next) {
+    let { idprevdoctype, idnewdoctype} = req.body;
+
+    User.findAll({
+        where:{
+            DocumentTypeIdDocumentType: idprevdoctype
+        }
+    })
+    .then((usersFound)=>{
+        usersFound.forEach(user=>{
+            user.setDocumentType(idnewdoctype)
+        })
+        res.sendStatus(200)
+    })
+    .catch(e=>next(e));
+};
+
 module.exports ={
     getUsers,
     updateRolUser,
     updateStatusUser,
-    updateStatusManyUsers
+    updateStatusManyUsers,
+    updateRoleManyUsers,
+    updateNacionalityManyUsers,
+    updateDocumentTypeManyUsers
 };
