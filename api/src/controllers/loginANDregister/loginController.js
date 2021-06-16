@@ -7,22 +7,14 @@ function readUserInfo (req,res,next) {
         let sendUser = {};
         User.findOne({where:{username}})
         .then((userFound)=> firstInfoSearcher(userFound, sendUser))
-        .then((response)=> secoundInfoSearcher(response, sendUser))
-        .then((result)=>{
-            res.send(result)
-            sendUser = {};
-        })
+        .then((response)=> secoundInfoSearcher(response, sendUser, res))
         .catch((e)=>next(e))
     };
     if(email){
         let sendUser = {};
         User.findOne({where:{email}})
         .then((userFound)=>firstInfoSearcher(userFound, sendUser))
-        .then((response)=> secoundInfoSearcher(response, sendUser))
-        .then((result)=>{
-            res.send(result)
-            sendUser = {};
-        })
+        .then((response)=> secoundInfoSearcher(response, sendUser, res))
         .catch((e)=>next(e))
     }
 }

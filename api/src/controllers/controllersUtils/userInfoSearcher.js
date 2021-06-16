@@ -17,11 +17,13 @@ function firstInfoSearcher (userFound,sendUser){
         return Promise.all([documentStr, roleStr, statusStr, nacionalityStr]);
     }
 
-function secoundInfoSearcher (response, sendUser){
+function secoundInfoSearcher (response, sendUser, res){
     sendUser.documentType = response[0].name_document_type; 
     sendUser.role = response[1].rol;
     sendUser.status = response[2].name_status;
     sendUser.nacionality = response[3].name_nacionality;
+    res.send(sendUser)
+    sendUser = {};
 }
 
 module.exports = {
