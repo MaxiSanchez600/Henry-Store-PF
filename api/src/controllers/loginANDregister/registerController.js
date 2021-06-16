@@ -5,7 +5,7 @@ function createUser (req,res,next) {
     let { registerOrigin, username, email, firstname, lastname, image } = req.body;
     switch (registerOrigin){
         case 'github.com':{
-            UserCreator(res, next, username); //falta la imagen
+            UserCreator(res, next, username,null ,null ,null ,image ); 
             break;
         };
         case 'google.com':{

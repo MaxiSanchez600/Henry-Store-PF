@@ -1,25 +1,63 @@
 TODAS LAS RUTAS COMIENZAN CON http://localhost:3001
 
-RUTAS ADMIN:
+RUTAS AUTHENTICATION:
 
-GET A /admin/users:
-Devuelve un objeto con 2 props, count y row:
-- count(number): cantidad de users total en DB.
-- row: arreglo que contiene objetos, cada objeto es un user con todos sus datos.
+POST A /auth/register:
+Recibe por body las sig variables:
+registerOrigin(requiered): 'google.com' || 'github.com' || default(en caso de loguear con email/pass)
+username: solo en caso de github
+email : en caso de google o con email/pass
+firstname: solo en google
+lastname: solo en google
+image: solo en google o github
+Devuelve el usuario con todos sus datos con los que se registro.
+--------------------------------------------------------------------------------------------
+GET A /auth/login:
+Recibe por body las sig variables:
+username : en caso de haber logueado con github 
+email : en caso de haber logueado con email/pass o google 
+Devuelve un objeto con toda la info del usuario
 
-PUT A /admin/users/rol:
-Recibe por body un id(number) y role(string) . Busca el usuario con ese id y le setea el role que venga por string.
-Sirve para setear un rol admin u otro rol que crea el admin
-
-PUT A /admin/users/userstatus:
-Recibe por body un id(number) y status(string) . Busca el usuario con ese id y le setea el status que venga por string.
-Sirve para setear un estado de cuenta, entre ellos banearla
+PUT A /auth/login:
+Recibe por body las sig variables:
+id: no es modificable, solo es para buscar el user
+firstname, lastname, email, image, phone, username, identification, nacionality, documentType
+Devuelve un objeto con los datos del usuario ya modificados
 
 -----------------------------------------------------------------------
 
-RUTAS INFO PARA RENDERIZAR EN FRONT:
+RUTAS USERFLOW:
 
-GET A /infofront/documenttypes:
-Devuelve un arreglo con objetos, cada objeto es un tipo de documento/identificacion que tiene...
-- id(number)
-- type(string)
+GET A /userflow/users:
+Devuelve un arreglo con 2 posiciones:
+-count : variable de la primera posicion, es un numero con la cantidad de users.
+-row: arreglo de objetos usuario con todos sus datos
+
+PUT A /userflow/users/rol:
+Recibe un id de usuario y un role(string) , modifica el rol de ese usuario.
+
+PUT A /userflow/users/status:
+Recibe un id de usuario y un status(string) , modifica el status de ese usuario.
+
+PUT A /userflow/users/manystatus:
+Recibe un idprevstatus y un idnewstatus , modifica el status de todos los usuarios que tengan prevstatus al newstatus.
+
+PUT A /userflow/users/manyroles:
+Recibe un idprevrole y un idnewrole , modifica el role de todos los usuarios que tengan prevrole al newrole.
+
+PUT A /userflow/users/manynacionalities:
+Recibe un idprevnacionality y un idnewnacionality , modifica la nacionality de todos los usuarios que tengan idprevnacionality a la nueva nacionalidad.
+
+PUT A /userflow/users/manydocumenttypes:
+Recibe un idprevdoctype y un idnewdoctype , modifica la el doctype de todos los usuarios que tengan idprevdoctype al nuevo doctype.
+-----------------------------------------------------------------------
+TODAS LAS DEMAS RUTAS DEL USERFLOW FUNCIONAN SIMILAR, RESUMO:
+
+Los POST: recibe un status,rol,nacionalidad o doctype (TODOS STRING), los formatea a Primer letra mayuscula y resto minuscula, crea la instancia y la devuelve al front con su id y nombre.
+
+Los GET: devuelven un arreglo con objetos, cada objeto es un status,rol,nacionality o doctype existente
+
+Los PUT: reciben un id y un status,rol,nacionalidad o doctype(STRING), los formatea a Primer letra mayuscula y resto minuscula, updatea la instancia referida al id que llego y devuelve un status 200 (puedo modificar para que envie la instancia updeteada si hace falta).
+Me quedaria ver de setear algunas instancias que no las pueda updatear como admin y eso.
+
+Los Delete: reciben un id , en base a ese busca todos los usuarios que tengan ese id, y les setea un status,nacionalidad o doc tipe "undefined" por default, en el caso de rol el default seria "user" , luego borra el rol.

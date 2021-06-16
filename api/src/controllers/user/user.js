@@ -1,6 +1,5 @@
 let { User, Role, UserStatus } = require ('../../db.js')
 const { Op } = require("sequelize");
-const formatString = require ('../controllersUtils/formatString.js')
 
 function getUsers (req,res,next) {
     User.findAndCountAll()
