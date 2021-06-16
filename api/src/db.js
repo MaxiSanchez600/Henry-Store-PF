@@ -39,7 +39,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image, Nacionality} = sequelize.models;
+  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic} = sequelize.models;
 
 
 //Relacion Tag Productos
@@ -98,6 +98,21 @@ Image.belongsTo(Product);
 Nacionality.hasMany(User);
 User.belongsTo(Nacionality);
 
+//Relacion User Order
+User.hasMany(Order);
+Order.belongsTo(User);
+
+//Relacion Order OrderDetail
+Order.hasMany(OrderDetail);
+OrderDetail.belongsTo(Order);
+
+//Relacion Producto OrderDetal
+Product.hasMany(OrderDetail);
+OrderDetail.belongsTo(Product);
+  
+//Relacion OrderDetail OrderDetalCaracteristic
+OrderDetail.hasMany(OrderDetailCaracteristic);
+OrderDetailCaracteristic.belongsTo(OrderDetail);
 
 //Precarga Role
 Role.count().then((value) =>{

@@ -1,0 +1,11 @@
+{
+    "user_id" : 3,
+    "product_id": 1,
+    "amount": 2,
+    "caracteristics": {
+        "color": "Rojo",
+        "size":  "L",
+        "genero": "unisex",
+        "type": "buso"
+    }
+}
