@@ -1,5 +1,5 @@
 const {firstInfoSearcher, secoundInfoSearcher} = require("../controllersUtils/userInfoSearcher");
-const { User } = require('../../db.js');
+const { User, UserStatus } = require('../../db.js');
 
 function readUserInfo (req,res,next) {
     let { username, email } = req.body;
@@ -60,13 +60,18 @@ function updateUserInfo (req,res,next) {
         if(documentType){
             userFound.setDocumentType(documentType);
         };
-        return userFound.save()
+        let statusComplete = UserStatus.findOne({
+            where:{
+                name_status: {[Op.iLike]: 'complet%'}
+            }
+        })
+        return Promise.all([userFound.save(),statusComplete])
     })
     .then(async(response)=>{
         let userToChangeStatus = {}
-        if(!Object.values(response.dataValues).includes(null)){
+        if(!Object.values(response[0].dataValues).includes(null)){
             userToChangeStatus= await User.findByPk(id)
-            userToChangeStatus.setUserStatus(2)
+            userToChangeStatus.setUserStatus(response[1].id_status) //cambiar ese 2
          }
          res.send(userToChangeStatus)
     })
