@@ -20,6 +20,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
   let user = firebase.auth().currentUser;
 
   if (user) {
+    console.log(user);
     loginClose();
   }
   //Setea Formulario
@@ -30,12 +31,13 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     });
   };
 
-  const getDataUser= async() => {
-    const response=await axios
-    .get(LOGIN_URL)
-    
-    console.log(response.data);
-    dispatch(setUSerLogin(response.data));
+  const getDataUser= (email,username) => {
+    axios.get(`${LOGIN_URL}?email=${email}&username=${username}`)
+    .then(res=>{
+      console.log(res.data)
+      dispatch(setUSerLogin(res.data));
+    })
+    .catch(e=>console.log(e))
 };
 
   // Login con Google y respuesta al back
@@ -64,7 +66,8 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             });
         }
         if (!i.isNewUser) {
-          getDataUser();
+          console.log("entre")
+          getDataUser(i.profile.email);
           // dispatch(getUserLogin());
           // console.log(dataUSerLogin)
 
@@ -91,13 +94,17 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             registerOrigin: i.providerId,
           });
         }
+        if (!i.isNewUser) {
+          console.log("entregithub")
+          getDataUser(null,i.username);
+        }
       })
       .catch((error) => {
         alert(error);
       });
   };
 
-  //enviar Inicia sesion
+  //enviar Iniciar sesion
   const handleSubmit = async (e) => {
     e.preventDefault();
     await firebase
