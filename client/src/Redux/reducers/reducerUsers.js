@@ -10,8 +10,8 @@ const initialStateUsers = {
     user:[],
     dataUSerLogin: {},
     rolUser: {},
-    nationalities:{},
-    documentTipes:{}
+    nationalities:[],
+    documentTipes:[]
 };
 
 export const usersReducer = (state=initialStateUsers,{type, payload}) => {

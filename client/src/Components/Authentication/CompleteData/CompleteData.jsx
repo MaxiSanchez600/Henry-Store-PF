@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { REGISTER_URL } from "../../Assets/constans.js";
-import axios from "axios";
+
 import "firebase/auth";
 import { firebase } from "../../../Config/firebase-config";
 
-const CompleteData = () => {
+const CompleteData = ({CompleteDataClose}) => {
   
     const stateFormData = {
         name: "",
@@ -39,8 +38,10 @@ const CompleteData = () => {
 
   return (
     <div>
-      {user ? (
-        <>
+      <>
+            <span className="close-button" onClick={()=>CompleteDataClose()}>
+              x
+            </span>
           <div>
             <h2 className="title">Completar Cuenta</h2>
           </div>
@@ -121,11 +122,8 @@ const CompleteData = () => {
               <button type="submit">submit</button>
             </div>
           </form>
-        </>
-      ) : (
-        <h2>{user.displayName}</h2>
-      )}
-
+        
+    </>
 
     </div>
   );

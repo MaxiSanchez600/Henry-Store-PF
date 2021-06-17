@@ -5,6 +5,7 @@ import "firebase/auth";
 import { firebase } from "../../../Config/firebase-config";
 import { useDispatch, useSelector } from 'react-redux';
 import {setUSerLogin} from "../../../Redux/actions/actionsUsers";
+
 const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
@@ -19,10 +20,12 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   let user = firebase.auth().currentUser;
 
+  
   if (user) {
-    console.log(user);
     loginClose();
+    
   }
+  
   //Setea Formulario
   const handleOnChange = (e) => {
     setForm({
@@ -30,7 +33,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       [e.target.name]: e.target.value,
     });
   };
-
+  
   const getDataUser= (email,username) => {
     axios.get(`${LOGIN_URL}?email=${email}&username=${username}`)
     .then(res=>{
@@ -68,9 +71,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
         if (!i.isNewUser) {
           console.log("entre")
           getDataUser(i.profile.email);
-          // dispatch(getUserLogin());
-          // console.log(dataUSerLogin)
-
         }
       })
       .catch((error) => {
@@ -91,11 +91,10 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           axios.post(REGISTER_URL, {
             username: i.username,
             image: i.profile.avatar_url,
-            registerOrigin: i.providerId,
+            registerOrigin: i.providerId
           });
         }
         if (!i.isNewUser) {
-          console.log("entregithub")
           getDataUser(null,i.username);
         }
       })
@@ -112,6 +111,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
         console.log(res);
+        getDataUser(res.user.email)
         setForm(initialState);
       })
       .catch((error) => {
@@ -190,16 +190,5 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     types: state.types,
-//   };
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getUserLogin: () => dispatch(getUserLogin()),
-//   };
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
 export default Login;
 
