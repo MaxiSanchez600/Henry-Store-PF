@@ -188,7 +188,7 @@ module.exports = (sequelize) => {
 
   sequelize.define('User', {
     id_user:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false
     },

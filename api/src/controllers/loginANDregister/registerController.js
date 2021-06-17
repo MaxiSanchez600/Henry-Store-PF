@@ -3,7 +3,6 @@ const UserCreator = require ('../controllersUtils/userCreator.js');
 
 function createUser (req,res,next) {
     let { registerOrigin, id, username, email, firstname, lastname, image } = req.body;
-    id = Number(id)
     switch (registerOrigin){
         case 'github.com':{
             UserCreator(res, next, id, username,null ,null ,null ,image ); 

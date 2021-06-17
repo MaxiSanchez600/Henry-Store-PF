@@ -2,10 +2,10 @@ const {firstInfoSearcher, secoundInfoSearcher} = require("../controllersUtils/us
 const { User, UserStatus } = require('../../db.js');
 
 function readUserInfo (req,res,next) {
-    let id  = Number(req.query.id);
+    let {id} = req.query.id;
     let sendUser = {};
     
-    User.findByPk(id)
+    User.findOne({where:{id_user: id}})
     .then((userFound)=> firstInfoSearcher(userFound, sendUser))
     .then((response)=> secoundInfoSearcher(response, sendUser, res))
     .catch((e)=>next(e))
