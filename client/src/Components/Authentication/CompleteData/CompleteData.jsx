@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-//import axios from "axios";
+
 import "firebase/auth";
 import { firebase } from "../../../Config/firebase-config";
 import { useDispatch, useSelector } from 'react-redux';
 import {getNacionalities,getDocumentTypes} from "../../../Redux/actions/actionsUsers";
 import Logo_Henry_black from "../../../Assets/Images/Logo_Henry_black.png"
 import { Link } from "react-router-dom";
+
+
+
+
 const CompleteData = () => {
-  
+ 
   const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
-  //const nationalities=useSelector((state)=>state.users.nationalities);
+  const nationalities=useSelector((state)=>state.users.nationalities);
   const documentTipes=useSelector((state)=>state.users.documentTipes);
   const dispatch = useDispatch();
 
@@ -29,18 +33,19 @@ const CompleteData = () => {
   let user = firebase.auth().currentUser;
 
   const [form, setForm] = useState(stateFormData);
-  const [check,setCheck] = useState(null)
+  const [check,setCheck] = useState(null);
 
   useEffect(() => {
+    //dispatch(getDataUser());
     dispatch(getNacionalities());
     dispatch(getDocumentTypes());
-  }, []);
-  
+  }, [dispatch]);
 
   const handleonSubmit = async (e) => {
     e.preventDefault();
     //axios.put()
     setForm(stateFormData);
+    setCheck(null)
   };
 
   const handleOnChange = (e) => {
@@ -66,7 +71,7 @@ const CompleteData = () => {
         </Link>
       </div>
         <div>
-          <h2 className="title">Completar Cuenta</h2>
+          <h2 className="title">Perfil</h2>
         </div>
         <div className="image">
           <img src={user.photoURL} alt="not found" />
@@ -99,15 +104,31 @@ const CompleteData = () => {
                 type="text" name="phone" id="phone" value={form.phone} required onChange={handleOnChange} placeholder="phone"
               />
             </div>
+            <div>
+              <span>Elige tu Nacionalidad</span>
+              <select name="nationality" onChange={handleOnChange} defaultValue="">
+              <option value="">-----</option>
+             {
+               nationalities.map((e)=>(
+                   <option key={e.id} value={e.nacionality}>{e.nacionality}</option>
+               ))
+             }
+                 
+              </select>
+            </div>
             <div >
               {/* className={moduleStyles.types} */}
             {
-              documentTipes.map((e) => (
-                <div key={e.id}>
-                  <input type="radio" id={e.type} name="documentType" value={e.id} checked={check} onChange={handleChangeCheck} />
-                  <label>{e.type}</label>
-                </div>
-              ))
+              documentTipes.map((e) => (e.type !== "Undefined"
+              && (
+              <div key={e.id}>
+                <input type="radio" id={e.type} name="documentType" value={e.id} checked={check} onChange={handleChangeCheck} />
+                <label>{e.type}</label>
+              </div>
+              )
+              
+            )
+              )
             }
             </div>
             <div>

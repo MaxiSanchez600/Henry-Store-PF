@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { REGISTER_URL,LOGIN_URL} from "../../../Config/index";
+import { REGISTER_URL} from "../../../Config/index";
 import axios from "axios";
 import { firebase } from "../../../Config/firebase-config";
 // ! COMPONENTES
 import "firebase/auth";
-import { useDispatch, useSelector } from 'react-redux';
-import {setUSerLogin} from "../../../Redux/actions/actionsUsers";
+import { useDispatch } from 'react-redux';
+import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 
 
 const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
-  const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
-  console.log(dataUSerLogin)
+  //const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
+  //console.log(dataUSerLogin)
   const dispatch = useDispatch();
 
   const initialState = {
@@ -22,20 +22,10 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   let user = firebase.auth().currentUser;
 
-  //get data User
-  const getDataUser= (user) => {
-    axios.get(`${LOGIN_URL}?id=${user}`)
-    .then(res=>{
-      console.log(res.data)
-      dispatch(setUSerLogin(res.data));
-    })
-    .catch(e=>console.log(e))
-};
-
   //inicia sesion
   if (user) {
     loginClose();
-    getDataUser(user.uid)
+    setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 1000);
   }
   
   //Setea Formulario
@@ -46,7 +36,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     });
   };
   
-
   // Login con Google y respuesta al back
   const handleGoogle = (e) => {
     e.preventDefault();
@@ -150,8 +139,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
               ForgotPassOpen();
               loginClose();
             }}
-          >
-            Olvidaste tu contraseña?
+          >Olvidaste tu contraseña?
           </span>
         </p>
         <br />

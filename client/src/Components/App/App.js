@@ -1,13 +1,12 @@
 // ! MODULES
 import "../../Sass/Main.scss";
-import { Provider } from 'react-redux'
 import {
   BrowserRouter,
   // Switch,
   Route,
   // Redirect
 } from "react-router-dom";
-import store from '../../Redux/store/index.js'
+
 import {config} from '../../Config/firebase-config.js'
 import { FirebaseAppProvider } from 'reactfire'
 
@@ -30,19 +29,19 @@ function App() {
     <div className="App">
       <Suspense fallback={"Cargando..."}>
         <FirebaseAppProvider firebaseConfig={config}>
-          <Provider store={store}>
+          
             <BrowserRouter>
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />
               <Route exact path="/item/:id" component={Product_Detail} />
-              <Route exact path="/completeProfile" component={CompleteData} />
+              <Route exact path="/profile" component={CompleteData} />
               <div className='adminContainer'>
                 <Route path="/admin" component={SlideBar} />
                 <Route exact path="/admin" component={Analytics} />
                 <Route path="/admin/createProduct" component={CreateProduct} />
               </div>
             </BrowserRouter>
-          </Provider>
+        
         </FirebaseAppProvider>
       </Suspense>
     </div>

@@ -4,10 +4,9 @@ import React, { useState } from "react";
 import {REGISTER_URL} from "../../../Config/index"
 import axios from 'axios'
 import {firebase} from '../../../Config/firebase-config'
-import {LOGIN_URL} from "../../../Config/index";
 // ! COMPONENTES
 import { useDispatch} from 'react-redux';
-import {setUSerLogin} from "../../../Redux/actions/actionsUsers";
+import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 
 const Register = ({RegisterClose,LoginOpen}) => {
 
@@ -20,23 +19,12 @@ const Register = ({RegisterClose,LoginOpen}) => {
   };
   
   const [form, setForm] = useState(imputsState);
-
   const [check,setCheck] = useState(true)
   let user = firebase.auth().currentUser;
   
-    //get data User
-    const getDataUser= (user) => {
-      axios.get(`${LOGIN_URL}?id=${user}`)
-      .then(res=>{
-        dispatch(setUSerLogin(res.data));
-      })
-      .catch(e=>console.log(e))
-  };
-
   if (user) {
     RegisterClose();
-    setTimeout(function(){ getDataUser(user.uid)}, 3000);
-    
+    setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 2000);
   }
   
   const handleOnChange = (e) => {

@@ -1,7 +1,6 @@
 // ! MODULES
 import axios from "axios";
 // ! URLS
-//import { PRODUCTS_URL, LOGIN_URL, GET_NACIONALITIES, GET_DOCUMENT_TYPES } from "../../Config/index";
 import {
   LOGIN_URL,
   GET_NACIONALITIES,
@@ -24,9 +23,9 @@ export const setUSerLogin =(payload)=>{
   }
 }
 
-export function getUserLogin() {
+export function getUserLogin(user) {
   return function (dispatch) {
-    return axios.get(LOGIN_URL).then((response) => {
+    return axios.get(`${LOGIN_URL}?id=${user}`).then((response) => {
       dispatch({
         type: GET_USER_LOGIN,
         payload: response.data,
