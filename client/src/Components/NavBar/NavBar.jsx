@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import Login from "../Authentication/Login";
-import Register from "../Authentication/Register";
+import Login from "../Authentication/Login/Login";
+import Register from "../Authentication/Register/Register";
 import "firebase/auth";
 import { useFirebaseApp, useUser } from "reactfire";
-import logo from '../../Assets/images/Logo_H_black.png'
+import logo from '../../Assets/Images/Logo_H_black.png'
 import Modal from "../Modal/Modal";
 
 // ! COMPONENTES
 import FilterCategories from "../FilterCategories/FilterCategories";
+import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 
 const NavBar = () => {
   const [ModalLogin, setModalLogin] = useState(false);
   const [ModalRegister, setModalRegister] = useState(false);
+  const [ModalForgotPass, setModalForgotPass] = useState(false);
 
   const { data: user } = useUser();
   const firebase = useFirebaseApp();
@@ -38,12 +40,25 @@ const NavBar = () => {
       </div>
 
 
-      <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)}>
-        <Login isOpened={ModalLogin} loginClose={() => setModalLogin(false)} registerOpen={() => setModalRegister(true)} />
+      <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)} >
+        <Login isOpened={ModalLogin} 
+               loginClose={() => setModalLogin(false)} 
+               registerOpen={() => setModalRegister(true)} 
+               ForgotPassOpen={()=>setModalForgotPass(true)}/>
       </Modal>
 
       <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
-        <Register isOpened={ModalRegister} onClose={() => setModalRegister(false)} />
+        <Register isOpened={ModalRegister} 
+                  RegisterClose={() => setModalRegister(false)} 
+                  LoginOpen={() => setModalLogin(true)}
+                  />
+      </Modal>
+
+      <Modal isOpened={ModalForgotPass} onClose={() => setModalForgotPass(false)}>
+        <ForgotPassword isOpened={ModalForgotPass} 
+                        forgotPassClose={() => setModalForgotPass(false)}
+                        LoginOpen={() => setModalLogin(true)}
+                        />
       </Modal>
 
       {user &&

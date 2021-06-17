@@ -1,11 +1,11 @@
 
-const UserCreator = require ('./controllersUtils/userCreator.js');
+const UserCreator = require ('../controllersUtils/userCreator.js');
 
-function postUser (req,res,next) {
+function createUser (req,res,next) {
     let { registerOrigin, username, email, firstname, lastname, image } = req.body;
     switch (registerOrigin){
         case 'github.com':{
-            UserCreator(res, next, username);
+            UserCreator(res, next, username,null ,null ,null ,image ); 
             break;
         };
         case 'google.com':{
@@ -21,5 +21,5 @@ function postUser (req,res,next) {
 
 
 module.exports ={
-    postUser
+    createUser
 };

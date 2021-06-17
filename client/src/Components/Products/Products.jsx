@@ -57,7 +57,7 @@ function Products({ ListProducts, getAllFilteredProducts }) {
 }
 
 function mapStateToProps(state) {
-    return { ListProducts: state.products }
+    return { ListProducts: state.products.products }
 }
 
 function mapDispatchToProps(dispatch) {

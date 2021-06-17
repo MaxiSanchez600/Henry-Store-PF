@@ -162,7 +162,7 @@ function Filters({ queriesFromReducer, sendFiltersToActions }) {
 
 function mapStateToProps(state) {
   return {
-    queriesFromReducer: state.queries
+    queriesFromReducer: state.products.queries
   }
 }
 
