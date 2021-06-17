@@ -2,15 +2,15 @@ const {firstInfoSearcher, secoundInfoSearcher} = require("../controllersUtils/us
 const { User, UserStatus } = require('../../db.js');
 
 function readUserInfo (req,res,next) {
-    let { username, email } = req.body;
-    if(username){
+    let { username, email } = req.query;
+    if(username !== "undefined" && username !== "null"){
         let sendUser = {};
         User.findOne({where:{username}})
         .then((userFound)=> firstInfoSearcher(userFound, sendUser))
         .then((response)=> secoundInfoSearcher(response, sendUser, res))
         .catch((e)=>next(e))
     };
-    if(email){
+    if(email !== "undefined" && email !== "null"){
         let sendUser = {};
         User.findOne({where:{email}})
         .then((userFound)=>firstInfoSearcher(userFound, sendUser))
