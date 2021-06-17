@@ -1,8 +1,9 @@
 const { User, Role, UserStatus, DocumentType, Nacionality } = require('../../db.js');
 const { Op } = require("sequelize");
 
-function userCreator (res, next, username, email, firstname, lastname, image) {
-    let userCreated = User.create({ 
+function userCreator (res, next, id, username, email, firstname, lastname, image) {
+    let userCreated = User.create({
+        id_user: id,
         username,
         email,
         image,

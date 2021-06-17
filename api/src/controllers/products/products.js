@@ -163,7 +163,7 @@ const productsController = {
                 subCategory, //subCategory = buzos-pantalones-remeras-gorras
                 tag = '', // tags = henry-cohete-chomba-polo-jersey
                 images = '',
-                ...caracteristic,   //caracteristic = { color: blanco-negro, talle: s-m-l }
+                // ...caracteristic,   //caracteristic = { color: blanco-negro, talle: s-m-l }
             } = req.query;
             //primero verifico si existen las categorias que se seleccionaron, las subcategorias, los tags y las caracteristicas (si no las creo)
             let categories = category.split('-');
