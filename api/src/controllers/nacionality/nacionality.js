@@ -13,7 +13,11 @@ function createNacionalities (req, res, next){
 };
 
 function readNacionalities (req, res, next) {
-    Nacionality.findAll()
+    Nacionality.findAll({
+        where:{
+            name_nacionality:{[Op.notILike]: "undefined"}
+        }
+    })
     .then((response)=>{
         let nacionalities = response.map(country=>{
             let newNacionality = {

@@ -13,7 +13,11 @@ function createDocumentTypes (req, res, next){
 };
 
 function readDocumentTypes (req, res, next){
-    DocumentType.findAll()
+    DocumentType.findAll({
+        where:{
+            name_document_type:{[Op.notILike]: "undefined"}
+        }
+    })
     .then((response)=>{
         let types = response.map(type=>{
             let newType = {
