@@ -14,8 +14,7 @@ function readUserInfo (req,res,next) {
 
 function updateUserInfo (req,res,next) {
     let {id, firstname, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
-    let idparsed = Number(id)
-    User.findByPk(idparsed)
+    User.findOne({where:{id_user: id}})
     .then((userFound)=>{
         if(firstname){
             userFound.name = firstname;
@@ -54,7 +53,7 @@ function updateUserInfo (req,res,next) {
     .then(async(response)=>{
         let userToChangeStatus = {}
         if(!Object.values(response[0].dataValues).includes(null)){
-            userToChangeStatus= await User.findByPk(idparsed)
+            userToChangeStatus= await User.findOne({where:{id_user: id}})
             userToChangeStatus.setUserStatus(response[1].id_status) 
          }
          res.send(userToChangeStatus)
