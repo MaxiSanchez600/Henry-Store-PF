@@ -19,6 +19,7 @@ import "firebase/auth";
 import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
+import Users from "../AdminPanel/Users/Users";
 import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
 // ! COMPONENTS
 
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/admin" component={SlideBar} />
                 <Route exact path="/admin" component={Analytics} />
                 <Route path="/admin/createProduct" component={CreateProduct} />
+                <Route path="/admin/users" component={Users}/>
               </div>
             </BrowserRouter>
         

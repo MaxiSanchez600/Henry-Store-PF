@@ -27,6 +27,11 @@ function SlideBar (){
                     <li>Todas las ordenes</li>
                     <li>Por despachar</li>
                 </ul>
+                <h3>Usuarios</h3>
+                <ul>
+                <Link to='/admin/users'><li>Panel principal</li></Link>
+                    <li>Por despachar</li>
+                </ul>
             </div>
         </div>
         

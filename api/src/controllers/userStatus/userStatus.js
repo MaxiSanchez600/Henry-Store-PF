@@ -13,7 +13,11 @@ function createUserStatus (req,res,next) {
 };
 
 function readUserStatus (req,res,next) {
-    UserStatus.findAll()
+    UserStatus.findAll({
+        where:{
+            name_status:{[Op.notILike]: "undefined"}
+        }
+    })
     .then((response)=>{
         let allStatus = response.map(status=>{
             let formatStatus = {
