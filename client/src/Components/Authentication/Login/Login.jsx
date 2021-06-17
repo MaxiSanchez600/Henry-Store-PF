@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { REGISTER_URL,LOGIN_URL} from "../../../Config/index";
 import axios from "axios";
-import "firebase/auth";
 import { firebase } from "../../../Config/firebase-config";
+// ! COMPONENTES
+import "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import {setUSerLogin} from "../../../Redux/actions/actionsUsers";
+
 
 const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
@@ -20,10 +22,20 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   let user = firebase.auth().currentUser;
 
-  
+  //get data User
+  const getDataUser= (user) => {
+    axios.get(`${LOGIN_URL}?id=${user}`)
+    .then(res=>{
+      console.log(res.data)
+      dispatch(setUSerLogin(res.data));
+    })
+    .catch(e=>console.log(e))
+};
+
+  //inicia sesion
   if (user) {
     loginClose();
-    
+    getDataUser(user.uid)
   }
   
   //Setea Formulario
@@ -34,14 +46,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     });
   };
   
-  const getDataUser= (email,username) => {
-    axios.get(`${LOGIN_URL}?email=${email}&username=${username}`)
-    .then(res=>{
-      console.log(res.data)
-      dispatch(setUSerLogin(res.data));
-    })
-    .catch(e=>console.log(e))
-};
 
   // Login con Google y respuesta al back
   const handleGoogle = (e) => {
@@ -50,11 +54,12 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        let i = result.additionalUserInfo;
+      .then((res) => {
+        let i = res.additionalUserInfo;
         if (i.isNewUser) {
           axios
             .post(REGISTER_URL, {
+              id:res.user.uid,
               email: i.profile.email,
               firstname: i.profile.given_name,
               lastname: i.profile.family_name,
@@ -67,10 +72,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             .catch((error) => {
               alert(error);
             });
-        }
-        if (!i.isNewUser) {
-          console.log("entre")
-          getDataUser(i.profile.email);
         }
       })
       .catch((error) => {
@@ -85,17 +86,15 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        let i = result.additionalUserInfo;
+      .then((res) => {
+        let i = res.additionalUserInfo;
         if (i.isNewUser) {
           axios.post(REGISTER_URL, {
+            id:res.user.uid,
             username: i.username,
             image: i.profile.avatar_url,
             registerOrigin: i.providerId
           });
-        }
-        if (!i.isNewUser) {
-          getDataUser(null,i.username);
         }
       })
       .catch((error) => {
@@ -109,9 +108,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     await firebase
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
-      .then((res) => {
-        console.log(res);
-        getDataUser(res.user.email)
+      .then(() => {
         setForm(initialState);
       })
       .catch((error) => {

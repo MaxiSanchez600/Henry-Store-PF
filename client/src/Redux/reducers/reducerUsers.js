@@ -14,29 +14,31 @@ const initialStateUsers = {
     documentTipes:[]
 };
 
-export const usersReducer = (state=initialStateUsers,{type, payload}) => {
-    switch (type) {
+ const usersReducer = (state=initialStateUsers,action) => {
+    switch (action.type) {
         case GET_USER_LOGIN:
             return {
               ...state,
-              dataUSerLogin: payload,
+              dataUSerLogin: action.payload,
             };
         case SET_DATAUSERLOGIN:
             return {
               ...state,
-              dataUSerLogin: payload,
+              dataUSerLogin: action.payload,
             };
         case GET_NACIONALITI:
             return {
               ...state,
-              nationalities: payload,
+              nationalities: action.payload,
             };
         case GET_DOCUMENTS:
             return {
               ...state,
-              documentTipes: payload,
+              documentTipes: action.payload,
             };        
         default:
             return state;
     }
 };
+
+export default usersReducer;

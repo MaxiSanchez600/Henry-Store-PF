@@ -4,8 +4,14 @@ import React, { useState } from "react";
 import {REGISTER_URL} from "../../../Config/index"
 import axios from 'axios'
 import {firebase} from '../../../Config/firebase-config'
+import {LOGIN_URL} from "../../../Config/index";
+// ! COMPONENTES
+import { useDispatch} from 'react-redux';
+import {setUSerLogin} from "../../../Redux/actions/actionsUsers";
 
 const Register = ({RegisterClose,LoginOpen}) => {
+
+  const dispatch = useDispatch();
 
   const imputsState = {
     email: "",
@@ -18,8 +24,19 @@ const Register = ({RegisterClose,LoginOpen}) => {
   const [check,setCheck] = useState(true)
   let user = firebase.auth().currentUser;
   
+    //get data User
+    const getDataUser= (user) => {
+      axios.get(`${LOGIN_URL}?id=${user}`)
+      .then(res=>{
+        dispatch(setUSerLogin(res.data));
+      })
+      .catch(e=>console.log(e))
+  };
+
   if (user) {
-    RegisterClose()
+    RegisterClose();
+    setTimeout(function(){ getDataUser(user.uid)}, 3000);
+    
   }
   
   const handleOnChange = (e) => {
@@ -33,9 +50,12 @@ const Register = ({RegisterClose,LoginOpen}) => {
     e.preventDefault();
     if(form.password===form.confimationPass){
       firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
-      .then(()=> axios.post(REGISTER_URL,{
-          email: form.email
-      }))
+      .then((res)=> {
+        axios.post(REGISTER_URL,{
+            id:res.user.uid,
+            email: form.email
+        })
+      })
       .then(()=>{
           setForm(imputsState)
       })
@@ -57,10 +77,11 @@ const Register = ({RegisterClose,LoginOpen}) => {
     let provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        let i = result.additionalUserInfo;
+      .then((res) => {
+        let i = res.additionalUserInfo;
         if (i.isNewUser) {
           axios.post(REGISTER_URL, {
+            id:res.user.uid,
             email: i.profile.email,
             firstname: i.profile.given_name,
             lastname: i.profile.family_name,
@@ -78,10 +99,11 @@ const Register = ({RegisterClose,LoginOpen}) => {
     let provider = new firebase.auth.GithubAuthProvider()
     firebase.auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        let i = result.additionalUserInfo;
+      .then((res) => {
+        let i = res.additionalUserInfo;
         if (i.isNewUser) {
           axios.post(REGISTER_URL, {
+            id:res.user.uid,
             username: i.username,
             image: i.profile.avatar_url,
             registerOrigin: i.providerId

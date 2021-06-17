@@ -20,7 +20,7 @@ import "firebase/auth";
 import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
-
+import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
 // ! COMPONENTS
 
 // ? probar AUTH FIREBASE OTHER LINKS :: PENDING
@@ -35,6 +35,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />
               <Route exact path="/item/:id" component={Product_Detail} />
+              <Route exact path="/completeProfile" component={CompleteData} />
               <div className='adminContainer'>
                 <Route path="/admin" component={SlideBar} />
                 <Route exact path="/admin" component={Analytics} />

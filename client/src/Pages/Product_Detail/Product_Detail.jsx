@@ -21,7 +21,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
   return (
     <div className="content_Home">
       <Header />
-      <Navbar />
+      {/* <Navbar /> */}
       <GeoLocation />
       <SearchBar />
       <div className="body_Home">

@@ -29,7 +29,7 @@ export function getUserLogin() {
     return axios.get(LOGIN_URL).then((response) => {
       dispatch({
         type: GET_USER_LOGIN,
-        payload: response,
+        payload: response.data,
       });
     });
   };
@@ -38,6 +38,7 @@ export function getUserLogin() {
 export function getNacionalities() {
   return function (dispatch) {
     return axios.get(GET_NACIONALITIES).then((response) => {
+      console.log(response);
       dispatch({
         type: GET_NACIONALITI,
         payload: response.data,
@@ -46,9 +47,11 @@ export function getNacionalities() {
   };
 }
 
+
 export function getDocumentTypes() {
   return function (dispatch) {
     return axios.get(GET_DOCUMENT_TYPES).then((response) => {
+      console.log(response);
       dispatch({
         type: GET_DOCUMENTS,
         payload: response.data,
