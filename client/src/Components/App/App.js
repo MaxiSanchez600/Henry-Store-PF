@@ -17,6 +17,9 @@ import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import GeoLocation from "../../Components/GeoLocation/GeoLocation";
 import { Suspense } from "react";
 import "firebase/auth";
+import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
+import SlideBar from "../AdminPanel/SlideBar/SlideBar";
+import Analytics from "../AdminPanel/Analytics/Analytics";
 
 // ! COMPONENTS
 
@@ -32,6 +35,11 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />
               <Route exact path="/item/:id" component={Product_Detail} />
+              <div className='adminContainer'>
+                <Route path="/admin" component={SlideBar} />
+                <Route exact path="/admin" component={Analytics} />
+                <Route path="/admin/createProduct" component={CreateProduct} />
+              </div>
             </BrowserRouter>
           </Provider>
         </FirebaseAppProvider>
