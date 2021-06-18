@@ -7,6 +7,9 @@ import { allProductsFilteredService } from "../services/products.service";
 // ! names_Actions
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
+export const SET_TOTAL_PRICE = "SET_TOTAL_PRICE";
+export const SET_CARRITO = 'SET_CARRITO'
+
 
 /* ============================== ACTIONS ============================================== */
 export function getAllFilteredProducts(allQueries) {
@@ -19,6 +22,15 @@ export function getAllFilteredProducts(allQueries) {
         });
       });
   };
+}
+
+export function setCarrito(payload){
+  return function (dispatch){
+    dispatch({
+      type: SET_CARRITO,
+      payload: payload
+    })
+  }
 }
 // =======================================================================================
 

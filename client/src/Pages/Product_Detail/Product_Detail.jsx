@@ -4,13 +4,90 @@ import Navbar from '../../Components/NavBar/NavBar'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import GeoLocation from '../../Components/GeoLocation/GeoLocation'
 import Footer from '../../Components/Footer/Footer'
+import { URL_BASE } from '../../Config/index.js'
 
 import { connect } from 'react-redux'
 import { getAllFilteredProducts } from '../../Redux/actions/actions';
 import { useParams } from 'react-router-dom'
 
-function Product_Detail({ ListProducts, getAllFilteredProducts }) {
+function Product_Detail({ ListProducts, getAllFilteredProducts, userid}) {
+  let sendproduct = async () =>{
+          if(userid !== ''){
+            console.log('ESTA LOGEADO')
+            //Si hay un userid en el store => Esta logeado => Envio ese a la ruta.
+              const options = {
+                method: 'POST',
+                body: JSON.stringify({
+                                          user_id: userid,
+                                          product_id: 1,
+                                          amount: 2,
+                                          caracteristics: {
+                                              1: "Rojo",
+                                              2:  "L",
+                                              3: "unisex",
+                                              4: "buso"
+                                          }
+                                      }),
+                headers : { 
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                 }
+              }
+              await fetch(URL_BASE + `cart/addproducttocart`, options)
+          }
+          else{
+              if(localStorage.getItem('userid') === null){
+                  console.log('LE CREO UN GUEST')
+                  //Si no hay un userid en el local storage ni en el store => Es guest => Le creo un user guest
+                  const userguest = await fetch(URL_BASE + 'cart/adduserguest', {method: 'PUT'})
+                  const userguestresponse = await userguest.json()
+                  localStorage.setItem('userid', userguestresponse.userid)
+                  const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                                              user_id: userguestresponse.userid,
+                                              product_id: 1,
+                                              amount: 2,
+                                              caracteristics: {
+                                                  1: "Rojo",
+                                                  2:  "L",
+                                                  3: "unisex",
+                                                  4: "buso"
+                                              }
+                                          }),
+                    headers : { 
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                     }
+                  }
+                  await fetch(URL_BASE + `cart/addproducttocart`, options)
+              }
+              else{
+                  console.log('YA ES GUEST')
+                  const options = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                                              user_id: localStorage.getItem('userid'),
+                                              product_id: 1,
+                                              amount: 2,
+                                              caracteristics: {
+                                                  1: "Rojo",
+                                                  2:  "L",
+                                                  3: "unisex",
+                                                  4: "buso"
+                                              }
+                                          }),
+                    headers : { 
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                     }
+                  }
+                  await fetch(URL_BASE + `cart/addproducttocart`, options)
+                  //Si hay un userid en el local storage es guest y ya tiene User Guest creado
 
+              }
+          }
+  }
   const { id } = useParams();
   const ID_Product = ListProducts.filter(el => el.id_product == id)[0]
   console.log("ID:", ID_Product)
@@ -66,7 +143,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
 
                 <div class="purchase-info">
                   <input type="number" min="0" value="1" />
-                  <button type="button" class="btn">
+                  <button type="button" class="btn" onClick = {sendproduct}>
                     Add to Cart <i class="fas fa-shopping-cart"></i>
                   </button>
                   <button type="button" class="btn">Compare</button>
@@ -103,7 +180,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts }) {
 }
 
 function mapStateToProps(state) {
-  return { ListProducts: state.products }
+  return { ListProducts: state.products,
+           userid : state.user_id  }
 }
 
 function mapDispatchToProps(dispatch) {

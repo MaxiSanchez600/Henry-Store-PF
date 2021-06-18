@@ -17,6 +17,7 @@ import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import GeoLocation from "../../Components/GeoLocation/GeoLocation";
 import { Suspense } from "react";
 import "firebase/auth";
+import Cart from "../../Pages/Cart/Cart";
 
 // ! COMPONENTS
 
@@ -32,6 +33,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />
               <Route exact path="/item/:id" component={Product_Detail} />
+              <Route exact path= '/cart' component= {Cart}/>
             </BrowserRouter>
           </Provider>
         </FirebaseAppProvider>

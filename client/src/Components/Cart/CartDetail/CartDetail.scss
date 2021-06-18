@@ -1,0 +1,79 @@
+@import "../../../Sass/variables";
+
+.Cart_CartDetail{
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 5px 3px rgb(128, 128, 128);
+    color: black;
+    display: flex;
+    transition: 0.2s all ease-out;
+    img {
+        width: 150px;
+        height: 200px;
+        padding: 10px;
+    }
+    &:hover{
+    }
+}
+
+
+.Cart_CartDetail--h1 {
+    font-size: 1.3em;
+    font-family: "Avenir_Black";
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-top: 0.6em;
+    line-height: 0;
+}
+
+.Cart_CartDetail--h2 {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+
+.Cart_CartDetail--labels {
+    display: grid;
+    gap: 5px 10px;
+    grid-template-columns: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    .Cart_CartDetail--label {
+        background-color: #000;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 0.8em;
+        padding: 3px 15px;
+        text-transform: capitalize;
+        text-align: center;
+        font-weight: 300;
+    }
+}
+
+.CartCost_CartDetail{
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    select{
+        margin-top: 0.4em;
+        height: 2em;
+        padding-right: 10px;
+    }
+    h2{
+        font-size: 0.8em;
+    }
+}
+
+.CartOptions_CartDetail{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .h2Delete_CartDetail{
+        font-size: 0.8em;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    div{
+        h2{
+            font-size: 0.8em;
+        }
+    }
+}

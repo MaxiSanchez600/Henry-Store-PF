@@ -3,8 +3,9 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import "firebase/auth";
 import { useFirebaseApp, useUser } from "reactfire";
-import logo from '../../Assets/images/Logo_H_black.png'
+import logo from '../../Assets/Images/Logo_H_black.png'
 import Modal from "../Modal/Modal";
+import { Link } from "react-router-dom";
 
 // ! COMPONENTES
 import FilterCategories from "../FilterCategories/FilterCategories";
@@ -23,6 +24,7 @@ const NavBar = () => {
   // ! CONTENT
   return (
     <div>
+      <Link to = {'/cart'}>Fasdas</Link>
       <div className="contain_NavBar">
         <div className="menu_left">
           <FilterCategories />

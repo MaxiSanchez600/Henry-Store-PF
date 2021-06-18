@@ -1,13 +1,20 @@
 // ! ACTIONS
 import {
     // GET_PRODUCTS,
-    FILTER_PRODUCTS
+    FILTER_PRODUCTS,
+    SET_TOTAL_PRICE,
+    SET_CARRITO
 } from '../actions/actions';
 
 
 const initialState = {
     products: [],
-    queries: {}
+    queries: {},
+    user_id: "",
+    userhc: 150,
+    carrito: [],
+    price: undefined,
+    hc: undefined
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,7 +34,25 @@ const rootReducer = (state = initialState, action) => {
                 products: [...action.payload.data],
                 queries: { ...action.payload.queries }
             }
-
+        case SET_TOTAL_PRICE:
+            return{
+                ...state,
+                price: action.payload.pricetotal,
+                hc: action.payload.hctotal
+            }
+        case SET_CARRITO:
+            let total = 0;
+            let hc = 0;
+            action.payload.map(producto =>{
+                total = total + (producto.precio * producto.actual_amount)
+                hc = hc + (producto.hc * producto.actual_amount)
+            })
+            return{
+                ...state,
+                carrito: action.payload,
+                price: total,
+                hc: hc,
+            }
         // * default
         default:
             return {

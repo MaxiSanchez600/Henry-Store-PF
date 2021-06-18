@@ -1,4 +1,4 @@
-const {Caracteristic, Product, Order, OrderDetail, OrderDetailCaracteristic, User} = require('../../db');
+const {Caracteristic, Product, Order, OrderDetail, OrderDetailCaracteristic, User, Image} = require('../../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -23,7 +23,7 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
  const getCart = async (orderid) =>{
     console.log('getCart')
     let productos = []
-    const orderdetails = await OrderDetail.findAll({where: {OrderIdOrder: orderid}})
+    const orderdetails = await OrderDetail.findAll({where: {OrderIdOrder: orderid}, order: ['id_order_detail']})
     for(const orderdetail of orderdetails){
         //Agarro todo lo que puedo
         let caracteristics = {}
@@ -33,7 +33,7 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
 
         //Me traigo el product para buscar su stock maximo
         let product = await Product.findOne({where: {id_product: productid}})
-
+        let image = await Image.findOne({where: {ProductIdProduct: productid}})
         //Me traigo las categorias del actual y creo el objeto caracteristic
         const orderdetails_carac = await OrderDetailCaracteristic.findAll({where: {OrderDetailIdOrderDetail: orderdetail.id_order_detail}})
         for(const carac of orderdetails_carac){
@@ -45,9 +45,13 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
         //Agrego un objeto nuevo (producto) al array de productos de la order
         productos.push({
             product_id: productid,
+            product_name: product.dataValues.name,
             orderdetail_id: orderid,
             actual_amount: amount,
             amount_max: product.dataValues.unit_stock,
+            precio: product.dataValues.price,
+            hc: product.dataValues.henry_coin,
+            image: image.name_image,
             caracteristics: caracteristics
         })
     }

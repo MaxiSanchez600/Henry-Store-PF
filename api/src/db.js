@@ -116,8 +116,8 @@ OrderDetailCaracteristic.belongsTo(OrderDetail);
 
 //Precarga Role
 Role.count().then((value) =>{
-  if(value < 3){
-    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
+  if(value < 4){
+    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'}), Role.create({rol: 'guest'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo el rol' + element)
       await element
