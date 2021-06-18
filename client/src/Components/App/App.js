@@ -21,6 +21,8 @@ import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
 import Users from "../AdminPanel/Users/Users";
 import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
+
+
 // ! COMPONENTS
 
 // ? probar AUTH FIREBASE OTHER LINKS :: PENDING
@@ -46,6 +48,7 @@ function App() {
         
         </FirebaseAppProvider>
       </Suspense>
+   
     </div>
   );
 }

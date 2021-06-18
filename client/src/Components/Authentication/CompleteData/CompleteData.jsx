@@ -36,7 +36,6 @@ const CompleteData = () => {
   const [check,setCheck] = useState(null);
 
   useEffect(() => {
-    //dispatch(getDataUser());
     dispatch(getNacionalities());
     dispatch(getDocumentTypes());
   }, [dispatch]);
