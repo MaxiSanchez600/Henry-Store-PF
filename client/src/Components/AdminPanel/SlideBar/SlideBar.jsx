@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import './SlideBar.scss'
 import { Link } from "react-router-dom";
-
 function SlideBar (){
+
     return(
         <div className='slideBarContainer'>
             <div>
-                <img className='profilePic' src='https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'></img>
+                <img className='profilePic' src='https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png' alt=''></img>
                 <h3>Resumen</h3>
                 <ul>
-                    <li>Estadisticas</li>
+                <Link to='/admin'><li>Estadisticas</li></Link>
                     <li>Ventas</li>
                 </ul>
                 <h3>Productos</h3>

@@ -155,7 +155,7 @@ const productsController = {
             return next(error);
         }
     },
-    createProduct: async (req, res, next) => {
+    /* createProduct: async (req, res, next) => {
         try {
             const {
                 name, price, description, unit_stock, henry_coin, weight, size, percentage_discount, promotion,
@@ -232,7 +232,7 @@ const productsController = {
         } catch (error) {
             next(error);
         }
-    }
+    } */
 };
 
 module.exports = productsController;

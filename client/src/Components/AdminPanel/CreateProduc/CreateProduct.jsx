@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useSelector} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
 import CreateCategory from "../CreateCategory/CreateCategory";
-
 import './CreateProduct.scss'
 
 function CreateProduct (){
-    const categories=['ropa', 'calzado', 'accesorios']
-    const [categoriesSaves, setCategoriesSaves]=useState(categories)
+    const [subCatSelected, setSubCatSelected]=useState({})
+    const categories=useSelector((store)=> store.categories)
+    const [categoriesSaves, setCategoriesSaves]=useState([])
     const [categoryIsOpen, setCategoryIsOpen]=useState(false);
     const [categoriesSelected, setCategoriesSelected]=useState({})
     const [allData, setAllData]=useState({
         name:'',
         price:'',
         description:'',
-        stock:'',
-        coins:'',
+        unit_stock:'',
+        henry_coin:'',
         weight:'',
-        dimensions:'',
-        discount:0,
+        size:'',
+        percentage_discount:0,
     })
+    const [json, setJson] = useState({
+        infoProduct:{},
+        categories:{},
+        caracteristics:{},
+        tags:[]
+    })
+
+    useEffect(()=>{
+        setCategoriesSaves(categories)
+    },[categories])
+
     const onClickCreateCategory = (e)=>{
         e.preventDefault()
         setCategoryIsOpen(true)
@@ -32,8 +44,11 @@ function CreateProduct (){
         setCategoriesSelected({...categoriesSelected,[e.target.name]:true})
     }
 
-    const submitForm = (e)=>{
-        e.preventDefault()
+    const creacteProduct =()=>{
+        setJson({...json,
+            infoProduct:allData,
+            categories:subCatSelected
+        })
     }
 
     return(
@@ -57,11 +72,11 @@ function CreateProduct (){
                         </div>
                         <div className="inputField">
                             <label>Stock:</label>
-                            <input className='smallInput' name='stock' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='unit_stock' onChange={onChangeInputs}></input>
                         </div>
                         <div className="inputField">
                             <label>Henry coins:</label>
-                            <input className='smallInput' name='coins' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='henry_coin' onChange={onChangeInputs}></input>
                         </div>
                         <div className="inputField">
                             <label>Peso:</label>
@@ -69,11 +84,11 @@ function CreateProduct (){
                         </div>
                         <div className="inputField">
                             <label>Dimensiones (Largo x Alto x Ancho):</label>
-                            <input className='input' name='dimensions' onChange={onChangeInputs}></input>
+                            <input className='input' name='size' onChange={onChangeInputs}></input>
                         </div>
                         <div className="inputField">
                             <label>Descuento:</label>
-                            <input className='smallInput' name='discount' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='percentage_discount' onChange={onChangeInputs}></input>
                         </div>
                     </div>
     
@@ -84,21 +99,25 @@ function CreateProduct (){
                         <ul>
                             {
                                 categoriesSaves?.map((cat, index)=>(
-                                    <button className='buttonCategory' name={cat} onClick={onClickAddCategory} key={index}>{cat}</button>
-                                ))
+                                    <button className='buttonCategory' name={cat.name_category} onClick={onClickAddCategory} key={index}>{cat.name_category}</button>
+                                ))  
                             }
                         </ul>
-                        <CategoriesSelected categoriesSelected={categoriesSelected} categoriesStateController={setCategoriesSelected}/>
+                        <CategoriesSelected 
+                            categoriesSelected={categoriesSelected} 
+                            categoriesStateController={setCategoriesSelected} 
+                            categoriesSaves={categoriesSaves}
+                            subCatSelected={subCatSelected}
+                            setSubCatSelected={setSubCatSelected}
+                        
+                        />
                         <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button>
                         <CreateCategory open={categoryIsOpen} onClose={()=>setCategoryIsOpen(false)} addCategory={(e)=>setCategoriesSaves(categoriesSaves.concat(e))} 
                             categoriesSelected={categoriesSelected} categoriesStateController={setCategoriesSelected}
                         />
                 </div>
-                <div className="subCategoryContainer">
-                    <h4>Subcategoría</h4>      
-                   
-                </div>
-                <button type='submit'>Crear Producto</button>
+
+                <button onClick={creacteProduct}>Crear Producto</button>
 
             </div>
         </div>
