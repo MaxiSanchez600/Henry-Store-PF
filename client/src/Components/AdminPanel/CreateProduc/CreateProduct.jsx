@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
 import CreateCategory from "../CreateCategory/CreateCategory";
+import Tags from "../Tags/Tags";
 import './CreateProduct.scss'
 
 function CreateProduct (){
     const [subCatSelected, setSubCatSelected]=useState({})
+    const [tags, setTags] = useState([]);
     const categories=useSelector((store)=> store.categories)
     const [categoriesSaves, setCategoriesSaves]=useState([])
     const [categoryIsOpen, setCategoryIsOpen]=useState(false);
@@ -47,7 +49,8 @@ function CreateProduct (){
     const creacteProduct =()=>{
         setJson({...json,
             infoProduct:allData,
-            categories:subCatSelected
+            categories:subCatSelected,
+            tags:tags
         })
     }
 
@@ -116,7 +119,11 @@ function CreateProduct (){
                             categoriesSelected={categoriesSelected} categoriesStateController={setCategoriesSelected}
                         />
                 </div>
-
+                <div className="tagsContainer">
+                    <h4>Tags</h4>
+                    <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
+                    <Tags tags={tags} setTags={setTags}/>
+                </div>
                 <button onClick={creacteProduct}>Crear Producto</button>
 
             </div>

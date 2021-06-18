@@ -8,11 +8,14 @@ function CreateCategory ({open, onClose, addCategory, categoriesSelected, catego
     if(!open) return null
     const onSubmit = (e)=>{
         e.preventDefault()
-        addCategory({name_category:catAndSubCat.category, SubCategories:subCategories})
-        categoriesStateController({...categoriesSelected, [catAndSubCat.category]:true})
-        setSubCategories([])
-        alert('Agregada con éxito')
-        onClose()
+        if(catAndSubCat.category !== ''){
+            addCategory({name_category:catAndSubCat.category, SubCategories:subCategories})
+            categoriesStateController({...categoriesSelected, [catAndSubCat.category]:true})
+            setSubCategories([])
+            alert('Agregada con éxito')
+            onClose()
+        }
+
     }
     const onChange=(e)=>{
         setCatAndSubCat({...catAndSubCat, [e.target.name]:e.target.value})
