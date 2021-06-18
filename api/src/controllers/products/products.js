@@ -156,38 +156,11 @@ const productsController = {
             return next(error);
         }
     },
-    createProduct: async (req, res, next) => {
-
-        /**
-        Objeto que llegaria desde el front a este endpoint:
-        body = {
-            infoProduct: {
-                name: 'Buzo Henry',
-                price: 1500,
-                description: 'Buzo de tela de alta calidad con grabado de la marca Henry en el pecho',
-                unit_stock: 12,
-                henry_coin: 5,
-                weight: 15,
-                size: 50, //largo
-                percentage_discount: 10,
-                // promotion: 1 --> yo lo seteo
-            },
-            categories: {
-                Ropa: ['Buzos', 'Abrigos'],
-                Buzos con capucha: [],
-                Ofertas: ['Descuentos']
-            },
-            caracteristics: {
-                color: ['Blanco', 'Negro'],
-                talle: ['S', 'M', 'L'],
-                genero: ['Unisex', 'Hombre', 'Mujer']
-            },
-            tags: ['henry', 'cohete', 'buzo', 'buso', 'capucha', 'abrigo']
-        }
-        */
+    setProduct: async (req, res, next) => {
 
         try {
             let {
+                idProduct = 'not passed',
                 infoProduct = {},
                 categories = {},
                 caracteristics = {}, 
@@ -261,17 +234,29 @@ const productsController = {
             let caracteristicsFind = await Promise.all(caracteristicsMapped);
 
             //creo el producto
-            let productCreated = await Product.create({
-                name: infoProduct.name, 
-                price: infoProduct.price, 
-                description: infoProduct.description, 
-                unit_stock: infoProduct.unit_stock, 
-                henry_coin: infoProduct.henry_coin, 
-                weight: infoProduct.weight, 
-                size: infoProduct.size, 
-                percentage_discount: infoProduct.percentage_discount, 
-                promotion: 1
-            });
+            if(idProduct === 'not passed') {
+                var productSet = await Product.create({
+                    name: infoProduct.name, 
+                    price: infoProduct.price, 
+                    description: infoProduct.description, 
+                    unit_stock: infoProduct.unit_stock, 
+                    henry_coin: infoProduct.henry_coin, 
+                    weight: infoProduct.weight, 
+                    size: infoProduct.size, 
+                    percentage_discount: infoProduct.percentage_discount, 
+                    promotion: 1
+                });
+            } else {
+                await Product.update(    
+                    infoProduct,
+                    {
+                        where: {
+                            id_product: idProduct
+                        }
+                    }
+                );
+                var productSet = await Product.findByPk(idProduct);
+            }
 
             
 
@@ -281,14 +266,16 @@ const productsController = {
             let tagsModel = modelExtractor(tagsFind);
             let caracteristicsModel = modelExtractor(caracteristicsFind);
 
-            await productCreated.addCategories(categoriesModel);
-            await productCreated.addTags(tagsModel);
+            await productSet.setCategories(categoriesModel);
+            await productSet.setTags(tagsModel);
+
+            await ProductCaracteristic.destroy({ where: { ProductIdProduct: productSet.id_product } });
 
             for(let key in caracteristics) {
                 let caracteristicModel = caracteristicsModel.find(model => model.name_caracteristic === key);
                 let productCaracteristicsMapped = caracteristics[key].map(value => {
                     return ProductCaracteristic.create({
-                        ProductIdProduct: productCreated.id_product,
+                        ProductIdProduct: productSet.id_product,
                         CaracteristicIdCaracteristic: caracteristicModel.id_caracteristic,
                         value_caracteristic: value
                     });
@@ -296,11 +283,11 @@ const productsController = {
                 await Promise.all(productCaracteristicsMapped);
             }
 
-            return res.send(productCreated);
+            return res.send(productSet);
         } catch (error) {
             next(error);
         }
-    }
+    },
 };
 
 module.exports = productsController;
