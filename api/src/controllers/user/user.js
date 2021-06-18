@@ -1,12 +1,6 @@
 let { User, Role, UserStatus } = require ('../../db.js')
 const { Op } = require("sequelize");
 
-function getUsers (req,res,next) {
-    User.findAndCountAll()
-    .then(response=>res.send(response))
-    .catch(e=>next(e))
-};
-
 function updateRolUser (req,res,next) {
     let { id, role} = req.body;
 
@@ -114,7 +108,6 @@ function updateDocumentTypeManyUsers (req,res,next) {
 };
 
 module.exports ={
-    getUsers,
     updateRolUser,
     updateStatusUser,
     updateStatusManyUsers,

@@ -1,4 +1,53 @@
-const adminapp = require ('../../utils/config/firebaseAdmin.js')
+const adminapp = require ('../../utils/config/firebaseAdmin.js');
+const { User, Role, DocumentType, Nacionality, UserStatus } = require ('../../db.js');
+
+function readUsers (req,res,next) {
+
+    const listAllUsers = (nextPageToken) => {
+            let usersDB = User.findAll({
+                attributes:{exclude:["createdAt","updatedAt"]},
+                include:[{model:Role , attributes:["rol"]},
+                         {model:DocumentType, attributes:["name_document_type"]},
+                         {model:Nacionality, attributes:["name_nacionality"]},
+                         {model:UserStatus, attributes:["name_status"]}
+                ]
+            })
+            let usersFB = adminapp.auth().listUsers(1000, nextPageToken)
+            Promise.all([usersDB,usersFB])
+            .then((response) => {
+            let sendUsers= []
+            let Database = response[0] 
+            let Firebase = response[1].users.map(u => {
+                return {
+                    id_user: u.uid,
+                    emailFireBase: u.email,
+                    disabled: u.disabled,
+                    lastSignIn: u.metadata.lastSignInTime,
+                    creationTime: u.metadata.creationTime,
+                    registrationOrigin: u.providerData.providerId
+                }
+            });
+            if (response[1].pageToken) {
+                listAllUsers(response[1].pageToken);
+            }
+            for (let i = 0; i < Database.length; i++) {
+                for (let j = 0; j < Firebase.length; j++) {
+                    if(Database[i].id_user === Firebase[j].id_user){
+                        sendUsers.push({...Database[i].dataValues,...Firebase[j]})
+                        break;
+                    }
+                    
+                }
+
+            }
+            return res.send(sendUsers)
+        })
+        .catch((e) => next(e))
+    }
+    listAllUsers()
+};
+
+//----------------------------------------------------------------
 
 function banUser (req,res,next) {
     let {id, boolean} = req.body;
@@ -8,7 +57,7 @@ function banUser (req,res,next) {
         disabled: boolean,
     })
     .then((userRecord) => {
-        res.send(userRecord);
+        return res.send(userRecord);
     })
     .catch((error) => {
         console.log('Error updating user:', error);
@@ -45,38 +94,6 @@ function resetPassUser (req,res,next) {
         console.log('Error updating user:', error);
     });
 
-}
-
-function readUsers (req,res,next) {
-    const listAllUsers = (nextPageToken) => {
-
-        adminapp.auth()
-          .listUsers(1000, nextPageToken)
-          .then((listUsersResult) => {
-            let listFormatUsers = listUsersResult.users.map(u => {
-              return {
-                  id: u.uid,
-                  email: u.email,
-                  disabled: u.disabled,
-                  lastSignIn: u.metadata.lastSignInTime,
-                  creationTime: u.metadata.creationTime,
-                  registrationOrigin: u.providerData.providerId
-              }
-            });
-            if (listUsersResult.pageToken) {
-              listAllUsers(listUsersResult.pageToken);
-            }
-            return res.send(listFormatUsers)
-          })
-          .catch((error) => {
-            console.log('Error listing users:', error);
-          });
-      };
-      // Start listing users from the beginning, 1000 at a time.
-      listAllUsers();
-      
-
-  
 }
 
 module.exports ={

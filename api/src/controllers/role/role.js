@@ -36,6 +36,7 @@ function updateRole (req,res,next) {
                 {[Op.iLike]: 'user'},
                 {[Op.iLike]: 'admin'},
                 {[Op.iLike]: 'superadmin'},
+                {[Op.iLike]: 'guest'}
             ]}
         }
     })
@@ -69,6 +70,7 @@ function deleteRole (req,res,next) {
                 {[Op.iLike]: 'user'},
                 {[Op.iLike]: 'admin'},
                 {[Op.iLike]: 'superadmin'},
+                {[Op.iLike]: 'guest'}
             ]}
         }
     })
