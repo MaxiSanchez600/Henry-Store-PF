@@ -1,0 +1,18 @@
+.profilePic{
+    overflow: hidden;
+    position: relative;
+    top: 20px;
+    width: 150px;
+    height: 150px;
+    border:1px solid black;
+    border-radius: 100px;
+}
+
+.slideBarContainer{ 
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightcoral;
+    min-height: 100vh;
+}
