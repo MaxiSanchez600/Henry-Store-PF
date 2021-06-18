@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getUsers, updateRolUser, updateStatusUser, updateStatusManyUsers, updateRoleManyUsers, updateNacionalityManyUsers, updateDocumentTypeManyUsers } = require ('../controllers/user/user.js');
+const { updateRolUser, updateStatusUser, updateStatusManyUsers, updateRoleManyUsers, updateNacionalityManyUsers, updateDocumentTypeManyUsers } = require ('../controllers/user/user.js');
 const { createUserStatus, readUserStatus, deleteUserStatus, updateUserStatus } = require ('../controllers/userStatus/userStatus.js');
 const { createDocumentTypes, readDocumentTypes, updateDocumentTypes, deleteDocumentTypes } = require ('../controllers/documentType/documentType.js');
 const { createRole, readRole, updateRole, deleteRole } = require('../controllers/role/role.js')
@@ -7,7 +7,6 @@ const { createNacionalities, readNacionalities, updateNacionalities, deleteNacio
 const router = Router();
 
 
-router.get('/users',getUsers)
 router.put('/users/rol',updateRolUser)
 router.put('/users/status',updateStatusUser)
 router.put('/users/manystatus',updateStatusManyUsers)
