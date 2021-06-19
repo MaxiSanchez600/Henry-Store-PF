@@ -3,7 +3,9 @@ import {
     // GET_PRODUCTS,
     FILTER_PRODUCTS,
     SET_TOTAL_PRICE,
-    SET_CARRITO
+    SET_CARRITO,
+    GET_CATEGORIES,
+    GET_CARACTERISTICS
 } from '../actions/actions';
 
 
@@ -14,7 +16,10 @@ const initialState = {
     userhc: 150,
     carrito: [],
     price: undefined,
-    hc: undefined
+    hc: undefined,
+    categories: [],
+    caracteristics: [],
+    queries: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,7 +32,7 @@ const rootReducer = (state = initialState, action) => {
         //         products: action.payload,
         //     };
 
-        // * Receibe all_list with filter
+        // * Recibe all_list with filter
         case FILTER_PRODUCTS:
             return {
                 ...state,
@@ -52,6 +57,17 @@ const rootReducer = (state = initialState, action) => {
                 carrito: action.payload,
                 price: total,
                 hc: hc,
+            }
+        case GET_CATEGORIES:
+            return {
+                ...state,
+                categories: [...action.payload]
+            }
+        case GET_CARACTERISTICS:
+            // console.log("action: ", action);
+            return {
+                ...state,
+                caracteristics: [...action.payload.data]
             }
         // * default
         default:

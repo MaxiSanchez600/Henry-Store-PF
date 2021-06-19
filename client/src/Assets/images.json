@@ -1,0 +1,14 @@
+[
+  {
+    "id_image": 1,
+    "name_image": "Ropa"
+  },
+  {
+    "id_image": 2,
+    "name_image": "Accesorios"
+  },
+  {
+    "id_image": 3,
+    "name_image": "Otros"
+  }
+]

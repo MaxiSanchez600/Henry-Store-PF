@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
-import { getAllFilteredProducts } from '../../Redux/actions/actions';
+import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 
 
 function Products({ ListProducts, getAllFilteredProducts }) {
@@ -15,13 +15,13 @@ function Products({ ListProducts, getAllFilteredProducts }) {
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
     const productPerPage = 6;
-    const pagesVisited = pageNumber * productPerPage
+    const pagesVisited = pageNumber * productPerPage;
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return <Link to={`/item/${product.id_product}`} key={product.id_product}>
-            <div className="product_card">
-                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
+            <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
+                {/* <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} /> */}
                 <div className="product_name">{product.name}</div>
-                <div class="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
+                <div className="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                 <div className="product_price"><h5>{product.price} USD</h5> </div>
                 <div className="product_stock"><h5>{product.unit_stock} Units</h5></div>
                 <div className="product_henry_coin"><h5>{product.henry_coin} Henry Coin</h5></div>
@@ -38,7 +38,7 @@ function Products({ ListProducts, getAllFilteredProducts }) {
             {displayProducts}
         </div>
 
-        {displayProducts.length != 0 ? <div className="pagination">
+        {displayProducts.length !== 0 ? <div className="pagination">
             <ReactPaginate
                 previousLabel={"Previous"}
                 nextLabel={"Next"}

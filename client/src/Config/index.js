@@ -10,3 +10,6 @@ export const GET_DOCUMENT_TYPES="http://localhost:3001/userflow/documenttypes";
 export const GET_ALL_USERS= `${workspace}/admin/users`
 export const CHANGE_ROL= `${workspace}/userflow/users/rol`
 export const GET_ROLES= `${workspace}/userflow/role`
+export const CATEGORIES_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/categories?`;
+export const CARACTERISTICS_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/caracteristics?`;
+
