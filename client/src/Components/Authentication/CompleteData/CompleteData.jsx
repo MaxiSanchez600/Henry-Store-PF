@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import {PUT_DATA_USER} from "../../../Config/index"
+import "./CompleteData.scss";
 import "firebase/auth";
+import axios from 'axios';
 import { firebase } from "../../../Config/firebase-config";
 import { useDispatch, useSelector } from 'react-redux';
 import {getNacionalities,getDocumentTypes} from "../../../Redux/actions/actionsUsers";
 import Logo_Henry_black from "../../../Assets/Images/Logo_Henry_black.png"
 import { Link } from "react-router-dom";
-
-
-
 
 const CompleteData = () => {
  
@@ -18,21 +17,23 @@ const CompleteData = () => {
   const dispatch = useDispatch();
 
     const stateFormData = {
-        name: "" || dataUSerLogin.name,
-        last_name: "" || dataUSerLogin.lastname,
+        id:dataUSerLogin.id,
+        firstname: "" || dataUSerLogin.name,
+        lastname: "" || dataUSerLogin.lastname,
         email: "" || dataUSerLogin.email,
         phone: "",
         username: "" || dataUSerLogin.username,
-        nationality:"",
+        nacionality:"",
         documentType:"",
-        dni: "",
+        identification: "",
         status:"",
-        img: "" || dataUSerLogin.image,
+        image: "" || dataUSerLogin.image,
   };
 
   let user = firebase.auth().currentUser;
 
   const [form, setForm] = useState(stateFormData);
+  const [enableForm, setEnableForm] = useState(true);
   const [check,setCheck] = useState(null);
 
   useEffect(() => {
@@ -42,7 +43,13 @@ const CompleteData = () => {
 
   const handleonSubmit = async (e) => {
     e.preventDefault();
-    //axios.put()
+    axios.put(PUT_DATA_USER,form)
+    .then((res)=>{
+      console.log(res);
+    }) 
+    .catch (function(error){
+      alert(error);
+    });
     setForm(stateFormData);
     setCheck(null)
   };
@@ -61,86 +68,99 @@ const CompleteData = () => {
     });
   };
 
+  const chageStateForm =(e)=>{
+    e.preventDefault();
+    if(enableForm===true){
+      setEnableForm(false)
+    }else{
+      setEnableForm(true)
+    }
+  }
+
   return (
-    <div>
-      <>
+    <div className="container">
       <div>
         <Link to="/">
               <img src={Logo_Henry_black} alt="" width="200px" srcSet="" />
         </Link>
       </div>
-        <div>
-          <h2 className="title">Perfil</h2>
-        </div>
-        <div className="image">
-          <img src={user.photoURL} alt="not found" />
-        </div>
-        <form className="formu" onSubmit={handleonSubmit}>
-          <div>
-            <div>
-              <input
-                type="text" name="name" id="name" value={form.name} onChange={handleOnChange} placeholder="name"
-              />
-            </div>
-            <div>
-              <input
-                type="text" name="last_name" id="last_name" value={form.last_name} onChange={handleOnChange}
-                placeholder="last_name"
-              />
-            </div>
-            <div>
-              <input
-                type="text" name="username" id="username" value={form.username} required onChange={handleOnChange} placeholder="Username"
-              />
-            </div>
-            <div>
-              <input
-                type="text" name="email" id="email" value={form.email} required onChange={handleOnChange} placeholder="email"
-              />
-            </div>
-            <div>
-              <input
-                type="text" name="phone" id="phone" value={form.phone} required onChange={handleOnChange} placeholder="phone"
-              />
-            </div>
-            <div>
-              <span>Elige tu Nacionalidad</span>
-              <select name="nationality" onChange={handleOnChange} defaultValue="">
-              <option value="">-----</option>
-             {
-               nationalities.map((e)=>(
-                   <option key={e.id} value={e.nacionality}>{e.nacionality}</option>
-               ))
-             }
-                 
-              </select>
-            </div>
-            <div >
-              {/* className={moduleStyles.types} */}
-            {
-              documentTipes.map((e) => (e.type !== "Undefined"
-              && (
-              <div key={e.id}>
-                <input type="radio" id={e.type} name="documentType" value={e.id} checked={check} onChange={handleChangeCheck} />
-                <label>{e.type}</label>
+        {/* <div>
+          <h3 className="title">Perfil</h3>
+        </div> */}
+        <div className="card2">
+     
+          <div className="content"> 
+            <form className="formData" onSubmit={handleonSubmit}>
+              <div className="formu">
+                <div>
+                  <input
+                    type="text" name="name" id="name" value={form.name} disabled={enableForm} onChange={handleOnChange} placeholder="name"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text" name="last_name" id="last_name" value={form.last_name} disabled={enableForm} onChange={handleOnChange}
+                    placeholder="last_name"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text" name="username" id="username" value={form.username} disabled={enableForm} required onChange={handleOnChange} placeholder="Username"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text" name="email" id="email" value={form.email} required disabled={enableForm} onChange={handleOnChange} placeholder="email"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text" name="phone" id="phone" value={form.phone} disabled={enableForm} required onChange={handleOnChange} placeholder="phone"
+                  />
+                </div>
+                <div>
+                  <span >Elige tu Nacionalidad</span>
+                  <select name="nacionality" disabled={enableForm} onChange={handleOnChange} defaultValue="">
+                  <option value="">Seleccione</option>
+                {
+                  nationalities.map((e)=>(
+                      <option key={e.id} value={e.id}>{e.nacionality}</option>
+                  ))
+                }
+                    
+                  </select>
+                </div>
+                <div >
+                  
+                {
+                  documentTipes.map((e) =>
+                  <div key={e.id}>
+                    <input type="radio" id={e.type} name="documentType" value={e.id} disabled={enableForm}  checked={check} onChange={handleChangeCheck} />
+                    <label>{e.type}</label>
+                  </div>
+                  )
+                }
+                </div>
+                <div>
+                  <input
+                    type="text" name="identification" id="identification" value={form.identification} required onChange={handleOnChange} disabled={enableForm}  placeholder="numero documento de identidad"
+                  />
+                </div>
               </div>
-              )
-              
-            )
-              )
-            }
-            </div>
-            <div>
-              <input
-                type="text" name="dni" id="dni" value={form.dni} required onChange={handleOnChange} placeholder="numero documento de identidad"
-              />
-            </div>
+              <div className="submit">
+                <button type="submit" disabled={enableForm} >submit</button>
+              </div>
+            </form>
           </div>
-          <div className="submit">
-            <button type="submit">submit</button>
+
+          <div className="imag">
+            <img src={user.photoURL} alt="not found" />
           </div>
-        </form>
-    </>
+          <div>
+            <button onClick={chageStateForm}>Editar Perfil</button>
+          </div>
+
+        </div>
     </div>
   );
 };

@@ -1,0 +1,54 @@
+.container {
+    top:500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: brown;
+  background-color: #ffff01;
+}
+
+.card2 {
+  background: white;
+  width: 1000px;
+  height: 550px;
+  display: flex;
+  padding: 20px 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 50px #555;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.imag {
+  width: 400px;
+  height: 500px;
+  flex-direction: row;
+}
+.imag img {
+  height: 120px;
+ 
+}
+
+.content{
+    width: 500px;
+  height: 500px;
+  flex-direction: row;
+    align-items:flex-start;
+    justify-content:flex-start;
+} 
+
+.formData{
+    padding: 20px;
+    
+}
+
+.formu{
+    width: 100%;
+}
+
+.formu div{
+    width: 100%;
+    justify-content:center;
+}

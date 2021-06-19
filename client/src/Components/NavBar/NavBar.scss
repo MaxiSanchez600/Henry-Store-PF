@@ -7,13 +7,14 @@
     z-index: 1;
     columns: 2;
     column-gap: 1%;
-    right: 0;
+    
     
     .menu_left {
     }
 
     .menu_rigth {
         float: right;
+        
     }
 
     .button_login {
@@ -38,10 +39,11 @@
 
 .user_perfil {
     position: absolute;
-    top: 1%;
-    right: 2em;
+    top: 25px;
+    right: 50px;
     font-family: "Avenir_Roman";
-    font-size: 10px;
+    font-size: 12px;
+    
 
 .header_perfil{
     display: flex;
