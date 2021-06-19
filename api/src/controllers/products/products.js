@@ -9,6 +9,7 @@ const productsController = {
         
         try {
             let {
+                id = 'not passed',
                 tag = 'not passed',
                 category = 'not passed',
                 rangePriceMin = 'not passed',
@@ -33,7 +34,7 @@ const productsController = {
 
             //uso filtersCreator para filtrar por tags, categorias o rangos de precios en una primera estancia
             const products = await Product.findAll({
-                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax),
+                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, id),
             });
 
             // guardo solo los id de la primera instancia de filtro
