@@ -173,6 +173,7 @@ function CreateProduct ({editIsActive, productData}){
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
                     <Tags tags={tags} setTags={setTags} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
+                {/* //agregar imagenes */}
                 <button onClick={creacteProduct}>Crear Producto</button>
 
             </div>
