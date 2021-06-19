@@ -3,13 +3,13 @@ import { useEffect, useState } from "react"
 import { CHANGE_ROL, GET_ROLES } from "../../../../Config"
 import { IoChevronBackSharp } from "react-icons/io5"
 
-export default function ModalRoles ({closeModal, id}) {
+export default function ModalRoles ({closeModal, id, reset}) {
     const [roles,setRoles] = useState ([])
 
     useEffect(()=>{
         axios.get(GET_ROLES)
         .then(res=>{
-            setRoles(res.data)
+            setRoles(res.data.filter(rol=>rol.type !== "superadmin"))
         })
     },[])
 
@@ -20,6 +20,10 @@ export default function ModalRoles ({closeModal, id}) {
                 axios.put(CHANGE_ROL,{
                     id:id,
                     role:e.value,
+                })
+                .then(()=>{
+                    reset()
+                    closeModal()
                 })
             }
         })

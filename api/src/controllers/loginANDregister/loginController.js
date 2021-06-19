@@ -1,5 +1,6 @@
 const {firstInfoSearcher, secoundInfoSearcher} = require("../controllersUtils/userInfoSearcher");
 const { User, UserStatus } = require('../../db.js');
+const { Op } = require("sequelize");
 
 function readUserInfo (req,res,next) {
     let {id} = req.query;
