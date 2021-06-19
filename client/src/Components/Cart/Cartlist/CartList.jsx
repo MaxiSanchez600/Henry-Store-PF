@@ -6,22 +6,24 @@ import { connect } from 'react-redux'
 import CartDetail from '../CartDetail/CartDetail'
 import {setCarrito} from '../../../Redux/actions/actions'
 import Cartbar from '../CartBar/CartBar.jsx'
+import { firebase } from "../../../Config/firebase-config";
 
 
 export function CartList(props){
+    const [user, setUser] = React.useState(localStorage.getItem('userlogged'))
     const [carrito, setCarrito] = React.useState([])
     let getCarrito = async() => {
-        if(props.userid !== ''){
+        if(localStorage.getItem('userlogged') !== null){
             //Si hay un userid en el store => Esta logeado => Envio ese a la ruta.
             const options = {
                 method: 'GET',
             }
-            const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${props.userid}`, options)
+            const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem('userlogged')}`, options)
             const responsejson = await response.json()
             props.setCarrito(responsejson)
         }
         else{
-            if(localStorage.getItem('userid') === null){
+            if(localStorage.getItem("userid") === null){
                 //Si no hay un userid en el local storage ni en el store => Es guest => Le creo un user guest
                 const userguest = await fetch(URL_BASE + 'cart/adduserguest', {method: 'PUT'})
                 const userguestresponse = await userguest.json()
@@ -38,27 +40,38 @@ export function CartList(props){
                 const options = {
                     method: 'GET',
                 }
-                const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem('userid')}`, options)
+                const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem("userid")}`, options)
                 const responsejson = await response.json()
                 props.setCarrito(responsejson)
             }
         }
     }
 
-    useEffect(async () =>{
-        await getCarrito();
-    }, [])
-
-    useEffect(() =>{
-        if(props.carritoactual.length != carrito.length){
-            console.log('actualizo')
-            setCarrito(props.carritoactual)
+    let getUser = () =>{
+        if(localStorage.getItem('userlogged') !== null){
+            return localStorage.getItem('userlogged')
         }
+        else{
+            return localStorage.getItem('userid')
+        }
+    }
+
+
+    //Escucho un cambio en el estado por si se actualizan los amount o se borran
+    useEffect(() =>{
+        setCarrito(props.carritoactual)
     }, [props.carritoactual])
-    return(
+
+    //Escucho si se logea
+    useEffect(async () =>{
+        console.log('entro')
+        await getCarrito();
+    },[props.userid])
+
+    return( 
             <div className = 'CartContenedor_CartList'>
                     {(props.carritoactual.length > 0 && carrito.length === 0) && <h1>Cargando carrito</h1>}
-                    {carrito.map(producto => <CartDetail userid = {props.userid} product = {producto}></CartDetail>)}
+                    {carrito.map(producto => <CartDetail userid = {getUser} product = {producto}></CartDetail>)}
             </div>
     )
 }
@@ -66,8 +79,8 @@ export function CartList(props){
 
 const mapStateToProps = (state) => {
     return{
-      userid: state.user_id,
-      carritoactual: state.carrito
+      userid: state.users.dataUSerLogin.id,
+      carritoactual: state.products.carrito
     }
   }
   

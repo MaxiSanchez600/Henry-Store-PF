@@ -180,7 +180,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, userid}) {
 }
 
 function mapStateToProps(state) {
-  return { ListProducts: state.products,
+  return { ListProducts: state.products.products,
            userid : state.user_id  }
 }
 

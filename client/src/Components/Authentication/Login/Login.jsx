@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { REGISTER_URL} from "../../../Config/index";
+import { REGISTER_URL, GUEST_CART_USER} from "../../../Config/index";
 import axios from "axios";
 import { firebase } from "../../../Config/firebase-config";
 // ! COMPONENTES
@@ -46,7 +46,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       .then((res) => {
         let i = res.additionalUserInfo;
         if (i.isNewUser) {
-          axios
+          return axios
             .post(REGISTER_URL, {
               id:res.user.uid,
               email: i.profile.email,
@@ -56,11 +56,26 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
               registerOrigin: i.providerId,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(localStorage.getItem('userid') + 'llegue')
+              if(localStorage.getItem('userid') !== null){
+                //Ruta que cambie carrito de guest con el del user.
+                axios.put(GUEST_CART_USER, {
+                  new_user: res.data.id_user,
+                  guest_user: localStorage.getItem('userid')
+                })
+              }
+              localStorage.removeItem('userid');
+              localStorage.setItem('userlogged', res.data.id_user);
+              window.location.reload();
             })
             .catch((error) => {
               alert(error);
             });
+        }
+        else{
+          localStorage.removeItem('userid');
+          localStorage.setItem('userlogged', res.user.uid);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -83,7 +98,23 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             username: i.username,
             image: i.profile.avatar_url,
             registerOrigin: i.providerId
-          });
+          })
+          .then((res) => {
+            if(localStorage.getItem('userid') !== null){
+              axios.put(GUEST_CART_USER, {
+                new_user: res.data.id_user,
+                guest_user: localStorage.getItem('userid')
+              })
+            }
+            localStorage.removeItem('userid');
+            localStorage.setItem('userlogged', res.data.id_user);
+            window.location.reload();
+          })
+        }
+        else{
+          localStorage.removeItem('userid');
+          localStorage.setItem('userlogged', res.user.uid);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -97,7 +128,10 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     await firebase
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
-      .then(() => {
+      .then((res) => {
+        localStorage.removeItem('userid');
+        localStorage.setItem('userlogged', res.user.uid);
+        window.location.reload();
         setForm(initialState);
       })
       .catch((error) => {
@@ -110,7 +144,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
     <div className="content_Login">
       <div>
         <span className="close-button" onClick={() => loginClose()}>
-          x
         </span>
       </div>
       <form className="formu" onSubmit={handleSubmit}>

@@ -6,6 +6,6 @@
         "color": "Rojo",
         "size":  "L",
         "genero": "unisex",
-        "type": "buso"
+        "type": ["buso"]
     }
 }

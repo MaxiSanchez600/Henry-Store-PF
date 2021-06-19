@@ -18,8 +18,10 @@ const Sidebar = () => {
   const firebase = useFirebaseApp();
 
   const logOut = async () => {
-    await firebase.auth().signOut();
+      await firebase.auth().signOut();
      dispatch(setUSerLogin({}))
+     localStorage.removeItem('userlogged');
+     window.location.reload();
   }
 
   return (

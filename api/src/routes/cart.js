@@ -5,6 +5,8 @@ const remove = require('../controllers/cart/removeProductFromCart.js')
 const removeall = require('../controllers/cart/removeAllProductFromCart.js')
 const getorders = require('../controllers/cart/getorderdetails.js')
 const putguest = require('../controllers/cart/addUserGuest.js')
+const cartguesttouser = require('../controllers/cart/putGuestCartinUser.js')
+
 
 const router = Router();
 
@@ -14,5 +16,5 @@ router.delete('/removeproductfromcart', remove.removeProduct)
 router.delete('/removeallproductfromcart', removeall.removeAllProduct)
 router.get('/getorderdetails', getorders.getDetails)
 router.put('/adduserguest', putguest.addGuest)
-
+router.put('/changeCarts', cartguesttouser.putCart)
 module.exports = router;

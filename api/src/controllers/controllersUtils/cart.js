@@ -26,6 +26,7 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
     const orderdetails = await OrderDetail.findAll({where: {OrderIdOrder: orderid}, order: ['id_order_detail']})
     for(const orderdetail of orderdetails){
         //Agarro todo lo que puedo
+        console.log(orderdetail)
         let caracteristics = {}
         let productid = orderdetail.ProductIdProduct
         let orderid = orderdetail.id_order_detail

@@ -22,7 +22,7 @@ export function CartBar(props){
 
 const mapStateToProps = (state) => {
     return{
-      carritoactual: state.carrito
+      carritoactual: state.products.carrito
     }
   }
   

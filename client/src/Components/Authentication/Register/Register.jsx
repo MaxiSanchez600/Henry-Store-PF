@@ -1,7 +1,7 @@
 import "firebase/auth";
 import "./Register.scss";
 import React, { useState } from "react";
-import {REGISTER_URL} from "../../../Config/index"
+import {REGISTER_URL, GUEST_CART_USER} from "../../../Config/index"
 import axios from 'axios'
 import {firebase} from '../../../Config/firebase-config'
 // ! COMPONENTES
@@ -39,12 +39,21 @@ const Register = ({RegisterClose,LoginOpen}) => {
     if(form.password===form.confimationPass){
       firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
       .then((res)=> {
-        axios.post(REGISTER_URL,{
+        return axios.post(REGISTER_URL,{
             id:res.user.uid,
             email: form.email
         })
       })
-      .then(()=>{
+      .then((res)=>{
+          if(localStorage.getItem('userid') !== null){
+            axios.put(GUEST_CART_USER, {
+              new_user: res.data.id_user,
+              guest_user: localStorage.getItem('userid')
+            })
+          }
+          localStorage.removeItem('userid');
+          localStorage.setItem('userlogged', res.data.id_user);
+          window.location.reload();
           setForm(imputsState)
       })
       .catch (function(error){
@@ -76,6 +85,21 @@ const Register = ({RegisterClose,LoginOpen}) => {
             image: i.profile.picture,
             registerOrigin: i.providerId
           })
+          .then((res) => {
+            if(localStorage.getItem('userid') !== null){
+              axios.put(GUEST_CART_USER, {
+                new_user: res.data.id_user,
+                guest_user: localStorage.getItem('userid')
+              })
+            }
+            localStorage.removeItem('userid');
+            localStorage.setItem('userlogged', res.data.id_user);
+            window.location.reload();
+          })
+        }
+        else{
+          localStorage.removeItem('userid');
+          localStorage.setItem('userlogged', res.user.uid);
         }
       }).catch((error) => {
         alert(error)
@@ -96,6 +120,18 @@ const Register = ({RegisterClose,LoginOpen}) => {
             image: i.profile.avatar_url,
             registerOrigin: i.providerId
           })
+          .then((res) => {
+            if(localStorage.getItem('userid') !== null){
+              //Ruta que cambie carrito de guest con el del user.
+            }
+            localStorage.removeItem('userid');
+            localStorage.setItem('userlogged', res.data.id_user);
+            window.location.reload();
+          })
+        }
+        else{
+          localStorage.removeItem('userid');
+          localStorage.setItem('userlogged', res.user.uid);
         }
       }).catch((error) => {
         alert(error)

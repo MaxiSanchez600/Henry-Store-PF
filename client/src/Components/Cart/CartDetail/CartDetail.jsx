@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 
 export function CartDetail(props){
-    //console.log(props.product)
     const [amount, setAmount] = React.useState(props.product.actual_amount)
 
     let getLabels = () =>{
@@ -28,9 +27,9 @@ export function CartDetail(props){
     let changeAmount = async (e) =>{
         let useridsend = ""
         setAmount(e.target.value)
-        if(props.userid !== '')
+        if(localStorage.getItem('userlogged') !== null)
         {
-            useridsend = props.userid
+            useridsend = localStorage.getItem('userlogged')
         }
         else{
             useridsend = localStorage.getItem('userid')
@@ -38,7 +37,7 @@ export function CartDetail(props){
         const options = {
             method: 'PUT',
             body: JSON.stringify({
-                user_id: useridsend,
+                user_id: useridsend + "",
                 new_amount: e.target.value,
                 order_detail: props.product.orderdetail_id
             }),
@@ -55,9 +54,9 @@ export function CartDetail(props){
 
     let deleteProduct = async () =>{
         let useridsend = ""
-        if(props.userid !== '')
+        if(localStorage.getItem('userlogged') !== null)
         {
-            useridsend = props.userid
+            useridsend = localStorage.getItem('userlogged')
         }
         else{
             useridsend = localStorage.getItem('userid')
@@ -65,7 +64,7 @@ export function CartDetail(props){
         const options = {
             method: 'DELETE',
             body: JSON.stringify({
-                user_id: useridsend,
+                user_id: useridsend + "",
                 orderdetail_id: props.product.orderdetail_id
             }),
             headers : { 

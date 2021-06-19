@@ -82,9 +82,11 @@ Sidebar
   box-shadow: rgb(187, 37, 37);
   transition: all 0.3s linear;
   transform: translate(+100%);
+  z-index: 9999;
 }
 .show-sidebar {
   transform: translate(0);
+  z-index: 9999;
 }
 @media screen and (min-width: 676px) {
   .sidebar {
