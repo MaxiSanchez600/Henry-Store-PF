@@ -1,10 +1,11 @@
-import React, { useState } from "react";
 import './Analytics.scss'
-
+import placeholder from "../../../Assets/Images/placeholder.png"
 function Analytics (){
     return(
         <div className='analyticsContainer'>
-            <h1>datos de ventas</h1>
+            <h1>Estadisticas</h1>
+            
+            <img className="img-analitics" src={placeholder}/>
         </div>
         
     )
