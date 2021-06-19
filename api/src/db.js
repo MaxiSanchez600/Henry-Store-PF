@@ -4,17 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
-//Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
-   logging: false, // set to console.log to see the raw SQL queries
-   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
- });
+// Conexion a Elephant => Agarrar Datos
+// const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
 
 // Conexion Local => Pruebas
-/*  const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
-   logging: false, // set to console.log to see the raw SQL queries
-   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
- }); */
+const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+}); 
 
 const basename = path.basename(__filename);
 
@@ -100,127 +100,127 @@ User.belongsTo(Nacionality);
 
 
 //Precarga Role
-Role.count().then((value) =>{
-  if(value < 3){
-    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
-    arrayconst.map(async (element) =>{
-      console.log('Se cargo el rol' + element)
-      await element
-    })
-  }
-})
+// Role.count().then((value) =>{
+//   if(value < 3){
+//     let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
+//     arrayconst.map(async (element) =>{
+//       console.log('Se cargo el rol' + element)
+//       await element
+//     })
+//   }
+// })
 
 //Precarga Status
- UserStatus.count().then((value) => {
-   if(value < 3){
-     let arrayconst = [UserStatus.create({name_status: 'incompleto'}), UserStatus.create({name_status: 'completo'}), UserStatus.create({name_status: 'eliminado'})]
-     arrayconst.map(async (element) =>{
-       console.log('Se cargo el estado' + element)
-       await element
-     })
-   }
- })
+//  UserStatus.count().then((value) => {
+//    if(value < 3){
+//      let arrayconst = [UserStatus.create({name_status: 'incompleto'}), UserStatus.create({name_status: 'completo'}), UserStatus.create({name_status: 'eliminado'})]
+//      arrayconst.map(async (element) =>{
+//        console.log('Se cargo el estado' + element)
+//        await element
+//      })
+//    }
+//  })
 
 //Precarga Categorias
-Category.count().then((value) => {
-  if(value < 3){
-    let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
-    arrayconst.map(async (element) =>{
-      console.log('Se cargo la categoria' + element)
-      await element
-    })
-  }
-})
+// Category.count().then((value) => {
+//   if(value < 3){
+//     let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
+//     arrayconst.map(async (element) =>{
+//       console.log('Se cargo la categoria' + element)
+//       await element
+//     })
+//   }
+// })
 
 //Precarga documentTypes
-DocumentType.count().then((value) =>{
-  if(value < 4){
-    let arrayconst = [DocumentType.create({name_document_type: 'dni'}), DocumentType.create({name_document_type: 'run'}), DocumentType.create({name_document_type: 'cc'}),  DocumentType.create({name_document_type: 'ife'})]
-    arrayconst.map(async (element) =>{
-      console.log('Se cargo el documenttype' + element)
-      await element
-    })
-  }
-})
+// DocumentType.count().then((value) =>{
+//   if(value < 4){
+//     let arrayconst = [DocumentType.create({name_document_type: 'dni'}), DocumentType.create({name_document_type: 'run'}), DocumentType.create({name_document_type: 'cc'}),  DocumentType.create({name_document_type: 'ife'})]
+//     arrayconst.map(async (element) =>{
+//       console.log('Se cargo el documenttype' + element)
+//       await element
+//     })
+//   }
+// })
 
 //Precarga SubCategorias
-const subarray = ['remera', 'pantalon', 'camisa']
-SubCategory.count().then((value) =>{
-  if(value < 9){ 
-    const uno = SubCategory.create({
-      name_sub_category: 'Remera',
-      description: 'Descripcion de remera',
-      CategoryIdCategory: 1
-    })
-    const dos = SubCategory.create({
-      name_sub_category: 'Pantalon',
-      description: 'Descripcion de pantalon',
-      CategoryIdCategory: 1
-    })
-    const tres = SubCategory.create({
-      name_sub_category: 'Buso',
-      description: 'Descripcion de buso',
-      CategoryIdCategory: 1
-    })
-    const cuatro = SubCategory.create({
-      name_sub_category: 'Camisa',
-      description: 'Descripcion de camisa',
-      CategoryIdCategory: 1
-    })
-    const cinco = SubCategory.create({
-      name_sub_category: 'Gorra',
-      description: 'Descripcion de gorra',
-      CategoryIdCategory: 1
-    })
-    const seis = SubCategory.create({
-      name_sub_category: 'Taza',
-      description: 'Descripcion de taza',
-      CategoryIdCategory: 2
-    })
-    const siete = SubCategory.create({
-      name_sub_category: 'Cuaderno',
-      description: 'Descripcion de cuaderno',
-      CategoryIdCategory: 2
-    })
-    const ocho = SubCategory.create({
-      name_sub_category: 'Lentes',
-      description: 'Descripcion de lentes',
-      CategoryIdCategory: 2
-    })
-    const nueve = SubCategory.create({
-      name_sub_category: 'PowerBank',
-      description: 'Descripcion de powerbank',
-      CategoryIdCategory: 3
-    })
-    Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
-      console.log('Se cargaron las subcategory' + values)
-    })
-  }
-})
+// const subarray = ['remera', 'pantalon', 'camisa']
+// SubCategory.count().then((value) =>{
+//   if(value < 9){ 
+//     const uno = SubCategory.create({
+//       name_sub_category: 'Remera',
+//       description: 'Descripcion de remera',
+//       CategoryIdCategory: 1
+//     })
+//     const dos = SubCategory.create({
+//       name_sub_category: 'Pantalon',
+//       description: 'Descripcion de pantalon',
+//       CategoryIdCategory: 1
+//     })
+//     const tres = SubCategory.create({
+//       name_sub_category: 'Buso',
+//       description: 'Descripcion de buso',
+//       CategoryIdCategory: 1
+//     })
+//     const cuatro = SubCategory.create({
+//       name_sub_category: 'Camisa',
+//       description: 'Descripcion de camisa',
+//       CategoryIdCategory: 1
+//     })
+//     const cinco = SubCategory.create({
+//       name_sub_category: 'Gorra',
+//       description: 'Descripcion de gorra',
+//       CategoryIdCategory: 1
+//     })
+//     const seis = SubCategory.create({
+//       name_sub_category: 'Taza',
+//       description: 'Descripcion de taza',
+//       CategoryIdCategory: 2
+//     })
+//     const siete = SubCategory.create({
+//       name_sub_category: 'Cuaderno',
+//       description: 'Descripcion de cuaderno',
+//       CategoryIdCategory: 2
+//     })
+//     const ocho = SubCategory.create({
+//       name_sub_category: 'Lentes',
+//       description: 'Descripcion de lentes',
+//       CategoryIdCategory: 2
+//     })
+//     const nueve = SubCategory.create({
+//       name_sub_category: 'PowerBank',
+//       description: 'Descripcion de powerbank',
+//       CategoryIdCategory: 3
+//     })
+//     Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
+//       console.log('Se cargaron las subcategory' + values)
+//     })
+//   }
+// })
 
 //Precarga de caracteristic
-Caracteristic.count().then((value) =>{
-  if(value < 4){
-    let constarray = ['color', 'size', 'genero', 'type']
-    constarray.forEach(element => {
-      Caracteristic.create({
-        name_caracteristic: element
-      })
-    })
-  }
-})
+// Caracteristic.count().then((value) =>{
+//   if(value < 4){
+//     let constarray = ['color', 'size', 'genero', 'type']
+//     constarray.forEach(element => {
+//       Caracteristic.create({
+//         name_caracteristic: element
+//       })
+//     })
+//   }
+// })
 
 //Precarga de Nacionalidades
-Nacionality.count().then((value) =>{
-  if(value < 4){
-    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile']
-    constarray.forEach(element => {
-      Nacionality.create({
-        name_nacionality: element
-      })
-    })
-  }
-})
+// Nacionality.count().then((value) =>{
+//   if(value < 4){
+//     let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile']
+//     constarray.forEach(element => {
+//       Nacionality.create({
+//         name_nacionality: element
+//       })
+//     })
+//   }
+// })
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
