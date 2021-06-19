@@ -98,6 +98,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   return (
     <div className="content_Home">
+      <h1>h1 furioso</h1>
       <Header />
       {/* <Navbar /> */}
       <GeoLocation />
