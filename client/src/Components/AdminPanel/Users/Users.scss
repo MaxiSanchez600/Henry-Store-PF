@@ -1,24 +1,39 @@
-
-table{
+.container-table {
+    margin: 10px;
+    padding: 20px 20px;
+}
+.content-table{
     border-collapse:collapse;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px; //posiblemente tenga que cambiar esto
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-tr{
-    background-color: rgb(248, 250, 165);
-    border: 2px solid black;
-    margin:0px;
-    overflow-wrap:break-word;
-    text-align: center;
-    th{
-        border: 2px solid black;
-        width: 100px;
-    }
-    td{
-        border: 2px solid black;
-        width: 200px;
-        height: 20px;
-        
-    }
+.content-table tr th {
+    background-color: #FFFF01;
+    color: #000000;
+    text-align: left;
+    font-weight: bold;
 }
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+    max-width: 190px;
+    overflow: hidden;
+}
+
+.content-table tr {
+    border-bottom: 1px solid #dddddd; 
+}
+
+.content-table tr:nth-of-type(even) {
+    background-color: #f3f3f3; 
+}
+
+.content-table tr:last-of-type {
+    border-bottom: 2px solid #FFFF01;
+}
+
