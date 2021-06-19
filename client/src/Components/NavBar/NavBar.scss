@@ -8,7 +8,7 @@
     columns: 2;
     column-gap: 1%;
     right: 0;
-
+    
     .menu_left {
     }
 
@@ -45,6 +45,7 @@
 
 .header_perfil{
     display: flex;
+    cursor: pointer;
 }
 
     .user_buttons {

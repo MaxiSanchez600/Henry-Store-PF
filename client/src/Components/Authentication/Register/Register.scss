@@ -1,0 +1,82 @@
+.formu {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    text-align: center;
+    width: 100%;
+    color: #111;
+    font-weight: lighter;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    font-weight: 900;
+    margin-top: 50px  ;
+    margin-bottom: 30px;
+  }
+
+  .buttons{
+    width: 100%;
+    display:flex;
+    justify-content:center;
+  }
+
+  .image {
+    display: flex;
+    flex-direction: row   ;
+    justify-content:center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid #000000;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .butt{
+    display: flex;
+    justify-content:center;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 35px;
+  }
+
+  .ForgotPass {
+    text-align: center;
+    width: 100%;
+    color: #111;
+    font-weight: lighter;
+    font-weight: 900;
+    margin: 10px;
+    margin-bottom: 50px;
+	
+  }
+
+  .formu input .inText {
+    align-items:flex-end;
+    margin: 10px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    width: 280px;
+    height: 40px;
+    padding: 0 25px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+  }
+
+  .formu input .checkbox {
+    width: 100%;
+    justify-content:center;
+    margin: 15px;
+    margin-left: 80px; 
+    margin-block: 20px;
+  }
+
+  .social_container{
+    width: 100%;
+  }

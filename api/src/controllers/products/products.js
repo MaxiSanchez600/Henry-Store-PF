@@ -1,10 +1,10 @@
-const { Product, Category, Tag, Caracteristic, Image, ProductCaracteristic } = require('../db');
+const { Product, Category, SubCategory, Tag, Caracteristic, Image, ProductCaracteristic } = require('../../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
-const filtersCreator = require('./controllersUtils/products');
+const filtersCreator = require('../controllersUtils/products');
 
-const productController = {
-    getAll: async (req, res, next) => {
+const productsController = {
+    getProducts: async (req, res, next) => {
         
         try {
             let {
@@ -154,7 +154,85 @@ const productController = {
         } catch (error) {
             return next(error);
         }
+    },
+    createProduct: async (req, res, next) => {
+        try {
+            const {
+                name, price, description, unit_stock, henry_coin, weight, size, percentage_discount, promotion,
+                category, //category = ropa-accesorios
+                subCategory, //subCategory = buzos-pantalones-remeras-gorras
+                tag = '', // tags = henry-cohete-chomba-polo-jersey
+                images = '',
+                // ...caracteristic,   //caracteristic = { color: blanco-negro, talle: s-m-l }
+            } = req.query;
+            //primero verifico si existen las categorias que se seleccionaron, las subcategorias, los tags y las caracteristicas (si no las creo)
+            let categories = category.split('-');
+            let categoriesMapped = categories.map(category => {
+                return Category.findOrCreate({
+                    where: {
+                        name_category: { [Op.ilike]: category } //checkear lo de ilike
+                    } 
+                });
+            });
+            let categoriesCreated = await Promise.all(categoriesMapped);
+
+            let subCategories = subCategory.split('-');
+            let subCategoriesMapped = subCategories.map(subCategory => {
+                return SubCategory.findOrCreate({
+                    where: {
+                        name_sub_category: { [Op.ilike]: subCategory } 
+                    } 
+                });
+            })
+            let subCategoriesCreated = await Promise.all(subCategoriesMapped);
+
+            //en medio de todo, asocio las subcategorias a la categoria
+            for(let i = 0; i <= categoriesCreated.length - 1; i++) {
+                if(categoriesCreated[i][1] === true) {
+                    categoriesCreated[i][0].addSubCategories();
+                } 
+            }
+
+            let tags = tag.split('-');
+            let tagsMapped = tags.map(tag => {
+                return Tag.findOrCreate({
+                    where: {
+                        name_tag: { [Op.ilike]: tag } 
+                    } 
+                });
+            });
+            let tagsCreated = await Promise.all(tagsMapped);
+
+            let caracteristics = Object.keys(caracteristic);
+            let caracteristicsMapped = caracteristics.map(caracteristic => {
+                return Caracteristic.findOrCreate({
+                    where: {
+                        name_caracteristic: { [Op.ilike]: caracteristic } //checkear lo de ilike
+                    } 
+                });
+            });
+            let caracteristicsCreated = await Promise.all(caracteristicsMapped);
+
+            //creo el producto
+            let productCreated = await Product.create({
+                name: name, 
+                price: price, 
+                description: description, 
+                unit_stock: unit_stock, 
+                henry_coin: henry_coin, 
+                weight: weight, 
+                size: size, 
+                percentage_discount: percentage_discount, 
+                promotion: promotion
+            });
+
+            //asocio el producto a las categorias
+            await productCreated.addCategories(categoriesCreated);
+
+        } catch (error) {
+            next(error);
+        }
     }
 };
 
-module.exports = productController;
+module.exports = productsController;
