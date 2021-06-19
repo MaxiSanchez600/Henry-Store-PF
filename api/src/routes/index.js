@@ -1,14 +1,13 @@
 const { Router } = require('express');
 const authRoute = require('./auth.js');
-const productsRouter = require('./products');
-const userRoute = require ('./userFlow.js');
+const infoFrontRoute = require('./infoFrontRoute.js');
+const productRouter = require('./product');
 
 // Importar todos los routers;
 const router = Router();
 
 // Configurar los routers
-router.use('/products', productsRouter);
+router.use('/product', productRouter);
 router.use('/auth', authRoute)
-router.use('/userflow',userRoute)
 
 module.exports = router;

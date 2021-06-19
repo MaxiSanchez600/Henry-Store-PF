@@ -1,0 +1,14 @@
+[
+  {
+    "id_category": 1,
+    "name_category": "Ropa"
+  },
+  {
+    "id_category": 2,
+    "name_category": "Accesorios"
+  },
+  {
+    "id_category": 3,
+    "name_category": "Otros"
+  }
+]

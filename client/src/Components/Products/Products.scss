@@ -9,8 +9,8 @@
   width: 100%;
   // display: flex;
   // flex-direction: column;
-  
-  .all_Cards{
+
+  .all_Cards {
     margin: 1.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
@@ -33,6 +33,20 @@
     &:hover {
       transform: scale(1.02);
     }
+  }
+
+  .product_card_disabled {
+    filter: grayscale(100%);
+    position: relative;
+    max-width: 355px;
+    width: 100%;
+    border-radius: 25px;
+    padding: 20px 30px 30px 30px;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    overflow: hidden;
+    transition: 0.2s all ease-out;
   }
 }
 

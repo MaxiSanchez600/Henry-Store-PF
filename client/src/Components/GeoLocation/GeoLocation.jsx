@@ -2,6 +2,8 @@ import React, { useEffect, useState} from "react";
 import publicIP from 'react-native-public-ip';
 import ReactCountryFlag from "react-country-flag"
 
+//se obtiene la ubicacion mediante ip
+
 const GeoLocation = () =>{
   const [locationData,setLocationData]=useState({})
   useEffect(()=>{
@@ -27,7 +29,6 @@ const GeoLocation = () =>{
               height: '2em',
             }}  
           />
-          
         </div>  
         <span>{locationData.currency}</span>
         </div>

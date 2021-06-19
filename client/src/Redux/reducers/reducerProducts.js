@@ -1,12 +1,16 @@
 // ! ACTIONS
 import {
     // GET_PRODUCTS,
-    FILTER_PRODUCTS
-} from '../actions/actions';
+    FILTER_PRODUCTS,
+    GET_CATEGORIES,
+    GET_CARACTERISTICS
+} from '../actions/actionsProducts';
 
 
 const initialState = {
     products: [],
+    categories: [],
+    caracteristics: [],
     queries: {}
 };
 
@@ -20,14 +24,24 @@ const rootReducer = (state = initialState, action) => {
         //         products: action.payload,
         //     };
 
-        // * Receibe all_list with filter
+        // * Recibe all_list with filter
         case FILTER_PRODUCTS:
             return {
                 ...state,
                 products: [...action.payload.data],
                 queries: { ...action.payload.queries }
             }
-
+        case GET_CATEGORIES:
+            return {
+                ...state,
+                categories: [...action.payload]
+            }
+        case GET_CARACTERISTICS:
+            // console.log("action: ", action);
+            return {
+                ...state,
+                caracteristics: [...action.payload.data]
+            }
         // * default
         default:
             return {

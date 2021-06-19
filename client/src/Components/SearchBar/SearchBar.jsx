@@ -1,30 +1,49 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { getAllFilteredProducts } from '../../Redux/actions/actions';
+import {
+  getAllFilteredProducts,
+  getAllCaracteristics
+} from '../../Redux/actions/actionsProducts';
 
-const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
+const SearchBar = ({
+  queriesFromReducer,
+  caracteristicsFromReducer,
+  getCaracteristicsFromActions,
+  sendFiltersToActions
+}) => {
 
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
-    setSearch(e.target.value);
-    if (!e.target.value) {
-      const { tag, ...removedTagQuery } = { ...queriesFromReducer };
-      sendFiltersToActions({ ...removedTagQuery });
+
+    if (!e.target.value) closeSearchButton(e);
+
+    else {
+      console.log("handleSearch -> e.target.value: ", e.target.value);
+      setSearch(e.target.value);
+      const removedPreviousFilters = removePreviousFilters();
+      sendFiltersToActions({ ...removedPreviousFilters, [e.target.name]: e.target.value });
+      getCaracteristicsFromActions({ [e.target.name]: e.target.value });
     }
+  }
 
-    // else if (e.target.value === " ") {
-    //   setSearch(e.target.value);
-
-    // }
-    else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
+  function removePreviousFilters() {
+    const { category, ...removedFilters } = { ...queriesFromReducer };
+    // console.log("removePreviousFilters -> filters to be removed: ", removedFilters);
+    caracteristicsFromReducer.forEach(caracteristic => {
+      delete removedFilters[caracteristic.name_caracteristic];
+    });
+    // console.log("removePreviousFilters -> removedFilters: ", removedFilters);
+    return { ...removedFilters };
   }
 
   function closeSearchButton(e) {
     e.preventDefault();
     setSearch("");
-    const { tag, ...removedTagQuery } = { ...queriesFromReducer };
+    const removedPreviousFilters = removePreviousFilters();
+    const { tag, ...removedTagQuery } = { ...removedPreviousFilters };
     sendFiltersToActions({ ...removedTagQuery });
+    getCaracteristicsFromActions();
   }
 
   function handleSubmit(e) {
@@ -44,7 +63,7 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <button className="button_search" type="submit"><span class="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
+        <button className="button_search" type="submit"><span className="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
       </form>
       {
         search ?
@@ -63,13 +82,15 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
 
 function mapStateToProps(state) {
   return {
-    queriesFromReducer: state.queries
+    queriesFromReducer: state.products.queries,
+    caracteristicsFromReducer: state.products.caracteristics,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendFiltersToActions: (allQueries) => dispatch(getAllFilteredProducts(allQueries))
+    sendFiltersToActions: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
+    getCaracteristicsFromActions: (tag) => dispatch(getAllCaracteristics(tag)),
   }
 }
 
