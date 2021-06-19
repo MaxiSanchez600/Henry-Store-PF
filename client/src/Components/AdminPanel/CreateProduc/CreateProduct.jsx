@@ -7,11 +7,11 @@ import Tags from "../Tags/Tags";
 import './CreateProduct.scss'
 
 
-function CreateProduct (){
+function CreateProduct ({editIsActive, productData}){
     const [subCatSelected, setSubCatSelected]=useState({})
     const [tags, setTags] = useState([]);
     const categories=useSelector((store)=> store.categories)
-    const [categoriesSaves, setCategoriesSaves]=useState([])
+    const [categoriesSaves, setCategoriesSaves]=useState(JSON.parse(window.localStorage.getItem('categories')))
     const [categoryIsOpen, setCategoryIsOpen]=useState(false);
     const [caracteristicIsOpen, setCaracteristicIsOpen]=useState(false);
     const [categoriesSelected, setCategoriesSelected]=useState({})
@@ -23,7 +23,7 @@ function CreateProduct (){
         henry_coin:'',
         weight:'',
         size:'',
-        percentage_discount:0,
+        percentage_discount:'',
     })
     const [json, setJson] = useState({
         infoProduct:{},
@@ -33,7 +33,22 @@ function CreateProduct (){
     })
 
     useEffect(()=>{
-        setCategoriesSaves(categories)
+        const initialInfo = ()=>{
+            if(editIsActive){
+                setAllData({
+                    name:productData.name,
+                    price:productData.price,
+                    description:productData.description,
+                    unit_stock:productData.unit_stock,
+                    henry_coin:productData.henry_coin,
+                    weight:productData.weight,
+                    size:productData.size,
+                    percentage_discount:productData.percentage_discount,
+                })
+            }
+        }
+        initialInfo()
+        
     },[categories])
 
     const onClickCreateCategory = (e)=>{
@@ -69,35 +84,35 @@ function CreateProduct (){
                     <div className="basicInfoWrap">
                         <div className="inputField">
                             <label>Nombre:</label>
-                            <input className='input' name='name' onChange={onChangeInputs}></input>
+                            <input className='input' name='name' onChange={onChangeInputs} value={allData.name}></input>
                         </div>
                         <div className="inputField">
                             <label>Precio:</label>
-                            <input className='smallInput' name='price' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='price' onChange={onChangeInputs} value={allData.price}></input>
                         </div>
                         <div className="inputField">
                             <label>Descripción:</label>
-                            <textarea rows='5' name='description' onChange={onChangeInputs}></textarea>
+                            <textarea rows='5' name='description' onChange={onChangeInputs} value={allData.description}></textarea>
                         </div>
                         <div className="inputField">
                             <label>Stock:</label>
-                            <input className='smallInput' name='unit_stock' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='unit_stock' onChange={onChangeInputs} value={allData.unit_stock}></input>
                         </div>
                         <div className="inputField">
                             <label>Henry coins:</label>
-                            <input className='smallInput' name='henry_coin' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='henry_coin' onChange={onChangeInputs} value={allData.henry_coin}></input>
                         </div>
                         <div className="inputField">
                             <label>Peso:</label>
-                            <input className='smallInput' name='weight' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='weight' onChange={onChangeInputs} value={allData.weight}></input>
                         </div>
                         <div className="inputField">
                             <label>Dimensiones (Largo x Alto x Ancho):</label>
-                            <input className='input' name='size' onChange={onChangeInputs}></input>
+                            <input className='input' name='size' onChange={onChangeInputs} value={allData.size}></input>
                         </div>
                         <div className="inputField">
                             <label>Descuento:</label>
-                            <input className='smallInput' name='percentage_discount' onChange={onChangeInputs}></input>
+                            <input className='smallInput' name='percentage_discount' onChange={onChangeInputs} value={allData.percentage_discount}></input>
                         </div>
                     </div>
     

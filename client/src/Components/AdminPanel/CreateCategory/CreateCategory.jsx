@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Tags from "../Tags/Tags";
 import './CreateCategory.scss'
-import CreateSubCategory from "./CreateSubCategory/CreateSubCategory";
 
 function CreateCategory ({open, onClose, addCategory, categoriesSelected, categoriesStateController}){
     const [catAndSubCat, setCatAndSubCat]=useState({category: "", subCategory: ""})

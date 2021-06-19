@@ -18,15 +18,16 @@ import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import GeoLocation from "../../Components/GeoLocation/GeoLocation";
 import React, {Suspense} from "react";
 import "firebase/auth";
+
+
+// ! COMPONENTS
 import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
-
-// ! COMPONENTS
-
+import EditProduct from "../AdminPanel/EditProduct/EditProduct";
 
 // !ACTIONS
-import { getCategories } from "../../Redux/actions/actions";
+
 // ? probar AUTH FIREBASE OTHER LINKS :: PENDING
 // ! CONTENT
 function App() {
@@ -43,7 +44,12 @@ function App() {
               <div className='adminContainer'>
                 <Route path="/admin" component={SlideBar} />
                 <Route exact path="/admin" component={Analytics} />
-                <Route path="/admin/createProduct" component={CreateProduct} />
+                <Route exact path="/admin/editProduct">
+                  <EditProduct />
+                </Route>                
+                <Route path="/admin/createProduct">
+                  <CreateProduct editIsActive={false}/>
+                </Route>
               </div>
             </BrowserRouter>
           </Provider>
