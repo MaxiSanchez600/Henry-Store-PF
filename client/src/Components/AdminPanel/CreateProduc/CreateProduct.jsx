@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
+import CreateCaracteriscs from "../CreateCaracteristics/CreateCaracteriscs";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import Tags from "../Tags/Tags";
 import './CreateProduct.scss'
+
 
 function CreateProduct (){
     const [subCatSelected, setSubCatSelected]=useState({})
@@ -11,6 +13,7 @@ function CreateProduct (){
     const categories=useSelector((store)=> store.categories)
     const [categoriesSaves, setCategoriesSaves]=useState([])
     const [categoryIsOpen, setCategoryIsOpen]=useState(false);
+    const [caracteristicIsOpen, setCaracteristicIsOpen]=useState(false);
     const [categoriesSelected, setCategoriesSelected]=useState({})
     const [allData, setAllData]=useState({
         name:'',
@@ -52,6 +55,9 @@ function CreateProduct (){
             categories:subCatSelected,
             tags:tags
         })
+    }
+    const removeCaracteristic = ()=>{
+        setJson({...json, caracteristics:{}})
     }
 
     return(
@@ -115,14 +121,42 @@ function CreateProduct (){
                         
                         />
                         <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button>
-                        <CreateCategory open={categoryIsOpen} onClose={()=>setCategoryIsOpen(false)} addCategory={(e)=>setCategoriesSaves(categoriesSaves.concat(e))} 
-                            categoriesSelected={categoriesSelected} categoriesStateController={setCategoriesSelected}
+                        <CreateCategory 
+                            open={categoryIsOpen} 
+                            onClose={()=>setCategoryIsOpen(false)} 
+                            addCategory={(e)=>setCategoriesSaves(categoriesSaves.concat(e))} 
+                            categoriesSelected={categoriesSelected} 
+                            categoriesStateController={setCategoriesSelected}
                         />
+                </div>
+                <div className="caracteristicsContainer">
+                    <h4>Caracteristicas</h4>
+                    <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc.</div>
+                    <button className='addCaracteristic' onClick={()=>setCaracteristicIsOpen(true)}>Agregar caracteristica</button>
+                    <CreateCaracteriscs 
+                        open={caracteristicIsOpen} 
+                        onClose={()=>setCaracteristicIsOpen(false)}
+                        json={json}
+                        setJson={setJson}
+                    />
+                    {
+                        Object.entries(json.caracteristics).map((e, index)=>(
+                            <div key={index}>
+                                <label>{e[0]}</label>
+                                <button onClick={removeCaracteristic}>x</button>
+                                {
+                                    e[1].map((element, index2)=>(
+                                        <div key={index2}>{element}</div>
+                                    ))
+                                }
+                            </div>
+                        ))
+                    }
                 </div>
                 <div className="tagsContainer">
                     <h4>Tags</h4>
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
-                    <Tags tags={tags} setTags={setTags}/>
+                    <Tags tags={tags} setTags={setTags} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
                 <button onClick={creacteProduct}>Crear Producto</button>
 

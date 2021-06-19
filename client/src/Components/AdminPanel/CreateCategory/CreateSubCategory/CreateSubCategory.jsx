@@ -8,8 +8,8 @@ function CreateSubCategory ({subCategories, setSubCategories}){
     return(
         <div className='createSubCategoryContainer'>
             {
-                subCategories.map(subCategory =>(
-                    <div>
+                subCategories.map((subCategory, index) =>(
+                    <div key={index}>
                         <label>{subCategory.name_sub_category}</label>
                         <button type='button' value={subCategory.name_sub_category} onClick={onClick}>x</button>
                     </div>

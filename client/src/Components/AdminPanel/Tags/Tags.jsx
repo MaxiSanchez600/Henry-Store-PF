@@ -1,6 +1,6 @@
 import React from "react";
 import './Tags.scss'
-function Tags ({tags, setTags}){
+function Tags ({tags, setTags, textPlaceholder}){
     
 	const removeTags = indexToRemove => {
 		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
@@ -18,12 +18,12 @@ function Tags ({tags, setTags}){
                 tags.map((tag, index) => (
 					<li key={index} className="tag">
 						<span className='tag-title'>{tag}</span>
-						<button className='tag-close-icon' onClick={() => removeTags(index)}>x</button>
+						<button className='tag-close-icon' onClick={() => removeTags(index)} type='button'>x</button>
 					</li>
 				))
             }
             </ul>
-            <input type='text' onKeyUp={event => event.key === "Enter" ? addTags(event) : null} placeholder='presione enter para agregar un tag'></input>
+            <input type='text' onKeyUp={event => event.key === "Enter" ? addTags(event) : null} placeholder={textPlaceholder}></input>
         </div>
     )
 }

@@ -9,14 +9,14 @@ function SubCategorySelected ({subCatSelected, setSubCatSelected}){
     return(
         <div className='subCategorySelectedContainer'>
             {
-                 Object.entries(subCatSelected).map(element =>(
+                 Object.entries(subCatSelected).map((element,index) =>(
                     element[1].length>0?
-                    <div>
+                    <div key={index}>
                         <div>{element[0]}</div>
                         <ul>
                         {
-                            element[1].map(subCategory=>(
-                                <li>{subCategory}
+                            element[1].map((subCategory, index2)=>(
+                                <li key={index2}>{subCategory}
                                 <button value={subCategory} title={element[0]} onClick={onCloseSubCat}>x</button>
                                 </li>
                             ))

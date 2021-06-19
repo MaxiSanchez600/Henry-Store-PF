@@ -16,12 +16,14 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
     }
 
     const onChangeSubCat = (e)=>{
-        if(!subCatSelected.hasOwnProperty(e.target.title)){
-            setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})
-        }else{
-            if(!subCatSelected[e.target.title].includes(e.target.value)){
-                const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
-                setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
+        if(e.target.value !== ''){
+            if(!subCatSelected.hasOwnProperty(e.target.title)){
+                setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})
+            }else{
+                if(!subCatSelected[e.target.title].includes(e.target.value)){
+                    const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
+                    setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
+                }
             }
         }
          
@@ -38,7 +40,7 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
                                 <button onClick={onclose} name={e[0]}>x</button>
                                 <label>Seleccione una o mas subCategorias:</label>
                                 <select onChange={onChangeSubCat} title={e[0]}>
-                                    <option></option>
+                                    <option value=''>Seleccione</option>
                                     {
                                         getSubCategories(e[0]).map((element, index2)=>(
                                             <option value={element.name_sub_category} key={index2}>{element.name_sub_category}</option>
