@@ -25,30 +25,13 @@ import Users from "../AdminPanel/Users/Users";
 import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
 import Products from "../AdminPanel/Products/Products"
 
-import {firebase} from "../../Config/firebase-config";
-import { useDispatch, useSelector } from 'react-redux';
-import {getUserLogin} from "../../Redux/actions/actionsUsers";
-// ! COMPONENTS
-
-// ? probar AUTH FIREBASE OTHER LINKS :: PENDING
-// ! CONTENT
 function App() {
-  // const [stateUser, setStateUser] = useState(false);
-  // const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
-  // let user = firebase.auth().currentUser;
-  // const dispatch = useDispatch();
-
-  //   if(dataUSerLogin.length!=={} && stateUser===false){
-  //     console.log("entro user")
-  //     dispatch(getUserLogin(user.uid))
-  //     setStateUser(true);
-  //   }
- 
 
   return (
     <div className="App">
       <Suspense fallback={"Cargando..."}>
         <FirebaseAppProvider firebaseConfig={config}>
+          
             <BrowserRouter>
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />

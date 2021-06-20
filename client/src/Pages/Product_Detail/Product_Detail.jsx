@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../Components/Header/Header';
 import Navbar from '../../Components/NavBar/NavBar';
-import SearchBar from '../../Components/SearchBar/SearchBar';
-import GeoLocation from '../../Components/GeoLocation/GeoLocation';
 import Footer from '../../Components/Footer/Footer';
 import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
@@ -129,11 +126,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   return (
     <div className="content_Home">
-      <h1>h1 furioso</h1>
-      <Header />
-      {/* <Navbar /> */}
-      <GeoLocation />
-      <SearchBar />
+      <Navbar />
       {
         ID_Product ?
           <div className="body_Home">

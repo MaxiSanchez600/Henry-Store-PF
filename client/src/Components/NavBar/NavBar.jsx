@@ -9,6 +9,10 @@ import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 import {  useSelector } from 'react-redux';
 import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
+import henry from "../../Assets/Images/Logo_Henry_black.png"
+import GeoLocation from '../GeoLocation/GeoLocation'
+import SearchBar from '../SearchBar/SearchBar'
+import {FaShoppingCart} from 'react-icons/fa'
 
 // ! COMPONENTES
 import "firebase/auth";
@@ -26,31 +30,13 @@ const NavBar = () => {
  
   // ! CONTENT
   return (
-    <div>
-      <Link to = {'/cart'}>Fasdas</Link>
-      <div className="contain_NavBar">
-        <div className="menu_left">
-          <FilterCategories />
-        </div>
-        <div className="menu_rigth">
-          {!user &&
-              //Botones de login y registro 
-            <>
-              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
-              <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
-            </>
-          }
-        </div>
-      </div>
-
-
+    <div className="contain_NavBar">
       <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)} >
         <Login isOpened={ModalLogin} 
                loginClose={() => setModalLogin(false)} 
                registerOpen={() => setModalRegister(true)} 
                ForgotPassOpen={()=>setModalForgotPass(true)}/>
       </Modal>
-
       <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
         <Register isOpened={ModalRegister} 
                   RegisterClose={() => setModalRegister(false)} 
@@ -64,19 +50,42 @@ const NavBar = () => {
                         LoginOpen={() => setModalLogin(true)}
                         />
       </Modal>
-
-      {user &&
-        <div className="user_perfil">
-          <div className="header_perfil">
-            <span onClick={openSidebar}>
-              <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
-            </span> 
-            <span onClick={openSidebar}>
-              <h2>{dataUSerLogin.username}</h2>
-            </span>
-          </div>
+      <div className="left-box">
+        <img className="logohenry" src={henry}/>
+        <GeoLocation></GeoLocation>
+      </div>
+      <div className="mid-box">
+        <div className="searchbar">
+          <SearchBar></SearchBar>
         </div>
-      }
+        <div className="filter_categories">
+          <FilterCategories />
+        </div>
+      </div>
+      <div className="right-box">
+        <div className="profile-box">
+          {user &&
+              <div className="header_perfil">
+                <span onClick={openSidebar}>
+                  <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
+                </span> 
+                <span onClick={openSidebar}>
+                  <h2>{dataUSerLogin.username}</h2>
+                </span>
+              </div>
+          }
+        </div>
+      <div className="buttons-under-profile">
+          <Link to = {'/cart'}><FaShoppingCart/></Link>
+          {!user &&
+              //Botones de login y registro 
+            <>
+              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
+              <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
+            </>
+          }
+      </div>
+      </div>
     </div>
   );
 };

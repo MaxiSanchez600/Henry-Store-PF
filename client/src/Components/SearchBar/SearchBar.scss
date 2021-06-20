@@ -1,44 +1,37 @@
 @import "../../Sass/variables";
 
-.content_SearchBar {
-       position: absolute;
-       top: 0;
-       left: 30%;
-       font-family: "Avenir_Roman";
-       font-size: 10px;
-       z-index: 5;
 
-       .input_search {
-              position: relative;
-              border: 2px solid #5f8fa4;
-              height: 35px;
-              width: 38em;
-              border-radius: 50px;
-              padding-left: 31px;
-              padding-right: 11px;
-              padding-top: 4px;
-              padding-bottom: 4px;
-              font-size: 13px;
-              color: #555;
-              margin: 10px 5px 5px 5px;
-       }
+//        .input_search {
+//               position: relative;
+//               border: 2px solid #5f8fa4;
+//               height: 35px;
+//               width: 38em;
+//               border-radius: 50px;
+//               padding-left: 31px;
+//               padding-right: 11px;
+//               padding-top: 4px;
+//               padding-bottom: 4px;
+//               font-size: 13px;
+//               color: #555;
+//               margin: 10px 5px 5px 5px;
+//        }
 
-       .button_search {
-              width: fit-content;
-              border-style: none;
-              font-family: "Avenir_Roman";
-              background: transparent;
-              vertical-align: bottom;
-              font-size: 1.8rem;
-              transition: 0.5s all ease;
-              cursor: pointer;
+//        .button_search {
+//               width: fit-content;
+//               border-style: none;
+//               font-family: "Avenir_Roman";
+//               background: transparent;
+//               vertical-align: bottom;
+//               font-size: 1.8rem;
+//               transition: 0.5s all ease;
+//               cursor: pointer;
 
-              &:hover {
-                     transform: scale(1.1);
-              }
+//               &:hover {
+//                      transform: scale(1.1);
+//               }
 
-              &:focus {
-                    transform: rotate(45deg);
-              }
-       }
-}
+//               &:focus {
+//                     transform: rotate(45deg);
+//               }
+//        }
+// }
