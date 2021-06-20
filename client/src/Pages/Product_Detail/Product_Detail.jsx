@@ -171,7 +171,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
+                        <img src={ID_Product.Images[0].name_image} alt="dont found" />
                       </div>
                     </div>
 
