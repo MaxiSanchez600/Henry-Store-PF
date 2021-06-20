@@ -1,6 +1,8 @@
 import { useState } from 'react';
-
 import IMAGES from "../../Assets/images.json";
+import {IoIosArrowBack} from "react-icons/io"
+import {IoIosArrowForward} from "react-icons/io"
+
 
 const SliderCarousel = ({ imageList = IMAGES }) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -23,12 +25,8 @@ const SliderCarousel = ({ imageList = IMAGES }) => {
         imageListLength > 0 ?
           imageListLength !== 1 ?
             <div>
-              <button onClick={handlePreviousImage}>
-                <span className="iconify" data-icon="ic:outline-navigate-before" data-inline="false"></span>
-              </button>
-              <button onClick={handleNextImage}>
-                <span className="iconify" data-icon="ic:outline-navigate-next" data-inline="false"></span>
-              </button>
+              <IoIosArrowBack onClick={handlePreviousImage} size="30px" color="gray"/>
+              <IoIosArrowForward onClick={handleNextImage} size="30px" color="gray"/>
               {
                 imageList.map((image, index) => {
                   if (index === currentImage) {
