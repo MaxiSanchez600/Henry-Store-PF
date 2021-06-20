@@ -71,7 +71,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   }, []);
 
    useEffect(() => {
-   if (ID_Product && ID_Product.unit_stock > 0) {
+        console.log(ID_Product)
+        if (ID_Product && ID_Product.unit_stock > 0) {
        console.log("hay ID_Product:", ID_Product);
        setProductCaracteristics((previousState) => {
          // console.log("previousState: ", previousState);
@@ -122,6 +123,36 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
     }
   }
 
+  function handleproductCaracteristicsInput(e) {
+    e.preventDefault();
+    const name = e.target.name.split("_")[0];
+    // console.log("name: ", name);
+    // console.log("e.target.name: ", e.target.name);
+    // console.log("e.target.value: ", e.target.value);
+    if (e.target.name !== "amount") {
+      setProductCaracteristics({
+        ...productCaracteristics,
+        caracteristics: {
+          ...productCaracteristics.caracteristics,
+          [name]: e.target.value
+        }
+      });
+    }
+    else if (e.target.name === "amount") {
+      if (e.target.value > ID_Product.unit_stock) {
+        setProductCaracteristics({
+          ...productCaracteristics,
+          [e.target.name]: ID_Product.unit_stock
+        });
+      }
+      else {
+        setProductCaracteristics({
+          ...productCaracteristics,
+          [e.target.name]: parseInt(e.target.value)
+        });
+      }
+    }
+  }
   // function handleSubmit(e) {
   //   e.preventDefault();
   //   sendProductDetailsToActions(productCaracteristics);
@@ -215,7 +246,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                                 min="1"
                                 max={ID_Product.unit_stock}
                                 value={productCaracteristics.amount}
-                                onChange={e => handleproductCaracteristics(e)}
+                                onChange={e => handleproductCaracteristicsInput(e)}
                               />
                             </div>
                           <button type="button" className="btn" onClick={sendproduct}>
