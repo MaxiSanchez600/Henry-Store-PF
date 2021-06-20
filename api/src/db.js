@@ -112,8 +112,8 @@ Role.count().then((value) =>{
 
 //Precarga Status
  UserStatus.count().then((value) => {
-   if(value < 5){
-     let arrayconst = [UserStatus.create({name_status: 'Incompleto'}), UserStatus.create({name_status: 'Completo'}), UserStatus.create({name_status: 'Baneado'}),UserStatus.create({name_status: 'Deshabilitado'}),UserStatus.create({name_status: 'Undefined'})]
+   if(value < 3){
+     let arrayconst = [UserStatus.create({name_status: 'Incompleto'}), UserStatus.create({name_status: 'Completo'}),UserStatus.create({name_status: 'Undefined'})]
      arrayconst.map(async (element) =>{
        console.log('Se cargo el estado' + element)
        await element

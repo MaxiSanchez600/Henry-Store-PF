@@ -5,7 +5,7 @@ import logo from '../../Assets/Images/Logo_H_black.png'
 import Modal from "../Modal/Modal";
 import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
-
+import {  useSelector } from 'react-redux';
 import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
 
@@ -14,6 +14,8 @@ import "firebase/auth";
 
 
 const NavBar = () => {
+
+  const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
   const [ModalLogin, setModalLogin] = useState(false);
   const [ModalRegister, setModalRegister] = useState(false);
   const [ModalForgotPass, setModalForgotPass] = useState(false);
@@ -30,30 +32,31 @@ const NavBar = () => {
         </div>
         <div className="menu_rigth">
           {!user &&
+              //Botones de login y registro 
             <>
-              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
-              <button className="menu_category" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
+              <button className="menu_category"  id ="login" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
+              <button className="menu_category" id ="register" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
             </>
           }
         </div>
       </div>
 
 
-      <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)} >
-        <Login isOpened={ModalLogin} 
+      <Modal id ="login" isOpened={ModalLogin} onClose={() => setModalLogin(false)} >
+        <Login id ="login" isOpened={ModalLogin} 
                loginClose={() => setModalLogin(false)} 
                registerOpen={() => setModalRegister(true)} 
                ForgotPassOpen={()=>setModalForgotPass(true)}/>
       </Modal>
 
-      <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
+      <Modal id ="login" isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
         <Register isOpened={ModalRegister} 
                   RegisterClose={() => setModalRegister(false)} 
                   LoginOpen={() => setModalLogin(true)}
                   />
       </Modal>
 
-      <Modal isOpened={ModalForgotPass} onClose={() => setModalForgotPass(false)}>
+      <Modal id ="login" isOpened={ModalForgotPass} onClose={() => setModalForgotPass(false)}>
         <ForgotPassword isOpened={ModalForgotPass} 
                         forgotPassClose={() => setModalForgotPass(false)}
                         LoginOpen={() => setModalLogin(true)}
@@ -64,9 +67,11 @@ const NavBar = () => {
         <div className="user_perfil">
           <div className="header_perfil">
             <span onClick={openSidebar}>
-              <img className="image" src={user.photoURL || logo} alt="not found" />
+              <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
             </span> 
-            <h2>{user.providerData[0].displayName}</h2>
+            <span onClick={openSidebar}>
+              <h2>{dataUSerLogin.username}</h2>
+            </span>
           </div>
         </div>
       }

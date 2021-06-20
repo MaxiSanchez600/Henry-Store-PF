@@ -4,8 +4,11 @@ import { GET_ALL_USERS} from "../../../Config/index"
 import './Users.scss'
 import { CgArrowsExchange } from 'react-icons/cg'
 import { VscRefresh } from "react-icons/vsc";
+import { RiShieldUserLine } from "react-icons/ri";
+import { RiShieldUserFill } from "react-icons/ri";
 import Modal from "../../Modal/Modal"
 import ModalRoles from './modalRoles/modalRoles'
+import actionsUponUsers from './actionsUponUsers/actionsUponUsers'
 
 export default function Users () {
     let initModalRol={
@@ -34,14 +37,22 @@ export default function Users () {
         })
     }
 
+
     return <div>
-        <h1>Panel de Usuarios</h1>
+        <h1>Panel de Usuarios</h1><button >asd</button>
         <h4>Cantidad de usuarios creados: {usersCount}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
-        {modalRol && <Modal isOpened={modalRol.boolean} children={<ModalRoles id={modalRol.idUser}closeModal={()=>setModalRol({...modalRol,boolean:false})}/>}></Modal>}
+        {modalRol && <Modal isOpened={modalRol.boolean}
+                            children={<ModalRoles
+                                        id={modalRol.idUser} 
+                                        reset={()=>setReset(true)} 
+                                        closeModal={()=>setModalRol({...modalRol,boolean:false})}
+                                        />}>
+                     </Modal>}
         <table>
             <tr>
-                <th>ID</th>
+                <th>BAN</th>
                 <th>Rol</th>
+                <th>Acceso</th>
                 <th>Estado</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -58,9 +69,10 @@ export default function Users () {
             </tr>
             {users.map(user=>{
                 return (<tr>
-                    <td>{user.id_user}</td>
+                    <td><button onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, null, true)}>{user.disabled?<RiShieldUserFill/>:<RiShieldUserLine/>}</button></td>
                     <td>{user.Role.rol}<button onClick={()=>changeRol(user.id_user,true)}><CgArrowsExchange/></button></td>
-                    <td>{user.UserStatus.name_status}<button><CgArrowsExchange/></button></td>
+                    <td>{user.disabled?"Bloqueado":"Permitido"}</td>
+                    <td>{user.UserStatus.name_status}</td>
                     <td>{user.name}</td>
                     <td>{user.last_name}</td>
                     <td>{user.emailFireBase}</td>

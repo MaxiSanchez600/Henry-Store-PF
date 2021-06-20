@@ -1,16 +1,21 @@
 .container {
-    top:500px;
+    
   display: flex;
   flex-direction: column;
   align-items: center;
   border: brown;
   background-color: #ffff01;
+  height: 100%;
+  width: 100%;
 }
 
 .card2 {
+
   background: white;
-  width: 1000px;
-  height: 550px;
+  margin-top: 20px;
+  margin-block: 30px;
+  width: 1150px;
+  height: 625px;
   display: flex;
   padding: 20px 40px;
   border-radius: 20px;
@@ -22,25 +27,27 @@
 }
 
 .imag {
-  width: 400px;
+  width: 200px;
   height: 500px;
   flex-direction: row;
 }
 .imag img {
-  height: 120px;
- 
+  height: 150px;
+  padding: 10px;
+  border: 2px dotted  black;
+  border-radius: 10px;
 }
 
 .content{
-    width: 500px;
-  height: 500px;
+  height: 100%;
+  width: 700px;
   flex-direction: row;
-    align-items:flex-start;
-    justify-content:flex-start;
+  align-items:flex-start;
+  justify-content:flex-start;
 } 
 
 .formData{
-    padding: 20px;
+    padding-left: 80px;
     
 }
 
@@ -52,3 +59,26 @@
     width: 100%;
     justify-content:center;
 }
+
+.imageHenry{
+  margin-top: 30px;
+  
+}
+
+.nacionality{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+
+.documentType{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:flex-start;
+}
+.documentType input[radio]{
+  width :0px;
+  align-items:center;
+}
+

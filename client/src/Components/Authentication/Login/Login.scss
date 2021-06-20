@@ -72,3 +72,31 @@
      
     }
 }
+
+.formu input[type=text], input[type=password]{
+    align-items:flex-end;
+    margin: 10px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    width: 280px;
+    height: 40px;
+    padding: 0 25px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+  }
+
+  .dangerTitle {
+    width: 310px;
+    height: 40px;
+    font-size: 10px;
+  }
+
+  .dangerTitle::placeholder { 
+    color:#EF4338;
+}
+.name{
+    width: 310px;
+    height: 40px;
+  }

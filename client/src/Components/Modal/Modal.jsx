@@ -9,7 +9,7 @@ const Modal = ({ isOpened, children, }) => {
   return createPortal(
     <div>
       <div className="overlay"></div>
-      <div className="modal">
+      <div className="modal" id="modal">
         <div>
         <div className="modal-content">{children}</div>
         </div>

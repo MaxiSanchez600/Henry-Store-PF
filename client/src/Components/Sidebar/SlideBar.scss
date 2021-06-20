@@ -38,7 +38,9 @@ Sidebar
 }
 
 .links .spanOut:hover{
-    color: Red;
+    color: rgb(187, 37, 37);
+
+    font-weight: bolder;
 }
 
 .links a, .spanOut{
@@ -58,6 +60,7 @@ Sidebar
 .links a:hover,.spanOut:hover  {
   background: rgb(241, 245, 248);
   color: black;
+  font-weight: bolder;
   //color: rgb(36, 58, 82);
 }
 //iconos
