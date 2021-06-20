@@ -47,6 +47,14 @@ function CreateProduct ({editIsActive, productData}){
                     size:productData.size,
                     percentage_discount:productData.percentage_discount,
                 })
+                const dataTags=productData.Tags.map(tag=>tag.name_tag)
+                setTags(dataTags)
+                const objCat={}
+                productData.Categories.forEach(cat=>{
+                    objCat[cat.name_category]=true
+                })
+                setCategoriesSelected(objCat)
+                setJson({...json, caracteristics:{[productData.Caracteristics[0].name_caracteristic]:productData.Caracteristics[0].values_caracteristic}})
             }
         }
         initialInfo()
