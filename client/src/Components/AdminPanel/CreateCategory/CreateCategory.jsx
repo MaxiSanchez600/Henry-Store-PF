@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Tags from "../Tags/Tags";
 import './CreateCategory.scss'
 
-function CreateCategory ({open, onClose, addCategory, categoriesSelected, categoriesStateController}){
+function CreateCategory ({open, onClose, addCategory, categoriesSelected, categoriesStateController, json, setJson, subCatSelected}){
     const [catAndSubCat, setCatAndSubCat]=useState({category: "", subCategory: ""})
     const [subCategories, setSubCategories]=useState([])
     if(!open) return null
@@ -39,7 +39,7 @@ function CreateCategory ({open, onClose, addCategory, categoriesSelected, catego
                 <div className='inputField'>
                     <label>Añadir subCategoria(s):</label>
                 </div>            
-                <Tags tags={subCategories} setTags={setSubCategories} textPlaceholder='presione enter para agregar una opción'/>
+                <Tags tags={subCategories} setTags={setSubCategories}  json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar una opción'/>
                 <div className='infoTextSubCat'>
                     Una categoría tiene a su vez subCategorias, por ejemplo, si la categoría es "ropa"
                     las subCategorias podrían ser "camisas", "pantalones"

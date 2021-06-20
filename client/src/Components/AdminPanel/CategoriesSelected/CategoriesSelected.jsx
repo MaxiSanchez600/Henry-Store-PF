@@ -19,10 +19,12 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
         if(e.target.value !== ''){
             if(!subCatSelected.hasOwnProperty(e.target.title)){
                 setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})
+
             }else{
                 if(!subCatSelected[e.target.title].includes(e.target.value)){
                     const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
                     setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
+                    
                 }
             }
         }

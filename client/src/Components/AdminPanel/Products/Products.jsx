@@ -38,7 +38,7 @@ export default function Products () {
                 {products.slice(0,products.length/2).map(prod=>{
                     return (<tr>
                         {/* <td><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, false, true)} /></td> */}
-                        <td><img className="img-prod-table" src={prod.Images[0].name_image} alt="not"/></td>
+                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>
@@ -58,7 +58,7 @@ export default function Products () {
                 {products.slice(products.length/2).map(prod=>{
                     return (<tr>
                         {/* <td><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, false, true)} /></td> */}
-                        <td><img className="img-prod-table" src={prod.Images[0].name_image} alt="not"/></td>
+                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>

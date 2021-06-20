@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
 import CreateCaracteriscs from "../CreateCaracteristics/CreateCaracteriscs";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
-
+import {postProduct} from '../../../Redux/actions/actions'
 
 function CreateProduct ({editIsActive, productData}){
+    const dispatch = useDispatch()
     const [subCatSelected, setSubCatSelected]=useState({})
     const [tags, setTags] = useState([]);
     const categories=useSelector((store)=> store.categories)
@@ -67,6 +68,7 @@ function CreateProduct ({editIsActive, productData}){
     }
     const onChangeInputs = (e)=>{
         setAllData({...allData, [e.target.name]:e.target.value})
+        setJson({...json, infoProduct:allData})
     }
 
     const onClickAddCategory = (e) =>{
@@ -75,11 +77,13 @@ function CreateProduct ({editIsActive, productData}){
     }
 
     const creacteProduct =()=>{
-        setJson({...json,
-            infoProduct:allData,
+/*         setJson({...json,
             categories:subCatSelected,
             tags:tags
-        })
+        }) */
+
+        dispatch(postProduct(json))
+
     }
     const removeCaracteristic = ()=>{
         setJson({...json, caracteristics:{}})
@@ -143,6 +147,8 @@ function CreateProduct ({editIsActive, productData}){
                             categoriesSaves={categoriesSaves}
                             subCatSelected={subCatSelected}
                             setSubCatSelected={setSubCatSelected}
+                            json={json}
+                            setJson={setJson}
                         
                         />
                         <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button>
@@ -152,6 +158,9 @@ function CreateProduct ({editIsActive, productData}){
                             addCategory={(e)=>setCategoriesSaves(categoriesSaves.concat(e))} 
                             categoriesSelected={categoriesSelected} 
                             categoriesStateController={setCategoriesSelected}
+                            json={json}
+                            setJson={setJson}
+                            subCatSelected={subCatSelected}
                         />
                 </div>
                 <div className="caracteristicsContainer">
@@ -163,6 +172,7 @@ function CreateProduct ({editIsActive, productData}){
                         onClose={()=>setCaracteristicIsOpen(false)}
                         json={json}
                         setJson={setJson}
+                        subCatSelected={subCatSelected}
                     />
                     {
                         Object.entries(json.caracteristics).map((e, index)=>(
@@ -181,7 +191,7 @@ function CreateProduct ({editIsActive, productData}){
                 <div className="tagsContainer">
                     <h4>Tags</h4>
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
-                    <Tags tags={tags} setTags={setTags} textPlaceholder='presione enter para agregar un tag'/>
+                    <Tags tags={tags} setTags={setTags} json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
                 <ImageUploader json={json} setJson={setJson} />
                 <button onClick={creacteProduct}>Crear Producto</button>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Tags from "../Tags/Tags";
 import './CreateCaracteriscs.scss'
 
-function CreateCaracteriscs ({open, onClose, json, setJson}){
+function CreateCaracteriscs ({open, onClose, json, setJson, subCatSelected}){
     const [newCaracteristic, setNewCaracteristic]=useState('')
     const [optionsCaracteristic, setOptionsCaracteristic]=useState([]);
     const createCaracteristic =()=>{
@@ -33,7 +33,7 @@ function CreateCaracteriscs ({open, onClose, json, setJson}){
                 <div className='inputField'>
                     <label>Opciones de dicha caracteristica:</label>
                 </div>
-                <Tags tags={optionsCaracteristic} setTags={setOptionsCaracteristic} textPlaceholder='presione enter para agregar una opción'/>
+                <Tags tags={optionsCaracteristic} setTags={setOptionsCaracteristic}  json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar una opción'/>
                 <button onClick={createCaracteristic}>Agregar</button>
                 
             </div>
