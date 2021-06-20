@@ -19,13 +19,13 @@ function Products({ ListProducts, getAllFilteredProducts }) {
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return <Link to={`/item/${product.id_product}`} key={product.id_product}>
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
-                {/* <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} /> */}
+                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
                 <div className="product_name">{product.name}</div>
                 <div className="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                 <div className="product_price"><h5>{product.price} USD</h5> </div>
                 <div className="product_stock"><h5>{product.unit_stock} Units</h5></div>
                 <div className="product_henry_coin"><h5>{product.henry_coin} Henry Coin</h5></div>
-                <button className="button_addCart"><h4>ADD TO CARD <span className="iconify icon_cart" data-icon="emojione:shopping-cart" data-inline="false"></span></h4></button>
+                <button className="button_addCart"><h4>Detalle</h4></button>
             </div>
         </Link>
     })
