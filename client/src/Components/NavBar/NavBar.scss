@@ -4,8 +4,8 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    background-color: $gray_main;
-    height: 15vh;
+    background-color: #000;
+    height: 12vh;
     justify-content: space-around;  
     padding: 10px;  
 
@@ -20,7 +20,6 @@
             padding-top: 2%;
         }
         .geolocation{
-            margin-top: 20px;
             padding-bottom: 2%;
         }
     }
@@ -52,8 +51,8 @@
             flex-direction: row;
             justify-content: flex-end;
             .image {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
                 border-radius: 100px;
                 border: 1px solid white;
                 object-fit: cover;
@@ -105,6 +104,7 @@
         }
     }
 }
+
 
 
 

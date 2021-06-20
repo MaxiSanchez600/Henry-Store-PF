@@ -5,6 +5,7 @@ import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
 import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
+import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 
 function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions }) {
 
@@ -171,7 +172,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <img src={ID_Product.Images[0].name_image} alt="dont found" />
+                        {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
+                        <SliderCarousel imageList={ID_Product.Images}/>
                       </div>
                     </div>
 

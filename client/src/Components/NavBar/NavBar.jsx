@@ -81,7 +81,7 @@ const NavBar = () => {
         </div>
       <div className="buttons-under-profile">
         <div className="carrito">
-        <Link to={'/cart'}><FaShoppingCart/></Link>
+        <Link to={'/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>
         {!user &&
             //Botones de login y registro 

@@ -9,6 +9,11 @@
   width: 100%;
   // display: flex;
   // flex-direction: column;
+  .link{
+    text-decoration: none;
+    color:white;
+  }
+  
 
   .all_Cards {
     margin: 1.5rem;
@@ -24,11 +29,12 @@
     width: 100%;
     border-radius: 25px;
     padding: 20px 30px 30px 30px;
-    background: #fff;
+    background: #87868A;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 3;
     overflow: hidden;
     transition: 0.2s all ease-out;
+    text-decoration: none;
 
     &:hover {
       transform: scale(1.02);
@@ -108,4 +114,15 @@
 
 .pagination {
   top: 40rem;
+}
+
+.button_detail {
+  background-color: $yellow_main;
+  color: black;
+  border-radius: 8px;
+  width: 100%;
+  height: 3.5em;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
