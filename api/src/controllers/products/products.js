@@ -223,6 +223,16 @@ const productsController = {
                     });
             });
             let tagsFind = await Promise.all(tagsMapped);
+
+            //creo las imagenes
+            let imagesMapped = images.map(image => {
+                    return Image.findOrCreate({
+                        where: {
+                            name_image: image //{ [Op.ilike]: tag } 
+                        }
+                    });
+            });
+            let imagesFind = await Promise.all(imagesMapped);
             
             //creo las caracteristicas
             let caracteristicsMapped = Object.keys(caracteristics).map(caracteristic => {
@@ -259,16 +269,16 @@ const productsController = {
                 var productSet = await Product.findByPk(idProduct);
             }
 
-            
-
             //asocio el producto a las categorias, subcategorias (a traves de la caracteristica type), los tags y el resto de las carcteristicas
             let categoriesModel = modelExtractor(categoriesFind);
             let subCategoriesModel = modelExtractor(subCategoriesFindAll);
             let tagsModel = modelExtractor(tagsFind);
             let caracteristicsModel = modelExtractor(caracteristicsFind);
+            let imagesModel = modelExtractor(imagesFind);
 
             await productSet.setCategories(categoriesModel);
             await productSet.setTags(tagsModel);
+            await productSet.setImages(imagesModel);
 
             await ProductCaracteristic.destroy({ where: { ProductIdProduct: productSet.id_product } });
 
