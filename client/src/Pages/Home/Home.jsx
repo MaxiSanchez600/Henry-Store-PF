@@ -7,21 +7,16 @@ import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
 import Order from '../../Components/Order/Order';
-import { useDispatch } from 'react-redux';
-import {getUserLogin} from "../../Redux/actions/actionsUsers";
-import { firebase } from "../../Config/firebase-config";
-import Sidebar from "../../Components/Sidebar/Sidebar.jsx";
 
 function Home({ queriesFromReducer, getProductsWithoutFilters }) {
  
-
     function handleResetFilters(e) {
         e.preventDefault();
         getProductsWithoutFilters({});
     }
     
     return (
-            <div>
+            <div >
             <Navbar />
             <div className="search_container">
             <div className="search"><SearchBar/></div>
@@ -40,7 +35,6 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                     <Products />
                     </div>
             </div>
-            <Sidebar />
         </div>
             <Footer />
         </div>

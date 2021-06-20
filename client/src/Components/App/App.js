@@ -28,9 +28,12 @@ import Products from "../AdminPanel/Products/Products"
 import { useDispatch, useSelector } from 'react-redux';
 import {getUserLogin} from "../../Redux/actions/actionsUsers";
 import GuardRoute from "./GuardRoute";
+import { useGlobalContext } from "../../context"
+import Sidebar from "../Sidebar/Sidebar.jsx"
+
 
 function App() {
-
+  const { closeSidebar} = useGlobalContext();
   const dispatch = useDispatch();
   var userLogged = localStorage.getItem('userlogged');
   const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
@@ -44,9 +47,9 @@ function App() {
    }
   }, [userLogged]);
 
-  
+
   return (
-    <div className="App">
+    <div className="App" onClick={closeSidebar}>
       <Suspense fallback={"Cargando..."}>
         <FirebaseAppProvider firebaseConfig={config}>
             <BrowserRouter>
@@ -54,18 +57,18 @@ function App() {
               <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path="/location" component={GeoLocation} />
               <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path="/item/:id" component={Product_Detail} />
               <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path= '/cart' component= {Cart}/>
+              <GuardRoute typeRoute={"public"}  isLogged={isLogged} typeOfUser={typeOfUser} exact path="/profile" component={CompleteData} />
               <div className='adminContainer'>
-                <GuardRoute typeRoute={"public"} isLogged={isLogged} typeOfUser={typeOfUser} exact path="/profile" component={CompleteData} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin" component={SlideBar} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} exact path="/admin" component={Analytics} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/createProduct" component={CreateProduct} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/users" component={Users}/>
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/products" component={Products}/>
               </div>
+      <Sidebar />
             </BrowserRouter>
         </FirebaseAppProvider>
       </Suspense>
-   
     </div>
   );
 }

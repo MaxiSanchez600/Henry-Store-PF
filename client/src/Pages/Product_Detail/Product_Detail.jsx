@@ -5,7 +5,7 @@ import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
 import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions }) {
 
   const { id } = useParams();
@@ -26,7 +26,13 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
         }
       }
       await fetch(URL_BASE + 'cart/addproducttocart', options)
-     // .then()
+      .then(()=>
+        Swal.fire({
+        title:`Producto agregado al Carrito &#128076`,
+        icon:'success',
+        showConfirmButton: false,
+        timer:1500
+      }))
     }
     else{
       if(localStorage.getItem('userid') === null){
@@ -44,6 +50,13 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
             }
           }
           await fetch(URL_BASE + 'cart/addproducttocart', options)
+          .then(()=>
+          Swal.fire({
+          title:`Producto agregado al Carrito &#128076`,
+          icon:'success',
+          showConfirmButton: false,
+          timer:1500
+          }))
       }
       else{
           //No esta logeado pero hay guest
@@ -57,6 +70,13 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
             }
           }
           await fetch(URL_BASE + 'cart/addproducttocart', options)
+          .then(()=>
+          Swal.fire({
+          title:`Producto agregado al Carrito &#128076`,
+          icon:'success',
+          showConfirmButton: false,
+          timer:1500
+          }))
       }
     }
   }

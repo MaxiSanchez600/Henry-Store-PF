@@ -11,7 +11,6 @@ import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
 import henry from "../../Assets/Images/new_logo.png"
 import GeoLocation from '../GeoLocation/GeoLocation'
-import SearchBar from '../SearchBar/SearchBar'
 import {FaShoppingCart} from 'react-icons/fa'
 import {IoEnter} from "react-icons/io5"
 import {FaUserAlt} from "react-icons/fa"
@@ -26,8 +25,7 @@ const NavBar = () => {
   const [ModalLogin, setModalLogin] = useState(false);
   const [ModalRegister, setModalRegister] = useState(false);
   const [ModalForgotPass, setModalForgotPass] = useState(false);
-
-  const { openSidebar, closeSidebar } = useGlobalContext();
+  const { openSidebar} = useGlobalContext();
   const { data: user } = useUser();
  
   // ! CONTENT

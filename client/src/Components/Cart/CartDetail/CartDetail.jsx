@@ -3,7 +3,7 @@ import './CartDetail.scss'
 import { URL_BASE } from '../../../Config/index.js'
 import {setCarrito} from '../../../Redux/actions/actions'
 import { connect } from 'react-redux'
-
+import Swal from 'sweetalert2';
 
 export function CartDetail(props){
     const [amount, setAmount] = React.useState(props.product.actual_amount)
@@ -75,8 +75,19 @@ export function CartDetail(props){
         await fetch(URL_BASE + 'cart/removeproductfromcart', options)
         const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${useridsend}`)
         const responsejson = await response.json()
-        props.setCarrito(responsejson)
+        props.setCarrito(responsejson);
+    
+        Swal.fire({
+        title:`Producto eliminado del carrito `,
+        icon:'info',
+        showConfirmButton: false,
+        timer:1500,
+        timerProgressBar:true,
+        position: 'bottom-end',
+        toast:true
+      })
     }
+
     return(
         <div className = 'Cart_CartDetail'>
             <img src = {props.product.image} alt = 'fotoproducto'/>
