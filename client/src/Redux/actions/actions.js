@@ -8,7 +8,8 @@ import axios from "axios"
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
-export const POST_PRODUCT = 'POST_PRODUCT'
+export const POST_PRODUCT = 'POST_PRODUCT';
+export const GET_ONE_PRODUCT='GET_ONE_PRODUCT';
 /* ============================== ACTIONS ============================================== */
 export function getAllFilteredProducts(allQueries) {
   return function (dispatch) {
@@ -39,6 +40,17 @@ export function postProduct (payload){
       try {   
           await axios.post("http://localhost:3001/product", payload)
           alert('Creado con exito')
+      }catch (error) {
+        console.error(error)
+      }   
+  };
+}
+
+export function getOneProduct (id){       
+  return async function(dispatch) {
+      try {   
+        const response =await axios.get("http://localhost:3001/product?id="+id)
+        dispatch({ type: GET_ONE_PRODUCT, payload: response.data });
       }catch (error) {
         console.error(error)
       }   

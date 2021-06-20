@@ -63,11 +63,13 @@ function App() {
               <div className='adminContainer'>
                 <Route path="/admin" component={SlideBar} />
                 <Route exact path="/admin" component={Analytics} />
-                <Route exact path="/admin/editProduct">
-                  <EditProduct />
-                </Route>                
+                <Route exact path="/admin/editProduct/:id" 
+                  render={(props)=>(
+                    <EditProduct {...props} title='Editar producto'/> 
+                  )}
+                />
                 <Route path="/admin/createProduct">
-                  <CreateProduct editIsActive={false}/>
+                  <CreateProduct editIsActive={false} title='Crear producto'/>
                 </Route>
                 <Route path="/admin/users" component={Users}/>
                 <Route path="/admin/products" component={Products}/>

@@ -19,7 +19,7 @@ function Products({ ListProducts, getAllFilteredProducts }) {
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return <Link to={`/item/${product.id_product}`} key={product.id_product}>
             <div className="product_card">
-                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
+                <img src={/* product.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="" className="product_image" id={product.index} />
                 <div className="product_name">{product.name}</div>
                 <div class="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                 <div className="product_price"><h5>{product.price} USD</h5> </div>

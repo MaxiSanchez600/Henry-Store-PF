@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SubCategorySelected from "../SubCategorySelected/SubCategorySelected";
 import './CategoriesSelected.scss'
 
@@ -11,8 +11,9 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
     }
 
     const getSubCategories = (category)=>{
-        const result=categoriesSaves.find(e=>e.name_category===category)
+        const result=categoriesSaves.find(e=>e.name_category.toLowerCase() ===category.toLowerCase() )
         return result.SubCategories
+    
     }
 
     const onChangeSubCat = (e)=>{

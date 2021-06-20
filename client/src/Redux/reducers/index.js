@@ -2,14 +2,16 @@
 import {
     // GET_PRODUCTS,
     FILTER_PRODUCTS,
-    GET_CATEGORIES
+    GET_CATEGORIES,
+    GET_ONE_PRODUCT
 } from '../actions/actions';
 
 
 const initialState = {
     products: [],
     queries: {},
-    categories:{}
+    categories:{},
+    product:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -35,7 +37,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 categories:action.payload
             }
-
+        case GET_ONE_PRODUCT:
+            return{
+                ...state,
+                product:action.payload
+            }
         // * default
         default:
             return {

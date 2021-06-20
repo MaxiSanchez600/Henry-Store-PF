@@ -7,8 +7,9 @@ import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 import {postProduct} from '../../../Redux/actions/actions'
+import axios from "axios"
 
-function CreateProduct ({editIsActive, productData}){
+function CreateProduct ({editIsActive, productData, title}){
     const dispatch = useDispatch()
     const [subCatSelected, setSubCatSelected]=useState({})
     const [tags, setTags] = useState([]);
@@ -54,8 +55,9 @@ function CreateProduct ({editIsActive, productData}){
                 productData.Categories.forEach(cat=>{
                     objCat[cat.name_category]=true
                 })
+                const prevCaracteristicSize=productData.Caracteristics.length
                 setCategoriesSelected(objCat)
-                setJson({...json, caracteristics:{[productData.Caracteristics[0].name_caracteristic]:productData.Caracteristics[0].values_caracteristic}, images:productData.images})
+                setJson({...json, caracteristics:{[productData.Caracteristics[prevCaracteristicSize-1].name_caracteristic]:productData.Caracteristics[prevCaracteristicSize-1].values_caracteristic}, images:productData.images})
             }
         }
         initialInfo()
@@ -83,7 +85,6 @@ function CreateProduct ({editIsActive, productData}){
         }) */
 
         dispatch(postProduct(json))
-
     }
     const removeCaracteristic = ()=>{
         setJson({...json, caracteristics:{}})
@@ -92,7 +93,7 @@ function CreateProduct ({editIsActive, productData}){
     return(
         <div className='createContainer'>
             <div className='createContent'>
-                <h2>Crear Producto</h2>  
+                <h2>{title}</h2>  
                 <div>
                     <h4>Información del producto</h4>
                     <div className="basicInfoWrap">
@@ -193,7 +194,7 @@ function CreateProduct ({editIsActive, productData}){
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
                     <Tags tags={tags} setTags={setTags} json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
-                <ImageUploader json={json} setJson={setJson} />
+                {/* <ImageUploader json={json} setJson={setJson} /> */}
                 <button onClick={creacteProduct}>Crear Producto</button>
 
             </div>
