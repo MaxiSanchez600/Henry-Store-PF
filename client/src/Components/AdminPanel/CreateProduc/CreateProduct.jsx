@@ -7,7 +7,7 @@ import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 import {postProduct} from '../../../Redux/actions/actions'
-import axios from "axios"
+
 
 function CreateProduct ({editIsActive, productData, title}){
     const dispatch = useDispatch()
@@ -57,7 +57,23 @@ function CreateProduct ({editIsActive, productData, title}){
                 })
                 const prevCaracteristicSize=productData.Caracteristics.length
                 setCategoriesSelected(objCat)
-                setJson({...json, caracteristics:{[productData.Caracteristics[prevCaracteristicSize-1].name_caracteristic]:productData.Caracteristics[prevCaracteristicSize-1].values_caracteristic}, images:productData.images})
+                const imagesData=productData.Images.map(element=>element.name_image)
+                setJson({...json, 
+                    caracteristics:{[productData.Caracteristics[prevCaracteristicSize-1].name_caracteristic]:productData.Caracteristics[prevCaracteristicSize-1].values_caracteristic}, 
+                    images:imagesData,
+                    infoProduct:{
+                        name:productData.name,
+                        price:productData.price,
+                        description:productData.description,
+                        unit_stock:productData.unit_stock,
+                        henry_coin:productData.henry_coin,
+                        weight:productData.weight,
+                        size:productData.size,
+                        percentage_discount:productData.percentage_discount,
+                    },
+                    tags:dataTags,
+                    idProduct:productData.id_product
+                })
             }
         }
         initialInfo()
@@ -83,7 +99,10 @@ function CreateProduct ({editIsActive, productData, title}){
             categories:subCatSelected,
             tags:tags
         }) */
-
+        if(editIsActive){
+            
+            console.log(json)
+        }
         dispatch(postProduct(json))
     }
     const removeCaracteristic = ()=>{
@@ -194,8 +213,8 @@ function CreateProduct ({editIsActive, productData, title}){
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
                     <Tags tags={tags} setTags={setTags} json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
-                {/* <ImageUploader json={json} setJson={setJson} /> */}
-                <button onClick={creacteProduct}>Crear Producto</button>
+                <ImageUploader json={json} setJson={setJson} />
+                <button onClick={creacteProduct}>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
 
             </div>
         </div>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SubCategorySelected from "../SubCategorySelected/SubCategorySelected";
 import './CategoriesSelected.scss'
 
-function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected}){
-    
+function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson}){
+    useEffect(()=>{
+        setJson({...json, categories:subCatSelected})
+    },[subCatSelected])
     const onclose=(e)=>{
         e.preventDefault()
         categoriesStateController({...categoriesSelected, [e.target.name]:false})
@@ -20,12 +22,13 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
         if(e.target.value !== ''){
             if(!subCatSelected.hasOwnProperty(e.target.title)){
                 setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})
+                
 
             }else{
                 if(!subCatSelected[e.target.title].includes(e.target.value)){
                     const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
                     setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
-                    
+               
                 }
             }
         }
@@ -55,7 +58,7 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
                     </div>
                 ))
             }
-            <SubCategorySelected subCatSelected={subCatSelected} setSubCatSelected={setSubCatSelected}/>
+            <SubCategorySelected subCatSelected={subCatSelected} setSubCatSelected={setSubCatSelected} json={json} setJson={setJson}/>
         </div>
         
     )
