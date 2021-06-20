@@ -14,11 +14,12 @@
   padding: 10px;
   border-radius: 10px;
   transition: 0.2s;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   opacity:1 !important;
   background: yellow;
-  color: black;
+  
+  //color: black;
   
 
   button {
@@ -32,6 +33,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    cursor: pointer;
   }
   
   button:active {
@@ -41,14 +43,43 @@
   button:focus {
     outline: none;
   }
-}
 
+  
 .close-button {
+  font-size: 2.5rem;
+  color: #FF4B2B;
+  margin-right: 1rem;
+  transition: all 0.3s linear;
   position: absolute;
   right: 20px;
   top: 15px;
   cursor: pointer;
+  transition: 0.4s;
+  margin: 0.5rem;
+ 
+
 }
+.close-button:hover{
+  transform: scale(1.1);
+}
+
+
+.back-button {
+  position: absolute;
+  left: 28px;
+  top: 24px;
+  cursor: pointer;
+  font-size: 2.5rem;
+  transition: 0.4s;
+  color: rgb(97, 125, 152);
+
+}
+.back-button:hover{
+  transform: scale(1.1);
+  color: black;
+}
+}
+
 
 .overlay {
   position: absolute;
@@ -58,7 +89,7 @@
   bottom: 0;
   z-index: 5000;
   transition: all 2s ease;
-  background-color: black;
+ background:rgba(0, 0, 0, 0.6); 
   opacity: 0.95;
 }
 

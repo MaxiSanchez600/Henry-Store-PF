@@ -1,11 +1,12 @@
 const { Router } = require('express');
-// const { postUser } = require ('../controllers/registerController.js')
-// const { getUserInfo, putUserInfo} = require ('../controllers/loginController.js')
+const { createUser } = require ('../controllers/loginANDregister/registerController')
+const { readUserInfo, updateUserInfo} = require ('../controllers/loginANDregister/loginController.js')
 
 const router = Router();
 
-// router.post('/register',postUser)
-// router.get('/login',getUserInfo)
-// router.put('/login',putUserInfo)
+router.post('/register',createUser)
+router.get('/login',readUserInfo)
+router.put('/login',updateUserInfo)
+//no se deletea el user, se le cambia el estado a deshabilitado o baneado segun la fuente del cambio
 
 module.exports = router;

@@ -19,25 +19,12 @@
   }
 
   .buttons{
-    
     width: 100%;
     display:flex;
     justify-content:center;
-   
-    
   }
 
-  .image {
-    display: flex;
-    flex-direction: row   ;
-    justify-content:center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: 2px solid #000000;
-    margin-right: 5px;
-    margin-bottom: 5px;
-  }
+
 
   .butt{
     display: flex;
@@ -58,7 +45,7 @@
 	
   }
 
-  .formu input {
+  .formu input .inText {
     align-items:flex-end;
     margin: 10px;
     padding: 10px 10px;
@@ -72,3 +59,15 @@
     font-size: 15px;
   }
 
+  .formu input .checkbox {
+    width: 100%;
+    justify-content:center;
+    margin: 15px;
+    margin-left: 80px; 
+    margin-block: 20px;
+  }
+
+  .social_container{
+    width: 100%;
+  }
+ 

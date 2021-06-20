@@ -100,26 +100,26 @@ User.belongsTo(Nacionality);
 
 
 //Precarga Role
-// Role.count().then((value) =>{
-//   if(value < 3){
-//     let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
-//     arrayconst.map(async (element) =>{
-//       console.log('Se cargo el rol' + element)
-//       await element
-//     })
-//   }
-// })
+Role.count().then((value) =>{
+  if(value < 4){
+    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'}),Role.create({rol: 'guest'})]
+    arrayconst.map(async (element) =>{
+      console.log('Se cargo el rol' + element)
+      await element
+    })
+  }
+})
 
 //Precarga Status
-//  UserStatus.count().then((value) => {
-//    if(value < 3){
-//      let arrayconst = [UserStatus.create({name_status: 'incompleto'}), UserStatus.create({name_status: 'completo'}), UserStatus.create({name_status: 'eliminado'})]
-//      arrayconst.map(async (element) =>{
-//        console.log('Se cargo el estado' + element)
-//        await element
-//      })
-//    }
-//  })
+ UserStatus.count().then((value) => {
+   if(value < 3){
+     let arrayconst = [UserStatus.create({name_status: 'Incompleto'}), UserStatus.create({name_status: 'Completo'}),UserStatus.create({name_status: 'Undefined'})]
+     arrayconst.map(async (element) =>{
+       console.log('Se cargo el estado' + element)
+       await element
+     })
+   }
+ })
 
 //Precarga Categorias
 // Category.count().then((value) => {
@@ -133,15 +133,15 @@ User.belongsTo(Nacionality);
 // })
 
 //Precarga documentTypes
-// DocumentType.count().then((value) =>{
-//   if(value < 4){
-//     let arrayconst = [DocumentType.create({name_document_type: 'dni'}), DocumentType.create({name_document_type: 'run'}), DocumentType.create({name_document_type: 'cc'}),  DocumentType.create({name_document_type: 'ife'})]
-//     arrayconst.map(async (element) =>{
-//       console.log('Se cargo el documenttype' + element)
-//       await element
-//     })
-//   }
-// })
+DocumentType.count().then((value) =>{
+  if(value < 5){
+    let arrayconst = [DocumentType.create({name_document_type: 'DNI'}), DocumentType.create({name_document_type: 'RUN'}), DocumentType.create({name_document_type: 'CC'}),  DocumentType.create({name_document_type: 'IFE'}),DocumentType.create({name_document_type: 'Undefined'})]
+    arrayconst.map(async (element) =>{
+      console.log('Se cargo el documenttype' + element)
+      await element
+    })
+  }
+})
 
 //Precarga SubCategorias
 // const subarray = ['remera', 'pantalon', 'camisa']
@@ -211,16 +211,16 @@ User.belongsTo(Nacionality);
 // })
 
 //Precarga de Nacionalidades
-// Nacionality.count().then((value) =>{
-//   if(value < 4){
-//     let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile']
-//     constarray.forEach(element => {
-//       Nacionality.create({
-//         name_nacionality: element
-//       })
-//     })
-//   }
-// })
+Nacionality.count().then((value) =>{
+  if(value < 5){
+    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile','Undefined']
+    constarray.forEach(element => {
+      Nacionality.create({
+        name_nacionality: element
+      })
+    })
+  }
+})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo_Henry_black from '../../Assets/images/Logo_Henry_black.png'
+import Logo_Henry_black from '../../Assets/Images/Logo_Henry_black.png'
 import { Link } from "react-router-dom";
 
 function Header() {
