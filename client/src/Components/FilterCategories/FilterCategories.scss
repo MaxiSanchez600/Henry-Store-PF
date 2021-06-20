@@ -6,9 +6,14 @@
         margin: 0 10px 0 10px;
         border-style: none;
         background-color: transparent;
+        font-weight: 500;
+        font-size: 1.1em;
+        color: #ffffff;
 
         &:hover {
             cursor: pointer;
+            color: $yellow_main;
+            background-color: $gray_main;
         }
     }
 }

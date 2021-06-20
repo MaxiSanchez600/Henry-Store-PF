@@ -1,14 +1,27 @@
+
 .content_Home {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: #eeeeee;
+}
+.body-Home{
+    display: flex;
+    flex-direction: column;
+}
+.products{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80vw;
+}
+.search{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
     justify-content: center;
+}
 
-    .body_Home {
-       
-
-        .webcontent_home {
-            -webkit-justify-content: center;
-            justify-content: center;
-            margin: 1% 10% 0;
-            display: flex;
-        }
-    }
+.search_container{
+    background-color: #eeeeee;
 }

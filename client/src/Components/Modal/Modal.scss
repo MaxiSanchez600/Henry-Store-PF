@@ -3,7 +3,6 @@
 .modal {
   background: rgba(255, 255, 255, 0.6);
   position: fixed;
-  font-family: 'Avenir_Book';
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -11,22 +10,21 @@
   height: 620px;
   z-index: 9999999;
   background: #fff;
-  padding: 10px;
   border-radius: 10px;
   transition: 0.2s;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   opacity:1 !important;
-  background: yellow;
+  background: $gray_main;
   
   //color: black;
   
 
   button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
-    color: #FFFFFF;
+    border: 1px solid $yellow_main;
+    background-color: $yellow_main;
+    color: #000000;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -47,12 +45,12 @@
   
 .close-button {
   font-size: 2.5rem;
-  color: #FF4B2B;
+  color: $yellow_main;
   margin-right: 1rem;
   transition: all 0.3s linear;
   position: absolute;
-  right: 20px;
-  top: 15px;
+  left: 15px;
+  top: 10px;
   cursor: pointer;
   transition: 0.4s;
   margin: 0.5rem;
@@ -66,12 +64,12 @@
 
 .back-button {
   position: absolute;
-  left: 28px;
-  top: 24px;
+  left: 25px;
+  top: 70px;
   cursor: pointer;
   font-size: 2.5rem;
   transition: 0.4s;
-  color: rgb(97, 125, 152);
+  color: #cccccc;
 
 }
 .back-button:hover{
@@ -94,5 +92,5 @@
 }
 
 .modal-content {
-  margin-top: 40px;
+  margin-top: 20px;
 }

@@ -126,7 +126,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   // }
 
   return (
-    <div className="content_Home">
+    <div >
       <Navbar />
       {
         ID_Product ?

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import {
-  getAllFilteredProducts,
-  getAllCaracteristics
-} from '../../Redux/actions/actionsProducts';
+import {getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
+import {FaSearch} from "react-icons/fa"
+import {MdClose} from "react-icons/md"
 
 const SearchBar = ({
   queriesFromReducer,
@@ -63,19 +62,16 @@ const SearchBar = ({
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <button className="button_search" type="submit"><span className="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
-      </form>
-      {
-        search ?
+        <button className="button_search" type="submit"><FaSearch/></button>
+      {search ?
           <div>
-            <p>Buscar por: {search}</p>
             <button
               name={search}
               onClick={e => closeSearchButton(e)}
-            >x</button>
-          </div> :
-          ""
+            ><MdClose/></button>
+          </div> :""
       }
+      </form>
     </div>
   );
 };

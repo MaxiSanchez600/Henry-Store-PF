@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {REGISTER_URL, GUEST_CART_USER} from "../../../Config/index"
 import axios from 'axios'
 import {firebase} from '../../../Config/firebase-config'
-// ! COMPONENTES
 import { useDispatch} from 'react-redux';
 import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 import { IoArrowBackCircle,IoCloseCircle } from "react-icons/io5";
@@ -197,24 +196,17 @@ const Register = ({RegisterClose,LoginOpen}) => {
             <IoCloseCircle/>
             </span>
           </div>
-          <h2 className="title">Registro</h2>
+          <h2 className="title-register">Registro</h2>
           <form className="formu" onSubmit={createAccount}>
-              <div>
                 <input className="inText" type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
-              </div>
-              <div>
                 <input className="inText" type={check?"password":"text"} name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
-              </div>
-              <div>
                 <input className="inText" type={check?"password":"text"} name="confimationPass" id="confimationPass" onChange={handleOnChange} value={form.confimationPass} required  placeholder="Confirmacion de Contraseña..."/>
-              </div>
-              <div >
-                <label><input className="checkbox" type="checkbox" id="showPass" value={check} onChange={checkboxOnChange}/>Mostrar contraseñas</label>
-              </div>
-              <br/>
+                <div className="showPass">
+                  <label for="showPass">Mostrar contraseñas</label>
+                  <input className="checkbox" type="checkbox" id="showPass" value={check} onChange={checkboxOnChange}></input>
+                </div>
               <button className="button_register" type="submit" >Registrarme</button>
           </form>
-
               <div className="social_container">
                 <p className="botoncito-google" onClick={handleGoogle}>
                   <span class="iconify" data-icon="ant-design:google-plus-outlined" data-inline="false"></span>

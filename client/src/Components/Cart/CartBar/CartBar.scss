@@ -4,11 +4,11 @@
     display: flex;
     width: 1000px;
     justify-content: space-between;
+    align-items: center;
     .CartH2Continue_CartBar{
         font-size: 0.9em;
         font-weight: 300;
         text-decoration: underline;
-        margin-top: 2em;
         cursor: pointer;
         color: black;
     }
@@ -19,14 +19,15 @@
         font-size: 1.3em;
         font-weight: 300;
         color: #7f7f7f;
-        margin-top: 1.4em;
         margin-left: 0.5em;
+        margin-top: 0.5em
     }
 }
 
 
 .CartBarLeft_CartBar{
     display: flex;
+    margin-bottom: 1rem;
 }
 
 .CartLine_CartBar{

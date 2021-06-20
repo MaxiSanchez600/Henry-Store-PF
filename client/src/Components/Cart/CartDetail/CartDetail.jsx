@@ -80,7 +80,7 @@ export function CartDetail(props){
     return(
         <div className = 'Cart_CartDetail'>
             <img src = {props.product.image} alt = 'fotoproducto'/>
-            <div>
+            <div className="right_column_cart_detail">
                 <h1 className='Cart_CartDetail--h1'>{props.product.product_name}</h1>
                 <h2 className='Cart_CartDetail--h2'>Caracteristicas</h2>
                 <div className = 'Cart_CartDetail--labels'>

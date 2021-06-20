@@ -3,31 +3,39 @@
 span{
     font-family: "Avenir_Black";
 }
-.PayConteiner_Cartpay{
-    background-color: black;
-    height: max-content;
-    max-width: 450px;
-    width: max-content
-}
 .Contenedor_CartPay{
-    width: 100%;
+    background-color: black;
+    height: 440px;
+    max-width: 450px;
+    width: max-content;
     padding: 15px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     .Label3_Cartpay{
         color: white;
         font-size: 0.8em;
         font-family: "Avenir_Book";
-        margin-top: 555px;
     }
 }
 .PayConteinerH1_CartPay{
     color: white;
     font-family: "Avenir_Black";
     font-size: 1.75em;
+    justify-content: flex-start;
 }
-
+.topPrice_pay{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: blue;
+    height: 80px;
+}
 .TotalPrice_CartPay{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: -1em;
     .Label1_Cartpay{
         font-family: "Avenir_Black";

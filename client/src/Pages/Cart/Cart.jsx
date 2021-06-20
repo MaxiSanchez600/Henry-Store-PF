@@ -11,9 +11,8 @@ import './Cart.scss'
 
 export default function Cart(){
     return (
-        <div className="content_Home" >
+        <div >
             <Navbar />
-            <SearchBar />
                 <div className = 'CartConteiner_Cart'>
                         <div>
                             <CartBar/>
