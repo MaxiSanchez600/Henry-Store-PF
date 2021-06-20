@@ -53,7 +53,10 @@ const NavBar = () => {
                         />
       </Modal>
       <div className="left-box">
-        <img className="logohenry" src={henry}/>
+        <Link to="/">
+          <img className="logohenry" src={henry} alt ="not"/>
+        </Link>
+        
         <div className="geolocation"><GeoLocation/></div>
       </div>
       <div className="mid-box">

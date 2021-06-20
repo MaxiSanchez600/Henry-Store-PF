@@ -38,16 +38,9 @@ export function Cartpay(props){
     }
    
     return(
-        <div className = 'PayConteiner_Cartpay'>
-          {/* <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
-          <Register isOpened={ModalRegister} 
-                  RegisterClose={() => setModalRegister(false)} 
-                  LoginOpen={() => setModalLogin(true)}
-                  />
-           </Modal> */}
             <div className = 'Contenedor_CartPay'>
               <h1 className = 'PayConteinerH1_CartPay'>RESUMEN DE LA COMPRA</h1>
-              <div>
+              <div className= "topPrice_pay">
                 <div className = 'TotalPrice_CartPay'>
                   <h2 className ='Label1_Cartpay'>TOTAL</h2>
                   <h2 className ='Label2_Cartpay'>{props.pricetotal - (hc * props.pricetotal / 100)} USD</h2>
@@ -57,12 +50,10 @@ export function Cartpay(props){
                 utlizar en tu compra.</label>}
               </div>
               <div className = 'HC_CartPay'>
-                <div className = 'HCAmountDiv_CartPay'>
                   <div className = 'HCAmount_CartPay'>
                       <h1>HENRY COINS</h1>
                       <h2>{hc}</h2>
                   </div>
-                </div>
                 <div className = 'HCSelect_CartPay'>
                   <label onClick = {onClickLabel} value = "aaa">100</label>
                   <label onClick = {onClickLabel} value = {50}>50</label>
@@ -81,7 +72,6 @@ export function Cartpay(props){
               </div>
   
             </div>
-        </div>
     )
 }
 

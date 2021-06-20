@@ -7,6 +7,14 @@
     grid-gap: 10%;
     overflow-y: scroll;
     height: 600px;
+    padding: 1%;
+    padding-bottom: 1%;
+}
+
+.CartCost_CartDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ::-webkit-scrollbar{

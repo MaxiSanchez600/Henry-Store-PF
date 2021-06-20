@@ -6,12 +6,21 @@
     color: black;
     display: flex;
     transition: all 0.3s ease 0s;
+    width: 420px;
+    height: 210px;
     img {
         width: 150px;
         height: 200px;
         padding: 10px;
+        object-fit: contain;
     }
-    &:hover{
+    .right_column_cart_detail{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 1%;
+        padding-top: 1%;
+        align-items: flex-start;
     }
 }
 
