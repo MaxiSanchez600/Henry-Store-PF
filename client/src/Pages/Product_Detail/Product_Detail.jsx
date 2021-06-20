@@ -26,6 +26,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
         }
       }
       await fetch(URL_BASE + 'cart/addproducttocart', options)
+     // .then()
     }
     else{
       if(localStorage.getItem('userid') === null){
