@@ -1,0 +1,13 @@
+.Carrousel_SliderCarrousel{
+    display: flex;
+    align-items: center;
+}
+
+.Icon_SliderCarrousel{
+    height: max-content;
+    color: gray;
+    transition: all 0.3s ease 0s;
+    &:hover{
+        color: #FFFF00;
+    }
+}

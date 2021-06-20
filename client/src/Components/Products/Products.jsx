@@ -19,7 +19,6 @@ function Products({ ListProducts, getAllFilteredProducts }) {
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return (
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
-                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
                 <div className="product_name">{product.name}</div>
                 <div className="iconify icon_heart" data-icon="ant-design:heart-outlined" data-inline="false"></div>
                 <div className="product_price"><h5>{product.price} USD</h5> </div>

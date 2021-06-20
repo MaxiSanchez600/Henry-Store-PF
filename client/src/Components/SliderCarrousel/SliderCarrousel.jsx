@@ -2,6 +2,7 @@ import { useState } from 'react';
 import IMAGES from "../../Assets/images.json";
 import {IoIosArrowBack} from "react-icons/io"
 import {IoIosArrowForward} from "react-icons/io"
+import './slidercarrousel.scss'
 
 
 const SliderCarousel = ({ imageList = IMAGES }) => {
@@ -20,13 +21,14 @@ const SliderCarousel = ({ imageList = IMAGES }) => {
   }
 
   return (
-    <div>
+    <div >
       {
         imageListLength > 0 ?
           imageListLength !== 1 ?
-            <div>
-              <IoIosArrowBack onClick={handlePreviousImage} size="30px" color="gray"/>
-              <IoIosArrowForward onClick={handleNextImage} size="30px" color="gray"/>
+            <div className = 'Carrousel_SliderCarrousel'>
+              <div className = 'Icon_SliderCarrousel'>
+                <IoIosArrowBack onClick={handlePreviousImage} size = '3em' cursor = 'pointer'/>
+              </div>
               {
                 imageList.map((image, index) => {
                   if (index === currentImage) {
@@ -44,6 +46,9 @@ const SliderCarousel = ({ imageList = IMAGES }) => {
                   else return "";
                 })
               }
+              <div className = 'Icon_SliderCarrousel'>
+                <IoIosArrowForward onClick={handleNextImage}  size="3em" cursor = 'pointer'/>
+              </div>
             </div> :
             <div>
               <img
