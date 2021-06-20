@@ -8,7 +8,12 @@ function ImageUploader ({ json, setJson }){
 
     const handleUploadImage = async (files) => {
         let arrAux = [];
-        for(let i = 0; i < (3 - json.images.length); i++) {
+        if(files.length > (3 - json.images.length)) {
+            var iterations = (3 - json.images.length);
+        } else {
+            var iterations = files.length;
+        }
+        for(let i = 0; i < iterations; i++) {
             const formData = new FormData();
             formData.append('file', files[i]);
             formData.append('upload_preset', 'dhalbnfi');
