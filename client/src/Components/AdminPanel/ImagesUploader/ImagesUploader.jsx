@@ -4,27 +4,34 @@ import './ImagesUploader.scss'
 
 function ImageUploader ({ json, setJson }){
     
-
+    const [progress, setProgress] = useState(0);
 
     const handleUploadImage = async (files) => {
         let arrAux = [];
-        for(let i = 0; i < files.length; i++) {
+        if(files.length > (3 - json.images.length)) {
+            var iterations = (3 - json.images.length);
+        } else {
+            var iterations = files.length;
+        }
+        for(let i = 0; i < iterations; i++) {
             const formData = new FormData();
             formData.append('file', files[i]);
             formData.append('upload_preset', 'dhalbnfi');
             const res = await axios.post('https://api.cloudinary.com/v1_1/daau4qgbu/image/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
+                },
+                onUploadProgress(e) {
+                    setProgress((e.loaded * 100) / e.total);
                 }
             });
-            console.log(i);
             arrAux.push(res.data.url);
-            console.log(arrAux);
-            setJson({
-                ...json,
-                images: [...json.images, ...arrAux]
-            });
+            setProgress(0);
         }
+        setJson({
+            ...json,
+            images: [...json.images, ...arrAux]
+        });
     };
 
     const handleOnClose = (url) => {
@@ -43,16 +50,23 @@ function ImageUploader ({ json, setJson }){
                         <button className='onclose-btn' value={url} onClick={e => handleOnClose(e.target.value)}>X</button>
                     </div>
                 })}
-                <div className='card-footer'>
+                <label className='card-footer' for='input-file'>
                     <input 
                         type='file' 
                         className='img-uploader' 
                         onInput={e => handleUploadImage(e.target.files)}
                         disabled={json.images.length < 3 ? false : true}
                         multiple
-                        accept = "image/png, image/jpeg"
-                    />  
-                </div>
+                        accept="image/png, image/jpeg"
+                        id='input-file'
+                    />
+                    Subir archivos  
+                    <progress 
+                        value={progress} 
+                        max='100' 
+                        className='progress-bar'
+                    />
+                </label>
             </div>
         </div>
     );
