@@ -1,0 +1,44 @@
+.img-uploader-container {
+    height: 20rem;
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.card-previewer {
+    height: 75%;
+    width: 100%;
+    border: 1px solid #fff;
+    position: relative;
+    display: flex;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: #dfe8ed;
+    padding: 13px;
+}
+
+.img-view-container {
+    position: relative;
+    height: 80%;
+    width: 30%;
+    padding: 5px;
+}
+
+.img-view {
+    width: 100%;
+    height: 100%;
+}
+
+.onclose-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

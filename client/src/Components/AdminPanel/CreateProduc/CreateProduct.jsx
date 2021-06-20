@@ -4,6 +4,7 @@ import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
 import CreateCaracteriscs from "../CreateCaracteristics/CreateCaracteriscs";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import Tags from "../Tags/Tags";
+import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 
 
@@ -29,7 +30,8 @@ function CreateProduct ({editIsActive, productData}){
         infoProduct:{},
         categories:{},
         caracteristics:{},
-        tags:[]
+        tags:[],
+        images: []
     })
 
     useEffect(()=>{
@@ -173,7 +175,7 @@ function CreateProduct ({editIsActive, productData}){
                     <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
                     <Tags tags={tags} setTags={setTags} textPlaceholder='presione enter para agregar un tag'/>
                 </div>
-                {/* //agregar imagenes */}
+                <ImageUploader json={json} setJson={setJson} />
                 <button onClick={creacteProduct}>Crear Producto</button>
 
             </div>
