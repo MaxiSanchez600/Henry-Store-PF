@@ -54,7 +54,7 @@ function CreateProduct ({editIsActive, productData}){
                     objCat[cat.name_category]=true
                 })
                 setCategoriesSelected(objCat)
-                setJson({...json, caracteristics:{[productData.Caracteristics[0].name_caracteristic]:productData.Caracteristics[0].values_caracteristic}})
+                setJson({...json, caracteristics:{[productData.Caracteristics[0].name_caracteristic]:productData.Caracteristics[0].values_caracteristic}, images:productData.images})
             }
         }
         initialInfo()

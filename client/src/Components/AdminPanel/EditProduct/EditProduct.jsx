@@ -70,7 +70,8 @@ function EditProduct (){
               "M"
             ]
           }
-        ]
+        ],
+        "images":["http://res.cloudinary.com/daau4qgbu/image/upload/v1624158899/henrystore_products/qixiexaiwvwjzwt1x50w.png","http://res.cloudinary.com/daau4qgbu/image/upload/v1624159034/henrystore_products/z88fjftxggxwj676jq0d.png"]
       }
     const [basicInfo, setBasicInfo]=useState({
         name:data.name,
