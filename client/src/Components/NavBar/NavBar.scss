@@ -8,42 +8,100 @@
     height: 15vh;
     justify-content: space-around;  
     padding: 10px;  
+
     .left-box{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: red;
         .logohenry{
-            margin-bottom: -15px;
-            height: 120px;
+            margin-top: 23px;
+            width: 300px;
+            padding-top: 2%;
+        }
+        .geolocation{
+            margin-top: 20px;
+            padding-bottom: 2%;
         }
     }
 
     .mid-box{
         display: flex;
-        flex-direction: column;
-        background-color: blue;
+        flex-direction: row;
         width: 50%;
         align-items: center;
+        justify-content: space-around;
         padding-top: 10px ;
-        .searchbar{
-            margin: 10px;
+        p{
+            font-weight: 500;
+            font-size: 1.1em;
+            color: #ffffff;
+        }
+        p:hover{
+            color: $yellow_main;
         }
     }
 
     .right-box{
         display: flex;
-        background-color: green;
         flex-direction: column;
+        width: 17%;
         .profile-box{
             height: 70%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .image {
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+                border: 1px solid white;
+                object-fit: cover;
+            }
         }
         .buttons-under-profile{
             height: 30%;
             justify-content: space-around;
+            align-items: center;
             display: flex;
-            background-color: yellow;
+
+            .menu_category{
+                position: relative;
+                display: block;
+                background-color: $yellow_main;
+                font-weight: 400;
+                font-size: 0.8em;
+                color: #000000;
+                width: fit-content;
+                height: fit-content;
+                margin: 10px;
+                text-decoration: none;
+                border-radius: 4px;
+                height: 30px;
+                width: 100px;
+                z-index: 0;
+                transition: all 500ms ease;
+                border: 2px solid $yellow_main;
+                background-color: transparent;
+                color: #ffffff;
+            }
+            .menu_category::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                margin: auto;
+                background-color: $yellow_main;
+                transition: all 500ms ease;
+                z-index: -1;
+              }
+              .menu_category:hover {
+                animation: shadow-pulse 1000ms 1;
+                background-color: $yellow_main;
+                color: #000000;
+                cursor: pointer;
+              }
         }
     }
 }

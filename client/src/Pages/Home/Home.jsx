@@ -6,12 +6,11 @@ import Footer from '../../Components/Footer/Footer';
 import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
-import GeoLocation from '../../Components/GeoLocation/GeoLocation';
 import Order from '../../Components/Order/Order';
 import { useDispatch } from 'react-redux';
 import {getUserLogin} from "../../Redux/actions/actionsUsers";
 import { firebase } from "../../Config/firebase-config";
-import Sidebar from "../../Components/Sidebar/Sidebar";
+import Sidebar from "../../Components/Sidebar/Sidebar.jsx";
 
 function Home({ queriesFromReducer, getProductsWithoutFilters }) {
     const dispatch = useDispatch();
@@ -26,21 +25,28 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
     }
     
     return (
-        <div className="content_Home" >
+            <div>
             <Navbar />
-            <div className="body_Home">
-                <div className="webcontent_home">
+            <div className="search_container">
+            <div className="search"><SearchBar/></div>
+            </div>
+            <div className="content_Home" >
+            <div className="content_SidebarLeft" >
+                <Order />
+                <Filters />
                     {
                         Object.keys(queriesFromReducer).length ?
                             <button onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> : ""
                     }
-                    <Filters />
-                    <Order />
-                    <Products />
-                </div>
             </div>
-            <Footer />
+            <div className="body_Home">
+                    <div className="products">
+                    <Products />
+                    </div>
+            </div>
             <Sidebar />
+        </div>
+            <Footer />
         </div>
     )
 }

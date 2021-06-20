@@ -17,6 +17,7 @@ import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import GeoLocation from "../../Components/GeoLocation/GeoLocation";
 import { Suspense } from "react";
 import "firebase/auth";
+import "./App.scss"
 import Cart from "../../Pages/Cart/Cart";
 import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";

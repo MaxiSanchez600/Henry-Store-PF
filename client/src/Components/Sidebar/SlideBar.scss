@@ -1,9 +1,8 @@
-/*
-=============== 
-Sidebar
-===============
-*/
+
+@import '../../Sass/variables';
+
 .sidebar-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +15,7 @@ Sidebar
   border-color: transparent;
   transition: all 1s linear;
   cursor: pointer;
-  color:rgb(230, 107, 107);
+  color:$gray_main;
   margin-top: 0.2rem;
 }
 
@@ -92,7 +91,7 @@ Sidebar
 
 .sidebar {
   position: fixed;
-  top: 100px;
+  top: 140px;
   right: 0;
   width: 100%;
   height: 100%;

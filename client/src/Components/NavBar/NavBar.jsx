@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Authentication/Login/Login";
 import Register from "../Authentication/Register/Register";
-import logo from '../../Assets/Images/Logo_H_black.png'
+import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
 import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 import {  useSelector } from 'react-redux';
 import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
-import henry from "../../Assets/Images/Logo_Henry_black.png"
+import henry from "../../Assets/Images/new_logo.png"
 import GeoLocation from '../GeoLocation/GeoLocation'
 import SearchBar from '../SearchBar/SearchBar'
 import {FaShoppingCart} from 'react-icons/fa'
+import {IoEnter} from "react-icons/io5"
+import {FaUserAlt} from "react-icons/fa"
 
 // ! COMPONENTES
 import "firebase/auth";
@@ -25,7 +27,7 @@ const NavBar = () => {
   const [ModalRegister, setModalRegister] = useState(false);
   const [ModalForgotPass, setModalForgotPass] = useState(false);
 
-  const { openSidebar } = useGlobalContext();
+  const { openSidebar, closeSidebar } = useGlobalContext();
   const { data: user } = useUser();
  
   // ! CONTENT
@@ -52,38 +54,39 @@ const NavBar = () => {
       </Modal>
       <div className="left-box">
         <img className="logohenry" src={henry}/>
-        <GeoLocation></GeoLocation>
+        <div className="geolocation"><GeoLocation/></div>
       </div>
       <div className="mid-box">
-        <div className="searchbar">
-          <SearchBar></SearchBar>
-        </div>
-        <div className="filter_categories">
+          <p>Nosotros</p>
+          <p>Sucursales</p>
           <FilterCategories />
-        </div>
+          <p>Contacto</p>
+          <p>FAQ</p>
       </div>
       <div className="right-box">
         <div className="profile-box">
           {user &&
               <div className="header_perfil">
-                <span onClick={openSidebar}>
-                  <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
-                </span> 
-                <span onClick={openSidebar}>
+                <span onMouseMove={openSidebar}>
                   <h2>{dataUSerLogin.username}</h2>
                 </span>
+                <span onMouseMove={openSidebar}>
+                  <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
+                </span> 
               </div>
           }
         </div>
       <div className="buttons-under-profile">
-          <Link to = {'/cart'}><FaShoppingCart/></Link>
-          {!user &&
-              //Botones de login y registro 
-            <>
-              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
-              <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
-            </>
-          }
+        <div className="carrito">
+        <Link to={'/cart'}><FaShoppingCart/></Link>
+        </div>
+        {!user &&
+            //Botones de login y registro 
+          <>
+            <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <IoEnter/></button>
+            <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <FaUserAlt/></button>
+          </>
+        }
       </div>
       </div>
     </div>
