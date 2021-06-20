@@ -7,11 +7,12 @@ import {firebase} from '../../../Config/firebase-config'
 // ! COMPONENTES
 import { useDispatch} from 'react-redux';
 import {getUserLogin} from "../../../Redux/actions/actionsUsers";
+import { IoArrowBackCircle,IoCloseCircle } from "react-icons/io5";
+import Swal from 'sweetalert2';
 
 const Register = ({RegisterClose,LoginOpen}) => {
 
   const dispatch = useDispatch();
-
   const imputsState = {
     email: "",
     password: "",
@@ -25,6 +26,12 @@ const Register = ({RegisterClose,LoginOpen}) => {
   if (user) {
     RegisterClose();
     setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 2000);
+    Swal.fire({
+      title:`Bienvenido!`,
+      icon:'success',
+      showConfirmButton: false,
+      timer:1000
+    })
   }
   
   const handleOnChange = (e) => {
@@ -41,7 +48,8 @@ const Register = ({RegisterClose,LoginOpen}) => {
       .then((res)=> {
         return axios.post(REGISTER_URL,{
             id:res.user.uid,
-            email: form.email
+            email: form.email,
+            image:"https://i.ibb.co/Drj4mfK/Logo-H-black.png"
         })
       })
       .then((res)=>{
@@ -57,7 +65,15 @@ const Register = ({RegisterClose,LoginOpen}) => {
           setForm(imputsState)
       })
       .catch (function(error){
-          alert(error);
+        Swal.fire({
+          target: document.getElementById("modal"),
+          title:`${error}`,
+          icon:'error',
+          width:"80%",
+          height:"20%",
+          confirmButtonColor:"#3889EF ",
+         background:"#F2F3F4",
+        })
       })
     }else{
       setForm({
@@ -65,7 +81,15 @@ const Register = ({RegisterClose,LoginOpen}) => {
         password :"",
         confimationPass: "",
       })
-      alert("las contraseñas no coinciden, vuelve a ingresarlas")
+      Swal.fire({
+        target: document.getElementById("modal"),
+        title:"las contraseñas no coinciden, vuelve a ingresarlas",
+        icon:'error',
+        width:"80%",
+        height:"20%",
+        confirmButtonColor:"#3889EF ",
+       background:"#F2F3F4",
+      })
     }
   };
 
@@ -102,7 +126,15 @@ const Register = ({RegisterClose,LoginOpen}) => {
           localStorage.setItem('userlogged', res.user.uid);
         }
       }).catch((error) => {
-        alert(error)
+        Swal.fire({
+          target: document.getElementById("modal"),
+          title:`${error}`,
+          icon:'error',
+          width:"80%",
+          height:"20%",
+          confirmButtonColor:"#3889EF ",
+          background:"#F2F3F4",
+        })
       });
   }
 
@@ -134,7 +166,15 @@ const Register = ({RegisterClose,LoginOpen}) => {
           localStorage.setItem('userlogged', res.user.uid);
         }
       }).catch((error) => {
-        alert(error)
+        Swal.fire({
+          target: document.getElementById("modal"),
+          title:`${error}`,
+          icon:'error',
+          width:"80%",
+          height:"20%",
+          confirmButtonColor:"#3889EF ",
+          background:"#F2F3F4",
+        })
       });
   }
 
@@ -150,11 +190,11 @@ const Register = ({RegisterClose,LoginOpen}) => {
     <div>
         <div>
           <div>
-            <span  className="back-button" onClick={()=>{LoginOpen();RegisterClose()}}>
-            Login
+            <span className="back-button" onClick={()=>{LoginOpen();RegisterClose()}}>
+            <IoArrowBackCircle/>
           </span>
             <span className="close-button" onClick={()=>RegisterClose()}>
-              x
+            <IoCloseCircle/>
             </span>
           </div>
           <h2 className="title">Registro</h2>

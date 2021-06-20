@@ -1,0 +1,84 @@
+.container {
+    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: brown;
+  background-color: #ffff01;
+  height: 100%;
+  width: 100%;
+}
+
+.card2 {
+
+  background: white;
+  margin-top: 20px;
+  margin-block: 30px;
+  width: 1150px;
+  height: 625px;
+  display: flex;
+  padding: 20px 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 50px #555;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.imag {
+  width: 200px;
+  height: 500px;
+  flex-direction: row;
+}
+.imag img {
+  height: 150px;
+  padding: 10px;
+  border: 2px dotted  black;
+  border-radius: 10px;
+}
+
+.content{
+  height: 100%;
+  width: 700px;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content:flex-start;
+} 
+
+.formData{
+    padding-left: 80px;
+    
+}
+
+.formu{
+    width: 100%;
+}
+
+.formu div{
+    width: 100%;
+    justify-content:center;
+}
+
+.imageHenry{
+  margin-top: 30px;
+  
+}
+
+.nacionality{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+
+.documentType{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:flex-start;
+}
+.documentType input[radio]{
+  width :0px;
+  align-items:center;
+}
+

@@ -40,8 +40,6 @@ function updateUserStatus (req,res,next) {
             name_status: {[Op.or]: [
                 {[Op.iLike]: 'incompleto'},
                 {[Op.iLike]: 'completo'},
-                {[Op.iLike]: 'baneado'},
-                {[Op.iLike]: 'deshabilitado'},
                 {[Op.iLike]: 'undefined'},
             ]}
         }
@@ -74,8 +72,6 @@ function deleteUserStatus (req,res,next) {
             name_status: {[Op.or]: [
                 {[Op.iLike]: 'incompleto'},
                 {[Op.iLike]: 'completo'},
-                {[Op.iLike]: 'baneado'},
-                {[Op.iLike]: 'deshabilitado'},
                 {[Op.iLike]: 'undefined'},
             ]}
         }

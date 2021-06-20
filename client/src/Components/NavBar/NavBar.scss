@@ -7,13 +7,17 @@
     z-index: 1;
     columns: 2;
     column-gap: 1%;
-    right: 0;
+
     
     .menu_left {
+      
     }
 
     .menu_rigth {
         float: right;
+      
+       
+        
     }
 
     .button_login {
@@ -38,10 +42,11 @@
 
 .user_perfil {
     position: absolute;
-    top: 1%;
-    right: 2em;
+    top: 25px;
+    right: 50px;
     font-family: "Avenir_Roman";
-    font-size: 10px;
+    font-size: 12px;
+    
 
 .header_perfil{
     display: flex;
@@ -152,3 +157,15 @@
 body {
     background-image: linear-gradient(315deg, #ffffff 0%, #f8f8f8 74%);
 }
+
+.image {
+    display: flex;
+    flex-direction: row   ;
+    justify-content:center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50px;
+    border: 0 solid #000000;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }

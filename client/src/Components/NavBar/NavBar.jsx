@@ -6,7 +6,7 @@ import logo from '../../Assets/Images/Logo_H_black.png'
 import Modal from "../Modal/Modal";
 import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
-
+import {  useSelector } from 'react-redux';
 import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
 
@@ -15,6 +15,8 @@ import "firebase/auth";
 
 
 const NavBar = () => {
+
+  const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
   const [ModalLogin, setModalLogin] = useState(false);
   const [ModalRegister, setModalRegister] = useState(false);
   const [ModalForgotPass, setModalForgotPass] = useState(false);
@@ -32,6 +34,7 @@ const NavBar = () => {
         </div>
         <div className="menu_rigth">
           {!user &&
+              //Botones de login y registro 
             <>
               <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
               <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
@@ -66,9 +69,11 @@ const NavBar = () => {
         <div className="user_perfil">
           <div className="header_perfil">
             <span onClick={openSidebar}>
-              <img className="image" src={user.photoURL || logo} alt="not found" />
+              <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
             </span> 
-            <h2>{user.providerData[0].displayName}</h2>
+            <span onClick={openSidebar}>
+              <h2>{dataUSerLogin.username}</h2>
+            </span>
           </div>
         </div>
       }

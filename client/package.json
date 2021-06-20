@@ -23,7 +23,8 @@
     "react-scripts": "4.0.0",
     "reactfire": "^3.0.0-rc.0",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^11.0.17"
   },
   "scripts": {
     "start": "react-scripts start",

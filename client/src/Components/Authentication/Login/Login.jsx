@@ -5,13 +5,12 @@ import { firebase } from "../../../Config/firebase-config";
 // ! COMPONENTES
 import "firebase/auth";
 import { useDispatch } from 'react-redux';
-import {getUserLogin} from "../../../Redux/actions/actionsUsers";
-
+import {getUserLogin,setUSerLogin} from "../../../Redux/actions/actionsUsers";
+import {IoCloseCircle } from "react-icons/io5";
+import Swal from 'sweetalert2'
 
 const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
-  //const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
-  //console.log(dataUSerLogin)
   const dispatch = useDispatch();
 
   const initialState = {
@@ -25,7 +24,12 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
   //inicia sesion
   if (user) {
     loginClose();
-    setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 1000);
+    Swal.fire({
+      title:`Bienvenido! &#128526;`,
+      icon:'success',
+      showConfirmButton: false,
+      timer:1000
+    })
   }
   
   //Setea Formulario
@@ -67,19 +71,28 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
               localStorage.removeItem('userid');
               localStorage.setItem('userlogged', res.data.id_user);
               window.location.reload();
+             dispatch(setUSerLogin(res.data))
             })
             .catch((error) => {
-              alert(error);
+              Swal.fire({
+                title:`${error}`,
+                icon:'error',
+              })
+              
             });
         }
         else{
           localStorage.removeItem('userid');
           localStorage.setItem('userlogged', res.user.uid);
           window.location.reload();
+          dispatch(getUserLogin(res.user.uid))
         }
       })
       .catch((error) => {
-        alert(error);
+        Swal.fire({
+          title:`${error}`,
+          icon:'error',
+        })
       });
   };
 
@@ -93,7 +106,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       .then((res) => {
         let i = res.additionalUserInfo;
         if (i.isNewUser) {
-          axios.post(REGISTER_URL, {
+          return axios.post(REGISTER_URL, {
             id:res.user.uid,
             username: i.username,
             image: i.profile.avatar_url,
@@ -101,6 +114,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           })
           .then((res) => {
             if(localStorage.getItem('userid') !== null){
+              dispatch(setUSerLogin(res.data))
               axios.put(GUEST_CART_USER, {
                 new_user: res.data.id_user,
                 guest_user: localStorage.getItem('userid')
@@ -112,20 +126,24 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           })
         }
         else{
+          dispatch(getUserLogin(res.user.uid))
           localStorage.removeItem('userid');
           localStorage.setItem('userlogged', res.user.uid);
           window.location.reload();
         }
       })
       .catch((error) => {
-        alert(error);
+        Swal.fire({
+          title:`${error}`,
+          icon:'error',
+        })
       });
   };
 
   //enviar Iniciar sesion
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await firebase
+    return await firebase
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((res) => {
@@ -136,26 +154,36 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       })
       .catch((error) => {
         setForm(initialState);
-        alert(error.message);
+        Swal.fire({
+          target: document.getElementById("modal"),
+          title:`${error.message}`,
+          icon:'error',
+          width:"80%",
+          height:"20%",
+          confirmButtonColor:"#3889EF ",
+          background:"#F2F3F4",
+        })
       });
   };
 
   return (
     <div className="content_Login">
       <div>
-        <span className="close-button" onClick={() => loginClose()}>
+        <span className="close-button" onClick={()=>loginClose()}>
+            <IoCloseCircle/>
         </span>
       </div>
+
       <form className="formu" onSubmit={handleSubmit}>
         <div>
           <h1>Login</h1>
           <input
-            type="text" name="email" id="email" value={form.email} required onChange={handleOnChange} placeholder="Email..."
+            type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
           />
         </div>
         <div>
           <input
-            type="password" name="password" id="password" value={form.password} required onChange={handleOnChange} placeholder="Contraseña..."
+            type="password" name="password" id="password" value={form.password}  onChange={handleOnChange} placeholder="Contraseña..."
           />
         </div>
         <div className="buttons">

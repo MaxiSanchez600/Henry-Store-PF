@@ -14,7 +14,6 @@
   padding: 10px;
   border-radius: 10px;
   transition: 0.2s;
-  //background:rgba(255, 255, 255, 0.6); 
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   opacity:1 !important;
@@ -34,6 +33,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    cursor: pointer;
   }
   
   button:active {
@@ -46,52 +46,39 @@
 
   
 .close-button {
+  font-size: 2.5rem;
+  color: #FF4B2B;
+  margin-right: 1rem;
+  transition: all 0.3s linear;
   position: absolute;
   right: 20px;
   top: 15px;
   cursor: pointer;
-  padding: 3px;
-  width: 30px;
-  height: 30px;
-  background-color: #FF4B2B;
-  color: white;
-  border-radius: 8px;
-  border-color: #e63946;
-  font-weight: bold;
   transition: 0.4s;
   margin: 0.5rem;
-  //text-align:center;
-  text-align-last: center;
+ 
+
 }
 .close-button:hover{
   transform: scale(1.1);
 }
 
+
 .back-button {
   position: absolute;
-  left: 20px;
-  top: 15px;
+  left: 28px;
+  top: 24px;
   cursor: pointer;
-  padding: 4px;
-  width: 60px;
-  height: 30px;
-  background-color: white;
-  color: blue;
-  border-radius: 8px;
-  border-color: #e63946;
-  font-weight: bold;
+  font-size: 2.5rem;
   transition: 0.4s;
-  margin: 0.5rem;
-  text-align:center;
- 
+  color: rgb(97, 125, 152);
+
 }
 .back-button:hover{
   transform: scale(1.1);
+  color: black;
 }
-
 }
-
-
 
 
 .overlay {
@@ -102,7 +89,6 @@
   bottom: 0;
   z-index: 5000;
   transition: all 2s ease;
- // background-color: black;
  background:rgba(0, 0, 0, 0.6); 
   opacity: 0.95;
 }

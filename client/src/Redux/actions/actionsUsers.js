@@ -25,37 +25,41 @@ export const setUSerLogin =(payload)=>{
 
 export function getUserLogin(user) {
   return function (dispatch) {
-    return axios.get(`${LOGIN_URL}?id=${user}`).then((response) => {
+    return axios.get(`${LOGIN_URL}?id=${user}`)
+    .then((response) => {
       dispatch({
         type: GET_USER_LOGIN,
         payload: response.data,
       });
-    });
+    })
+    .catch((e)=>alert(e))
   };
 }
 
 export function getNacionalities() {
   return function (dispatch) {
-    return axios.get(GET_NACIONALITIES).then((response) => {
-      console.log(response);
+    return axios.get(GET_NACIONALITIES)
+    .then((response) => {
       dispatch({
         type: GET_NACIONALITI,
         payload: response.data,
       });
-    });
+    })
+    .catch((e)=>alert(e))
   };
 }
 
 
 export function getDocumentTypes() {
   return function (dispatch) {
-    return axios.get(GET_DOCUMENT_TYPES).then((response) => {
-      console.log(response);
+    return axios.get(GET_DOCUMENT_TYPES)
+    .then((response) => {
       dispatch({
         type: GET_DOCUMENTS,
         payload: response.data,
       });
-    });
+    })
+    .catch((e)=>alert(e))
   };
 }
 // =======================================================================================
