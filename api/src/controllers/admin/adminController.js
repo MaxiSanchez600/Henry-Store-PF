@@ -24,7 +24,7 @@ function readUsers (req,res,next) {
                     disabled: u.disabled,
                     lastSignIn: u.metadata.lastSignInTime,
                     creationTime: u.metadata.creationTime,
-                    registrationOrigin: u.providerData.providerId
+                    registrationOrigin: u.providerData[0].providerId
                 }
             });
             if (response[1].pageToken) {

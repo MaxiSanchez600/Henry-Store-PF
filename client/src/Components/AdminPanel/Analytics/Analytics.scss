@@ -1,4 +1,19 @@
 .analyticsContainer{
     flex: 4;
-    background-color: lightseagreen;
+    display:flex;
+    background-color: #777777;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    h1{
+        align-self: flex-start;
+        margin-left: 40px;
+        font-weight: 800;
+    }
+}
+
+.img-analitics{
+    width: 400px;
+    height: 400px;
+    margin-bottom: 200px;
 }
