@@ -9,6 +9,7 @@ export function Cartpay(props){
     const [hc, sethc] = React.useState(0)
     const [modalRegister, setModalRegister] = React.useState(false)
     let onClickLabel = (e) =>{
+      console.log(e)
       if(localStorage.getItem('userlogged') !== null){
           if(e.target.innerText === 'Maximo'){
             sethc(props.userhc)

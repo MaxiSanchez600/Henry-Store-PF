@@ -11,7 +11,9 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
   
-  const [productCaracteristics, setProductCaracteristics] = useState({});
+  const [productCaracteristics, setProductCaracteristics] = useState({
+    caracteristics: {}
+  });
 
   let sendproduct = async () =>{
     if(localStorage.getItem('userlogged') !== null){
@@ -26,6 +28,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
         }
       }
       await fetch(URL_BASE + 'cart/addproducttocart', options)
+      
     }
     else{
       if(localStorage.getItem('userid') === null){
@@ -67,53 +70,53 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
     // console.log("ID_Product:", ID_Product);
   }, []);
 
-  useEffect(() => {
-    if (ID_Product && ID_Product.unit_stock > 0) {
-      console.log("hay ID_Product:", ID_Product);
-      setProductCaracteristics((previousState) => {
-        // console.log("previousState: ", previousState);
-        const initialState = {
-          product_id: ID_Product.id_product,
-          amount: 1,
-          caracteristics: {}
-        }
-        ID_Product.Caracteristics.forEach(caracteristic => {
-          // console.log("caracteristic.name_caracteristic: ", caracteristic.name_caracteristic);
-          initialState.caracteristics[caracteristic.name_caracteristic] = caracteristic.values_caracteristic[0];
-        })
-        console.log("initialState: ", initialState);
-        return initialState;
-      });
-    }
-    // else console.log("no hay id product");
-  }, [ID_Product]);
+   useEffect(() => {
+   if (ID_Product && ID_Product.unit_stock > 0) {
+       console.log("hay ID_Product:", ID_Product);
+       setProductCaracteristics((previousState) => {
+         // console.log("previousState: ", previousState);
+         const initialState = {
+           product_id: ID_Product.id_product,
+           amount: 1,
+           caracteristics: {}
+         }
+         ID_Product.Caracteristics.forEach(caracteristic => {
+           // console.log("caracteristic.name_caracteristic: ", caracteristic.name_caracteristic);
+           initialState.caracteristics[caracteristic.name_caracteristic] = caracteristic.values_caracteristic[0];
+         })
+         console.log("initialState: ", initialState);
+         return initialState;
+       });
+     }
+     // else console.log("no hay id product");
+   }, [ID_Product]);
 
-  function handleproductCaracteristics(e) {
+  let handleproductCaracteristics  = (e) => {
+    console.log(e.target.getAttribute("name"));
+    console.log(e.target.getAttribute("value"));
     e.preventDefault();
-    const name = e.target.name.split("_")[0];
+    const name = e.target.getAttribute("name").split("_")[0];
     // console.log("name: ", name);
-    // console.log("e.target.name: ", e.target.name);
-    // console.log("e.target.value: ", e.target.value);
-    if (e.target.name !== "amount") {
+    if (e.target.getAttribute("name") !== "amount") {
       setProductCaracteristics({
         ...productCaracteristics,
         caracteristics: {
           ...productCaracteristics.caracteristics,
-          [name]: e.target.value
+          [name]: e.target.getAttribute("value")
         }
       });
     }
-    else if (e.target.name === "amount") {
-      if (e.target.value > ID_Product.unit_stock) {
+    else if (e.target.getAttribute("name") === "amount") {
+      if (e.target.getAttribute("value") > ID_Product.unit_stock) {
         setProductCaracteristics({
           ...productCaracteristics,
-          [e.target.name]: ID_Product.unit_stock
+          [e.target.getAttribute("name")]: ID_Product.unit_stock
         });
       }
       else {
         setProductCaracteristics({
           ...productCaracteristics,
-          [e.target.name]: parseInt(e.target.value)
+          [e.target.getAttribute("name")]: parseInt(e.target.getAttribute("value"))
         });
       }
     }
@@ -155,27 +158,38 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                     <div className="product-price">
                       {/* <p className="last-price">Old Price: <span>{ID_Product.price}</span></p> */}
                       {/* <p className="new-price">New Price: <span>{ID_Product.price * 0.9} (10%)</span></p> */}
-                      <h2 className="new-price">Precio: <span>${ID_Product.price}</span></h2>
+                      <span>${ID_Product.price}</span>
                     </div>
 
                     <div className="product-detail">
-                      <h3>Descripción: <span>{ID_Product.description}</span></h3>
-                      <h3>Caracteristicas:</h3>
+                      <p>{ID_Product.description}</p>
                       {
                         ID_Product.Caracteristics.map(caracteristic => (
                           caracteristic.name_caracteristic !== "type" ? 
                           <div key={caracteristic.name_caracteristic}>
-                            <h4>{caracteristic.name_caracteristic}</h4>
+                            <h4 className = 'H4_Produtc_Detail'>Elige tu {caracteristic.name_caracteristic}:</h4>
+                            <div className = 'LabelConteiner_Product_Detail'>
                             {
                               caracteristic.values_caracteristic.map(value => (
-                                <button
+                                 (productCaracteristics.caracteristics[caracteristic.name_caracteristic] === value) ?
+                                 <label
+                                   className = 'LabelCarac_Product_Detail_Chosen'
+                                   key={value}
+                                   name= {`${caracteristic.name_caracteristic}_caracteristic`}
+                                   value= {value}
+                                   onClick = {handleproductCaracteristics}
+                                 >{value}</label>
+                                 :
+                                <label
+                                  className = 'LabelCarac_Product_Detail'
                                   key={value}
-                                  name={`${caracteristic.name_caracteristic}_caracteristic`}
-                                  value={value}
-                                  onClick={e => handleproductCaracteristics(e)}
-                                >{value}</button>
+                                  name= {`${caracteristic.name_caracteristic}_caracteristic`}
+                                  value= {value}
+                                  onClick = {handleproductCaracteristics}
+                                >{value}</label>
                               ))
                             }
+                            </div>
                           </div> : ""
                         ))
                       }
@@ -191,17 +205,19 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                     {
                       ID_Product.unit_stock > 0 ?
                         <div className="purchase-info">
-                          <h3>
-                            Cantidad:
+                          <div className = 'Cantidad_ProductDetail'>
+                            <h4 className = "Cantidad_Product_Detail">
+                              Cantidad:
+                            </h4>
                             <input
-                              type="number"
-                              name="amount"
-                              min="1"
-                              max={ID_Product.unit_stock}
-                              value={productCaracteristics.amount}
-                              onChange={e => handleproductCaracteristics(e)}
-                            />
-                          </h3>
+                                type="number"
+                                name="amount"
+                                min="1"
+                                max={ID_Product.unit_stock}
+                                value={productCaracteristics.amount}
+                                onChange={e => handleproductCaracteristics(e)}
+                              />
+                            </div>
                           <button type="button" className="btn" onClick={sendproduct}>
                             <b className="fas fa-shopping-cart">Agregar al carrito</b>
                           </button>
