@@ -4,7 +4,7 @@ import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import GeoLocation from '../../Components/GeoLocation/GeoLocation';
 import Footer from '../../Components/Footer/Footer';
-
+import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
 import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
@@ -18,16 +18,47 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   let sendproduct = async () =>{
     if(localStorage.getItem('userlogged') !== null){
-      console.log('Esta logeado')
+      //Esta logeado
+      productCaracteristics.user_id = localStorage.getItem('userlogged')
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(productCaracteristics),
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+      await fetch(URL_BASE + 'cart/addproducttocart', options)
     }
     else{
       if(localStorage.getItem('userid') === null){
+          //No esta lgoeado y no hay guest => Lo creo
           const userguest = await fetch(URL_BASE + 'cart/adduserguest', {method: 'PUT'})
           const userguestresponse = await userguest.json()
           localStorage.setItem('userid', userguestresponse.userid)
+          productCaracteristics.user_id = userguestresponse.userid
+          const options = {
+            method: 'POST',
+            body: JSON.stringify(productCaracteristics),
+            headers : { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          }
+          await fetch(URL_BASE + 'cart/addproducttocart', options)
       }
       else{
-          console.log('Hay guest')
+          //No esta logeado pero hay guest
+          productCaracteristics.user_id = localStorage.getItem('userid')
+          const options = {
+            method: 'POST',
+            body: JSON.stringify(productCaracteristics),
+            headers : { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          }
+          await fetch(URL_BASE + 'cart/addproducttocart', options)
       }
     }
   }

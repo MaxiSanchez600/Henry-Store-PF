@@ -11,8 +11,9 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
                                 ProductIdProduct: product_id
                         })
        for(const name in caracteristics){
+            let id_carac =  await Caracteristic.findOne({attributes: ['id_caracteristic'], where:{name_caracteristic: name}})
             await OrderDetailCaracteristic.create({
-                caracteristic_id: name,
+                caracteristic_id: id_carac.dataValues.id_caracteristic,
                 value_caracteristic: caracteristics[name],
                 OrderDetailIdOrderDetail: orderdetail.id_order_detail
             })

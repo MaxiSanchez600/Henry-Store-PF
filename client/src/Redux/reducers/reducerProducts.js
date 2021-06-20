@@ -4,10 +4,12 @@ import {
     FILTER_PRODUCTS,
     SET_TOTAL_PRICE,
     SET_CARRITO,
-    GET_CATEGORIES,
-    GET_CARACTERISTICS
 } from '../actions/actions';
 
+import {
+    GET_CATEGORIES,
+    GET_CARACTERISTICS
+} from '../actions/actionsProducts'
 
 const initialState = {
     products: [],
