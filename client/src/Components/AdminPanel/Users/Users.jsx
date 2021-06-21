@@ -36,7 +36,7 @@ export default function Users () {
                 <th>Email Register</th>
                 <th>Email Newsletter</th>
                 <th>Username</th>
-                <th>Telefono</th>
+                {/* <th>Telefono</th> */}
                 <th>Tipo de Documento</th>
                 <th>Identificacion</th>
                 <th>Nacionalidad</th>
@@ -55,7 +55,7 @@ export default function Users () {
                     <td>{user.emailFireBase?user.emailFireBase:"-"}</td>
                     <td>{user.email?user.email:"-"}</td>
                     <td>{user.username?user.username:"-"}</td>
-                    <td>{user.phone?user.phone:"-"}</td>
+                    {/* <td>{user.phone?user.phone:"-"}</td> */}
                     <td>{user.DocumentType.name_document_type}</td>
                     <td>{user.identification?user.identification:"-"}</td>
                     <td>{user.Nacionality.name_nacionality}</td>
