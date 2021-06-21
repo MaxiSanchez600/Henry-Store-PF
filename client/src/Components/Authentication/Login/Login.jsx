@@ -168,14 +168,15 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   return (
     <div className="content_Login">
-      <div>
-        <span className="close-button" onClick={()=>loginClose()}>
+      <div className="container_close_login">
+        <span className="close-button-login" onClick={()=>loginClose()}>
             <IoCloseCircle/>
         </span>
       </div>
 
       <form className="formu-login" onSubmit={handleSubmit}>
           <h1 className="name">Login</h1>
+          <div className="name_strip"></div>
           <input
             className="imput_login" type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
           />

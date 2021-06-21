@@ -5,7 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    width: 460px;
+    height: 620px;
     .recovery_pass {
         transition: all 0.5s ease;
         width: 100%;
@@ -82,4 +83,32 @@
 .name{
     font-family: "Avenir_Black";
     margin-bottom: 2rem;
+    color: black;
+  }
+
+.name_strip{
+        background-color: yellow;
+        width: 3.5rem;
+        height: 8px;
+        margin-top: -2.8rem;
+        z-index: -10;
+}
+.container_close_login{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+.close-button-login {
+    font-size: 2.5rem;
+    color: $yellow_main;
+    transition: all 0.3s linear;
+    position: relative;
+    cursor: pointer;
+    transition: 0.4s;
+    left: 1rem;
+    top: -2rem;
+    &:hover{
+      transform: scale(1.1);
+    }
+  
   }
