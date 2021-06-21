@@ -3,11 +3,11 @@ import './CartDetail.scss'
 import { URL_BASE } from '../../../Config/index.js'
 import {setCarrito} from '../../../Redux/actions/actions'
 import { connect } from 'react-redux'
+import {AiFillHeart} from 'react-icons/ai'
 
 
 export function CartDetail(props){
     const [amount, setAmount] = React.useState(props.product.actual_amount)
-
     let getLabels = () =>{
         let labels = []
         for(const label in props.product.caracteristics){
@@ -81,8 +81,10 @@ export function CartDetail(props){
         <div className = 'Cart_CartDetail'>
             <img src = {props.product.image} alt = 'fotoproducto'/>
             <div className="right_column_cart_detail">
-                <h1 className='Cart_CartDetail--h1'>{props.product.product_name}</h1>
-                <h2 className='Cart_CartDetail--h2'>Caracteristicas</h2>
+                <div className = 'ProductTitle_CartDetail'>
+                    <h1 className='Cart_CartDetail--h1'>{props.product.product_name}</h1>
+                    <div className = 'ProductStripe_CartDetail'></div>
+                </div>
                 <div className = 'Cart_CartDetail--labels'>
                     {getLabels().map(element => <label className='Cart_CartDetail--label'>{element}</label>)}
                 </div>
@@ -97,7 +99,7 @@ export function CartDetail(props){
                 </div>
                 <div className = 'CartOptions_CartDetail'>
                     <div>
-                        <h2>Save</h2>
+                        <div className="heart_product_Detail"><AiFillHeart/></div>
                     </div>
                     <h2 onClick = {deleteProduct} className = 'h2Delete_CartDetail'>Delete</h2>
                 </div>
