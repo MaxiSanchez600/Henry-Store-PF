@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { BiImageAdd } from 'react-icons/bi';
 import './ImagesUploader.scss'
 
 function ImageUploader ({ json, setJson }){
     
     const [progress, setProgress] = useState(0);
+    const [progressVisible, setProgressVisible] = useState(false);
 
     const handleUploadImage = async (files) => {
         let arrAux = [];
@@ -22,11 +24,13 @@ function ImageUploader ({ json, setJson }){
                     'Content-Type': 'multipart/form-data'
                 },
                 onUploadProgress(e) {
+                    setProgressVisible(true);
                     setProgress((e.loaded * 100) / e.total);
                 }
             });
             arrAux.push(res.data.url);
             setProgress(0);
+            setProgressVisible(false);
         }
         setJson({
             ...json,
@@ -47,27 +51,29 @@ function ImageUploader ({ json, setJson }){
                 {json.images.map((url, i) => {
                     return <div className='img-view-container' key={i}>
                         <img src={url} alt='' className='img-view'/>
+                        <div className='img-front-film'>IMAGEN {i + 1}</div>
                         <button className='onclose-btn' value={url} onClick={e => handleOnClose(e.target.value)}>X</button>
                     </div>
                 })}
-                <label className='card-footer' for='input-file'>
-                    <input 
-                        type='file' 
-                        className='img-uploader' 
-                        onInput={e => handleUploadImage(e.target.files)}
-                        disabled={json.images.length < 3 ? false : true}
-                        multiple
-                        accept="image/png, image/jpeg"
-                        id='input-file'
-                    />
-                    Subir archivos  
-                    <progress 
-                        value={progress} 
-                        max='100' 
-                        className='progress-bar'
-                    />
-                </label>
             </div>
+            <progress 
+                value={progress} 
+                max='100' 
+                className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
+            />
+            <label className='card-footer' for='input-file'>
+                <input 
+                    type='file' 
+                    className='img-uploader' 
+                    onInput={e => handleUploadImage(e.target.files)}
+                    disabled={json.images.length < 3 ? false : true}
+                    multiple
+                    accept="image/png, image/jpeg"
+                    id='input-file'
+                />
+                <BiImageAdd />
+                Agregar imágenes al producto  
+            </label>
         </div>
     );
 }
