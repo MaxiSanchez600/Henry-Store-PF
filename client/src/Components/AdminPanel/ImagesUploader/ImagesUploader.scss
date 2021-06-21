@@ -21,19 +21,18 @@
 .card-footer {
     width: 100%;
     text-align: center;
-    background: #000;
     font-size: 20px;
-    color: #FFF;
+    color: #87868a;
     padding: 13px;
-    border: 2px solid #FFFF01;
+    border: 2px solid #87868a;
     border-radius: 5px;
     transition: 0.5s ease;
 
     &:hover {
         cursor: pointer;
-        border: 2px solid #000;
-        color: #000;
-        background: #FFFF01;
+        border: 2px solid #87868a;
+        color: #fff;
+        background: #87868a;
     }
 }
 
@@ -57,7 +56,7 @@
     left: 0.25rem;
     width: (40rem/3) - 0.6rem;
     height: (20rem*0.65) - 0.7rem;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;

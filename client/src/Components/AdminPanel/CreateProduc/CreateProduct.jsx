@@ -218,7 +218,7 @@ function CreateProduct ({editIsActive, productData, title}){
                         <ImageUploader json={json} setJson={setJson} />
                     </div>
                 </div>
-                <button onClick={creacteProduct}>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
+                <button onClick={creacteProduct} className='btn-final-form'>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
             </div>
         </div>
         
