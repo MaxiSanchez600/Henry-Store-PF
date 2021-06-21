@@ -150,9 +150,6 @@ function CreateProduct ({editIsActive, productData, title}){
                                 <input className='smallInput' name='percentage_discount' onChange={onChangeInputs} value={allData.percentage_discount}></input>
                             </div>
                         </div>
-        
-                    </div>
-                    <div className="createContent2">
                         <div className="categoryContainer">
                                 <h4>Categoría</h4>      
                                 <div>Seleccione una o mas categorias, en caso de no existir agregue una nueva:</div>
@@ -185,6 +182,10 @@ function CreateProduct ({editIsActive, productData, title}){
                                     subCatSelected={subCatSelected}
                                 />
                         </div>
+        
+                    </div>
+                    <div className="createContent2">
+                       
                         <div className="caracteristicsContainer">
                             <h4>Caracteristicas</h4>
                             <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc.</div>
