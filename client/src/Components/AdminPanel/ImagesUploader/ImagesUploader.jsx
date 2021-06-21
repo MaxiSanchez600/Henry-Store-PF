@@ -51,7 +51,7 @@ function ImageUploader ({ json, setJson }){
                 {json.images.map((url, i) => {
                     return <div className='img-view-container' key={i}>
                         <img src={url} alt='' className='img-view'/>
-                        <div className='img-front-film'>IMAGEN {i + 1}</div>
+                        <div className='img-front-film'>Imagen {i + 1}</div>
                         <button className='onclose-btn' value={url} onClick={e => handleOnClose(e.target.value)}>X</button>
                     </div>
                 })}
