@@ -2,6 +2,9 @@
 
 .modal {
   background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -14,7 +17,6 @@
   transition: 0.2s;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  opacity:1 !important;
   background: gray;
   
   //color: black;
@@ -34,13 +36,6 @@
     cursor: pointer;
   }
   
-  button:active {
-    transform: scale(0.95);
-  }
-  
-  button:focus {
-    outline: none;
-  }
 
   
 .close-button {
@@ -48,17 +43,15 @@
   color: $yellow_main;
   margin-right: 1rem;
   transition: all 0.3s linear;
-  position: absolute;
-  left: 15px;
-  top: 10px;
+  position: relative;
+  right: 11rem;
+  bottom:1rem;
   cursor: pointer;
   transition: 0.4s;
-  margin: 0.5rem;
- 
+  &:hover{
+    transform: scale(1.1);
+  }
 
-}
-.close-button:hover{
-  transform: scale(1.1);
 }
 
 

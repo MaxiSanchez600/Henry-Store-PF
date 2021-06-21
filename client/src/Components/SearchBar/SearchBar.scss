@@ -1,16 +1,12 @@
 @import "../../Sass/variables";
 
-// .content_SearchBar{
-//        background-color: brown;
-//        display: flex;
-//        flex-direction: row;
-// }
-
 .content_SearchBar {
+       display: flex;
+       width: 30%;
        position: relative;
+       align-items: center;
        font-family: "Avenir_Roman";
        font-size: 10px;
-       z-index: 5;
 
        .input_search {
               position: relative;
@@ -45,8 +41,32 @@
                      transform: scale(1.1);
               }
 
-              &:focus {
-                    transform: rotate(45deg);
+       }
+       .content_SearchBar{
+              justify-self: flex-start;
+       }
+
+       .container_button_close_search{
+              margin-left: 0.5rem;
+       }
+
+       .button_close_search {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: $yellow_main;
+              color: black;
+              border-radius: 8px;
+              width: 1.5rem;
+              height: 1.5rem;
+              border: none;
+              cursor: pointer;
+              outline: none;
+              font-family: "Avenir_Black";
+              &:hover{
+                     transition: 0.4s all ease;
+                     background-color: #AEADB3;
+                     color: $yellow_main;
               }
        }
 }

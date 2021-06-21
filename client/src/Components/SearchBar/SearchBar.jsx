@@ -53,7 +53,7 @@ const SearchBar = ({
   // ! CONTENT
   return (
     <div className="content_SearchBar">
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>
         <input
           className="input_search"
           name="tag"
@@ -63,15 +63,14 @@ const SearchBar = ({
           onChange={e => handleSearch(e)}
         />
         <button className="button_search" type="submit"><FaSearch/></button>
+      </form>
+      <div className="container_button_close_search">
       {search ?
           <div>
-            <button
-              name={search}
-              onClick={e => closeSearchButton(e)}
-            ><MdClose/></button>
+            <button className="button_close_search" name={search} onClick={e => closeSearchButton(e)} ><MdClose/></button>
           </div> :""
       }
-      </form>
+      </div>
     </div>
   );
 };

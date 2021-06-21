@@ -174,20 +174,20 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
         </span>
       </div>
 
-      <form className="formu" onSubmit={handleSubmit}>
-          <h1>Login</h1>
+      <form className="formu-login" onSubmit={handleSubmit}>
+          <h1 className="name">Login</h1>
           <input
-            type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
+            className="imput_login" type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
           />
           <input
-            type="password" name="password" id="password" value={form.password}  onChange={handleOnChange} placeholder="Contraseña..."
+            className="imput_login" type="password" name="password" id="password" value={form.password}  onChange={handleOnChange} placeholder="Contraseña..."
           />
             <button className="button_login" type="submit">Iniciar sesión</button>
       </form>
       <div className="ForgotPass">
         <p>
           <span
-            class="recovery_pass"
+            className="recovery_pass"
             onClick={() => {
               ForgotPassOpen();
               loginClose();
