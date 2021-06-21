@@ -2,13 +2,11 @@
 
 .content_SearchBar {
     padding: 20px 0;
-    display: grid;
-//     grid-template-rows: 47.5% 47.5%;
-    position: relative;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     font-family: "Avenir_Roman";
-    font-size: 10px;
 //     height: 175px;
 
     .searchbar_input {
@@ -17,7 +15,7 @@
         .input_search {
             position: relative;
             border: 1px solid $gray_main;
-            height: 35px;
+            height: 2.1875rem;
             width: 38em;
             border-radius: 8px;
             padding-left: 31px;
@@ -37,13 +35,13 @@
         }
 
         .button_search {
+            height: 2.1875rem;
             width: fit-content;
             border-style: none;
             font-family: "Avenir_Roman";
             background: transparent;
             vertical-align: bottom;
             font-size: 2em;
-//             width: 100%;
             transition: 0.5s all ease;
             cursor: pointer;
 
@@ -53,6 +51,8 @@
         }
     }
     .box_filter {
+        height: 2.1875rem;
+        margin-left: 1.5rem;
         font-family: "Avenir_Book";
         display: grid;
         grid-template-columns: 77.5% 17.5%;
@@ -89,27 +89,4 @@
             }
         }
     }
-//     .container_button_close_search {
-//         margin-left: 0.5rem;
-//     }
-
-//     .button_close_search {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         background-color: $yellow_main;
-//         color: black;
-//         border-radius: 8px;
-//         width: 1.5rem;
-//         height: 1.5rem;
-//         border: none;
-//         cursor: pointer;
-//         outline: none;
-//         font-family: "Avenir_Black";
-//         &:hover {
-//             transition: 0.4s all ease;
-//             background-color: #aeadb3;
-//             color: $yellow_main;
-//         }
-//     }
 }

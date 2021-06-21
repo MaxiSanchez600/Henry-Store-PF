@@ -71,9 +71,6 @@ const SearchBar = ({
             <button className="button_filtered" name={search} onClick={e => closeSearchButton(e)} ><MdClose /></button>
           </div> : ""
       }
-      {/* <div className="container_button_close_search">
-
-      </div> */}
     </div>
   );
 };
