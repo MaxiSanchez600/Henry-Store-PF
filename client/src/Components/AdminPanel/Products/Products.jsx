@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import { PRODUCTS_URL} from "../../../Config/index"
 import { VscRefresh } from "react-icons/vsc";
 import './Products.scss'
-// import { RiSettings4Fill } from "react-icons/ri";
+import { RiSettings4Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 // import actionsUponUsers from './actionsUponUsers/actionsUponUsers'
 
 export default function Products () {
@@ -20,6 +21,18 @@ export default function Products () {
         })
     },[reset])
 
+    useEffect(()=>{
+        const getData = async function() {
+            try {   
+                const response = await axios.get("http://localhost:3001/product/categories")
+                window.localStorage.setItem('categories', JSON.stringify(response.data))
+            }catch (error) {
+              console.error(error)
+            }   
+        };
+        getData()
+    },[])
+    
 
     return <div>
         <div className="container-table">
@@ -29,16 +42,19 @@ export default function Products () {
          <div>
             <table className="content-table">
                 <tr>
+                    <th></th>
                     <th>Imagen</th>
                     <th>Titulo</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     
                 </tr>
-                {products.slice(0,products.length/2).map(prod=>{
-                    return (<tr>
-                        {/* <td><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, false, true)} /></td> */}
-                        <td><img className="img-prod-table" src={prod.Images[0].name_image} alt="not"/></td>
+                {products.slice(0,products.length/2).map((prod, i)=>{
+                    return (
+                    <tr key={i}>
+    
+                        {<td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>}
+                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>
@@ -55,10 +71,12 @@ export default function Products () {
                     <th>Stock</th>
                     
                 </tr>
-                {products.slice(products.length/2).map(prod=>{
-                    return (<tr>
+                {products.slice(products.length/2).map((prod, i)=>{
+                    return (
+                    <tr key={i}>
                         {/* <td><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, false, true)} /></td> */}
-                        <td><img className="img-prod-table" src={prod.Images[0].name_image} alt="not"/></td>
+                        <td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>
+                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>

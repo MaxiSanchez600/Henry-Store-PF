@@ -4,10 +4,11 @@ import {
   BrowserRouter,
   // Switch,
   Route,
+  // Redirect
   Redirect
 } from "react-router-dom";
 
-import React,{useState,useEffect}  from "react";
+
 import {config} from '../../Config/firebase-config.js'
 import { FirebaseAppProvider } from 'reactfire'
 
@@ -15,17 +16,20 @@ import { FirebaseAppProvider } from 'reactfire'
 import Home from "../../Pages/Home/Home";
 import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import GeoLocation from "../../Components/GeoLocation/GeoLocation";
-import { Suspense } from "react";
+import React, {Suspense} from "react";
 import "firebase/auth";
 import "./App.scss"
 import Cart from "../../Pages/Cart/Cart";
 import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
+import EditProduct from "../AdminPanel/EditProduct/EditProduct";
+
+// !ACTIONS
 import Users from "../AdminPanel/Users/Users";
 import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
 import Products from "../AdminPanel/Products/Products"
-import { useDispatch, useSelector } from 'react-redux';
+
 import {getUserLogin} from "../../Redux/actions/actionsUsers";
 import GuardRoute from "./GuardRoute";
 import { useGlobalContext } from "../../context"
@@ -50,12 +54,14 @@ function App() {
               <Route exact path="/profile" component={CompleteData} />
               <Route exact path="/working" component={WorkingOnIt}/>
               {(typeOfUser === "admin")&&
-              <div>
+              <div >
               <Route path="/admin" component={SlideBar} />
               <Route  exact path="/admin" component={Analytics} />
               <Route  exact path="/admin/createProduct" component={CreateProduct} />
               <Route  exact path="/admin/users" component={Users}/>
               <Route  exact path="/admin/products" component={Products}/>
+              <Route exact path="/admin/editProduct/:id" render={(props)=>(
+              <EditProduct {...props} title='Editar producto'/>)}/>
               </div>
               }
             </BrowserRouter>

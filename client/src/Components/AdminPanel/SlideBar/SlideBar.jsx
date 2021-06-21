@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import './SlideBar.scss'
 import { Link } from "react-router-dom";
 import henry from "../../../Assets/Images/Logo_H_white.png"
 
 function SlideBar (){
+
     return(
         <div className='slideBarContainer'>
             <div>
                 <img className='profilePic' src={henry}></img>
                 <h3>Resumen</h3>
                 <ul>
-                    <li>Estadisticas</li>
+                <Link to='/admin'><li>Estadisticas</li></Link>
                     <li>Ventas</li>
                 </ul>
                 <h3>Productos</h3>

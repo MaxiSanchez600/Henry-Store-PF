@@ -6,7 +6,7 @@ const caracteristicsController = require('../controllers/caracteristics/caracter
 const router = Router();
 
 router.get('/', productsController.getProducts);
-router.post('/', productsController.createProduct);
+router.post('/', productsController.setProduct);
 
 router.get('/categories', categoriesController.getCategories)
 
