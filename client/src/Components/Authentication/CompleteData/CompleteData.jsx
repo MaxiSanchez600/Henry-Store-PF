@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getNacionalities,getDocumentTypes} from "../../../Redux/actions/actionsUsers";
 import { Link } from "react-router-dom";
 import {getUserLogin} from "../../../Redux/actions/actionsUsers";
-import logo from "../../../Assets/Images/Logo_H_black.png";
-import Logo_Henry_black from "../../../Assets/Images/Logo_Henry_black.png"
+import logo from "../../../Assets/images/Logo_H_black.png";
+import Logo_Henry_black from "../../../Assets/images/Logo_Henry_black.png";
 import {FaHome,} from 'react-icons/fa';
 
 export function validate(form){
@@ -158,7 +158,7 @@ const CompleteData = () => {
 
 
   return (
-    <div className="container">
+    <div className="containerCompleteData">
       <div className="divNavProfile">
         <div className="imageHenry">
           <Link to="/">

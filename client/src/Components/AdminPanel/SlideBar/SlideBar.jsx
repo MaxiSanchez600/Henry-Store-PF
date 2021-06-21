@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './SlideBar.scss'
 import { Link } from "react-router-dom";
-import henry from "../../../Assets/Images/Logo_H_white.png"
+import henry from "../../../Assets/images/Logo_H_white.png"
 
 function SlideBar (){
     return(

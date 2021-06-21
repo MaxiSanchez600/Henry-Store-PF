@@ -1,5 +1,5 @@
 import './Analytics.scss'
-import placeholder from "../../../Assets/Images/placeholder.png"
+import placeholder from "../../../Assets/images/placeholder.png"
 function Analytics (){
     return(
         <div className='analyticsContainer'>

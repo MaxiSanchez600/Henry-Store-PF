@@ -7,7 +7,7 @@ import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
 import Order from '../../Components/Order/Order';
-
+import Sidebar from "../../Components/Sidebar/Sidebar";
 function Home({ queriesFromReducer, getProductsWithoutFilters }) {
  
     function handleResetFilters(e) {
@@ -38,6 +38,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                     </div>
                 </div>
                 <Sidebar />
+                
             </div>
             <Footer />
         </div>

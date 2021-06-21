@@ -1,4 +1,4 @@
-import workingH from "../../Assets/Images/placeholder.png"
+import workingH from "../../Assets/images/placeholder.png"
 import Footer from "../Footer/Footer"
 import NavBar from "../NavBar/NavBar"
 import "./WorkingOnIt.scss"
