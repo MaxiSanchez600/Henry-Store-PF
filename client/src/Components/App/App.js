@@ -25,6 +25,7 @@ import Analytics from "../AdminPanel/Analytics/Analytics";
 import Users from "../AdminPanel/Users/Users";
 import CompleteData from "../Authentication/CompleteData/CompleteData.jsx"
 import Products from "../AdminPanel/Products/Products"
+import WorkingOnIt from "../WorkingOnIt/WorkingOnIt";
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
     <div className="App">
       <Suspense fallback={"Cargando..."}>
         <FirebaseAppProvider firebaseConfig={config}>
-          
+
             <BrowserRouter>
               <Route exact path="/" component={Home} />
               <Route exact path="/location" component={GeoLocation} />
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/admin/createProduct" component={CreateProduct} />
                 <Route path="/admin/users" component={Users}/>
                 <Route path="/admin/products" component={Products}/>
+                <Route path="/working" component={WorkingOnIt}/>
               </div>
             </BrowserRouter>
         

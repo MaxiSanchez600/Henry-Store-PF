@@ -13,7 +13,6 @@ import {
 
 const initialState = {
     products: [],
-    queries: {},
     user_id: "",
     userhc: 150,
     carrito: [],
@@ -50,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
         case SET_CARRITO:
             let total = 0;
             let hc = 0;
-            action.payload.map(producto =>{
+            action.payload.forEach(producto =>{
                 total = total + (producto.precio * producto.actual_amount)
                 hc = hc + (producto.hc * producto.actual_amount)
             })
