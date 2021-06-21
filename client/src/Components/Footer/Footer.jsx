@@ -1,6 +1,5 @@
 import './Footer.scss'
 import Logo_Henry_white from '../../Assets/Images/Logo_H_white.png'
-import {GiSelfLove} from "react-icons/gi"
 
 export default function Footer(){
     return (
@@ -8,7 +7,7 @@ export default function Footer(){
             <div className= "container_footer">
                 <div className= "row">
                     <div className="footercol">
-                        <img src={Logo_Henry_white} className="logo-henry" alt="" width="200px" />
+                    <img src={Logo_Henry_white} className="logo-henry" alt="" width="200px" />
                     </div>
                     <div className="footercol">
                         <h4>Newsletter</h4>

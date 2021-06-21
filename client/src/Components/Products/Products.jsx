@@ -5,6 +5,8 @@ import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 import {AiFillHeart} from 'react-icons/ai'
+import {IoIosArrowBack} from "react-icons/io"
+import {IoIosArrowForward} from "react-icons/io"
 
 
 function Products({ ListProducts, getAllFilteredProducts }) {
@@ -15,7 +17,7 @@ function Products({ ListProducts, getAllFilteredProducts }) {
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
-    const productPerPage = 6;
+    const productPerPage = 10;
     const pagesVisited = pageNumber * productPerPage;
     const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return (
@@ -46,8 +48,8 @@ function Products({ ListProducts, getAllFilteredProducts }) {
 
         {displayProducts.length !== 0 ? <div className="pagination">
             <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
+                previousLabel={<IoIosArrowBack/>}
+                nextLabel={<IoIosArrowForward/>}
                 pageCount={pageCount}
                 onPageChange={changePage}
                 containerClassName={"paginationBttns"}

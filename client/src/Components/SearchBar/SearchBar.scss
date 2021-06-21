@@ -27,7 +27,8 @@
               margin: 10px 5px 5px 5px;
        }
        .input_search:focus {
-              outline: 1px solid $yellow_main;
+              border: 1px solid $yellow_main;
+              outline: none;
        }
 
        .button_search {

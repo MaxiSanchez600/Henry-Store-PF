@@ -135,42 +135,6 @@
   font-weight: 500;
 
 }
-
-
-//--------------------------------------------------------
-
-/* ! PAGINATION */
-.paginationBttns {
-  width: 80%;
-  height: 40px;
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-}
-
-.paginationBttns a {
-  padding: 10px;
-  margin: 8px;
-  border-radius: 5px;
-  border: 1px solid #2b2eff;
-  color: #2b2eff;
-  cursor: pointer;
-}
-
-.paginationBttns a:hover {
-  color: white;
-  background-color: #2b2eff;
-}
-
-.paginationActive a {
-  background-color: #2b2eff;
-  color: white;
-}
-
-.pagination {
-  top: 40rem;
-}
-
 .button_detail {
   background-color: $yellow_main;
   color: black;
@@ -190,3 +154,45 @@
     color: $yellow_main;
   }
 }
+
+//--------------------------------------------------------
+
+/* ! PAGINATION */
+.paginationBttns {
+  position: relative;
+  bottom: 0;
+  width: 80%;
+  height: 5rem;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginationBttns a {
+  background-color: black;
+  color: $yellow_main;
+  width: auto;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all ease;
+}
+
+.paginationBttns a:hover {
+  color: black;
+  background-color: $yellow_main;
+}
+
+.paginationActive a {
+  background-color: $yellow_main;
+  color: black;
+}
+
+.pagination {
+  top: 40rem;
+}
+
+
