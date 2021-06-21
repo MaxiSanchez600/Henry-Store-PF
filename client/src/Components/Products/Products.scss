@@ -9,10 +9,6 @@
   width: 100%;
   // display: flex;
   // flex-direction: column;
-  .link{
-    text-decoration: none;
-    color:white;
-  }
   
 
   .all_Cards {
@@ -23,66 +19,125 @@
     justify-content: center;
   }
 
+
   .product_card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     max-width: 355px;
     width: 100%;
     border-radius: 25px;
     padding: 20px 30px 30px 30px;
-    background: #87868A;
+    background: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 3;
     overflow: hidden;
     transition: 0.2s all ease-out;
-    text-decoration: none;
 
     &:hover {
       transform: scale(1.02);
     }
   }
-
-  .product_card_disabled {
-    filter: grayscale(100%);
-    position: relative;
-    max-width: 355px;
-    width: 100%;
-    border-radius: 25px;
-    padding: 20px 30px 30px 30px;
-    background: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    z-index: 3;
+  .product_name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
-    transition: 0.2s all ease-out;
+    font-family: "Avenir_Black";
+    letter-spacing: 0.04rem;
+    font-weight: 600;
   }
-}
-
-.product_name {
-  padding-left: 1rem;
-  width: 230px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-family: "Avenir_Black";
-  font-weight: 600;
-}
-
-.product_image {
-  height: 12rem;
-  width: 100%;
-  object-fit: cover;
-}
-
-.iconify.icon_cart {
-  font-size: 1.5rem;
-}
-
-.iconify.icon_heart {
-  font-size: 1.1rem;
-  transition: 0.3s all ease;
-  &:hover {
+  .product_stripe{
+    background-color: yellow;
+    width: 100px;
+    height: 8px;
+    margin-top: -8px;
+    z-index: -10;
+  }
+  .product_number{
     font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 6px;
+    font-family: "Avenir_Black";
+  }
+  .product_usd{
+    font-family: "Avenir_Book";
+    font-weight: 500;
+  }
+  
+  .product_image {
+    height: 12rem;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  .product_price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-top: 0.3rem;
+  }
+  .product_henry_coin{
+    margin-bottom: 0.5rem;
+  }
+
+  .heart_product{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 1.2rem;
+    transition: 0.3s all ease;
+     &:hover{
+      color: red;
+      cursor: pointer;
+     }
   }
 }
+
+.product_card_disabled {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 355px;
+  width: 100%;
+  border-radius: 25px;
+  padding: 20px 30px 30px 30px;
+  background: #ffffff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  overflow: hidden;
+  transition: 0.2s all ease-out;
+
+  .product_image {
+    filter: grayscale(100%)
+  }
+  .product_stripe{
+    background-color: #D2D2D6;
+  }
+  .button_detail {
+    background-color: #D2D2D6;
+  
+    &:hover{
+      transition: 0.4s all ease;
+      background-color: #D2D2D6;
+      color: #000;
+    }
+  }
+  
+}
+.no_stock{
+  color: red;
+  font-family: "Avenir_Book";
+  font-weight: 500;
+
+}
+
+
+//--------------------------------------------------------
 
 /* ! PAGINATION */
 .paginationBttns {
@@ -120,9 +175,18 @@
   background-color: $yellow_main;
   color: black;
   border-radius: 8px;
-  width: 100%;
+  width: 11rem;
   height: 3.5em;
   border: none;
   cursor: pointer;
   outline: none;
+  font-family: "Avenir_Black";
+  letter-spacing: 0.06rem;
+  font-weight: 800;
+
+  &:hover{
+    transition: 0.4s all ease;
+    background-color: #AEADB3;
+    color: $yellow_main;
+  }
 }
