@@ -152,7 +152,7 @@ function CreateProduct ({editIsActive, productData, title}){
                         </div>
                         <div className="categoryContainer">
                                 <h4>Categoría</h4>      
-                                <div>Seleccione una o mas categorias, en caso de no existir agregue una nueva:</div>
+                                <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
                                 <ul>
                                     {
                                         categoriesSaves?.map((cat, index)=>(
@@ -170,7 +170,7 @@ function CreateProduct ({editIsActive, productData, title}){
                                     setJson={setJson}
                                 
                                 />
-                                <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button>
+                                {/* <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button> */}
                                 <CreateCategory 
                                     open={categoryIsOpen} 
                                     onClose={()=>setCategoryIsOpen(false)} 
