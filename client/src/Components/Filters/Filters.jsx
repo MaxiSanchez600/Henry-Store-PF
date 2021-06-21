@@ -54,24 +54,27 @@ function Filters({
   // ! ****************** CONTENT ****************** */
   return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
-      <div className="container_box">
-        {
-          Object.keys(filtersToSend).map((filterName) => (
-            <div key={filterName} className="box_filter" id={`${filterName}_${filtersToSend[filterName]}`}>
-              <p>{`${filterName}: ${filtersToSend[filterName]}`}</p>
-              <button
-                className="button_filtered"
-                name={filterName}
-                onClick={e => closeSelectedFilterButton(e)}
-              >x</button>
-            </div>
-          ))
-        }
-      </div>
+      {
+        Object.keys(filtersToSend).length ?
+          <div className="container_box">
+            {
+              Object.keys(filtersToSend).map((filterName) => (
+                <div key={filterName} className="box_filter" id={`${filterName}_${filtersToSend[filterName]}`}>
+                  <p className="filter_title_selected">{`${filterName}: ${filtersToSend[filterName]}`}</p>
+                  <button
+                    className="button_filtered"
+                    name={filterName}
+                    onClick={e => closeSelectedFilterButton(e)}
+                  >x</button>
+                </div>
+              ))
+            }
+          </div> : ""
+      }
 
       {/* PRECIO*/}
       <div className="name_filter">
-        <h3>Precio:</h3>
+        <h3 className="filter_title">Precio:<div className="title_stripe"></div></h3>
         <input
           id={`rangePriceMin`}
           className="range_price"
@@ -96,16 +99,16 @@ function Filters({
       {
         caracteristicsFromReducer.map(caracteristic => (
           <div className="name_filter" key={caracteristic.name_caracteristic}>
-            <h3>{caracteristic.name_caracteristic}</h3>
+            <h3 className="filter_title">{`${caracteristic.name_caracteristic}:`}<div className="title_stripe"></div></h3>
             <select
               name={caracteristic.name_caracteristic}
               className="list_select"
               onChange={e => handleFilters(e)}
             >
-              <option value="">Elige una opcion...</option>
+              <option value="" className="select_options">Elige una opcion...</option>
               {
                 caracteristic.values_caracteristic.map(value => (
-                  <option value={value} key={value}>{value}</option>
+                  <option value={value} key={value} className="select_options">{value}</option>
                 ))
               }
             </select>

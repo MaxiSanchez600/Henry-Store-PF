@@ -25,3 +25,27 @@
 .search_container{
     background-color: #eeeeee;
 }
+
+.content_SidebarLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .reset_button {
+//         display: grid;
+    //     justify-content: center;
+        background-color: $yellow_main;
+        color: #000000;
+        border-width: 0;
+        padding: 12.5px;
+        cursor: pointer;
+        transition: all 0.25s;
+        border-radius: 8px;
+        margin: 0;
+        height: 40px;
+
+        &:hover {
+            background-color: #000000;
+            color: $yellow_main;
+        }
+    }
+}

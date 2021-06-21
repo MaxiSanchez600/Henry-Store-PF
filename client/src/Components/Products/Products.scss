@@ -1,11 +1,11 @@
 @import "../../Sass/variables";
 
 .cards_container_products {
-  // margin: 1.5rem;
+  margin: 0 5rem;
   // display: grid;
   // grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
   // grid-gap: 2rem;
-  // justify-content: center;
+//   justify-content: center;
   width: 100%;
   // display: flex;
   // flex-direction: column;
@@ -14,9 +14,10 @@
   .all_Cards {
     margin: 1.5rem;
     display: grid;
+//     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
     grid-gap: 2rem;
-    justify-content: start;
+//     justify-content: start;
   }
 
 
