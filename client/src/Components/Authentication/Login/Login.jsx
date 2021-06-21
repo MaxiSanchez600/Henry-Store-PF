@@ -185,7 +185,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           />
             <button className="button_login" type="submit">Iniciar sesión</button>
       </form>
-      <div className="ForgotPass">
+      <div className="ForgotPass_login">
         <p>
           <span
             className="recovery_pass"
@@ -197,17 +197,9 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           </span>
         </p>
         <br />
-        <p>
-          <span
-            className="go_register"
-            onClick={() => {
-              registerOpen();
-              loginClose();
-            }}
-          >
+          <span className="go_register"onClick={()=>{registerOpen();loginClose()}}>
             Registrate
           </span>
-        </p>
         <div className="social_container">
           <p className="botoncito-google" onClick={handleGoogle}>
             <span

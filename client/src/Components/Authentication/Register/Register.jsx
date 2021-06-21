@@ -205,7 +205,7 @@ const Register = ({RegisterClose,LoginOpen}) => {
                 <label for="showPass">Mostrar contraseña</label>
                 <input className="checkbox" type="checkbox" id="showPass" value={check} onChange={checkboxOnChange}></input>
               </div>
-            <button className="button_register" type="submit" >Registrarme</button>
+            <button className="button_registerme" type="submit" >Registrarme</button>
         
             <div className="social_container">
               <p className="botoncito-google" onClick={handleGoogle}>
