@@ -28,7 +28,8 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
         <div>
             <Navbar />
             <div className="search_container">
-                <div className="search"><SearchBar /></div>
+                <SearchBar />
+                {/* <div className="search"></div> */}
             </div>
             <div className="content_Home" >
                 <div className="content_SidebarLeft" >
@@ -36,7 +37,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                     {
                         Object.keys(queriesFromReducer).length ?
                             <button className="reset_button" onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> :
-                            <div className="reset_button"></div>
+                            <div className="reset_button_hidden"></div>
                     }
                     <Filters />
                 </div>

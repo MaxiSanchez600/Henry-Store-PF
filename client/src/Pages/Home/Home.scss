@@ -15,15 +15,18 @@
     flex-wrap: wrap;
     width: 80vw;
 }
-.search{
-    display: flex;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    justify-content: center;
-}
 
 .search_container{
+    border-bottom: 5px solid $light_gray;
     background-color: #eeeeee;
+}
+
+.search{
+//     display: flex;
+    padding: 20px 0;
+//     padding-bottom: 20px;
+//     justify-content: center;
+//     width: 200%;
 }
 
 .content_SidebarLeft {
@@ -47,5 +50,9 @@
             background-color: #000000;
             color: $yellow_main;
         }
+    }
+    .reset_button_hidden {
+        height: 40px;
+        visibility: hidden;
     }
 }

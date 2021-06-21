@@ -69,12 +69,13 @@ function Filters({
                 </div>
               ))
             }
-          </div> : ""
+          </div> : <div className="container_box"></div>
       }
 
       {/* PRECIO*/}
       <div className="name_filter">
         <h3 className="filter_title">Precio:<div className="title_stripe"></div></h3>
+        <p className="range_price_subtitle">Desde: {filtersToSend.rangePriceMin}</p>
         <input
           id={`rangePriceMin`}
           className="range_price"
@@ -85,6 +86,7 @@ function Filters({
           onChange={e => handleFilters(e)}
           min={0}
         />
+        <p className="range_price_subtitle">Hasta: {filtersToSend.rangePriceMax}</p>
         <input
           id={`rangePriceMax`}
           className="range_price"

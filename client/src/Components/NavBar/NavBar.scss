@@ -30,7 +30,10 @@
         width: 50%;
         align-items: center;
         justify-content: space-around;
-        padding-top: 10px ;
+        padding-top: 10px;
+        a {
+            text-decoration: none;
+        }
         p{
             font-weight: 500;
             font-size: 1.1em;

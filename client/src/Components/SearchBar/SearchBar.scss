@@ -1,72 +1,115 @@
 @import "../../Sass/variables";
 
 .content_SearchBar {
-       display: flex;
-       width: 30%;
-       position: relative;
-       align-items: center;
-       font-family: "Avenir_Roman";
-       font-size: 10px;
+    padding: 20px 0;
+    display: grid;
+//     grid-template-rows: 47.5% 47.5%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-family: "Avenir_Roman";
+    font-size: 10px;
+//     height: 175px;
 
-       .input_search {
-              position: relative;
-              border: 1px solid $gray_main;
-              height: 35px;
-              width: 38em;
-              border-radius: 50px;
-              padding-left: 31px;
-              padding-right: 11px;
-              padding-top: 4px;
-              padding-bottom: 4px;
-              font-size: 13px;
-              color: #555;
-              margin: 10px 5px 5px 5px;
-       }
-       .input_search:focus {
-              border: 1px solid $yellow_main;
-              outline: none;
-       }
+    .searchbar_input {
+        display: flex;
+        align-items: center;
+        .input_search {
+            position: relative;
+            border: 1px solid $gray_main;
+            height: 35px;
+            width: 38em;
+            border-radius: 8px;
+            padding-left: 31px;
+            padding-right: 11px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            font-size: 13px;
+            color: $black_main;
+            background-color: $white_main;
+            margin: 10px 5px 5px 5px;
+            transition: all 0.25s;
+        }
+        .input_search:focus {
+            background-color: $light_gray;
+            border: 1px solid $yellow_main;
+            outline: none;
+        }
 
-       .button_search {
-              width: fit-content;
-              border-style: none;
-              font-family: "Avenir_Roman";
-              background: transparent;
-              vertical-align: bottom;
-              font-size: 1.8rem;
-              transition: 0.5s all ease;
-              cursor: pointer;
+        .button_search {
+            width: fit-content;
+            border-style: none;
+            font-family: "Avenir_Roman";
+            background: transparent;
+            vertical-align: bottom;
+            font-size: 2em;
+//             width: 100%;
+            transition: 0.5s all ease;
+            cursor: pointer;
 
-              &:hover {
-                     transform: scale(1.1);
-              }
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+    .box_filter {
+        font-family: "Avenir_Book";
+        display: grid;
+        grid-template-columns: 77.5% 17.5%;
+        column-gap: 5%;
+        justify-items: center;
+        align-items: center;
+        font-size: 12px;
+        padding: 5px;
+        max-width: 100px;
+        background-color: $light_gray;
+        border-radius: 4px;
+        border: 1px solid $dark_gray;
 
-       }
-       .content_SearchBar{
-              justify-self: flex-start;
-       }
+        .filter_title_selected {
+            color: $dark_gray;
+            width: 100%;
+            word-wrap: break-word;
+        }
 
-       .container_button_close_search{
-              margin-left: 0.5rem;
-       }
+        .button_filtered {
+            width: 20px;
+            height: 20px;
+            line-height: 0;
+            border-radius: 4px;
+            transition: 0.25s all ease;
+            border-width: 0;
+            color: $white_main;
+            background-color: $dark_gray;
 
-       .button_close_search {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              background-color: $yellow_main;
-              color: black;
-              border-radius: 8px;
-              width: 1.5rem;
-              height: 1.5rem;
-              border: none;
-              cursor: pointer;
-              outline: none;
-              font-family: "Avenir_Black";
-              &:hover{
-                     transition: 0.4s all ease;
-                     background-color: #AEADB3;
-                     color: $yellow_main;
-              }
-       }
+            &:hover {
+                cursor: pointer;
+                background-color: $black_main;
+                color: $yellow_main;
+            }
+        }
+    }
+//     .container_button_close_search {
+//         margin-left: 0.5rem;
+//     }
+
+//     .button_close_search {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         background-color: $yellow_main;
+//         color: black;
+//         border-radius: 8px;
+//         width: 1.5rem;
+//         height: 1.5rem;
+//         border: none;
+//         cursor: pointer;
+//         outline: none;
+//         font-family: "Avenir_Black";
+//         &:hover {
+//             transition: 0.4s all ease;
+//             background-color: #aeadb3;
+//             color: $yellow_main;
+//         }
+//     }
 }
