@@ -55,7 +55,7 @@ const NavBar = () => {
           <img className="logohenry" src={henry} alt ="not"/>
         </Link>
         
-        <div className="geolocation"><GeoLocation/></div>
+        {/* <div className="geolocation"><GeoLocation/></div> */}
       </div>
       <div className="mid-box">
           <Link to="/working"><p>Nosotros</p></Link>

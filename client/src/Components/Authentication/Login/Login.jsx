@@ -62,32 +62,42 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             .then((res) => {
               //console.log(localStorage.getItem('userid') + 'llegue')
               if(localStorage.getItem('userid') !== null){
-                //Ruta que cambie carrito de guest con el del user.
+                dispatch(getUserLogin(res.user.uid))
                 axios.put(GUEST_CART_USER, {
                   new_user: res.data.id_user,
                   guest_user: localStorage.getItem('userid')
                 })
+                .then(()=>{
+                  localStorage.removeItem('userid');
+                  localStorage.setItem('userlogged', res.data.id_user);
+                  window.location.reload();
+                })
+                .catch((error) => {
+                  Swal.fire({
+                    title:`${error}`,
+                    icon:'error',
+                  })
+                });
+              }else{
+                localStorage.removeItem('userid');
+                localStorage.setItem('userlogged', res.data.id_user);
+                window.location.reload();
               }
-              localStorage.removeItem('userid');
-              localStorage.setItem('userlogged', res.data.id_user);
-              window.location.reload();
-             dispatch(setUSerLogin(res.data))
             })
             .catch((error) => {
               Swal.fire({
                 title:`${error}`,
                 icon:'error',
               })
-              
             });
-        }
-        else{
-          localStorage.removeItem('userid');
-          localStorage.setItem('userlogged', res.user.uid);
-          window.location.reload();
-          dispatch(getUserLogin(res.user.uid))
-        }
-      })
+          }
+          else{
+            dispatch(getUserLogin(res.user.uid))
+            localStorage.removeItem('userid');
+            localStorage.setItem('userlogged', res.user.uid);
+            window.location.reload();
+          }
+        })
       .catch((error) => {
         Swal.fire({
           title:`${error}`,
@@ -114,15 +124,21 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           })
           .then((res) => {
             if(localStorage.getItem('userid') !== null){
-              dispatch(setUSerLogin(res.data))
+              dispatch(getUserLogin(res.user.uid))
               axios.put(GUEST_CART_USER, {
                 new_user: res.data.id_user,
                 guest_user: localStorage.getItem('userid')
               })
+              .then(()=>{
+                localStorage.removeItem('userid');
+                localStorage.setItem('userlogged', res.data.id_user);
+                window.location.reload();
+              })
+            }else{
+              localStorage.removeItem('userid');
+              localStorage.setItem('userlogged', res.data.id_user);
+              window.location.reload();
             }
-            localStorage.removeItem('userid');
-            localStorage.setItem('userlogged', res.data.id_user);
-            window.location.reload();
           })
         }
         else{

@@ -44,9 +44,9 @@ const Sidebar = () => {
         <ul className='links'>
           <li className="liLinks" onClick={closeSidebar}><Link to="/"><FaHome/> Home</Link></li>
           {dataUSerLogin.role==="admin"&&
-          <li className="liLinks" onClick={closeSidebar}> <Link  to="/Admin"> <RiAdminFill/> Admin</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/admin"> <RiAdminFill/> Admin</Link> </li> 
           }
-          <li className="liLinks" onClick={closeSidebar}> <Link  to="/Profile"> <BsPersonFill/> Profile</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/profile"> <BsPersonFill/> Profile</Link> </li> 
           <li className="liLinks"><span className='spanOut'  onClick={()=>{logOut();closeSidebar()}}><RiLogoutCircleRLine/>Cerrar sesión</span></li>
         </ul>
         

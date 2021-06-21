@@ -24,7 +24,7 @@ const Register = ({RegisterClose,LoginOpen}) => {
   
   if (user) {
     RegisterClose();
-    setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 2000);
+    setTimeout(function(){ dispatch(getUserLogin(user.uid))}, 2000); //revisar esta linea
     Swal.fire({
       title:`Bienvenido!`,
       icon:'success',
@@ -57,11 +57,18 @@ const Register = ({RegisterClose,LoginOpen}) => {
               new_user: res.data.id_user,
               guest_user: localStorage.getItem('userid')
             })
+            .then(()=>{
+              localStorage.removeItem('userid');
+              localStorage.setItem('userlogged', res.data.id_user);
+              window.location.reload();
+              setForm(imputsState)
+            })
+          }else{
+            localStorage.removeItem('userid');
+            localStorage.setItem('userlogged', res.data.id_user);
+            window.location.reload();
+            setForm(imputsState)
           }
-          localStorage.removeItem('userid');
-          localStorage.setItem('userlogged', res.data.id_user);
-          window.location.reload();
-          setForm(imputsState)
       })
       .catch (function(error){
         Swal.fire({
@@ -114,10 +121,18 @@ const Register = ({RegisterClose,LoginOpen}) => {
                 new_user: res.data.id_user,
                 guest_user: localStorage.getItem('userid')
               })
+              .then(()=>{
+                localStorage.removeItem('userid');
+                localStorage.setItem('userlogged', res.data.id_user);
+                window.location.reload();
+                setForm(imputsState)
+              })
+            }else{
+              localStorage.removeItem('userid');
+              localStorage.setItem('userlogged', res.data.id_user);
+              window.location.reload();
+              setForm(imputsState)
             }
-            localStorage.removeItem('userid');
-            localStorage.setItem('userlogged', res.data.id_user);
-            window.location.reload();
           })
         }
         else{
@@ -153,11 +168,22 @@ const Register = ({RegisterClose,LoginOpen}) => {
           })
           .then((res) => {
             if(localStorage.getItem('userid') !== null){
-              //Ruta que cambie carrito de guest con el del user.
+              axios.put(GUEST_CART_USER, {
+                new_user: res.data.id_user,
+                guest_user: localStorage.getItem('userid')
+              })
+              .then(()=>{
+                localStorage.removeItem('userid');
+                localStorage.setItem('userlogged', res.data.id_user);
+                window.location.reload();
+                setForm(imputsState)
+              })
+            }else{
+              localStorage.removeItem('userid');
+              localStorage.setItem('userlogged', res.data.id_user);
+              window.location.reload();
+              setForm(imputsState)
             }
-            localStorage.removeItem('userid');
-            localStorage.setItem('userlogged', res.data.id_user);
-            window.location.reload();
           })
         }
         else{

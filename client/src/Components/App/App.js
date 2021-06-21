@@ -33,41 +33,31 @@ import Sidebar from "../Sidebar/Sidebar.jsx"
 import WorkingOnIt from "../WorkingOnIt/WorkingOnIt";
 
 function App() {
-  const { closeSidebar} = useGlobalContext();
-  const dispatch = useDispatch();
   var userLogged = localStorage.getItem('userlogged');
-  const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
-
+  const { closeSidebar} = useGlobalContext();
   let isLogged=userLogged?true:false;
-  let typeOfUser=dataUSerLogin.role;
-
-  useEffect(() => {
-   if(userLogged){
-     dispatch(getUserLogin(userLogged))
-   }
-  }, [userLogged]);
-
+  let typeOfUser=localStorage.getItem("rol");
 
   return (
     <div className="App" onClick={closeSidebar}>
       <Suspense fallback={"Cargando..."}>
         <FirebaseAppProvider firebaseConfig={config}>
             <BrowserRouter>
-              <GuardRoute typeRoute={"public"} exact path="/" component={Home} />
-              <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path="/location" component={GeoLocation} />
-              <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path="/item/:id" component={Product_Detail} />
-              <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path= '/cart' component= {Cart}/>
-              <GuardRoute typeRoute={"public"}  isLogged={isLogged} typeOfUser={typeOfUser} exact path="/profile" component={CompleteData} />
-              <GuardRoute typeRoute={"public"}  path="/working" component={WorkingOnIt}/>
-              <div className='adminContainer'>
-                <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin" component={SlideBar} />
-                <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} exact path="/admin" component={Analytics} />
-                <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/createProduct" component={CreateProduct} />
-                <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/users" component={Users}/>
-                <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/products" component={Products}/>
-                
+              <Route exact path="/" component={Home} />
+              {/* <Route exact path="/location" component={GeoLocation} /> */}
+              <Route exact path="/item/:id" component={Product_Detail} />
+              <Route exact path= '/cart' component= {Cart}/>
+              <Route exact path="/profile" component={CompleteData} />
+              <Route exact path="/working" component={WorkingOnIt}/>
+              {(typeOfUser === "admin")&&
+              <div>
+              <Route path="/admin" component={SlideBar} />
+              <Route  exact path="/admin" component={Analytics} />
+              <Route  exact path="/admin/createProduct" component={CreateProduct} />
+              <Route  exact path="/admin/users" component={Users}/>
+              <Route  exact path="/admin/products" component={Products}/>
               </div>
-      <Sidebar />
+              }
             </BrowserRouter>
         </FirebaseAppProvider>
       </Suspense>

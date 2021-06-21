@@ -27,6 +27,7 @@ export function getUserLogin(user) {
   return function (dispatch) {
     return axios.get(`${LOGIN_URL}?id=${user}`)
     .then((response) => {
+      localStorage.setItem("rol",response.data.role)
       dispatch({
         type: GET_USER_LOGIN,
         payload: response.data,
