@@ -139,3 +139,16 @@
     left: 100%;
   }
   
+
+.addCategory{
+    all: unset;
+    border: 1px solid #FFFF01;
+    margin:0 10px 10px 10px;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}

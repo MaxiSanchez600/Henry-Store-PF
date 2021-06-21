@@ -1,0 +1,42 @@
+.categoriesSelectedContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.tableSubCat{
+    
+    width: 12em;
+    margin: 0 10px 20px 10px;
+    box-shadow: 0 0 20px 1px #e7e7e7;
+}
+
+.titleAndClose{
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: #D2D2D6;
+    padding: 10px 0 10px 10px;
+}
+
+.titleAndClose button{
+    all: unset;
+    flex:1;
+    position:relative;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.titleAndClose div{
+    flex:10
+}
+
+.checkText{
+    margin: 0 0 7px 10px;
+}
+
+.checksWrap{
+    margin: 0 10px 4px 10px;
+}
+
+.checksContainer{
+    padding-bottom: 10px;
+}
