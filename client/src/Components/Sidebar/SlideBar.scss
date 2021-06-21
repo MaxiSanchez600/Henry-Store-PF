@@ -48,10 +48,8 @@
   align-items: center;
   font-size: 1.25rem;
   font-family: "Avenir_Book";
-  margin-right: 25px;
-  margin-left: 25px;
   padding: 1rem 1rem;
-  //color: rgb(50, 77, 103);
+  padding-left: 40px;
   color:white;
   transition: all 0.3s linear;
   letter-spacing:  0.1rem;
@@ -62,12 +60,10 @@
   background: rgb(241, 245, 248);
   color: black;
   font-weight: bolder;
-  //color: rgb(36, 58, 82);
 }
 //iconos
 .links a svg, .spanOut svg {
   font-size: 1.5rem;
-  //color: rgb(97, 125, 152);
   color:white;
   margin-right: 1rem;
   transition: all 0.3s linear;
@@ -85,7 +81,6 @@
 .social-icons a {
   font-size: 1.5rem;
   margin: 0 0.5rem;
- // color: rgb(73, 166, 233);
   color:white;
   transition:all 0.3s linear;
 }
@@ -95,13 +90,12 @@
 
 .sidebar {
   position: fixed;
-  top: 120px;
+  top: 108px;
   right: 0;
   width: 100%;
   height: 100%;
-  //background: white;
-  background:rgba(0, 0, 0, 0.9); 
-  opacity: 0.95;
+  background:black; 
+  opacity: 0.85;
   display: grid;
   grid-template-rows: auto 1fr auto;
   row-gap: 1rem;
@@ -116,7 +110,7 @@
 }
 @media screen and (min-width: 676px) {
   .sidebar {
-    width: 280px;
+    width: 250px;
   }
 }
 

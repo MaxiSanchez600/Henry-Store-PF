@@ -25,7 +25,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
   if (user) {
     loginClose();
     Swal.fire({
-      title:`Bienvenido! &#128526;`,
+      title:`Bienvenido!;`,
       icon:'success',
       showConfirmButton: false,
       timer:1000
