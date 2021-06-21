@@ -15,7 +15,9 @@
     justify-content: space-around;
 
     .footercol{
+        display: flex;
         justify-content: center;
+        align-items: center;
         width: 20%;
         padding: 0 15px;
         justify-content: center;
@@ -42,7 +44,7 @@
     }
     
     .footercol h4:hover {
-        color: #000;
+        color: #fff;
         transition:0.7s;
         transform: translateX(3px);
     }
@@ -71,7 +73,7 @@
     list-style: none;
 }
 .footer {
-    background-color: $gray_main;
+    background-color: black;
     padding: 30px 0;  
     line-height: 1.5;
     position: relative;

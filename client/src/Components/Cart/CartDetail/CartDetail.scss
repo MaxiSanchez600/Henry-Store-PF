@@ -2,7 +2,7 @@
 
 .Cart_CartDetail{
     border-radius: 0 0 10px 10px;
-    box-shadow: 0px 5px 3px rgb(128, 128, 128);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     color: black;
     display: flex;
     transition: all 0.3s ease 0s;
@@ -40,12 +40,13 @@
 }
 
 .Cart_CartDetail--labels {
+    max-width: 90%;
     display: grid;
     gap: 5px 10px;
     grid-template-columns: 100%;
     grid-template-columns: repeat(3, 1fr);
     .Cart_CartDetail--label {
-        background-color: #000;
+        background-color: #343434;
         border-radius: 20px;
         color: #fff;
         font-size: 0.8em;
@@ -57,8 +58,7 @@
 }
 
 .CartCost_CartDetail{
-    margin-top: 5px;
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     select{
@@ -72,13 +72,17 @@
 }
 
 .CartOptions_CartDetail{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     .h2Delete_CartDetail{
         font-size: 0.8em;
         cursor: pointer;
         text-decoration: underline;
+        transition: all 0.3s ease 0s;
+        &:hover{
+            color: #F64749;
+        }
     }
     div{
         h2{
@@ -86,3 +90,25 @@
         }
     }
 }
+.ProductTitle_CartDetail{
+    width: max-content;
+}
+.ProductStripe_CartDetail{
+    background-color: yellow;
+    width: 50%;
+    height: 8px;
+    margin-top: 0.2em;
+    z-index: -10;
+}
+
+.heart_product_Detail{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 1.2rem;
+    transition: 0.3s all ease;
+     &:hover{
+      color: red;
+      cursor: pointer;
+     }
+  }

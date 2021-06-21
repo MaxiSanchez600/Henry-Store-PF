@@ -58,11 +58,11 @@ const NavBar = () => {
         <div className="geolocation"><GeoLocation/></div>
       </div>
       <div className="mid-box">
-          <p>Nosotros</p>
-          <p>Sucursales</p>
+          <Link to="/working"><p>Nosotros</p></Link>
+          <Link to="/working"><p>Sucursales</p></Link>
           <FilterCategories />
-          <p>Contacto</p>
-          <p>FAQ</p>
+          <Link to="/working"><p>Contacto</p></Link>
+          <Link to="/working"><p>FAQ</p></Link>
       </div>
       <div className="right-box">
         <div className="profile-box">
@@ -79,7 +79,7 @@ const NavBar = () => {
         </div>
       <div className="buttons-under-profile">
         <div className="carrito">
-        <Link to={'/cart'}><FaShoppingCart/></Link>
+        <Link to={'/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>
         {!user &&
             //Botones de login y registro 

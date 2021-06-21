@@ -14,28 +14,31 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
         e.preventDefault();
         getProductsWithoutFilters({});
     }
-    
+
     return (
             <div >
             <Navbar />
             <div className="search_container">
-            <div className="search"><SearchBar/></div>
+                <SearchBar />
+                {/* <div className="search"></div> */}
             </div>
             <div className="content_Home" >
-            <div className="content_SidebarLeft" >
-                <Order />
-                <Filters />
+                <div className="content_SidebarLeft" >
+                    {/* <Order /> */}
                     {
                         Object.keys(queriesFromReducer).length ?
-                            <button onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> : ""
+                            <button className="reset_button" onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> :
+                            <div className="reset_button_hidden"></div>
                     }
-            </div>
-            <div className="body_Home">
+                    <Filters />
+                </div>
+                <div className="body_Home">
                     <div className="products">
-                    <Products />
+                        <Products />
                     </div>
+                </div>
+                <Sidebar />
             </div>
-        </div>
             <Footer />
         </div>
     )

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import {getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
-import {FaSearch} from "react-icons/fa"
-import {MdClose} from "react-icons/md"
+import { getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
+import { FaSearch } from "react-icons/fa"
+import { MdClose } from "react-icons/md"
 
 const SearchBar = ({
   queriesFromReducer,
@@ -53,7 +53,7 @@ const SearchBar = ({
   // ! CONTENT
   return (
     <div className="content_SearchBar">
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>
         <input
           className="input_search"
           name="tag"
@@ -62,16 +62,15 @@ const SearchBar = ({
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <button className="button_search" type="submit"><FaSearch/></button>
-      {search ?
-          <div>
-            <button
-              name={search}
-              onClick={e => closeSearchButton(e)}
-            ><MdClose/></button>
-          </div> :""
-      }
+        <button className="button_search" type="submit"><FaSearch /></button>
       </form>
+      {
+        search ?
+          <div className="box_filter">
+            <p className="filter_title_selected">{search}</p>
+            <button className="button_filtered" name={search} onClick={e => closeSearchButton(e)} ><MdClose /></button>
+          </div> : ""
+      }
     </div>
   );
 };

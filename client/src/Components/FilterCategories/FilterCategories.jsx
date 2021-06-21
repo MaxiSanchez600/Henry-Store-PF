@@ -71,11 +71,7 @@ function FilterCategories({
           ))
         }
       </select>
-      {/* <button className="menu_category">Ofertas</button>
-      <button className="menu_category">Historial</button>
-      <button className="menu_category">Vender</button>
-      <button className="menu_category">Ayuda/PQR</button> */}
-      {
+      {/* {
         selectedCategory ?
           <div>
             <p>Categoria: {selectedCategory}</p>
@@ -85,7 +81,7 @@ function FilterCategories({
             >x</button>
           </div> :
           ""
-      }
+      } */}
     </div>
   );
 }

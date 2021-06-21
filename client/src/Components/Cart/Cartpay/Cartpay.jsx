@@ -12,15 +12,22 @@ export function Cartpay(props){
       console.log(e)
       if(localStorage.getItem('userlogged') !== null){
           if(e.target.innerText === 'Maximo'){
-            sethc(props.userhc)
+            if(props.userhc > 100){
+              sethc(100)
+            }
+            else{
+              sethc(props.userhc)
+            }
           }
           else if(e.target.innerText === 'Reset'){
             sethc(0)
           }
           else{
-            if(!(hc + parseInt(e.target.innerText) > props.userhc))
-            {
-              sethc(hc + parseInt(e.target.innerText))
+            if(hc + parseInt(e.target.innerText) <= 100){
+              if(!(hc + parseInt(e.target.innerText) > props.userhc))
+              {
+                sethc(hc + parseInt(e.target.innerText))
+              }
             }
           }
       }

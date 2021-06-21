@@ -168,26 +168,27 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 
   return (
     <div className="content_Login">
-      <div>
-        <span className="close-button" onClick={()=>loginClose()}>
+      <div className="container_close_login">
+        <span className="close-button-login" onClick={()=>loginClose()}>
             <IoCloseCircle/>
         </span>
       </div>
 
-      <form className="formu" onSubmit={handleSubmit}>
-          <h1>Login</h1>
+      <form className="formu-login" onSubmit={handleSubmit}>
+          <h1 className="name">Login</h1>
+          <div className="name_strip"></div>
           <input
-            type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
+            className="imput_login" type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
           />
           <input
-            type="password" name="password" id="password" value={form.password}  onChange={handleOnChange} placeholder="Contraseña..."
+            className="imput_login" type="password" name="password" id="password" value={form.password}  onChange={handleOnChange} placeholder="Contraseña..."
           />
             <button className="button_login" type="submit">Iniciar sesión</button>
       </form>
-      <div className="ForgotPass">
+      <div className="ForgotPass_login">
         <p>
           <span
-            class="recovery_pass"
+            className="recovery_pass"
             onClick={() => {
               ForgotPassOpen();
               loginClose();
@@ -196,17 +197,9 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           </span>
         </p>
         <br />
-        <p>
-          <span
-            className="go_register"
-            onClick={() => {
-              registerOpen();
-              loginClose();
-            }}
-          >
+          <span className="go_register"onClick={()=>{registerOpen();loginClose()}}>
             Registrate
           </span>
-        </p>
         <div className="social_container">
           <p className="botoncito-google" onClick={handleGoogle}>
             <span

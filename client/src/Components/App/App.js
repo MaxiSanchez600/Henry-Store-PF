@@ -30,7 +30,7 @@ import {getUserLogin} from "../../Redux/actions/actionsUsers";
 import GuardRoute from "./GuardRoute";
 import { useGlobalContext } from "../../context"
 import Sidebar from "../Sidebar/Sidebar.jsx"
-
+import WorkingOnIt from "../WorkingOnIt/WorkingOnIt";
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -58,12 +58,14 @@ function App() {
               <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path="/item/:id" component={Product_Detail} />
               <GuardRoute typeRoute={"public"}  typeOfUser={typeOfUser} exact path= '/cart' component= {Cart}/>
               <GuardRoute typeRoute={"public"}  isLogged={isLogged} typeOfUser={typeOfUser} exact path="/profile" component={CompleteData} />
+              <GuardRoute typeRoute={"public"}  path="/working" component={WorkingOnIt}/>
               <div className='adminContainer'>
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin" component={SlideBar} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} exact path="/admin" component={Analytics} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/createProduct" component={CreateProduct} />
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/users" component={Users}/>
                 <GuardRoute typeRoute={"private"} isLogged={isLogged} typeOfUser={typeOfUser} path="/admin/products" component={Products}/>
+                
               </div>
       <Sidebar />
             </BrowserRouter>

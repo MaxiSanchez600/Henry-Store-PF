@@ -186,37 +186,37 @@ const Register = ({RegisterClose,LoginOpen}) => {
   }
 
   return (
-    <div>
-        <div>
-          <div>
-            <span className="back-button" onClick={()=>{LoginOpen();RegisterClose()}}>
-            <IoArrowBackCircle/>
+      <div className="content_register">
+        <div className="container_close_register">
+          <span className="close-button-register" onClick={()=>RegisterClose()}>
+          <IoCloseCircle/>
           </span>
-            <span className="close-button" onClick={()=>RegisterClose()}>
-            <IoCloseCircle/>
-            </span>
-          </div>
-          <h2 className="title-register">Registro</h2>
-          <form className="formu" onSubmit={createAccount}>
-                <input className="inText" type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
-                <input className="inText" type={check?"password":"text"} name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
-                <input className="inText" type={check?"password":"text"} name="confimationPass" id="confimationPass" onChange={handleOnChange} value={form.confimationPass} required  placeholder="Confirmacion de Contraseña..."/>
-                <div className="showPass">
-                  <label for="showPass">Mostrar contraseñas</label>
-                  <input className="checkbox" type="checkbox" id="showPass" value={check} onChange={checkboxOnChange}></input>
-                </div>
-              <button className="button_register" type="submit" >Registrarme</button>
-          </form>
-              <div className="social_container">
-                <p className="botoncito-google" onClick={handleGoogle}>
-                  <span class="iconify" data-icon="ant-design:google-plus-outlined" data-inline="false"></span>
-                </p>
-                <p className="botoncito-github" onClick={handleGithub}>
-                  <span class="iconify" data-icon="akar-icons:github-outline-fill" data-inline="false"></span>
-                </p>
-              </div>
+          <span className="back-button-register" onClick={()=>{LoginOpen();RegisterClose()}}>
+          <IoArrowBackCircle/>
+          </span>
         </div>
-    </div>
+        <form className="formu-register" onSubmit={createAccount}>
+        <h2 className="name-register">Registro</h2>
+        <div className="register_strip"></div>
+              <input className="inText-register" type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
+              <input className="inText-register" type={check?"password":"text"} name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
+              <input className="inText-register" type={check?"password":"text"} name="confimationPass" id="confimationPass" onChange={handleOnChange} value={form.confimationPass} required  placeholder="Confirmacion de Contraseña..."/>
+              <div className="showPass">
+                <label for="showPass">Mostrar contraseña</label>
+                <input className="checkbox" type="checkbox" id="showPass" value={check} onChange={checkboxOnChange}></input>
+              </div>
+            <button className="button_registerme" type="submit" >Registrarme</button>
+        
+            <div className="social_container">
+              <p className="botoncito-google" onClick={handleGoogle}>
+                <span class="iconify" data-icon="ant-design:google-plus-outlined" data-inline="false"></span>
+              </p>
+              <p className="botoncito-github" onClick={handleGithub}>
+                <span class="iconify" data-icon="akar-icons:github-outline-fill" data-inline="false"></span>
+              </p>
+            </div>
+        </form>
+      </div>
   );
 };
 

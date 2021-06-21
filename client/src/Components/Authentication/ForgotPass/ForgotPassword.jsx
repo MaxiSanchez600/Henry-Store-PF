@@ -50,23 +50,23 @@ const ForgotPassword = ({forgotPassClose,LoginOpen}) => {
   }
 
   return (
-    <div>
-       <div>
-          <span className="back-button" onClick={()=>{LoginOpen();forgotPassClose()}}>
-            <IoArrowBackCircle/>
-          </span>
-          <span className="close-button" onClick={()=>forgotPassClose()}>
+    <div className="container_forgot_pass">
+       <div className="container_closeback_forgotpass">
+          <span className="close-button-forgotpass" onClick={()=>forgotPassClose()}>
             <IoCloseCircle/>
           </span>
+          <span className="back-button-forgotpass" onClick={()=>{LoginOpen();forgotPassClose()}}>
+            <IoArrowBackCircle/>
+          </span>
         </div>
-        <div>
-          <form className="formu" onSubmit={forgotPassword} >
-          <h2 className="title">Cambiar Contraseña</h2>
-                <input type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
-              <button className="button_login" type="submit" >Enviar</button>
+          <form className="formu-forgot" onSubmit={forgotPassword} >
+            <div className="container_name_strip">
+              <h2 className="forgotpass_title">Cambiar Contraseña</h2>
+              <div className="forgotpass_title_strip"></div>
+            </div>
+                <input className="imput_forgot" type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
+              <button className="button_forgot" type="submit" >Enviar</button>
           </form>
-
-        </div>
     </div>
   );
 };

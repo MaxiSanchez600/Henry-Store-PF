@@ -25,12 +25,15 @@ span{
     font-size: 1.75em;
 }
 .topPrice_pay{
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 70px;
 }
 .TotalPrice_CartPay{
+    align-items: stretch;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
