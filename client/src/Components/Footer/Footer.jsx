@@ -1,5 +1,5 @@
 import './Footer.scss'
-import Logo_Henry_white from '../../Assets/images/Logo_H_white.png'
+import Logo_Henry_white from '../../Assets/Images/Logo_H_white.png'
 
 export default function Footer(){
     return (

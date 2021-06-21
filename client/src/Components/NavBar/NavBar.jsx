@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Authentication/Login/Login";
 import Register from "../Authentication/Register/Register";
-import logo from '../../Assets/images/Logo_H_white.png'
+import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
 import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 import {  useSelector } from 'react-redux';
 import {  useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
-import henry from "../../Assets/images/new_logo.png"
+import henry from "../../Assets/Images/new_logo.png"
 import GeoLocation from '../GeoLocation/GeoLocation'
 import {FaShoppingCart} from 'react-icons/fa'
 import {IoEnter} from "react-icons/io5"
