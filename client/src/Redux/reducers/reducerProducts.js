@@ -1,5 +1,5 @@
 import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT } from '../actions/actionsProducts';
-import { GET_CATEGORIES, GET_CARACTERISTICS } from '../actions/actionsProducts'
+import { GET_CATEGORIES, GET_CARACTERISTICS, GET_CURRENCY } from '../actions/actionsProducts'
 
 const initialState = {
     products: [],
@@ -11,7 +11,9 @@ const initialState = {
     hc: undefined,
     categories: [], //en el otro reducer index estaban como un objeto
     caracteristics: [],
-    queries: {}
+    queries: {},
+    currency: localStorage.getItem('currency'),
+    currencyname: localStorage.getItem("currencyname")
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -56,6 +58,13 @@ const rootReducer = (state = initialState, action) => {
         return{
             ...state,
             product:action.payload
+        }
+
+        case GET_CURRENCY:
+        return{
+            ...state,
+            currency: action.payload.value,
+            currencyname: action.payload.name
         }
         default:
             return {

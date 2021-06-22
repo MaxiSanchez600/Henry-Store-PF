@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 
-function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions }) {
+function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname}) {
 
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
@@ -197,7 +197,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                     <div className="product-price">
                       {/* <p className="last-price">Old Price: <span>{ID_Product.price}</span></p> */}
                       {/* <p className="new-price">New Price: <span>{ID_Product.price * 0.9} (10%)</span></p> */}
-                      <span>${ID_Product.price}</span>
+                      <span>${ID_Product.price * currencyactual}</span>
+                      <label>{currencyactualname}</label>
                     </div>
 
                     <div className="product-detail">
@@ -303,8 +304,11 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
 function mapStateToProps(state) {
   return { ListProducts: state.products.products,
-           userid : state.user_id  }
-}
+           userid : state.user_id,
+           currencyactual: state.products.currency,
+           currencyactualname: state.products.currencyname }
+          }
+
 
 function mapDispatchToProps(dispatch) {
   return {

@@ -39,7 +39,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic} = sequelize.models;
+  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange} = sequelize.models;
 
 
 //Relacion Tag Productos
@@ -113,6 +113,8 @@ OrderDetail.belongsTo(Product);
 //Relacion OrderDetail OrderDetalCaracteristic
 OrderDetail.hasMany(OrderDetailCaracteristic);
 OrderDetailCaracteristic.belongsTo(OrderDetail);
+
+
 
 //Precarga Role
 Role.count().then((value) =>{
@@ -233,6 +235,27 @@ Nacionality.count().then((value) =>{
       Nacionality.create({
         name_nacionality: element
       })
+    })
+  }
+})
+
+CurrencyChange.count().then((value) =>{
+  if(value < 4){
+    CurrencyChange.create({
+      currencyName: 'ARS',
+      currencyExChange: 160
+    })
+    CurrencyChange.create({
+      currencyName: 'CLP',
+      currencyExChange: 752
+    })
+    CurrencyChange.create({
+      currencyName: 'COP',
+      currencyExChange: 3700
+    })
+    CurrencyChange.create({
+      currencyName: 'MXN',
+      currencyExChange: 20
     })
   }
 })

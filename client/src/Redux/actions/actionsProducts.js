@@ -9,6 +9,8 @@ export const SET_CARRITO = 'SET_CARRITO'
 export const SET_TOTAL_PRICE = "SET_TOTAL_PRICE";
 export const POST_PRODUCT = 'POST_PRODUCT';
 export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
+export const GET_CURRENCY = 'GET_CURRENCY';
+
 /* ============================== ACTIONS ============================================== */
 export function getAllFilteredProducts(allQueries) {
   return function (dispatch) {
@@ -77,6 +79,14 @@ export function postProduct (payload){
   };
 }
 
+export function setCurrencyStore (payload){
+  return function(dispatch){
+    dispatch({
+      type: GET_CURRENCY,
+      payload: payload
+    })
+  }
+}
 
 //SI NO USA NADIE ESTA ACTION BORRARLA
 

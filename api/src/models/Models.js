@@ -353,6 +353,18 @@ module.exports = (sequelize) => {
       allowNull: false
     }
   })
+
+  sequelize.define('CurrencyChange', {
+    currencyName:{
+      type:DataTypes.STRING,
+      allowNull: false
+    },
+    currencyExChange: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  })
+
 };
 
 
