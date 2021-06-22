@@ -12,7 +12,7 @@ const caracteristicsController = {
                 category = 'not passed'
             } = req.query;
             let products = await Product.findAll({...filtersCreator(tag, category, 'not passed', 'not passed', 'not passed')});
-            if(products.length === 0 ) return res.send([]);
+            if(products.length === 0 ) return res.send({ data:[] });
             let productsId = products.map(product => {
                 return product.id_product;
             });
@@ -28,7 +28,7 @@ const caracteristicsController = {
                 attributes: ['value_caracteristic', 'ProductIdProduct', 'CaracteristicIdCaracteristic'],
                 order: [['ProductIdProduct', 'ASC']]
             });
-            if(productCaracteristics.length === 0) return res.send([]);
+            if(productCaracteristics.length === 0) return res.send({ data:[] });
             let caracteristicsId = [];
             for(let i = 0; i <= productCaracteristics.length - 1; i++) {
                 if(!caracteristicsId.includes(productCaracteristics[i].CaracteristicIdCaracteristic)) {
