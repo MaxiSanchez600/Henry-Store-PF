@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
-import {AiFillHeart, AiFillPropertySafety} from 'react-icons/ai'
+import {AiFillHeart} from 'react-icons/ai'
 import {IoIosArrowBack} from "react-icons/io"
 import {IoIosArrowForward} from "react-icons/io"
 
@@ -16,9 +16,8 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
     },[ListProducts.length])
 
     // ! ************ PAGINATION ******************
-    const [currency, setCurrency] = useState(localStorage.getItem("currency"))
     const [pageNumber, setPageNumber] = useState(0);
-    const productPerPage = 10;
+    const productPerPage = 12;
     const pagesVisited = pageNumber * productPerPage;
     //agrego un ? para hacer condicional y no explote el map
     
@@ -34,7 +33,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
                 </div>
                 <div className="product_stock"><h5>{product.unit_stock?`${product.unit_stock} Unidades`:<p className="no_stock">SIN STOCK</p>}</h5></div>
                 <div className="product_henry_coin"><h5>{product.henry_coin} Henry Coins</h5></div>
-                <Link className="link" to={`/item/${product.id_product}`} key={product.id_product}><button className="button_detail"><h4>Detalle</h4></button>
+                <Link className="link" to={`/home/item/${product.id_product}`} key={product.id_product}><button className="button_detail"><h4>Detalle</h4></button>
         </Link>
             </div>
             )

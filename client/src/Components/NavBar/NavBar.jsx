@@ -72,17 +72,17 @@ const NavBar = () => {
                         />
       </Modal>
       <div className="left-box">
-        <Link to="/">
+        <Link to="/home">
           <img className="logohenry" src={henry} alt ="not"/>
         </Link>
         
       </div>
       <div className="mid-box">
-          <Link to="/working"><p>Nosotros</p></Link>
-          <Link to="/working"><p>Sucursales</p></Link>
+          <Link to="/home/working"><p>Nosotros</p></Link>
+          <Link to="/home/working"><p>Sucursales</p></Link>
           <FilterCategories />
-          <Link to="/working"><p>Contacto</p></Link>
-          <Link to="/working"><p>FAQ</p></Link>
+          <Link to="/home/working"><p>Contacto</p></Link>
+          <Link to="/home/working"><p>FAQ</p></Link>
       </div>
       <div className="right-box">
         <div className="profile-box">
@@ -104,7 +104,7 @@ const NavBar = () => {
           >{element.currencyName}</option>))}
         </select>
         <div className="carrito">
-        <Link to={'/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
+        <Link to={'/home/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>
         {!user &&
             //Botones de login y registro 

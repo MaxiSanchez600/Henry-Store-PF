@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../Components/NavBar/NavBar';
-import Footer from '../../Components/Footer/Footer';
 import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
 import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/actionsProducts';
@@ -167,7 +165,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   return (
     <div >
-      <Navbar />
       {
         ID_Product ?
           <div className="body_Home">
@@ -296,8 +293,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
             </div>
           </div> : ""
       }
-      <Footer />
-
     </div>
   )
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 import Products from '../../Components/Products/Products';
-import Footer from '../../Components/Footer/Footer';
-import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
 import Sidebar from "../../Components/Sidebar/Sidebar";
@@ -15,8 +13,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
     }
 
     return (
-            <div >
-            <Navbar />
+        <div >
             <div className="search_container">
                 <SearchBar />
             </div>
@@ -35,9 +32,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                     </div>
                 </div>
                 <Sidebar />
-                
             </div>
-            <Footer />
         </div>
     )
 }

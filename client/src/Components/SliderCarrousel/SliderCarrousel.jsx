@@ -36,7 +36,7 @@ const SliderCarousel = ({ imageList = IMAGES }) => {
                           width="200px"
                           key={image.id_image}
                           src={image.name_image}
-                          alt={image.name_image}
+                          alt="not found"
                         />
                       </div>
                     );
