@@ -12,6 +12,7 @@ export const CHANGE_ROL= `${workspace}/userflow/users/rol`;
 export const CHANGE_STATUS= `${workspace}/userflow/users/status`;
 export const BAN_USER= `${workspace}/admin/banuser`;
 export const GET_ROLES= `${workspace}/userflow/role`;
+export const GET_CATEGORIES= `${workspace}/product/categories`;
 export const CATEGORIES_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/categories?`;
 export const CARACTERISTICS_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/caracteristics?`;
 export const PUT_DATA_USER= `${workspace}/auth/login`;

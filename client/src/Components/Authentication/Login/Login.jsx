@@ -5,7 +5,7 @@ import { firebase } from "../../../Config/firebase-config";
 // ! COMPONENTES
 import "firebase/auth";
 import { useDispatch } from 'react-redux';
-import {getUserLogin,setUSerLogin} from "../../../Redux/actions/actionsUsers";
+import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 import {IoCloseCircle } from "react-icons/io5";
 import Swal from 'sweetalert2'
 
@@ -60,7 +60,6 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
               registerOrigin: i.providerId,
             })
             .then((res) => {
-              //console.log(localStorage.getItem('userid') + 'llegue')
               if(localStorage.getItem('userid') !== null){
                 dispatch(getUserLogin(res.user.uid))
                 axios.put(GUEST_CART_USER, {

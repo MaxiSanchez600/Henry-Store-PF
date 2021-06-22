@@ -5,7 +5,6 @@ import { VscRefresh } from "react-icons/vsc";
 import './Products.scss'
 import { RiSettings4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-// import actionsUponUsers from './actionsUponUsers/actionsUponUsers'
 
 export default function Products () {
     const [products,setProducts] = useState([])
@@ -20,19 +19,6 @@ export default function Products () {
             setReset(false)
         })
     },[reset])
-
-    useEffect(()=>{
-        const getData = async function() {
-            try {   
-                const response = await axios.get("http://localhost:3001/product/categories")
-                window.localStorage.setItem('categories', JSON.stringify(response.data))
-            }catch (error) {
-              console.error(error)
-            }   
-        };
-        getData()
-    },[])
-    
 
     return <div>
         <div className="container-table">
@@ -52,19 +38,19 @@ export default function Products () {
                 {products.slice(0,products.length/2).map((prod, i)=>{
                     return (
                     <tr key={i}>
-    
                         {<td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>}
-                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
+                        <td><img className="img-prod-table" src={ prod.Images[0].name_image } alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>
-                    </tr>)
+                </tr>)
                 })}
             </table>
         </div>
         <div>
             <table className="content-table">
                 <tr>
+                    <th></th>
                     <th>Imagen</th>
                     <th>Titulo</th>
                     <th>Precio</th>
@@ -74,9 +60,8 @@ export default function Products () {
                 {products.slice(products.length/2).map((prod, i)=>{
                     return (
                     <tr key={i}>
-                        {/* <td><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.disabled, false, true)} /></td> */}
                         <td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>
-                        <td><img className="img-prod-table" src={/* prod.Images[0].name_image */ 'https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg'} alt="not"/></td>
+                        <td><img className="img-prod-table" src={prod.Images[0].name_image } alt="not"/></td>
                         <td>{prod.name}</td>
                         <td>{prod.price}</td>
                         <td>{prod.unit_stock}</td>

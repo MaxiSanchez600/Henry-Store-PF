@@ -6,7 +6,6 @@ const addCart = require('../controllersUtils/cart');
 const editProductInCart = {
     editProduct: async (req, res) =>{
         let {order_detail, new_amount, user_id} = req.body
-        console.log(req.body)
         if(user_id !== ''){
             //Si es un carrito de un usuario
             const orderdetail = await OrderDetail.findOne({where: {id_order_detail: order_detail}})

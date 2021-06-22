@@ -1,15 +1,11 @@
-import React, { createRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './Cartpay.scss'
 import { connect } from 'react-redux'
-import Modal from '../../Modal/Modal'
-import Register from '../../Authentication/Register/Register'
 
 
 export function Cartpay(props){
     const [hc, sethc] = React.useState(0)
-    const [modalRegister, setModalRegister] = React.useState(false)
     let onClickLabel = (e) =>{
-      console.log(e)
       if(localStorage.getItem('userlogged') !== null){
           if(e.target.innerText === 'Maximo'){
             if(props.userhc > 100){
@@ -39,9 +35,7 @@ export function Cartpay(props){
 
 
     let OpenRegister = () =>{
-      console.log('clickeo')
       document.getElementById('buttonRegister').click();
-
     }
    
     return(
@@ -81,7 +75,6 @@ export function Cartpay(props){
             </div>
     )
 }
-
 
 const mapStateToProps = (state) => {
     return{

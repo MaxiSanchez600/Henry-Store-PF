@@ -1,7 +1,7 @@
-import React, { createRef, useEffect } from 'react'
+import React from 'react'
 import './CartDetail.scss'
 import { URL_BASE } from '../../../Config/index.js'
-import {setCarrito} from '../../../Redux/actions/actions'
+import {setCarrito} from '../../../Redux/actions/actionsProducts'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2';
 import {AiFillHeart} from 'react-icons/ai'
@@ -119,6 +119,7 @@ export function CartDetail(props){
         </div>
     )
 }
+//sirve de algo este mapstatetoprops?
 const mapStateToProps = (state) => {
     return{
       

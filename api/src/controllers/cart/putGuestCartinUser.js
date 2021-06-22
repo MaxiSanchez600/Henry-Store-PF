@@ -5,7 +5,6 @@ const Op = Sequelize.Op;
 const putGuestCartinUser = {
     putCart: async (req, res) =>{
         const {new_user, guest_user} = req.body
-        console.log(new_user, guest_user)
         const guestcart = await Order.findOne({where: {UserIdUser: guest_user}})
         guestcart.UserIdUser = new_user
         await guestcart.save()

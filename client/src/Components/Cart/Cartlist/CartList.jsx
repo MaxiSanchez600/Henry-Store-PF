@@ -1,15 +1,13 @@
-import React, { createRef, useEffect } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
 import './CartList.scss'
 import { URL_BASE } from '../../../Config/index.js'
 import { connect } from 'react-redux'
 import CartDetail from '../CartDetail/CartDetail'
-import {setCarrito} from '../../../Redux/actions/actions'
-import Cartbar from '../CartBar/CartBar.jsx'
-import { firebase } from "../../../Config/firebase-config";
+import {setCarrito} from '../../../Redux/actions/actionsProducts'
 
 
 export function CartList(props){
+    //sirve de algo este state? no esta leido user ni setUser
     const [user, setUser] = React.useState(localStorage.getItem('userlogged'))
     const [carrito, setCarrito] = React.useState([])
     let getCarrito = async() => {
@@ -64,7 +62,6 @@ export function CartList(props){
 
     //Escucho si se logea
     useEffect(async () =>{
-        console.log('entro')
         await getCarrito();
     },[props.userid])
 

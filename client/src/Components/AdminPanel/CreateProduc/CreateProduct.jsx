@@ -6,7 +6,7 @@ import CreateCategory from "../CreateCategory/CreateCategory";
 import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
-import {postProduct} from '../../../Redux/actions/actions'
+import {postProduct} from '../../../Redux/actions/actionsProducts'
 
 
 function CreateProduct ({editIsActive, productData, title}){
@@ -99,10 +99,6 @@ function CreateProduct ({editIsActive, productData, title}){
             categories:subCatSelected,
             tags:tags
         }) */
-        if(editIsActive){
-            
-            console.log(json)
-        }
         dispatch(postProduct(json))
     }
     const removeCaracteristic = ()=>{

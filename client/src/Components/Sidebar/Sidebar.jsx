@@ -22,7 +22,7 @@ const Sidebar = () => {
 
   const logOut = async () => {
     Swal.fire({
-      title:'Sesion Cerrada',
+      title:'Sesión Cerrada',
       icon:'success',
       showConfirmButton: false,
       timer:1000

@@ -11,12 +11,10 @@ const SliderCarousel = ({ imageList = IMAGES }) => {
   const imageListLength = imageList.length;
 
   function handlePreviousImage() {
-    // console.log("imageList: ", imageList);
     setCurrentImage(currentImage === 0 ? imageListLength - 1 : currentImage - 1);
   }
 
   function handleNextImage() {
-    // console.log("imageList: ", imageList);
     setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1);
   }
 

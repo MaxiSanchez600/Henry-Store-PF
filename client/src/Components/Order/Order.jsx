@@ -9,7 +9,6 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   const [orderDirection, setOrderDirection] = useState("");
 
   function handleOrder(e) {
-    console.log("queriesFromReducer: ", queriesFromReducer);
     if (e.target.value) {
       setOrderType(e.target.name);
       setOrderDirection(e.target.value);

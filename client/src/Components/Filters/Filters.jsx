@@ -29,7 +29,6 @@ function Filters({
 
     else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
 
-    console.log("caracteristicsFromReducer: ", caracteristicsFromReducer);
   }
 
   function closeSelectedFilterButton(e) {

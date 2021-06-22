@@ -19,7 +19,6 @@ const productsController = {
                 orderDirection = 'ASC',
                 ...caracteristics
             } = req.query;
-            // console.log("req.query: ", req.query);
             //nos aseguramos que no haya problema con los rangos de precio
             if(rangePriceMax === '') {
                 rangePriceMax = 'not passed';
@@ -226,13 +225,11 @@ const productsController = {
 
             //creo las imagenes
             let imagesMapped = images.map(image => {
-                    return Image.findOrCreate({
-                        where: {
+                    return Image.create({
                             name_image: image //{ [Op.ilike]: tag } 
-                        }
                     });
             });
-            let imagesFind = await Promise.all(imagesMapped);
+            let imagesModel = await Promise.all(imagesMapped);
             
             //creo las caracteristicas
             let caracteristicsMapped = Object.keys(caracteristics).map(caracteristic => {
@@ -271,10 +268,10 @@ const productsController = {
 
             //asocio el producto a las categorias, subcategorias (a traves de la caracteristica type), los tags y el resto de las carcteristicas
             let categoriesModel = modelExtractor(categoriesFind);
-            let subCategoriesModel = modelExtractor(subCategoriesFindAll);
+            // let subCategoriesModel = modelExtractor(subCategoriesFindAll);
             let tagsModel = modelExtractor(tagsFind);
             let caracteristicsModel = modelExtractor(caracteristicsFind);
-            let imagesModel = modelExtractor(imagesFind);
+            // let imagesModel = modelExtractor(imagesFind);
 
             await productSet.setCategories(categoriesModel);
             await productSet.setTags(tagsModel);

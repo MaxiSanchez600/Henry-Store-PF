@@ -1,11 +1,9 @@
 import React, {useEffect} from "react";
-import SubCategorySelected from "../SubCategorySelected/SubCategorySelected";
 import './CategoriesSelected.scss'
 
 function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson}){
     useEffect(()=>{
         setJson({...json, categories:subCatSelected})
-        console.log(subCatSelected)  
     },[subCatSelected])
     const onclose=(e)=>{
         e.preventDefault()

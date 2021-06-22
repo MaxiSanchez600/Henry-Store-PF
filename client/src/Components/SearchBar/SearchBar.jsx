@@ -18,7 +18,6 @@ const SearchBar = ({
     if (!e.target.value) closeSearchButton(e);
 
     else {
-      console.log("handleSearch -> e.target.value: ", e.target.value);
       setSearch(e.target.value);
       const removedPreviousFilters = removePreviousFilters();
       sendFiltersToActions({ ...removedPreviousFilters, [e.target.name]: e.target.value });
@@ -28,11 +27,9 @@ const SearchBar = ({
 
   function removePreviousFilters() {
     const { category, ...removedFilters } = { ...queriesFromReducer };
-    // console.log("removePreviousFilters -> filters to be removed: ", removedFilters);
     caracteristicsFromReducer.forEach(caracteristic => {
       delete removedFilters[caracteristic.name_caracteristic];
     });
-    // console.log("removePreviousFilters -> removedFilters: ", removedFilters);
     return { ...removedFilters };
   }
 
@@ -50,7 +47,6 @@ const SearchBar = ({
     sendFiltersToActions({ ...queriesFromReducer });
   }
 
-  // ! CONTENT
   return (
     <div className="content_SearchBar">
       <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>

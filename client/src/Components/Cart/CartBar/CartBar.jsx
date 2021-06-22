@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react'
+import React from 'react'
 import './CartBar.scss'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'

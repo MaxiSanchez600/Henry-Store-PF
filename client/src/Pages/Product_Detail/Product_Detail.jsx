@@ -56,7 +56,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
           await fetch(URL_BASE + 'cart/addproducttocart', options)
           .then(()=>
           Swal.fire({
-          title:`Producto agregado al Carrito &#128076`,
+          title:`Producto agregado al Carrito`,
           icon:'success',
           showConfirmButton: false,
           timer:1500
@@ -76,7 +76,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
           await fetch(URL_BASE + 'cart/addproducttocart', options)
           .then(()=>
           Swal.fire({
-          title:`Producto agregado al Carrito &#128076`,
+          title:`Producto agregado al Carrito`,
           icon:'success',
           showConfirmButton: false,
           timer:1500
@@ -87,39 +87,27 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   useEffect(() => {
     if (!ListProducts.length) getAllFilteredProducts();
-
-    // console.log("ListProducts:", ListProducts);
-    // console.log("ID_Product:", ID_Product);
   }, []);
 
    useEffect(() => {
-        console.log(ID_Product)
         if (ID_Product && ID_Product.unit_stock > 0) {
-       console.log("hay ID_Product:", ID_Product);
        setProductCaracteristics((previousState) => {
-         // console.log("previousState: ", previousState);
          const initialState = {
            product_id: ID_Product.id_product,
            amount: 1,
            caracteristics: {}
          }
          ID_Product.Caracteristics.forEach(caracteristic => {
-           // console.log("caracteristic.name_caracteristic: ", caracteristic.name_caracteristic);
            initialState.caracteristics[caracteristic.name_caracteristic] = caracteristic.values_caracteristic[0];
          })
-         console.log("initialState: ", initialState);
          return initialState;
        });
      }
-     // else console.log("no hay id product");
    }, [ID_Product]);
 
   let handleproductCaracteristics  = (e) => {
-    console.log(e.target.getAttribute("name"));
-    console.log(e.target.getAttribute("value"));
     e.preventDefault();
     const name = e.target.getAttribute("name").split("_")[0];
-    // console.log("name: ", name);
     if (e.target.getAttribute("name") !== "amount") {
       setProductCaracteristics({
         ...productCaracteristics,
@@ -148,9 +136,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   function handleproductCaracteristicsInput(e) {
     e.preventDefault();
     const name = e.target.name.split("_")[0];
-    // console.log("name: ", name);
-    // console.log("e.target.name: ", e.target.name);
-    // console.log("e.target.value: ", e.target.value);
     if (e.target.name !== "amount") {
       setProductCaracteristics({
         ...productCaracteristics,

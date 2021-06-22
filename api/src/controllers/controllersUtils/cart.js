@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
 const addCart = async (product_id, amount, caracteristics, orderid) => {
-    console.log('addcart')
     //Creo el orderdetail => producto => creo los orderdetailcaracteristic => categorias del producto
     const orderdetail = await OrderDetail.create({ 
                                 product_amount: amount,
@@ -22,12 +21,10 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
 }
 
  const getCart = async (orderid) =>{
-    console.log('getCart')
     let productos = []
     const orderdetails = await OrderDetail.findAll({where: {OrderIdOrder: orderid}, order: ['id_order_detail']})
     for(const orderdetail of orderdetails){
         //Agarro todo lo que puedo
-        console.log(orderdetail)
         let caracteristics = {}
         let productid = orderdetail.ProductIdProduct
         let orderid = orderdetail.id_order_detail

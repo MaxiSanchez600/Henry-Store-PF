@@ -15,17 +15,15 @@ function FilterCategories({
   getCaracteristicsFromActions,
   sendFiltersToActions,
 }) {
-
+ //este estado no esta leido sirve?
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     if (!categoriesFromReducer.length) getCategoriesFromActions();
     if (!caracteristicsFromReducer.length) getCaracteristicsFromActions();
-    // console.log("useEffect -> categoriesFromReducer: ", categoriesFromReducer);
   }, [categoriesFromReducer]);
 
   function handleOptions(e) {
-    console.log("handleOptions -> e.target.value: ", e.target.value);
     if (!e.target.value) {
       closeSelectedFilterButton(e);
     }
@@ -39,16 +37,13 @@ function FilterCategories({
 
   function removePreviousFilters() {
     const { category, tag, ...removedFilters } = { ...queriesFromReducer };
-    // console.log("removePreviousFilters -> filters to be removed: ", removedFilters);
     caracteristicsFromReducer.forEach(caracteristic => {
       delete removedFilters[caracteristic.name_caracteristic];
     });
-    // console.log("removePreviousFilters -> removedFilters: ", removedFilters);
     return { ...removedFilters };
   }
 
   function closeSelectedFilterButton(e) {
-    // console.log("caracteristicsFromReducer: ", caracteristicsFromReducer);
     e.preventDefault();
     setSelectedCategory("");
     // const test = document.getElementById(`rangePriceMin`);

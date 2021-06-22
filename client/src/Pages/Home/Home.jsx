@@ -6,7 +6,6 @@ import Footer from '../../Components/Footer/Footer';
 import Navbar from '../../Components/NavBar/NavBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
-import Order from '../../Components/Order/Order';
 import Sidebar from "../../Components/Sidebar/Sidebar";
 function Home({ queriesFromReducer, getProductsWithoutFilters }) {
  
@@ -20,11 +19,9 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
             <Navbar />
             <div className="search_container">
                 <SearchBar />
-                {/* <div className="search"></div> */}
             </div>
             <div className="content_Home" >
                 <div className="content_SidebarLeft" >
-                    {/* <Order /> */}
                     {
                         Object.keys(queriesFromReducer).length ?
                             <button className="reset_button" onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> :
@@ -44,7 +41,6 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
         </div>
     )
 }
-//Si explota es esto xD
 function mapStateToProps(state) {
     return {
         queriesFromReducer: state.products.queries

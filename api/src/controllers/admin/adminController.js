@@ -59,9 +59,7 @@ function banUser (req,res,next) {
     .then((userRecord) => {
         return res.send(userRecord);
     })
-    .catch((error) => {
-        console.log('Error updating user:', error);
-    });
+    .catch(e=>next(e));
 }
 
 function resetEmailUser (req,res,next) {
@@ -74,9 +72,7 @@ function resetEmailUser (req,res,next) {
     .then((userRecord) => {
         res.send(userRecord);
     })
-    .catch((error) => {
-        console.log('Error updating user:', error);
-    });
+    .catch(e=>next(e));
 
 }
 
@@ -90,9 +86,7 @@ function resetPassUser (req,res,next) {
     .then((userRecord) => {
         res.send(userRecord);
     })
-    .catch((error) => {
-        console.log('Error updating user:', error);
-    });
+    .catch(e=>next(e));
 
 }
 

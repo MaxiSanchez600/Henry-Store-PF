@@ -13,13 +13,14 @@ function Products({ ListProducts, getAllFilteredProducts }) {
 
     useEffect(() => {
         if (!ListProducts.length) getAllFilteredProducts();
-    }, [])
+    },[ListProducts.length])
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
     const productPerPage = 10;
     const pagesVisited = pageNumber * productPerPage;
-    const displayProducts = ListProducts.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
+    //agrego un ? para hacer condicional y no explote el map
+    const displayProducts = ListProducts?.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return (
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
                 <div className="heart_product"><AiFillHeart/></div>

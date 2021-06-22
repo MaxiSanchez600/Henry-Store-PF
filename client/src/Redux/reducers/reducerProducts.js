@@ -1,38 +1,21 @@
-// ! ACTIONS
-import {
-    // GET_PRODUCTS,
-    FILTER_PRODUCTS,
-    SET_TOTAL_PRICE,
-    SET_CARRITO,
-} from '../actions/actions';
-
-import {
-    GET_CATEGORIES,
-    GET_CARACTERISTICS
-} from '../actions/actionsProducts'
+import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT } from '../actions/actionsProducts';
+import { GET_CATEGORIES, GET_CARACTERISTICS } from '../actions/actionsProducts'
 
 const initialState = {
     products: [],
+    product:{},
     user_id: "",
     userhc: 150,
     carrito: [],
     price: undefined,
     hc: undefined,
-    categories: [],
+    categories: [], //en el otro reducer index estaban como un objeto
     caracteristics: [],
     queries: {}
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-
-        // * Receibe all list of products from backend //DONT USED
-        // case GET_PRODUCTS:
-        //     return {
-        //         ...state,
-        //         products: action.payload,
-        //     };
-
         // * Recibe all_list with filter
         case FILTER_PRODUCTS:
             return {
@@ -65,12 +48,15 @@ const rootReducer = (state = initialState, action) => {
                 categories: [...action.payload]
             }
         case GET_CARACTERISTICS:
-            // console.log("action: ", action);
             return {
                 ...state,
                 caracteristics: [...action.payload.data]
             }
-        // * default
+        case GET_ONE_PRODUCT:
+        return{
+            ...state,
+            product:action.payload
+        }
         default:
             return {
                 ...state,

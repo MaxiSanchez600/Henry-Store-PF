@@ -8,7 +8,7 @@ function SlideBar (){
     return(
         <div className='slideBarContainer'>
             <div>
-                <img className='profilePic' src={henry}></img>
+                <img className='profilePic' alt="notfound" src={henry}></img>
                 <h3>Resumen</h3>
                 <ul>
                 <Link to='/admin'><li>Estadisticas</li></Link>

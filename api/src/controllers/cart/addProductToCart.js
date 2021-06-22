@@ -6,7 +6,6 @@ const {addCart} = require('../controllersUtils/cart');
 const addProductToCart = {
     addProduct: async (req, res) =>{
         let {user_id, product_id, amount, caracteristics} = req.body
-            console.log(req.body)
             if(user_id !== ''){
                 const order = await Order.findOne({ 
                     where: { [Op.and]: [ {status: 'carrito'}, {UserIdUser: user_id} ]} 
