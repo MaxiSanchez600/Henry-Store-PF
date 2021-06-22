@@ -16,10 +16,6 @@
   justify-content: space-around;
   align-items:center;
   margin-top: 30px;
-
-  .imageHenry {
-    
-  }
   
   .labelPerfil label{
     font-size: 28px;
@@ -116,16 +112,37 @@
 
     .initiald{
       input {
-        border: 0 solid white;
-        color: black;
+        margin: 10px;
+        padding: 10px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #cfcfcf;
+        width: 280px;
+        height: 40px;
+        padding: 0 25px;
+        font-size: 15px;
       }
       .inputNacionality {
-        border: 0 solid white;
-        color: black;
+        margin: 10px;
+        padding: 10px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #cfcfcf;
+        width: 280px;
+        height: 40px;
+        padding: 0 25px;
+        font-size: 15px;
       }
       .inputDocumentType {
-        border: 0 solid white;
-        color: black;
+        margin: 10px;
+        padding: 10px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #cfcfcf;
+        width: 280px;
+        height: 40px;
+        padding: 0 25px;
+        font-size: 15px;
       }
       
     }
@@ -138,6 +155,15 @@
         font-size: 17px;
       }
       input {
+        margin: 10px;
+        padding: 10px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #cfcfcf;
+        width: 280px;
+        height: 40px;
+        padding: 0 25px;
+        font-size: 15px;
         width: 240px;
         height: 35px;
       }

@@ -61,7 +61,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             })
             .then((res) => {
               if(localStorage.getItem('userid') !== null){
-                dispatch(getUserLogin(res.user.uid))
+                // dispatch(getUserLogin(res.user.uid))
                 axios.put(GUEST_CART_USER, {
                   new_user: res.data.id_user,
                   guest_user: localStorage.getItem('userid')
@@ -123,7 +123,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           })
           .then((res) => {
             if(localStorage.getItem('userid') !== null){
-              dispatch(getUserLogin(res.user.uid))
+              // dispatch(getUserLogin(res.user.uid))
               axios.put(GUEST_CART_USER, {
                 new_user: res.data.id_user,
                 guest_user: localStorage.getItem('userid')
