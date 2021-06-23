@@ -78,13 +78,14 @@ function resetEmailUser (req,res,next) {
 
 function resetPassUser (req,res,next) {
     let {id} = req.body;
+    let defaultPassword = "soyHenrySTORE"
     adminapp
     .auth()
     .updateUser(id, {
-        password: "valuecaracteristics07",
+        password: defaultPassword,
     })
-    .then((userRecord) => {
-        res.send(userRecord);
+    .then(() => {
+        res.send(defaultPassword);
     })
     .catch(e=>next(e));
 
