@@ -44,10 +44,10 @@ export function Cartpay(props){
               <div className= "topPrice_pay">
                 <div className = 'TotalPrice_CartPay'>
                   <h2 className ='Label1_Cartpay'>TOTAL</h2>
-                  <h2 className ='Label2_Cartpay'>{props.pricetotal - (hc * props.pricetotal / 100)} USD</h2>
+                  <h2 className ='Label2_Cartpay'>{(props.pricetotal * props.currencyactual) - (hc * (props.pricetotal * props.currencyactual) / 100)} {props.currencyactualname}</h2>
                 </div>
                 {(localStorage.getItem('userlogged') != null) ? <label className ='Label3_Cartpay'>¡Utilizando {hc} de tus <span>{props.userhc} Henry Coins</span> tenes un <span>{hc}%</span>, ahorrando
-                <span> {(hc * props.pricetotal / 100)}!</span></label> : <label label className ='Label3_Cartpay'>Al no estar logeado no dispones de <span>Henry Coins</span> para
+                <span> {(hc * (props.pricetotal * props.currencyactual) / 100)}!</span></label> : <label label className ='Label3_Cartpay'>Al no estar logeado no dispones de <span>Henry Coins</span> para
                 utlizar en tu compra.</label>}
               </div>
               <div className = 'HC_CartPay'>
@@ -81,7 +81,9 @@ const mapStateToProps = (state) => {
       userid: state.user_id,
       pricetotal: state.products.price,
       hctotal: state.products.hc,
-      userhc: state.products.userhc
+      userhc: state.products.userhc,
+      currencyactual: state.products.currency,
+      currencyactualname: state.products.currencyname
     }
   }
   
