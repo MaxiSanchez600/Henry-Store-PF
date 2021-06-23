@@ -221,6 +221,10 @@ module.exports = (sequelize) => {
     image:{
       type:DataTypes.STRING,
       allowNull: true
+    },
+    hcamount:{
+      type:DataTypes.INTEGER,
+      allowNull: true
     }
   })
 
