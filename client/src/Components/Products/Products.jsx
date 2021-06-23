@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
-import {IoIosArrowBack} from "react-icons/io"
 import { AiFillHeart } from 'react-icons/ai';
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
