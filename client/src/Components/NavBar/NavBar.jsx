@@ -31,7 +31,6 @@ const NavBar = () => {
   const { openSidebar} = useGlobalContext();
   const { data: user } = useUser();
   const [currency, setCurrency] = useState([])
-
   const getCurrencies = () => {
     axios.get(URL_BASE + 'cart/getcurrency').then(value =>{
       setCurrency(value.data)
@@ -103,7 +102,7 @@ const NavBar = () => {
           value = {element.currencyExChange}>{element.currencyName}</option> : <option name = {element.currencyName} value = {element.currencyExChange}
           >{element.currencyName}</option>))}
         </select>
-        <div className="carrito">
+        <div data-tip data-for = "cart_tooltip_NavBar" className="carrito">
         <Link to={'/home/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>
         {!user &&
