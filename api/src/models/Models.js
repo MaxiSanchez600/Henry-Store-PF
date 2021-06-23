@@ -221,6 +221,10 @@ module.exports = (sequelize) => {
     image:{
       type:DataTypes.STRING,
       allowNull: true
+    },
+    hcamount:{
+      type:DataTypes.INTEGER,
+      allowNull: true
     }
   })
 
@@ -333,6 +337,14 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     product_amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    totalprice: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    totalhc:{
       type: DataTypes.INTEGER,
       allowNull: false
     }
