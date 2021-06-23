@@ -67,11 +67,11 @@ function FilterCategories({
         }
       </select>
       {
-        selectedCategory ?
+        queriesFromReducer.category ?
           <div>
-            <p>Categoria: {selectedCategory}</p>
+            <p>Categoria: {queriesFromReducer.category}</p>
             <button
-              name={selectedCategory}
+              name={queriesFromReducer.category}
               onClick={e => closeSelectedFilterButton(e)}
             >x</button>
           </div> :

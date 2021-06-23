@@ -9,6 +9,15 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
  
     function handleResetFilters(e) {
         e.preventDefault();
+        // console.log("Object.keys(queriesFromReducer): ", Object.keys(queriesFromReducer));
+        // console.log("document.getElementById(): ", document.getElementById());
+        const allQueries = Object.keys(queriesFromReducer);
+        
+        for (let i = 0; i < allQueries.length; i++) {
+            console.log("allQueries[i]: ", allQueries[i]);
+            delete queriesFromReducer[allQueries[i]];
+        }
+        console.log("queriesFromReducer: ", queriesFromReducer);
         getProductsWithoutFilters({});
     }
 
