@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import './CategoriesSelected.scss'
 
-function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson}){
+function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson, catBack}){
     useEffect(()=>{
         setJson({...json, categories:subCatSelected})
     },[subCatSelected])
@@ -19,7 +19,7 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
 
     const onChangeSubCat = (e)=>{
         //si se hace un check
-        if(e.target.checked){
+/*         if(e.target.checked){
             if(!subCatSelected.hasOwnProperty(e.target.title)){
                 setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})   
                            
@@ -35,43 +35,52 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
         }else{
             const resultRemove = subCatSelected[e.target.title].filter(element => element !== e.target.value)
             setSubCatSelected({...subCatSelected, [e.target.title]:resultRemove})
-        }   
+        }    */
+        setJson({...json, categories:{...json.categories, [e.target.name]:[e.target.value]}})
         
-         
     }
     return(
         <div className='categoriesSelectedContainer'>
             {
-                Object.entries(categoriesSelected).map( (e,index) =>(
+                Object.keys(json.categories)?.map( (cat, index) => (
                     <div className='tableSubCatWrap' key={index}>
                         {
-                            e[1]===true?
+                            
                             <div className='tableSubCat'>
                                 <div className='titleAndClose'>
-                                    <div>{e[0]}</div>
-                                    <button onClick={onclose} name={e[0]}>x</button>
+                                    <div>{cat}</div>
+                                    <button onClick={onclose} name={cat}>x</button>
                                 </div>
                                 <div>
-                                    <div className='checkText'>Seleccione una o mas subCategorias:</div>
+                                    <div className='checkText'>Seleccione una subCategorias:</div>
                                     <div className="checksContainer">
-                                        {/* <select onChange={onChangeSubCat} title={e[0]}>
-                                            <option value=''>Seleccione</option>
-                                            {
-                                                getSubCategories(e[0]).map((element, index2)=>(
-                                                    <option value={element.name_sub_category} key={index2}>{element.name_sub_category}</option>
-                                                ))
-                                            }
-                                        </select> */
-                                            getSubCategories(e[0]).map((element, index2)=>(
+                                        {
+/*                                             getSubCategories(e[0]).map((element, index2)=>(
                                                 <div className='checksWrap' key={index2}>
-                                                    <input type='checkbox' title={e[0]} value={element.name_sub_category} onChange={onChangeSubCat}></input>
+                                                    <input type='radio' title={e[0]} value={element.name_sub_category} onChange={onChangeSubCat}></input>
                                                     <label>{element.name_sub_category}</label>
                                                 </div>
-                                            ))
+                                            )) */
+
+                                            catBack.find( catBack => catBack.name_category === cat).SubCategories?.map( subCat =>{
+                                                
+                                                return <label>
+                                                    <input 
+                                                        type='radio'  
+                                                        value={subCat.name_sub_category}
+                                                        name={cat} 
+                                                        checked={json.categories[cat].includes(subCat.name_sub_category) ? true : false}
+                                                        onChange={onChangeSubCat}
+                                                        />
+                                                        {subCat.name_sub_category}
+                                                    <br/>
+                                                </label>
+                                                // <input type='radio'  name={subCat.name_sub_category}/>
+                                            })
                                         }
                                     </div>
                                 </div>
-                            </div>:null
+                            </div>
                         }
                     </div>
                 ))

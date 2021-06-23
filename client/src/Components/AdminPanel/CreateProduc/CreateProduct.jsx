@@ -7,9 +7,11 @@ import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 import {postProduct} from '../../../Redux/actions/actionsProducts'
-
+import axios from "axios"
+import Swal from 'sweetalert2';
 
 function CreateProduct ({editIsActive, productData, title}){
+    const [catBack, setCatBack] = useState([]);
     const dispatch = useDispatch()
     const [subCatSelected, setSubCatSelected]=useState({})
     const [tags, setTags] = useState([]);
@@ -19,25 +21,28 @@ function CreateProduct ({editIsActive, productData, title}){
     const [caracteristicIsOpen, setCaracteristicIsOpen]=useState(false);
     const [categoriesSelected, setCategoriesSelected]=useState({})
     const [allData, setAllData]=useState({
-        name:'',
-        price:'',
-        description:'',
-        unit_stock:'',
-        henry_coin:'',
-        weight:'',
-        size:'',
-        percentage_discount:'',
-    })
-    const [json, setJson] = useState({
-        infoProduct:{},
-        categories:{},
-        caracteristics:{},
-        tags:[],
-        images: []
-    })
 
-    useEffect(()=>{
-        const initialInfo = ()=>{
+    })
+    
+    const [json, setJson] = useState({
+        infoProduct: {
+            name:'',
+            price:'',
+            description:'',
+            unit_stock:'',
+            henry_coin:'',
+            weight:'',
+            size:'',
+            percentage_discount:'',  
+        },
+        categories: {},
+        caracteristics: {},
+        tags: [],
+        images: []
+    });
+
+    useEffect(() => {
+        /* const initialInfo = ()=>{
             if(editIsActive){
                 setAllData({
                     name:productData.name,
@@ -76,21 +81,63 @@ function CreateProduct ({editIsActive, productData, title}){
                 })
             }
         }
-        initialInfo()
+        initialInfo() */
+        const getCat = async function() {
+            try {   
+                const response = await axios.get('http://localhost:3001/product/categories')
+                setCatBack(response.data);
+                
+                //window.localStorage.setItem('categories', JSON.stringify(response.data))
+            }catch (error) {
+              console.error(error)
+            }   
+        };
+        getCat();
         
-    },[categories])
+    },[]);
 
-    const onClickCreateCategory = (e)=>{
-        e.preventDefault()
-        setCategoryIsOpen(true)
+    const onClickCreateCategory = async (e)=>{
+        const { value: category } = await Swal.fire({
+            title: 'Añade una categoría',
+            input: 'text',
+            inputLabel: 'Nombre:',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                return '¡Debe digitar un nombre para la catergoria!'
+                }
+            }
+            })
+    
+            if (category) {
+                setCatBack([
+                    ...catBack,
+                    {
+                        name_category: category,
+                        SubCategories: []
+                    }
+                ]);
+            Swal.fire(`La categoria "${category}" fue añadida con éxito.`)
+            }
     }
-    const onChangeInputs = (e)=>{
-        setAllData({...allData, [e.target.name]:e.target.value})
-        setJson({...json, infoProduct:allData})
-    }
+    const onChangeInputs = (e) => {
+        setJson({
+            ...json, 
+            infoProduct: {
+                ...json.infoProduct,
+                [e.target.name]: e.target.value
+            }
+        });
+    };
 
-    const onClickAddCategory = (e) =>{
-        e.preventDefault()
+    const onClickAddCategory = (e) => {
+        setJson({
+            ...json,
+            categories: {
+                ...json.categories,
+                [e.target.name]: []
+            }
+        });
         setCategoriesSelected({...categoriesSelected,[e.target.name]:true})
     }
 
@@ -115,35 +162,35 @@ function CreateProduct ({editIsActive, productData, title}){
                         <div className="basicInfoWrap">
                             <div className="inputField">
                                 <label>Nombre:</label>
-                                <input className='input' name='name' onChange={onChangeInputs} value={allData.name}></input>
+                                <input className='input' name='name' onChange={onChangeInputs} value={json.infoProduct.name}></input>
                             </div>
                             <div className="inputField">
                                 <label>Precio:</label>
-                                <input className='smallInput' name='price' onChange={onChangeInputs} value={allData.price}></input>
+                                <input className='smallInput' name='price' onChange={onChangeInputs} value={json.infoProduct.price}></input>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>
-                                <textarea rows='5' name='description' onChange={onChangeInputs} value={allData.description}></textarea>
+                                <textarea rows='5' name='description' onChange={onChangeInputs} value={json.infoProduct.description}></textarea>
                             </div>
                             <div className="inputField">
                                 <label>Stock:</label>
-                                <input className='smallInput' name='unit_stock' onChange={onChangeInputs} value={allData.unit_stock}></input>
+                                <input className='smallInput' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock}></input>
                             </div>
                             <div className="inputField">
                                 <label>Henry coins:</label>
-                                <input className='smallInput' name='henry_coin' onChange={onChangeInputs} value={allData.henry_coin}></input>
+                                <input className='smallInput' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin}></input>
                             </div>
                             <div className="inputField">
                                 <label>Peso:</label>
-                                <input className='smallInput' name='weight' onChange={onChangeInputs} value={allData.weight}></input>
+                                <input className='smallInput' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight}></input>
                             </div>
                             <div className="inputField">
                                 <label>Dimensiones (Largo x Alto x Ancho):</label>
-                                <input className='input' name='size' onChange={onChangeInputs} value={allData.size}></input>
+                                <input className='input' name='size' onChange={onChangeInputs} value={json.infoProduct.size}></input>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
-                                <input className='smallInput' name='percentage_discount' onChange={onChangeInputs} value={allData.percentage_discount}></input>
+                                <input className='smallInput' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount}></input>
                             </div>
                         </div>
                         <div className="categoryContainer">
@@ -151,7 +198,7 @@ function CreateProduct ({editIsActive, productData, title}){
                                 <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
                                 <ul>
                                     {
-                                        categoriesSaves?.map((cat, index)=>(
+                                        catBack?.map((cat, index)=>(
                                             <button className='buttonCategory' name={cat.name_category} onClick={onClickAddCategory} key={index}>{cat.name_category}</button>
                                         ))  
                                     }
@@ -164,6 +211,7 @@ function CreateProduct ({editIsActive, productData, title}){
                                     setSubCatSelected={setSubCatSelected}
                                     json={json}
                                     setJson={setJson}
+                                    catBack={catBack}
                                 
                                 />
                                 {/* <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button> */}
