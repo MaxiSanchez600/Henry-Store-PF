@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import './Cartpay.scss'
 import { connect } from 'react-redux'
-
+import { useHistory } from "react-router-dom"
+import axios from 'axios'
+import { URL_BASE } from '../../../Config/index.js'
 
 export function Cartpay(props){
+    let history = useHistory()
     const [hc, sethc] = React.useState(0)
     let onClickLabel = (e) =>{
       if(localStorage.getItem('userlogged') !== null){
@@ -37,7 +40,22 @@ export function Cartpay(props){
     let OpenRegister = () =>{
       document.getElementById('buttonRegister').click();
     }
-   
+    
+    let onSubmitCart = () =>{
+
+      if(props.carritoactual.length > 0){
+        if(localStorage.getItem('userlogged') !== null){
+          axios.get(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem('userlogged')}`)
+        }
+        else if (localStorage.getItem('userid') !== null){
+          
+        }
+        //history.push(`/checkout${}`)
+      }
+      else{
+        console.log('carrito vacio')
+      }
+    }
     return(
             <div className = 'Contenedor_CartPay'>
               <h1 className = 'PayConteinerH1_CartPay'>RESUMEN DE LA COMPRA</h1>
@@ -69,7 +87,7 @@ export function Cartpay(props){
                 <br></br>
                 <br></br>
                 {(localStorage.getItem('userlogged') === null) && <label>Si ya tenes tu carrito listo, pero no estas registrado... ¡Podes <span className = 'SpanRegister_Cartpay' onClick = {OpenRegister}>registrate aqui</span> y se cargara automaticamente!</label>}
-                <button className = 'buttoncheckout_CartPay'>CHECKOUT</button>
+                <button className = 'buttoncheckout_CartPay' onClick = {onSubmitCart}>CHECKOUT</button>
               </div>
   
             </div>
@@ -83,7 +101,8 @@ const mapStateToProps = (state) => {
       hctotal: state.products.hc,
       userhc: state.products.userhc,
       currencyactual: state.products.currency,
-      currencyactualname: state.products.currencyname
+      currencyactualname: state.products.currencyname,
+      carritoactual: state.products.carrito
     }
   }
   

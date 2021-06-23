@@ -222,9 +222,9 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       allowNull: true
     },
-    hc_amount:{
+    hcamount:{
       type:DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
   })
 

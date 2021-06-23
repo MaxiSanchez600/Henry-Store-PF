@@ -9,7 +9,7 @@ function firstInfoSearcher (userFound,sendUser){
         sendUser.username = userFound.username;
         sendUser.identification = userFound.identification;
         sendUser.image = userFound.image;
-        sendUser.hc = userFound.hc_amount;
+        sendUser.hc = userFound.hcamount;
 
         let roleStr = Role.findByPk(userFound.RoleIdRol);
         let statusStr = UserStatus.findByPk(userFound.UserStatusIdStatus);

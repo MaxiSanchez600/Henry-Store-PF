@@ -8,6 +8,7 @@ import React, {Suspense} from "react";
 // ! PAGES
 import Home from "../../Pages/Home/Home";
 import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
+import Checkout from "../../Pages/Checkout/Checkout.jsx";
 import "firebase/auth";
 import "./App.scss"
 import Cart from "../../Pages/Cart/Cart";
@@ -40,6 +41,7 @@ function App() {
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />
               <Route exact path="/home" component={Home} />
+              <Route exact path = "/checkout/:id" component = {Checkout}/>
               {/* <Route exact path= "/" component {Landing}/> */}
               <Route exact path= '/home/cart' component= {Cart}/>
               {(typeOfUser === "admin")&&
