@@ -66,7 +66,7 @@ function FilterCategories({
           ))
         }
       </select>
-      {/* {
+      {
         selectedCategory ?
           <div>
             <p>Categoria: {selectedCategory}</p>
@@ -76,7 +76,7 @@ function FilterCategories({
             >x</button>
           </div> :
           ""
-      } */}
+      }
     </div>
   );
 }
