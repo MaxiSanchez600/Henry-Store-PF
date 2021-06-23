@@ -36,3 +36,9 @@
 .content-table tr:last-of-type {
     border-bottom: 2px solid #FFFF01;
 }
+
+.action-wheel{
+    &:hover{
+        cursor: pointer;
+    }
+}
