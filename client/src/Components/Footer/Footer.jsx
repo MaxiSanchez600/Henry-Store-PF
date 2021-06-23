@@ -1,22 +1,29 @@
-import React from 'react'
-import Logo_Henry_white from '../../Assets/images/Logo_Henry_white.png'
+import './Footer.scss'
+import Logo_Henry_white from '../../Assets/Images/Logo_H_white.png'
 
-function Footer() {
+export default function Footer(){
     return (
-        <div className="content_Footer">
-            <img src={Logo_Henry_white} className="logo" alt="" width="200px" />
-
-            <div className="Footer_body">
-                <ul className="items">
-                    <li>Home</li>
-                    <li>Nosotros</li>
-                    <li>Términos y condiciones</li>
-                    <li>Política de Privacidad</li>
-                </ul>
+        <footer className= "footer">
+            <div className= "container_footer">
+                <div className= "row">
+                    <div className="footercol">
+                    <img src={Logo_Henry_white} className="logo-henry" alt="" width="200px" />
+                    </div>
+                    <div className="footercol">
+                        <h4>Newsletter</h4>
+                    </div>
+                    <div className="footercol">
+                        <h4>Términos y condiciones</h4>
+                    </div>
+                    <div className="footercol">
+                        <h4>Política de Privacidad</h4>
+                    </div>
+                    <div className="footercol">
+                        <h4>Redes Sociales</h4>
+                    </div>
+            <p className="Footer_foot">Henry © 2021 | Todos los derechos reservados.</p>
+                </div>
             </div>
-            <div className="Footer_foot">Henry © 2021 | Todos los derechos reservados.</div>
-        </div>
+        </footer>
     )
 }
-
-export default Footer

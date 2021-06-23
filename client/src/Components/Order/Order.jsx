@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getAllFilteredProducts } from '../../Redux/actions/actions';
+import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 
 function Order({ queriesFromReducer, sendFiltersToActions }) {
 
@@ -21,8 +21,8 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
     e.preventDefault();
     setOrderType("");
     setOrderDirection("");
-    const { orderType, orderDirection, ...removedORderQueries } = { ...queriesFromReducer };
-    sendFiltersToActions({ ...removedORderQueries });
+    const { orderType, orderDirection, ...removedOrderQueries } = { ...queriesFromReducer };
+    sendFiltersToActions({ ...removedOrderQueries });
   }
 
   return (
@@ -48,7 +48,7 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
 
 function mapStateToProps(state) {
   return {
-    queriesFromReducer: state.queries
+    queriesFromReducer: state.products.queries
   }
 }
 

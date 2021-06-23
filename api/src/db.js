@@ -4,17 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
-//Conexion a Elephant => Agarrar Datos
+// Conexion a Elephant => Agarrar Datos
 // const sequelize = new Sequelize('postgres://lcfufdas:punlDUtNrlaLxI_bNDAsoEIU96Zmv-t_@motty.db.elephantsql.com/lcfufdas', {
 //   logging: false, // set to console.log to see the raw SQL queries
 //   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 // });
 
 // Conexion Local => Pruebas
- const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
-   logging: false, // set to console.log to see the raw SQL queries
-   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
- });
+const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+}); 
 
 const basename = path.basename(__filename);
 
@@ -39,7 +39,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image, Nacionality} = sequelize.models;
+  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange} = sequelize.models;
 
 
 //Relacion Tag Productos
@@ -98,11 +98,28 @@ Image.belongsTo(Product);
 Nacionality.hasMany(User);
 User.belongsTo(Nacionality);
 
+//Relacion User Order
+User.hasMany(Order);
+Order.belongsTo(User);
+
+//Relacion Order OrderDetail
+Order.hasMany(OrderDetail);
+OrderDetail.belongsTo(Order);
+
+//Relacion Producto OrderDetal
+Product.hasMany(OrderDetail);
+OrderDetail.belongsTo(Product);
+  
+//Relacion OrderDetail OrderDetalCaracteristic
+OrderDetail.hasMany(OrderDetailCaracteristic);
+OrderDetailCaracteristic.belongsTo(OrderDetail);
+
+
 
 //Precarga Role
 Role.count().then((value) =>{
-  if(value < 3){
-    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'})]
+  if(value < 4){
+    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'}), Role.create({rol: 'guest'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo el rol' + element)
       await element
@@ -113,7 +130,7 @@ Role.count().then((value) =>{
 //Precarga Status
  UserStatus.count().then((value) => {
    if(value < 3){
-     let arrayconst = [UserStatus.create({name_status: 'incompleto'}), UserStatus.create({name_status: 'completo'}), UserStatus.create({name_status: 'eliminado'})]
+     let arrayconst = [UserStatus.create({name_status: 'Incompleto'}), UserStatus.create({name_status: 'Completo'}),UserStatus.create({name_status: 'Undefined'})]
      arrayconst.map(async (element) =>{
        console.log('Se cargo el estado' + element)
        await element
@@ -134,8 +151,8 @@ Category.count().then((value) => {
 
 //Precarga documentTypes
 DocumentType.count().then((value) =>{
-  if(value < 4){
-    let arrayconst = [DocumentType.create({name_document_type: 'dni'}), DocumentType.create({name_document_type: 'run'}), DocumentType.create({name_document_type: 'cc'}),  DocumentType.create({name_document_type: 'ife'})]
+  if(value < 5){
+    let arrayconst = [DocumentType.create({name_document_type: 'DNI'}), DocumentType.create({name_document_type: 'RUN'}), DocumentType.create({name_document_type: 'CC'}),  DocumentType.create({name_document_type: 'IFE'}),DocumentType.create({name_document_type: 'Undefined'})]
     arrayconst.map(async (element) =>{
       console.log('Se cargo el documenttype' + element)
       await element
@@ -212,12 +229,33 @@ Caracteristic.count().then((value) =>{
 
 //Precarga de Nacionalidades
 Nacionality.count().then((value) =>{
-  if(value < 4){
-    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile']
+  if(value < 5){
+    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile','Undefined']
     constarray.forEach(element => {
       Nacionality.create({
         name_nacionality: element
       })
+    })
+  }
+})
+
+CurrencyChange.count().then((value) =>{
+  if(value < 4){
+    CurrencyChange.create({
+      currencyName: 'ARS',
+      currencyExChange: 160
+    })
+    CurrencyChange.create({
+      currencyName: 'CLP',
+      currencyExChange: 752
+    })
+    CurrencyChange.create({
+      currencyName: 'COP',
+      currencyExChange: 3700
+    })
+    CurrencyChange.create({
+      currencyName: 'MXN',
+      currencyExChange: 20
     })
   }
 })

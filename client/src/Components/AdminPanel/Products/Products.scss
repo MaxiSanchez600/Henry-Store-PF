@@ -1,0 +1,14 @@
+.content-products{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 40px;
+    width: 60vw;
+}
+
+.img-prod-table{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}

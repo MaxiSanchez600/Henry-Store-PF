@@ -2,7 +2,7 @@ const { Tag, Category } = require('../../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
-const filtersCreator = (tag, category, rangePriceMin, rangePriceMax) => {
+const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, id) => {
     var filters = {};
 
     filters.include = [
@@ -13,6 +13,11 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax) => {
             model: Category,
         },
     ];
+    if(id !== 'not passed') {
+        filters.where = {
+            id_product: id
+        }
+    }
     if(tag !== 'not passed') {
         filters.include[0].where = {
             name_tag: {

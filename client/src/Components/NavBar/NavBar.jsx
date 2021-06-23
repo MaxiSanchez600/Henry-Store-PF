@@ -1,65 +1,119 @@
-import React, { useState } from "react";
-import Login from "../Authentication/Login";
-import Register from "../Authentication/Register";
-import "firebase/auth";
-import { useFirebaseApp, useUser } from "reactfire";
-import logo from '../../Assets/images/Logo_H_black.png'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Login from "../Authentication/Login/Login";
+import Register from "../Authentication/Register/Register";
+import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
+import FilterCategories from "../FilterCategories/FilterCategories";
+import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
+import {  useSelector } from 'react-redux';
+import {  useUser } from "reactfire";
+import { useGlobalContext } from "../../context"
+import henry from "../../Assets/Images/new_logo.png"
+import {FaShoppingCart} from 'react-icons/fa'
+import {IoEnter} from "react-icons/io5"
+import {FaUserAlt} from "react-icons/fa"
+import { URL_BASE } from '../../Config/index.js'
+import { useDispatch } from 'react-redux';
+import {setCurrencyStore} from "../../Redux/actions/actionsProducts";
 
 // ! COMPONENTES
-import FilterCategories from "../FilterCategories/FilterCategories";
+import "firebase/auth";
+import axios from "axios";
+
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
   const [ModalLogin, setModalLogin] = useState(false);
   const [ModalRegister, setModalRegister] = useState(false);
-
+  const [ModalForgotPass, setModalForgotPass] = useState(false);
+  const { openSidebar} = useGlobalContext();
   const { data: user } = useUser();
-  const firebase = useFirebaseApp();
-
-  const logOut = async () => {
-    await firebase.auth().signOut();
+  const [currency, setCurrency] = useState([])
+  const getCurrencies = () => {
+    axios.get(URL_BASE + 'cart/getcurrency').then(value =>{
+      setCurrency(value.data)
+    })
   }
+  
+  useEffect(() =>{
+    getCurrencies()
+  }, [])
+  
+  const onHandleChangeSelect = (e) =>{
+    console.log(e.target.options[e.target.options.selectedIndex].getAttribute("name"))
+    localStorage.setItem("currencyname", (e.target.options[e.target.options.selectedIndex].getAttribute("name")))
+    localStorage.setItem("currency", e.target.value)
+    dispatch(setCurrencyStore({value: e.target.value, name: e.target.options[e.target.options.selectedIndex].getAttribute("name")}))
 
+  }
   // ! CONTENT
   return (
-    <div>
-      <div className="contain_NavBar">
-        <div className="menu_left">
+    <div className="contain_NavBar">
+      <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)} >
+        <Login isOpened={ModalLogin} 
+               loginClose={() => setModalLogin(false)} 
+               registerOpen={() => setModalRegister(true)} 
+               ForgotPassOpen={()=>setModalForgotPass(true)}/>
+      </Modal>
+      <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
+        <Register isOpened={ModalRegister} 
+                  RegisterClose={() => setModalRegister(false)} 
+                  LoginOpen={() => setModalLogin(true)}
+                  />
+      </Modal>
+
+      <Modal isOpened={ModalForgotPass} onClose={() => setModalForgotPass(false)}>
+        <ForgotPassword isOpened={ModalForgotPass} 
+                        forgotPassClose={() => setModalForgotPass(false)}
+                        LoginOpen={() => setModalLogin(true)}
+                        />
+      </Modal>
+      <div className="left-box">
+        <Link to="/home">
+          <img className="logohenry" src={henry} alt ="not"/>
+        </Link>
+        
+      </div>
+      <div className="mid-box">
+          <Link to="/home/working"><p>Nosotros</p></Link>
+          <Link to="/home/working"><p>Sucursales</p></Link>
           <FilterCategories />
-        </div>
-        <div className="menu_rigth">
-          {!user &&
-            <>
-              <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <span class="iconify" data-icon="clarity:login-line" data-inline="false"></span></button>
-              <button className="menu_category" onClick={() => setModalRegister(true)}>REGISTRO <span class="iconify" data-icon="ph:user-circle-plus-duotone" data-inline="false"></span></button>
-            </>
+          <Link to="/home/working"><p>Contacto</p></Link>
+          <Link to="/home/working"><p>FAQ</p></Link>
+      </div>
+      <div className="right-box">
+        <div className="profile-box">
+          {user &&
+              <div className="header_perfil">
+                <span onMouseMove={openSidebar}>
+                  <h2>{dataUSerLogin.username}</h2>
+                </span>
+                <span onMouseMove={openSidebar}>
+                  <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
+                </span>   
+              </div>
           }
         </div>
-      </div>
-
-
-      <Modal isOpened={ModalLogin} onClose={() => setModalLogin(false)}>
-        <Login isOpened={ModalLogin} loginClose={() => setModalLogin(false)} registerOpen={() => setModalRegister(true)} />
-      </Modal>
-
-      <Modal isOpened={ModalRegister} onClose={() => setModalRegister(false)}>
-        <Register isOpened={ModalRegister} onClose={() => setModalRegister(false)} />
-      </Modal>
-
-      {user &&
-        <div className="user_perfil">
-          <div className="header_perfil">
-            <img className="image" src={user.photoURL || logo} alt="not found" />
-            <h2>{user.providerData[0].displayName}</h2>
-
-          </div>
-          <div className="user_buttons">
-            <button className="noselect" onClick={logOut}><span class='text'>Cerrar sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" /></svg></span></button>
-          </div>
-
+      <div className="buttons-under-profile">
+      <select onChange = {onHandleChangeSelect}>
+          {currency.map(element => ((localStorage.getItem("currency") === (element.currencyExChange + "")) ? <option selected = "selected" name = {element.currencyName}
+          value = {element.currencyExChange}>{element.currencyName}</option> : <option name = {element.currencyName} value = {element.currencyExChange}
+          >{element.currencyName}</option>))}
+        </select>
+        <div data-tip data-for = "cart_tooltip_NavBar" className="carrito">
+        <Link to={'/home/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>
-      }
-
+        {!user &&
+            //Botones de login y registro 
+          <>
+            <button className="menu_category" onClick={() => setModalLogin(true)}>INGRESAR <IoEnter/></button>
+            <button className="menu_category" id = "buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <FaUserAlt/></button>
+          </>
+        }
+      </div>
+      </div>
     </div>
   );
 };

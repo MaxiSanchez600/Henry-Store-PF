@@ -1,0 +1,12 @@
+{
+    "product_id": 1,
+    "orderdetail_id": 1,
+    "actual_amount": 5,
+    "amount_max": 15,
+    "caracteristics": {
+        "color": "Rojo",
+        "size":  "M",
+        "genero": "unisex",
+        "type": "buso"
+    }
+}

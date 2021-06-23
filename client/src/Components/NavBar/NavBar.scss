@@ -1,153 +1,139 @@
-.contain_NavBar {
-    position: absolute;
-    top: 6.4em;
-    left: 30%;
-    font-family: "Avenir_Roman";
-    font-size: 10px;
-    z-index: 1;
-    columns: 2;
-    column-gap: 1%;
-    right: 0;
-
-    .menu_left {
-    }
-
-    .menu_rigth {
-        float: right;
-    }
-
-    .button_login {
-        margin: 2% 0 0 95%;
-    }
-
-    .menu_category {
-        margin: 0 10px 0 10px;
-        border-style: none;
-        background-color: transparent;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    .iconify {
-        font-size: 20px;
-        vertical-align: text-bottom;
-    }
-}
-
-.user_perfil {
-    position: absolute;
-    top: 1%;
-    right: 2em;
-    font-family: "Avenir_Roman";
-    font-size: 10px;
-
-.header_perfil{
+@import '../../Sass/variables';
+.contain_NavBar{
+    position: relative;
     display: flex;
-}
+    flex-direction: row;
+    background-color: $black_main;
+    height: 12vh;
+    width: 100vw;
+    justify-content: space-around;  
+    padding: 10px;  
 
-    .user_buttons {
+    .left-box{
         display: flex;
-        text-align: center;
-
-        .button_logout {
-            font-size: 1em;
-            border: 1px solid #dddddd;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 5px;
-            height: 40px;
-            width: 40px;
-            transition: 0.5 all ease;
-            border-style: none;
-            background-color: transparent;
-
-            &:hover {
-                color: rgb(165, 7, 7);
-                transform: scale(1.1);
-                cursor: pointer;
-            }
-        }
-
-        .iconify {
-            font-size: 20px;
-        }
-    }
-
-
-
-    .noselect {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-        width: 150px;
-        height: 25px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        background: red;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-        background: #e62222;
-    }
-
-    button,
-    button span {
-        transition: 200ms;
-    }
-
-    button .text {
-        transform: translateX(35px);
-        color: white;
-        font-weight: bold;
-    }
-
-    button .icon {
-        position: absolute;
-        border-left: 1px solid #c41b1b;
-        transform: translateX(110px);
-        height: 20px;
-        width: 40px;
-        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        .logohenry{
+            margin-top: 23px;
+            width: 200px;
+            padding-top: 2%;
+        }
+        .geolocation{
+            padding-bottom: 2%;
+        }
     }
 
-    button svg {
-        width: 15px;
-        fill: #eee;
+    .mid-box{
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        align-items: center;
+        justify-content: space-around;
+        padding-top: 10px;
+        a {
+            text-decoration: none;
+        }
+        p{
+            font-weight: 500;
+            font-size: 1.1em;
+            color: #ffffff;
+        }
+        p:hover{
+            color: $yellow_main;
+            transition: 1s all ease;
+        }
     }
 
-    button:hover {
-        background: #ff3636;
-    }
+    .right-box{
+        display: flex;
+        flex-direction: column;
+        width: 17%;
+        .profile-box{
+            height: 70%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .image {
+                width: 70px;
+                height: 70px;
+                border-radius: 100px;
+                border: 1px solid white;
+                object-fit: cover;
+            }
+        }
+        .buttons-under-profile{
+            height: 30%;
+            justify-content: space-around;
+            align-items: center;
+            display: flex;
 
-    button:hover .text {
-        color: transparent;
-    }
-
-    button:hover .icon {
-        width: 150px;
-        border-left: none;
-        transform: translateX(0);
-    }
-
-    button:focus {
-        outline: none;
+            .menu_category{
+                position: relative;
+                display: block;
+                background-color: $yellow_main;
+                font-weight: 400;
+                font-size: 0.8em;
+                color: rgba(50, 50, 50, 0.9);
+                opacity: 0.95;
+                width: fit-content;
+                height: fit-content;
+                margin: 10px;
+                text-decoration: none;
+                border-radius: 4px;
+                height: 30px;
+                width: 100px;
+                z-index: 0;
+                transition: all 500ms ease;
+                border: 2px solid $yellow_main;
+                background-color: transparent;
+                color: #ffffff;
+            }
+            .menu_category::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                margin: auto;
+                background-color: $yellow_main;
+                transition: all 500ms ease;
+                z-index: -1;
+              }
+              .menu_category:hover {
+                animation: shadow-pulse 1000ms 1;
+                background-color: $yellow_main;
+                color: #000000;
+                cursor: pointer;
+              }
+        }
     }
 }
 
-body {
-    background-image: linear-gradient(315deg, #ffffff 0%, #f8f8f8 74%);
+
+
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: red;
+    width: 25em;
+    height: 40em;
+    box-shadow: 0em 0.5em 1em 0em rgba(0,0,0,0.2);
+    padding: 0.75em 1em;
+    z-index: 9999;
+    border-radius: 1em;
+    right: 0;
+    transition: all 1s ease 0s;
+  }
+  
+.carrito:hover .dropdown-content {
+    display: block;
 }
+

@@ -1,0 +1,39 @@
+@import "../../../Sass/variables";
+
+.CartGeneral_CartBar{
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+    align-items: center;
+    .CartH2Continue_CartBar{
+        font-size: 0.9em;
+        font-weight: 300;
+        text-decoration: underline;
+        cursor: pointer;
+        color: black;
+    }
+    h1{
+        font-family: "Avenir_Black";
+    }
+    .CartItems_CartBar{
+        font-size: 1.3em;
+        font-weight: 300;
+        color: #7f7f7f;
+        margin-left: 0.5em;
+        margin-top: 0.5em
+    }
+}
+
+
+.CartBarLeft_CartBar{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.CartLine_CartBar{
+    background-color: #7f7f7f;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 1em;
+    margin-top: -1em;
+}

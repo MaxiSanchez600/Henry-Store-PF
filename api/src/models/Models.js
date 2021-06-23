@@ -73,7 +73,7 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     }
   })
 
@@ -188,9 +188,9 @@ module.exports = (sequelize) => {
 
   sequelize.define('User', {
     id_user:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
+      allowNull: false
     },
     name:{
       type:DataTypes.STRING,
@@ -310,6 +310,61 @@ module.exports = (sequelize) => {
       allowNull: false
     }
   })
+
+  //Order
+
+  sequelize.define('Order', {
+    id_order:{
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV1,
+      unique: true
+    },
+    status:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+  })
+
+  sequelize.define('OrderDetail',{
+    id_order_detail: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    product_amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  })
+
+  sequelize.define('OrderDetailCaracteristic', {
+    OrderDetailCaracteristic_id:{
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    caracteristic_id:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    value_caracteristic: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  })
+
+  sequelize.define('CurrencyChange', {
+    currencyName:{
+      type:DataTypes.STRING,
+      allowNull: false
+    },
+    currencyExChange: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  })
+
 };
 
 

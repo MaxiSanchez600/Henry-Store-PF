@@ -1,0 +1,37 @@
+.CartContenedor_CartList{
+    width: 1000px;
+    min-width: 900px;
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-template-rows: 32% 32%;
+    grid-gap: 10%;
+    overflow-y: scroll;
+    height: 600px;
+    padding: 1%;
+    padding-bottom: 1%;
+}
+
+.CartCost_CartDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar{
+	width: 5px;
+}
+
+::-webkit-scrollbar-track-piece{
+	background-color: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: #CBCBCB;
+	outline: 2px solid #FAFAFA;
+	outline-offset: -2px;
+	border: .1px solid #7F7F7F;
+}
+
+::-webkit-scrollbar-thumb:hover{
+	background-color: #909090;
+}

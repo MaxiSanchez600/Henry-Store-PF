@@ -1,0 +1,133 @@
+@import "../../../Sass/variables";
+
+span{
+    font-family: "Avenir_Black";
+}
+.Contenedor_CartPay{
+    background-color: black;
+    height: 440px;
+    max-width: 450px;
+    width: max-content;
+    padding: 15px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    .Label3_Cartpay{
+        color: white;
+        font-size: 0.8em;
+        font-family: "Avenir_Book";
+    }
+}
+.PayConteinerH1_CartPay{
+    color: white;
+    font-family: "Avenir_Black";
+    font-size: 1.75em;
+}
+.topPrice_pay{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+}
+.TotalPrice_CartPay{
+    align-items: stretch;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -1em;
+    .Label1_Cartpay{
+        font-family: "Avenir_Black";
+        color: white;
+        font-size: 1.5em;
+    }
+    .Label2_Cartpay{
+        font-family: "Avenir_Book";
+        font-weight: 100;
+        color: white;
+        font-size: 1.5em;
+    }
+}
+.HC_CartPay{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 220px;
+    .HCAmount_CartPay{
+        display: flex;
+        justify-content: space-between;
+        h1{
+            font-family: "Avenir_Black";
+            color: white;
+            font-size: 1.5em;
+        }
+        h2{
+            font-family: "Avenir_Book";
+            font-weight: 100;
+            color: white;
+            font-size: 1.5em;
+        }
+    }
+    label{
+        margin-bottom: 1em;
+        color: white;
+        font-family: "Avenir_Book";
+        font-weight: 100;
+        font-size: 0.8em;
+    }
+}
+.HCSelect_CartPay{
+    margin-top: 20px;
+    display: grid;
+    gap: 5px 10px;
+    grid-template-columns: 100%;
+    grid-template-columns: repeat(7, 1fr);
+
+    label{
+        color: black;
+        background-color: white;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 0.8em;
+        padding: 3px;
+        font-family: 'Avenir_Black';
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        margin-top: -1em;
+        &:hover {
+            transform: scale(1.1);
+            background-color: $yellow_main;
+            color: black;
+        }
+    }
+}
+
+.buttoncheckout_CartPay{
+    margin-top: 1em;
+    background-color: #ffff01;
+    border: 0px;
+    font-family: 'Avenir_Black';
+    width: 100%;
+    font-size: 1em;
+    height: 2.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease 0s;
+    &:hover {
+        transform: scale(1.02);
+        background-color: white;
+        color: black;
+    }
+}
+
+.SpanRegister_Cartpay{
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    &:hover {
+        transform: scale(1.20);
+        color: #ffff01;
+    }
+}

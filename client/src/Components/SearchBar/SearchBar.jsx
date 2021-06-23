@@ -1,30 +1,45 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { getAllFilteredProducts } from '../../Redux/actions/actions';
+import { getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
+import { FaSearch } from "react-icons/fa"
+import { MdClose } from "react-icons/md"
 
-const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
+const SearchBar = ({
+  queriesFromReducer,
+  caracteristicsFromReducer,
+  getCaracteristicsFromActions,
+  sendFiltersToActions
+}) => {
 
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
-    setSearch(e.target.value);
-    if (!e.target.value) {
-      const { tag, ...removedTagQuery } = { ...queriesFromReducer };
-      sendFiltersToActions({ ...removedTagQuery });
+
+    if (!e.target.value) closeSearchButton(e);
+
+    else {
+      setSearch(e.target.value);
+      const removedPreviousFilters = removePreviousFilters();
+      sendFiltersToActions({ ...removedPreviousFilters, [e.target.name]: e.target.value });
+      getCaracteristicsFromActions({ [e.target.name]: e.target.value });
     }
+  }
 
-    // else if (e.target.value === " ") {
-    //   setSearch(e.target.value);
-
-    // }
-    else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
+  function removePreviousFilters() {
+    const { category, ...removedFilters } = { ...queriesFromReducer };
+    caracteristicsFromReducer.forEach(caracteristic => {
+      delete removedFilters[caracteristic.name_caracteristic];
+    });
+    return { ...removedFilters };
   }
 
   function closeSearchButton(e) {
     e.preventDefault();
     setSearch("");
-    const { tag, ...removedTagQuery } = { ...queriesFromReducer };
+    const removedPreviousFilters = removePreviousFilters();
+    const { tag, ...removedTagQuery } = { ...removedPreviousFilters };
     sendFiltersToActions({ ...removedTagQuery });
+    getCaracteristicsFromActions();
   }
 
   function handleSubmit(e) {
@@ -32,10 +47,9 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
     sendFiltersToActions({ ...queriesFromReducer });
   }
 
-  // ! CONTENT
   return (
     <div className="content_SearchBar">
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>
         <input
           className="input_search"
           name="tag"
@@ -44,18 +58,14 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
           value={search}
           onChange={e => handleSearch(e)}
         />
-        <button className="button_search" type="submit"><span class="iconify" data-icon="flat-color-icons:search" data-inline="false"></span></button>
+        <button className="button_search" type="submit"><FaSearch /></button>
       </form>
       {
         search ?
-          <div>
-            <p>Buscar por: {search}</p>
-            <button
-              name={search}
-              onClick={e => closeSearchButton(e)}
-            >x</button>
-          </div> :
-          ""
+          <div className="box_filter">
+            <p className="filter_title_selected">{search}</p>
+            <button className="button_filtered" name={search} onClick={e => closeSearchButton(e)} ><MdClose /></button>
+          </div> : ""
       }
     </div>
   );
@@ -63,13 +73,15 @@ const SearchBar = ({ queriesFromReducer, sendFiltersToActions }) => {
 
 function mapStateToProps(state) {
   return {
-    queriesFromReducer: state.queries
+    queriesFromReducer: state.products.queries,
+    caracteristicsFromReducer: state.products.caracteristics,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendFiltersToActions: (allQueries) => dispatch(getAllFilteredProducts(allQueries))
+    sendFiltersToActions: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
+    getCaracteristicsFromActions: (tag) => dispatch(getAllCaracteristics(tag)),
   }
 }
 

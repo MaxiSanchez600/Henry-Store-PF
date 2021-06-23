@@ -1,0 +1,8 @@
+{
+    "product_id": 3,
+    "amount": 3,
+    "caracteristics": {
+        "color": "Blanco",
+        "type": "Gorra"
+    }
+}
