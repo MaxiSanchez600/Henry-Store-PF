@@ -13,7 +13,7 @@ function readUserInfo (req,res,next) {
 //---------------------------------------------
 
 function updateUserInfo (req,res,next) {
-    let {id, firstname, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
+    let {id, firstname, hc, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
     User.findOne({where:{id_user: id}})
     .then((userFound)=>{
         if(firstname){
@@ -36,6 +36,9 @@ function updateUserInfo (req,res,next) {
         };
         if(identification){
             userFound.identification = identification;
+        };
+        if(hc){
+            userFound.hc_amount = userFound.hc_amount + hc;
         };
         if(nacionality){
             userFound.setNacionality(nacionality)

@@ -8,7 +8,8 @@ function userCreator (res, next, id, username, email, firstname, lastname, image
         email,
         image,
         name: firstname,
-        last_name: lastname
+        last_name: lastname,
+        hc_amount: 0
     })
     let userRole = Role.findOne({
         where:{
