@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
 import CaracteristicsSelected from "../CaracteristicsSelected/CaracteristicsSelected";
-import CreateCaracteriscs from "../CreateCaracteristics/CreateCaracteriscs";
 import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
@@ -10,7 +9,7 @@ import {postProduct} from '../../../Redux/actions/actionsProducts'
 import axios from "axios"
 import Swal from 'sweetalert2';
 
-function CreateProduct ({editIsActive, productData, title}){
+function CreateProduct ({editIsActive}){
     const [catBack, setCatBack] = useState([]);
     const [carBack, setCarBack] = useState([]);
     const dispatch = useDispatch()
@@ -179,7 +178,6 @@ function CreateProduct ({editIsActive, productData, title}){
 
     return(
         <div className='createContainer'>
-            <h2>{title}</h2> 
             <div className="createWrap">
                 <div className='createContent'> 
                     <div className='basicInfo'>
