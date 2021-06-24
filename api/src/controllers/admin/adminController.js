@@ -1,5 +1,5 @@
 const adminapp = require ('../../utils/config/firebaseAdmin.js');
-const { User, Role, DocumentType, Nacionality, UserStatus } = require ('../../db.js');
+const { User, Role, DocumentType, Nacionality, UserStatus, Order, OrderDetail, Product, Image } = require ('../../db.js');
 
 function readUsers (req,res,next) {
 
@@ -91,9 +91,44 @@ function resetPassUser (req,res,next) {
 
 }
 
+function readOrders (req,res,next) {
+    Order.findAll({
+        include:[
+            {model: OrderDetail,
+                include:{model: Product, 
+                    include:{model: Image, attributes:['name_image']},
+                    attributes:['name','price']}, 
+                attributes:{exclude: ['createdAt', 'updatedAt','OrderIdOrder']}},
+
+            {model: User, attributes:['name', 'email','username','phone']}
+        ]
+    })
+    .then((response)=>{
+        return res.send(response)
+    })
+    .catch(e=>next(e))
+}
+
+function updateOrder (req, res, next) {
+    let {id, newstatus} = req.body;
+
+    Order.update({
+        status: newstatus
+    },
+    {
+        where:{
+            id_order: id
+        }
+    })
+    .then(()=>res.sendStatus(200))
+    .catch(e=>next(e))
+}
+
 module.exports ={
     banUser,
     resetEmailUser,
     resetPassUser,
-    readUsers
+    readUsers,
+    readOrders,
+    updateOrder
 }

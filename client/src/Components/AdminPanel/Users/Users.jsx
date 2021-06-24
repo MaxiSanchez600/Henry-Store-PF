@@ -8,14 +8,12 @@ import actionsUponUsers from './actionsUponUsers/actionsUponUsers'
 
 export default function Users () {
     const [users,setUsers] = useState([])
-    const [usersCount,setUsersCount] = useState ("cargando...")
     const [reset,setReset] = useState (false)
 
     useEffect(()=>{
         axios.get(GET_ALL_USERS)
         .then(response=>{
             setUsers(response.data)
-            setUsersCount(response.data.length)
             setReset(false)
         })
     },[reset])
@@ -26,7 +24,7 @@ export default function Users () {
     return <div>
         <div className="container-table">
         <h1>Panel de Usuarios</h1>
-        <h4>Cantidad de usuarios creados: {usersCount}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
+        <h4>Cantidad de usuarios creados: {users.length?users.length:"cargando..."}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
         <table className="content-table">
             <tr>
                 <th></th>
@@ -45,7 +43,7 @@ export default function Users () {
                 <th>Fecha registro</th>
                 <th>Origen de registro</th>
             </tr>
-            {users.map(user=>{
+            {users?.map(user=>{
                 return (<tr>
                     <td><div className="action-wheel"><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.registrationOrigin, user.disabled, false, false, true, refreshAfterAction)}/></div></td>
                     <td>{user.Role.rol}</td>

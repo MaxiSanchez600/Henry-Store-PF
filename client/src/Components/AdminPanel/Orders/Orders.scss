@@ -1,0 +1,63 @@
+.container-table-order {
+    margin: 10px;
+    padding: 20px 20px;
+}
+.content-table-order{
+    border-collapse:collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px; //posiblemente tenga que cambiar esto
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table-order tr th {
+    background-color: #FFFF01;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    
+}
+.content-table-order th,
+.content-table-order td {
+    padding: 12px 15px;
+    max-width: 14rem;
+    width: 14rem;
+    height: 3.7rem;
+    text-align: center;
+    vertical-align: center;
+}
+
+.content-table-order tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table-order .order-rows:nth-of-type(even) {
+    background-color: #f3f3f3; 
+}
+
+.content-table-order tr:last-of-type {
+    border-bottom: 2px solid #FFFF01;
+}
+
+.content-table-order .row-product:last-of-type {
+    border-bottom: none;
+}
+.content-table-order .row-product2:last-of-type {
+    border-bottom: none
+}
+
+.action-wheel-order{
+    width: min-content;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.img-product-order{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+

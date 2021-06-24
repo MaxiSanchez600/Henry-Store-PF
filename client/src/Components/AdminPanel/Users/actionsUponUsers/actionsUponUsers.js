@@ -87,7 +87,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         confirmButtonText:
             'Continuar <i class="fa fa-arrow-right"></i>',
         inputValidator: (result) => {
-            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro :)'
+            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro'
         }
         })
         if (accept) {
@@ -110,6 +110,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 title:`El Usuario puede acceder nuevamente!`,
                 icon:"success",
               })})
+              .catch(Swal.fire({
+                icon:"error",
+                title:"Hubo un problema"
+            }))
         }
     }
     if(!boolean && !rol && !entry && !pass){
@@ -131,7 +135,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         confirmButtonText:
             'Continuar <i class="fa fa-arrow-right"></i>',
         inputValidator: (result) => {
-            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro :)'
+            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro'
         }
         })
         if (accept) {
@@ -154,6 +158,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 title:`El Usuario ha sido baneado!`,
                 icon:"success",
               })})
+              .catch(Swal.fire({
+                icon:"error",
+                title:"Hubo un problema"
+            }))
         }
     }
     if(rol && !boolean){
@@ -208,6 +216,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 title:`Listo!`,
                 icon:"success",
               })})
+              .catch(Swal.fire({
+                icon:"error",
+                title:"Hubo un problema"
+            }))
           }
           if (action === "admin") {
             axios.put(CHANGE_ROL,{
@@ -229,6 +241,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 title:`Listo!`,
                 icon:"sucess",
               })})
+              .catch(Swal.fire({
+                icon:"error",
+                title:"Hubo un problema"
+            }))
           }
           if (action === "guest") {
             axios.put(CHANGE_ROL,{
@@ -250,6 +266,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 title:`Listo!`,
                 icon:"success",
               })})
+              .catch(Swal.fire({
+                icon:"error",
+                title:"Hubo un problema"
+            }))
           }
     }
     if(pass && !rol && !boolean){
@@ -271,7 +291,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         confirmButtonText:
             'Continuar <i class="fa fa-arrow-right"></i>',
         inputValidator: (result) => {
-            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro :)'
+            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro'
         }
         })
         if (reset) {
@@ -295,6 +315,10 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 icon:"success",
               })
             })
+            .catch(Swal.fire({
+              icon:"error",
+              title:"Hubo un problema"
+          }))
         }
     }
 }
