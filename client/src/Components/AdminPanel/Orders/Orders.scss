@@ -1,3 +1,5 @@
+@import "../../../Sass/variables";
+
 .container-table-order {
     margin: 10px;
     padding: 20px 20px;
@@ -61,3 +63,28 @@
     object-fit: cover;
 }
 
+.order-refresh-qty{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-refresh-order{
+    display: flex;
+    border-radius: 20px;
+    border: 1px solid $black_main;
+    background-color: $yellow_main;
+    color: #000000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.4s all;
+    box-shadow: 0.1rem 0.15rem 5px black;
+    &:hover {
+        transform: scale(1.07);
+    }
+    margin-left: 1rem;
+}

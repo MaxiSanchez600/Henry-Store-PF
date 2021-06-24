@@ -22,10 +22,13 @@ export default function Users () {
     }
 
     return <div>
-        <div className="container-table">
+        <div className="container-table-users">
         <h1>Panel de Usuarios</h1>
-        <h4>Cantidad de usuarios creados: {users.length?users.length:"cargando..."}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
-        <table className="content-table">
+        <div className="users-refresh-qty">
+        <h4>Cantidad de usuarios creados: {users.length}</h4>
+        <button className="button-refresh-user" onClick={()=>setReset(true)}><VscRefresh/></button>
+        </div>
+        <table className="content-table-users">
             <tr>
                 <th></th>
                 <th>Rol</th>
@@ -45,7 +48,7 @@ export default function Users () {
             </tr>
             {users?.map(user=>{
                 return (<tr>
-                    <td><div className="action-wheel"><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.registrationOrigin, user.disabled, false, false, true, refreshAfterAction)}/></div></td>
+                    <td><div className="action-wheel-users"><RiSettings4Fill onClick={()=>actionsUponUsers(user.name, user.id_user, user.registrationOrigin, user.disabled, false, false, true, refreshAfterAction)}/></div></td>
                     <td>{user.Role.rol}</td>
                     <td>{user.disabled?"Bloqueado":"Permitido"}</td>
                     <td>{user.UserStatus.name_status}</td>

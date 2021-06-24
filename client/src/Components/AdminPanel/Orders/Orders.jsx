@@ -27,7 +27,10 @@ export default function Orders () {
     return <div>
     <div className="container-table-order">
     <h1>Panel de Ordenes</h1>
-    <h4>Cantidad de ordenes totales: {orders.length}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
+    <div className = "order-refresh-qty">
+    <h4>Cantidad de ordenes totales: {orders.length}</h4>
+    <button className= "button-refresh-order" onClick={()=>setReset(true)}><VscRefresh/></button>
+    </div>
     <table className="content-table-order">
         <tr className="column-names">
             <th></th>
