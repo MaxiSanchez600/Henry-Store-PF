@@ -1,84 +1,65 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
 
 function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
-    const [valuesChecked, setValuesChecked]= useState({}) 
-/*     "data": [
-        {
-          "id_caracteristic": 1,
-          "name_caracteristic": "color",
-          "values_caracteristic": [
-            "rojo",
-            "azul"
-          ]
-        },
-        {
-          "id_caracteristic": 3,
-          "name_caracteristic": "talla",
-          "values_caracteristic": [
-            "s"
-          ]
-        }
-      ], */
-    const addValue = async (e) => {
+
+    const addValue = async e => {
         const { value: valueCar } = await Swal.fire({
             title: 'Añade un valor',
             input: 'text',
             inputLabel: 'Nombre:',
             showCancelButton: true,
-            inputValidator: (value) => {
+            inputValidator: value => {
                 if (!value) {
-                return '¡Debe digitar un nombre!'
+                    return '¡Debe digitar un nombre!';
                 }
             }
-            })
-    
-            if (valueCar) {
-                for(let i = 0; i <= carBack.length - 1; i++) {
-                    if(carBack[i].name_caracteristic === e.target.title) {
-                        let resultCar = carBack[i];
-                        resultCar.values_caracteristic.push(valueCar)
-                        let copyCarBack = carBack;
-                        copyCarBack.splice(i, 1, resultCar);
-                        setCarBack([...copyCarBack]);
-                    }
+        });
+        if (valueCar) {
+            for(let i = 0; i <= carBack.length - 1; i++) {
+                if(carBack[i].name_caracteristic === e.target.title) {
+                    let resultCar = carBack[i];
+                    resultCar.values_caracteristic.push(valueCar);
+                    let copyCarBack = carBack;
+                    copyCarBack.splice(i, 1, resultCar);
+                    setCarBack([...copyCarBack]);
                 }
-              
-            Swal.fire(`"${valueCar}" fue añadida con éxito.`)
             }
-    }
+            // Swal.fire(`"${valueCar}" fue añadida con éxito.`);
+        }
+    };
 
-    const onclose = (e) => {
+    const onclose = e => {
         let copyJsonCaracteristics = json.caracteristics;
         delete copyJsonCaracteristics[e.target.name];
         setJson({
             ...json,
             caracteristics: copyJsonCaracteristics
         });
-    }
-
-    //selecciono los nombres de los valuesCaract que marcaron true
-    const idsChekeds = (obj) =>{
-        let array=[];
-        // por cada objeto, creo array de [keys,values] y selecciono los que sean true
-        Object.entries(obj).forEach( e => {
-            if(e[1]===true) {
-                array.push(e[0])
-            }
-        })
-        return array
-    }
+    };
     
-    const onChangeValueCar = (e) => {
-/*         setJson({
-            ...json, 
-            caracteristics: {
-                ...json.caracteristics, 
-                [e.target.name]: [e.target.id] 
-            }
-        });   */
-        setValuesChecked({...valuesChecked, [e.target.id]:e.target.checked})
-    }
+    const onChangeValueCar = e => {
+        if(json.caracteristics[e.target.name].includes(e.target.value)) {
+            setJson({
+                ...json,
+                caracteristics: {
+                    ...json.caracteristics,
+                    [e.target.name]: json.caracteristics[e.target.name].filter(val => val !== e.target.value)
+                }
+            });
+        } else {
+            setJson({
+               ...json, 
+               caracteristics: {
+                   ...json.caracteristics, 
+                   [e.target.name]: [
+                       ...json.caracteristics[e.target.name], 
+                       e.target.value
+                   ] 
+               }
+           });
+        }
+    };
 
     return (
         <div className='categoriesSelectedContainer'>
@@ -97,20 +78,8 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                                     <div className="checksContainer">
                                         {
                                             carBack.find( carBack => carBack.name_caracteristic === car).values_caracteristic?.map( (valueCar, i) => {
-                                                
-                                                /* return <label key={i}>
-                                                    <input 
-                                                        type='radio'  
-                                                        value={valueCar}
-                                                        name={car} 
-                                                        checked={json.caracteristics[car].includes(valueCar) ? true : false}
-                                                        onChange={onChangeValueCar}
-                                                        />
-                                                        {valueCar}
-                                                    <br/>
-                                                </label> */
                                                 return <div key={i}>
-                                                    <input type='checkbox' name={car} onChange={onChangeValueCar} id={valueCar}></input>
+                                                    <input type='checkbox' name={car} onChange={onChangeValueCar} value={valueCar}></input>
                                                     <label>{valueCar}</label>
                                                 </div>
                                             })
