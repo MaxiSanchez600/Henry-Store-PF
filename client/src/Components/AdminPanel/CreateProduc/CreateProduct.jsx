@@ -201,7 +201,6 @@ function CreateProduct ({ editIsActive, title }) {
 
     return(
         <div className='createContainer'>
-            <h2>{title}</h2> 
             <div className="createWrap">
                 <div className='createContent'> 
                     <div className='basicInfo'>
