@@ -1,45 +1,56 @@
-import React, {useEffect} from "react";
+import React from "react";
 import './CategoriesSelected.scss'
+import Swal from 'sweetalert2';
 
-function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson, catBack}){
-    useEffect(()=>{
-        setJson({...json, categories:subCatSelected})
-    },[subCatSelected])
-    const onclose=(e)=>{
-        e.preventDefault()
-        categoriesStateController({...categoriesSelected, [e.target.name]:false})
-        setSubCatSelected({...subCatSelected,[e.target.name]:[]})
-    }
-
-    const getSubCategories = (category)=>{
-        const result=categoriesSaves.find(e=>e.name_category.toLowerCase() ===category.toLowerCase() )
-        return result.SubCategories
-    
-    }
+function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
+   
+    const onclose= (e) => {
+        let copyJsonCategories = json.categories;
+        delete copyJsonCategories[e.target.name];
+        setJson({
+            ...json,
+            categories: copyJsonCategories
+        });
+    };
 
     const onChangeSubCat = (e)=>{
-        //si se hace un check
-/*         if(e.target.checked){
-            if(!subCatSelected.hasOwnProperty(e.target.title)){
-                setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})   
-                           
-            }else{
-                if(!subCatSelected[e.target.title].includes(e.target.value)){
-                    const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
-                    setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
-                
+        setJson({
+            ...json, 
+            categories: {
+                ...json.categories, 
+                [e.target.name]: [e.target.value] 
+            }
+        });  
+    };
+
+    const addSubcategory = async (e) => {
+        const { value: subCategory } = await Swal.fire({
+            title: 'Añade una sunCategoría',
+            input: 'text',
+            inputLabel: 'Nombre:',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                return '¡Debe digitar un nombre para la subcategoria!'
                 }
             }
-
-            //si se hace uncheck
-        }else{
-            const resultRemove = subCatSelected[e.target.title].filter(element => element !== e.target.value)
-            setSubCatSelected({...subCatSelected, [e.target.title]:resultRemove})
-        }    */
-        setJson({...json, categories:{...json.categories, [e.target.name]:[e.target.value]}})
-        
+            })
+    
+            if (subCategory) {
+                for(let i = 0; i <= catBack.length - 1; i++) {
+                    if(catBack[i].name_category === e.target.title) {
+                        let resultCat = catBack[i];
+                        resultCat.SubCategories.push({ name_sub_category: subCategory })
+                        let copyCatBack = catBack;
+                        copyCatBack.splice(i, 1, resultCat);
+                        setCatBack([...copyCatBack]);
+                    }
+                }
+              
+            Swal.fire(`La subcategoria "${subCategory}" fue añadida con éxito.`)
+            }
     }
-    return(
+    return (
         <div className='categoriesSelectedContainer'>
             {
                 Object.keys(json.categories)?.map( (cat, index) => (
@@ -52,19 +63,12 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
                                     <button onClick={onclose} name={cat}>x</button>
                                 </div>
                                 <div>
-                                    <div className='checkText'>Seleccione una subCategorias:</div>
+                                    <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
                                     <div className="checksContainer">
                                         {
-/*                                             getSubCategories(e[0]).map((element, index2)=>(
-                                                <div className='checksWrap' key={index2}>
-                                                    <input type='radio' title={e[0]} value={element.name_sub_category} onChange={onChangeSubCat}></input>
-                                                    <label>{element.name_sub_category}</label>
-                                                </div>
-                                            )) */
-
-                                            catBack.find( catBack => catBack.name_category === cat).SubCategories?.map( subCat =>{
+                                            catBack.find( catBack => catBack.name_category === cat).SubCategories?.map( (subCat, i) => {
                                                 
-                                                return <label>
+                                                return <label key={i}>
                                                     <input 
                                                         type='radio'  
                                                         value={subCat.name_sub_category}
@@ -75,9 +79,9 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
                                                         {subCat.name_sub_category}
                                                     <br/>
                                                 </label>
-                                                // <input type='radio'  name={subCat.name_sub_category}/>
                                             })
                                         }
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +89,6 @@ function CategoriesSelected ({categoriesSelected, categoriesStateController, cat
                     </div>
                 ))
             }
-            {/* <SubCategorySelected subCatSelected={subCatSelected} setSubCatSelected={setSubCatSelected} json={json} setJson={setJson}/> */}
         </div>
         
     )

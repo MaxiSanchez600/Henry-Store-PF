@@ -39,4 +39,20 @@
 
 .checksContainer{
     padding-bottom: 10px;
+    padding-left: 12px;
+}
+
+.checksContainer button{
+    margin-top: 10px;
+}
+
+.checksContainer input{
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+    margin-bottom: 10px;
+}
+
+.addSubCategory{
+    cursor: pointer;
 }

@@ -9,7 +9,7 @@
     display: flex;
     background-color: rgb(255, 255, 255);
     margin-right: 50px;
-    
+    margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px 8px #d0d0d0;
 }
@@ -93,10 +93,7 @@
 
 }
 
-.buttonCategory{
-    margin-left: 10px;
-    
-}
+
 
 .btn-final-form {
     width: 40%;
@@ -129,7 +126,7 @@
     margin-bottom: 25px;
 }
 
-.buttonCategory{
+.buttonCategory, .buttonCaracteristic{
     all: unset;
     border: 1px solid #FFFF01;
     margin:0 10px 10px 10px;
@@ -143,7 +140,7 @@
 }
 
   
-  .buttonCategory:hover {
+  .buttonCategory:hover, .buttonCaracteristic:hover {
     box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
   }
   
@@ -163,12 +160,14 @@
     transition: all 650ms;
   }
   
-  .buttonCategory:hover:before {
+  .buttonCategory:hover:before,
+  .buttonCaracteristic:hover:before
+  {
     left: 100%;
   }
   
 
-.addCategory{ 
+.addCategory, .addCaracteristic{ 
     display: inline-block;
     font-weight: bold;
     cursor: pointer;

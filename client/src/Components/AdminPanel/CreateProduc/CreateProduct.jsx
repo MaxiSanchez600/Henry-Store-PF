@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import CategoriesSelected from "../CategoriesSelected/CategoriesSelected";
+import CaracteristicsSelected from "../CaracteristicsSelected/CaracteristicsSelected";
 import CreateCaracteriscs from "../CreateCaracteristics/CreateCaracteriscs";
-import CreateCategory from "../CreateCategory/CreateCategory";
 import Tags from "../Tags/Tags";
 import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
@@ -12,18 +12,8 @@ import Swal from 'sweetalert2';
 
 function CreateProduct ({editIsActive, productData, title}){
     const [catBack, setCatBack] = useState([]);
+    const [carBack, setCarBack] = useState([]);
     const dispatch = useDispatch()
-    const [subCatSelected, setSubCatSelected]=useState({})
-    const [tags, setTags] = useState([]);
-    const categories=useSelector((store)=> store.categories)
-    const [categoriesSaves, setCategoriesSaves]=useState(JSON.parse(window.localStorage.getItem('categories')))
-    const [categoryIsOpen, setCategoryIsOpen]=useState(false);
-    const [caracteristicIsOpen, setCaracteristicIsOpen]=useState(false);
-    const [categoriesSelected, setCategoriesSelected]=useState({})
-    const [allData, setAllData]=useState({
-
-    })
-    
     const [json, setJson] = useState({
         infoProduct: {
             name:'',
@@ -82,21 +72,21 @@ function CreateProduct ({editIsActive, productData, title}){
             }
         }
         initialInfo() */
-        const getCat = async function() {
+        const getInfo = async function() {
             try {   
-                const response = await axios.get('http://localhost:3001/product/categories')
-                setCatBack(response.data);
-                
-                //window.localStorage.setItem('categories', JSON.stringify(response.data))
+                const responseCat = await axios.get('http://localhost:3001/product/categories')
+                setCatBack(responseCat.data);
+                const responseCaracteristics = await axios.get('http://localhost:3001/product/caracteristics')
+                setCarBack(responseCaracteristics.data.data)
             }catch (error) {
               console.error(error)
             }   
         };
-        getCat();
+        getInfo();
         
     },[]);
 
-    const onClickCreateCategory = async (e)=>{
+    const onClickCreateCategory = async ()=>{
         const { value: category } = await Swal.fire({
             title: 'Añade una categoría',
             input: 'text',
@@ -120,6 +110,32 @@ function CreateProduct ({editIsActive, productData, title}){
             Swal.fire(`La categoria "${category}" fue añadida con éxito.`)
             }
     }
+
+    const onClickCreateCaracteristic = async ()=>{
+        const { value: caracteristic } = await Swal.fire({
+            title: 'Añade una caracteristica',
+            input: 'text',
+            inputLabel: 'Nombre:',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                return '¡Debe digitar un nombre para la caracteristica!'
+                }
+            }
+            })
+    
+            if (caracteristic) {
+                setCarBack([
+                    ...carBack,
+                    {
+                        name_caracteristic: caracteristic,
+                        values_caracteristic: []
+                    }
+                ]);
+            Swal.fire(`La categoria "${caracteristic}" fue añadida con éxito.`)
+            }
+    }
+
     const onChangeInputs = (e) => {
         setJson({
             ...json, 
@@ -138,7 +154,16 @@ function CreateProduct ({editIsActive, productData, title}){
                 [e.target.name]: []
             }
         });
-        setCategoriesSelected({...categoriesSelected,[e.target.name]:true})
+    }
+
+    const handleAddCaracteristic = e => {
+        setJson({
+            ...json,
+            caracteristics: {
+                ...json.caracteristics,
+                [e.target.name] : []
+            }
+        });
     }
 
     const creacteProduct =()=>{
@@ -199,32 +224,22 @@ function CreateProduct ({editIsActive, productData, title}){
                                 <ul>
                                     {
                                         catBack?.map((cat, index)=>(
-                                            <button className='buttonCategory' name={cat.name_category} onClick={onClickAddCategory} key={index}>{cat.name_category}</button>
+                                            <button 
+                                                className='buttonCategory' 
+                                                name={cat.name_category} 
+                                                onClick={onClickAddCategory} 
+                                                key={index}
+                                            >{cat.name_category}</button>
                                         ))  
                                     }
                                 </ul>
                                 <CategoriesSelected 
-                                    categoriesSelected={categoriesSelected} 
-                                    categoriesStateController={setCategoriesSelected} 
-                                    categoriesSaves={categoriesSaves}
-                                    subCatSelected={subCatSelected}
-                                    setSubCatSelected={setSubCatSelected}
                                     json={json}
                                     setJson={setJson}
                                     catBack={catBack}
+                                    setCatBack={setCatBack}
+                                />
                                 
-                                />
-                                {/* <button className='addCategory' onClick={onClickCreateCategory}>Nueva</button> */}
-                                <CreateCategory 
-                                    open={categoryIsOpen} 
-                                    onClose={()=>setCategoryIsOpen(false)} 
-                                    addCategory={(e)=>setCategoriesSaves(categoriesSaves.concat(e))} 
-                                    categoriesSelected={categoriesSelected} 
-                                    categoriesStateController={setCategoriesSelected}
-                                    json={json}
-                                    setJson={setJson}
-                                    subCatSelected={subCatSelected}
-                                />
                         </div>
         
                     </div>
@@ -232,33 +247,30 @@ function CreateProduct ({editIsActive, productData, title}){
                        
                         <div className="caracteristicsContainer">
                             <h4>Caracteristicas</h4>
-                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc.</div>
-                            <button className='addCaracteristic' onClick={()=>setCaracteristicIsOpen(true)}>Agregar caracteristica</button>
-                            <CreateCaracteriscs 
-                                open={caracteristicIsOpen} 
-                                onClose={()=>setCaracteristicIsOpen(false)}
+                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>(Agregar caracteristica)</span></div>
+                            <ul>
+                                {
+                                    carBack?.map((car, index)=>(
+                                        <button 
+                                            className='buttonCaracteristic' 
+                                            name={car.name_caracteristic} 
+                                            onClick={handleAddCaracteristic} 
+                                            key={index}>
+                                        {car.name_caracteristic}</button>
+                                    )) 
+                                }
+                            </ul>
+                            <CaracteristicsSelected 
                                 json={json}
                                 setJson={setJson}
-                                subCatSelected={subCatSelected}
+                                carBack={carBack}
+                                setCarBack={setCarBack}
                             />
-                            {
-                                Object.entries(json.caracteristics).map((e, index)=>(
-                                    <div key={index}>
-                                        <label>{e[0]}</label>
-                                        <button onClick={removeCaracteristic}>x</button>
-                                        {
-                                            e[1].map((element, index2)=>(
-                                                <div key={index2}>{element}</div>
-                                            ))
-                                        }
-                                    </div>
-                                ))
-                            }
                         </div>
                         <div className="tagsContainer">
                             <h4>Tags</h4>
                             <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
-                            <Tags tags={tags} setTags={setTags} json={json} setJson={setJson} subCatSelected={subCatSelected} textPlaceholder='presione enter para agregar un tag'/>
+                            <Tags json={json} setJson={setJson}  textPlaceholder='presione enter para agregar un tag'/>
                         </div>
                         <ImageUploader json={json} setJson={setJson} />
                     </div>
