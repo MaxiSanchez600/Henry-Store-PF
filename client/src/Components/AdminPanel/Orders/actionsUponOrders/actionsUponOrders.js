@@ -291,7 +291,8 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                   confirmButton: 'confirmButton-order',
                 },
                 icon:"error",
-                title:"No puedes realizar ninguna acción sobre esta orden!"
+                title:`La orden esta ${(prevstate === "completa")?"despachada":prevstate}`,
+                text:"no puedes realizar ninguna acción sobre ella"
             })
             break;
         }

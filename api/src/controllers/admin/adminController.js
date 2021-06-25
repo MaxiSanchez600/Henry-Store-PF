@@ -92,21 +92,42 @@ function resetPassUser (req,res,next) {
 }
 
 function readOrders (req,res,next) {
+    let { filter, page, limit,order} = req.query;
+    page = Number(page)
+    limit= Number(limit)
+    let result = {}
+    const limitDefault = 5;
+    const pageDefault = 1;
+    const startIndex = ((page||pageDefault)-1) *(limit||limitDefault);
+    const endIndex = (page||pageDefault) * (limit||limitDefault);
     Order.findAll({
+        //ponerle un order por createdAt
         include:[
             {model: OrderDetail,
                 include:{model: Product, 
                     include:{model: Image, attributes:['name_image']},
                     attributes:['name','price']}, 
-                attributes:{exclude: ['createdAt', 'updatedAt','OrderIdOrder']}},
-
+                attributes:{exclude: ['createdAt', 'updatedAt','OrderIdOrder']}
+            },
             {model: User, attributes:['name', 'email','username','phone']}
-        ]
+        ],
+        order: [['createdAt',order]],
     })
     .then((response)=>{
-        return res.send(response)
+        result.total = response.length;
+        if(!filter){
+            result.results= response.slice(startIndex,endIndex)
+            return res.send(result)
+        }
+        if(filter){
+            result.results = response.filter(order=>{
+                return order.status === filter.toLowerCase()
+            }).slice(startIndex,endIndex)
+            return res.send(result)
+        }
     })
     .catch(e=>next(e))
+    
 }
 
 function updateOrder (req, res, next) {
