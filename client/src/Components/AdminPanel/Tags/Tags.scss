@@ -40,26 +40,29 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: #fff;
+	color: rgb(0, 0, 0);
 	padding: 0 8px;
 	font-size: 14px;
 	list-style: none;
 	border-radius: 6px;
 	margin: 0 8px 8px 0;
-	background:#e6e64f;
+	background:#ffff7e;
 
 	.tag-close-icon {
+		all:unset;
 		display: block;
-		width: 16px;
-		height: 16px;
+		position: relative;
+		left: 5px;
+		bottom: 5px;
+		width: 15px;
+		height: 15px;
 		line-height: 16px;
 		text-align: center;
 		font-size: 20px;
-		margin-left: 4px;
-        margin-bottom: 6px;
-		color: #ffffff;
-		border: none;
-		background:none;
+		color: rgb(73, 73, 73);
+		font-size: 15px;
+		border-radius: 8px;
+		background-color: rgb(255, 255, 255);
 		cursor: pointer;
 	}
 }

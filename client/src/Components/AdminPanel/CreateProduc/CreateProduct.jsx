@@ -261,7 +261,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     setJson({
                         infoProduct: {
                             name:'',
-                            price:undefined,
+                            price:'',
                             description:'',
                             unit_stock:'',
                             henry_coin:'',
@@ -288,6 +288,7 @@ function CreateProduct ({ editIsActive, productData }) {
     
     return(
         <div className='createContainer'>
+            <h1>{editIsActive? 'Editar producto' : 'Crear producto'}</h1>
             <div className="createWrap">
                 <div className='createContent'> 
                     <div className='basicInfo'>
@@ -295,41 +296,41 @@ function CreateProduct ({ editIsActive, productData }) {
                         <div className="basicInfoWrap">
                             <div className="inputField">
                                 <label>Nombre:</label>
-                                <input className='input' type='text' name='name' onChange={onChangeInputs} value={json.infoProduct.name}></input>
+                                <input className={json.name !== ''? 'normalInput' : null} type='text' name='name' onChange={onChangeInputs} value={json.infoProduct.name} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Precio:</label>
-                                <input className='smallInput' type='number' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
+                                <input className='smallInput' type='number' min='0' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>
-                                <textarea rows='5' type='text' name='description' onChange={onChangeInputs} value={json.infoProduct.description}></textarea>
+                                <textarea rows='5' type='text' name='description' onChange={onChangeInputs} value={json.infoProduct.description} required></textarea>
                             </div>
                             <div className="inputField">
                                 <label>Stock:</label>
-                                <input className='smallInput' type='number' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock}></input>
+                                <input className='smallInput' type='number'  min='0' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Henry coins:</label>
-                                <input className='smallInput' type='number' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin}></input>
+                                <input className='smallInput' type='number' min='0' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Peso:</label>
-                                <input className='smallInput' type='number' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight}></input>
+                                <input className='smallInput' type='number' min='0' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Dimensiones (Largo x Alto x Ancho):</label>
-                                <input className='input' type='number' name='size' onChange={onChangeInputs} value={json.infoProduct.size}></input>
+                                <input className='normalInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
-                                <input className='smallInput' type='number' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount}></input>
+                                <input className='smallInput' type='number' min='0' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount} required></input>
                             </div>
                         </div>
                         <div className="categoryContainer">
                                 <h4>Categoría</h4>      
                                 <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
-                                <ul>
+                                <div className='categoriesWrap'>
                                     {
                                         catBack?.map((cat, index)=>(
                                             <button 
@@ -340,7 +341,7 @@ function CreateProduct ({ editIsActive, productData }) {
                                             >{cat.name_category}</button>
                                         ))  
                                     }
-                                </ul>
+                                </div>
                                 <CategoriesSelected 
                                     json={json}
                                     setJson={setJson}
