@@ -51,6 +51,9 @@
     border-radius: 3px;
     transition: all 0.3s ease;
 }
+
+
+
 .basicInfoWrap .inputField .input:focus,
 .basicInfoWrap .inputField textarea:focus,
 .basicInfoWrap .inputField .smallInput:focus{
@@ -58,6 +61,10 @@
     box-shadow: 0 0 8px 0 #FFFF01; 
 }
 
+.basicInfoWrap .inputField .smallInput:valid{
+    border:2px solid #FFFF01;
+    
+}
 
 .basicInfoWrap .inputField textarea{
     width: 30em;
@@ -67,7 +74,8 @@
     padding: 8px 10px;
     border-radius: 3px;
     transition: all 0.3s ease;
-    margin-left: 10px;
+    resize: none;
+    
 }
 
 

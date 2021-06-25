@@ -7,7 +7,7 @@ import './CreateProduct.scss'
 import axios from "axios"
 import Swal from 'sweetalert2';
 
-function CreateProduct ({ editIsActive, title }) {
+function CreateProduct ({ editIsActive, productData }) {
     const [catBack, setCatBack] = useState([]);
     const [carBack, setCarBack] = useState([]);
     const [json, setJson] = useState({
@@ -28,9 +28,9 @@ function CreateProduct ({ editIsActive, title }) {
     });
 
     useEffect(() => {
-        /* const initialInfo = ()=>{
+        const initialInfo = ()=>{
             if(editIsActive){
-                setAllData({
+                /* setAllData({
                     name:productData.name,
                     price:productData.price,
                     description:productData.description,
@@ -40,7 +40,7 @@ function CreateProduct ({ editIsActive, title }) {
                     size:productData.size,
                     percentage_discount:productData.percentage_discount,
                 })
-                const dataTags=productData.Tags.map(tag=>tag.name_tag)
+                
                 setTags(dataTags)
                 const objCat={}
                 productData.Categories.forEach(cat=>{
@@ -63,11 +63,34 @@ function CreateProduct ({ editIsActive, title }) {
                         percentage_discount:productData.percentage_discount,
                     },
                     tags:dataTags,
-                    idProduct:productData.id_product
+                    
+                }) */
+                const dataTags=productData.Tags.map(tag=>tag.name_tag)
+                const imagesData=productData.Images.map(element=>element.name_image)
+                const objCatAndSub={}
+                console.log(productData.Caracteristics.find(element => element.name_caracteristic==='type').values_caracteristic)
+                setJson({...json,
+                    infoProduct: {
+                        name:productData.name,
+                        price:productData.price,
+                        description:productData.description,
+                        unit_stock:productData.unit_stock,
+                        henry_coin:productData.henry_coin,
+                        weight:productData.weight,
+                        size:productData.size,
+                        percentage_discount:productData.percentage_discount, 
+                    },
+                    tags:dataTags,
+                    idProduct:productData.id_product,
+                    categories: {
+
+                    },
+                    images:imagesData,
                 })
+
             }
         }
-        initialInfo() */
+        initialInfo()
         const getInfo = async function() {
             try {   
                 const responseCat = await axios.get('http://localhost:3001/product/categories')
@@ -173,7 +196,7 @@ function CreateProduct ({ editIsActive, title }) {
                     setJson({
                         infoProduct: {
                             name:'',
-                            price:'',
+                            price:undefined,
                             description:'',
                             unit_stock:'',
                             henry_coin:'',
@@ -208,11 +231,11 @@ function CreateProduct ({ editIsActive, title }) {
                         <div className="basicInfoWrap">
                             <div className="inputField">
                                 <label>Nombre:</label>
-                                <input className='input' name='name' onChange={onChangeInputs} value={json.infoProduct.name}></input>
+                                <input className='input' name='name' onChange={onChangeInputs} value={json.infoProduct.name} ></input>
                             </div>
                             <div className="inputField">
                                 <label>Precio:</label>
-                                <input className='smallInput' name='price' onChange={onChangeInputs} value={json.infoProduct.price}></input>
+                                <input className='smallInput' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>

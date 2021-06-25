@@ -50,7 +50,7 @@ function App() {
               <Route exact path="/admin/users" component={Users}/>
               <Route exact path="/admin/products" component={Products}/>
               <Route exact path="/admin/editProduct/:id" render={(props)=>(
-                <EditProduct {...props} title='Editar producto'/>)}>
+                <EditProduct {...props}/>)}>
               </Route>
               </div>
               }
