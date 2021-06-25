@@ -32,8 +32,7 @@ export default function Products () {
                     <th>Imagen</th>
                     <th>Titulo</th>
                     <th>Precio</th>
-                    <th>Stock</th>
-                    
+                    <th>Stock</th>     
                 </tr>
                 {products.slice(0,products.length/2).map((prod, i)=>{
                     return (

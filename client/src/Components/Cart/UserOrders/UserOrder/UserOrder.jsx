@@ -6,7 +6,7 @@ import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router-dom";
 import './UserOrder.scss'
 
-//var idUser="QtPzcRRHoqXnpfbXMAJuB7254hk1";
+var idUser="QtPzcRRHoqXnpfbXMAJuB7254hk1";
 
 const myOrder =
 [
@@ -38,7 +38,7 @@ const [stateOrder, setStateOrder] = useState("");
     useEffect(() => {
     axios.get(`${GET_MYORDERS}?id=${userLogged}`)
     .then((response) => {
-        // setOrders(myOrder)
+        // setOrders(response)
         // console.log(orders);
     })
     .catch((e)=>{
