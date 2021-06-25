@@ -19,7 +19,7 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
             for(let i = 0; i <= carBack.length - 1; i++) {
                 if(carBack[i].name_caracteristic === e.target.title) {
                     let resultCar = carBack[i];
-                    resultCar.values_caracteristic.push(valueCar);
+                    resultCar.values_caracteristic.push(valueCar[0].toUpperCase() + valueCar.slice(1)); 
                     let copyCarBack = carBack;
                     copyCarBack.splice(i, 1, resultCar);
                     setCarBack([...copyCarBack]);
@@ -77,9 +77,15 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                                     <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addValue} title={car}>agregue</span> los posibles valores:</div>
                                     <div className="checksContainer">
                                         {
-                                            carBack.find( carBack => carBack.name_caracteristic === car).values_caracteristic?.map( (valueCar, i) => {
+                                            carBack.find( carBack => carBack.name_caracteristic === car)?.values_caracteristic?.map( (valueCar, i) => {
                                                 return <div key={i}>
-                                                    <input type='checkbox' name={car} onChange={onChangeValueCar} value={valueCar}></input>
+                                                    <input 
+                                                        type='checkbox' 
+                                                        name={car} 
+                                                        onChange={onChangeValueCar} 
+                                                        value={valueCar}
+                                                        checked={json.caracteristics[car].includes(valueCar) ? true : false}
+                                                    />
                                                     <label>{valueCar}</label>
                                                 </div>
                                             })
