@@ -90,7 +90,7 @@
 
 .sidebar {
   position: fixed;
-  top: 108px;
+  top: 86px;
   right: 0;
   width: 100%;
   height: 100%;
@@ -113,5 +113,38 @@
     width: 250px;
   }
 }
+
+
+.iconHenryCoint{
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-family: "Avenir_Book";
+  padding: 1rem 1rem;
+  padding-left: 40px;
+  color:white;
+  transition: all 0.3s linear;
+  letter-spacing:  0.1rem;
+  padding-right: 25px;
+  margin-right: 25px;
+}
+.iconHenryCoint:hover{
+  background: rgb(241, 245, 248);
+  color: black;
+  font-weight: bolder;
+}
+// .iconHenryCoint{
+//   display: flex;
+//   display:flow-root;
+//   background-image: url("../../Assets/Images/HenryCoint1.png");
+//   border-radius: 300px;
+//   width: 25px;
+//   padding-right: 25px;
+//   margin-right: 25px;
+//   justify-content: center;
+//   background-repeat: no-repeat;
+//   transition: all 0.3s linear;
+// }
+
 
 

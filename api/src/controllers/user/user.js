@@ -107,11 +107,16 @@ function updateDocumentTypeManyUsers (req,res,next) {
     .catch(e=>next(e));
 };
 
+function getHcAmount (req,res,next) {
+  
+};
+
 module.exports ={
     updateRolUser,
     updateStatusUser,
     updateStatusManyUsers,
     updateRoleManyUsers,
     updateNacionalityManyUsers,
-    updateDocumentTypeManyUsers
+    updateDocumentTypeManyUsers,
+    getHcAmount
 };

@@ -25,6 +25,8 @@ import { useGlobalContext } from "../../context"
 import WorkingOnIt from "../WorkingOnIt/WorkingOnIt";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import UserOrder from "../Cart/UserOrders/UserOrder/UserOrder.jsx";
+import OrderDetail from "../Cart/UserOrders/OrderDetail/OrderDetail.jsx"
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -41,10 +43,13 @@ function App() {
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />
               <Route exact path="/home" component={Home} />
+              
               <Route exact path = "/checkout/:id" component = {Checkout}/>
               {/* <Route exact path= "/" component {Landing}/> */}
               <Route exact path= '/home/cart' component= {Cart}/>
-              {(typeOfUser === "admin")&&
+              <Route exact path = "/home/myorders" component = {UserOrder}/> 
+              <Route exact path = "/home/myorders/:id" component = {OrderDetail}/> 
+              {(typeOfUser === "admin" )&&
               <div className='adminContainer'>
               <Route path="/admin" component={SlideBar} />
               <Route exact path="/admin" component={Analytics} />

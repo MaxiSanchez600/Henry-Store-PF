@@ -10,6 +10,8 @@ import { useDispatch} from 'react-redux';
 import { useFirebaseApp } from "reactfire";
 import Swal from 'sweetalert2';
 import {  useSelector } from 'react-redux';
+import { AiOutlineFileSearch } from "react-icons/ai";
+import HenryCointWhite from "../../Assets/Images/HenryCoint1.png"
 
 const Sidebar = () => {
 
@@ -33,6 +35,13 @@ const Sidebar = () => {
      window.location.reload();
   }
 
+  const HenryCoint=()=>{
+    Swal.fire({
+      title:`${dataUSerLogin.name} Tienes ${dataUSerLogin.hc} HenryCoints`,
+      icon:'success',
+    })
+  }
+
   return (
     <aside className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}>
       <div className='sidebar-header'>
@@ -42,11 +51,16 @@ const Sidebar = () => {
       </div>
       <div>
         <ul className='links'>
-          <li className="liLinks" onClick={closeSidebar}><Link to="/"><FaHome/> Home</Link></li>
-          {dataUSerLogin.role==="admin"&&
+          <li className="liLinks" onClick={closeSidebar}><Link to="/home"><FaHome/> Home</Link></li>
+          {dataUSerLogin.role==="admin"&& 
+          <>
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/admin"> <RiAdminFill/> Admin</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/profile"> <BsPersonFill/> Profile</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/myorders"> <AiOutlineFileSearch/> Mis Ordenes</Link> </li> 
+          <li className="liLinks" onClick={()=>{closeSidebar(); HenryCoint()}}> <span className='iconHenryCoint'><img src={HenryCointWhite}  alt="" width="25px"/>HenryCoints</span></li>  
+            
+          </>
           }
-          <li className="liLinks" onClick={closeSidebar}> <Link  to="/profile"> <BsPersonFill/> Profile</Link> </li> 
           <li className="liLinks"><span className='spanOut'  onClick={()=>{logOut();closeSidebar()}}><RiLogoutCircleRLine/>Cerrar sesión</span></li>
         </ul>
         

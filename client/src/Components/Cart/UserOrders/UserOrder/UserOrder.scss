@@ -1,0 +1,44 @@
+.container-table-UserOrder {
+    margin: 10px;
+    padding: 20px 20px;
+    margin-left: 190px;
+    width: 85%; //posiblemente tenga que cambiar esto
+    height: 500px;
+
+}
+.content-table-UserOrder{
+    border-collapse:collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 85%; //posiblemente tenga que cambiar esto
+   
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.content-table-UserOrder tr th {
+    background-color: #FFFF01;
+    color: #000000;
+    text-align: left;
+    font-weight: bold;
+}
+.content-table-UserOrder th,
+.content-table-UserOrder td {
+    padding: 12px 15px;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.content-table-UserOrder tr {
+    border-bottom: 1px solid #dddddd; 
+}
+
+.content-table-UserOrder tr:nth-of-type(even) {
+    background-color: #f3f3f3; 
+}
+
+.content-table-UserOrder tr:last-of-type {
+    border-bottom: 2px solid #FFFF01;
+}

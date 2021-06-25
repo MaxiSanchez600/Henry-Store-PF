@@ -23,7 +23,7 @@ export default function Users () {
 
     return <div>
         <div className="container-table">
-        <h1>Panel de Usuarios</h1>
+        <h1 className="h1Panel">Panel de Usuarios</h1>
         <h4>Cantidad de usuarios creados: {usersCount}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
         <table className="content-table">
             <tr>

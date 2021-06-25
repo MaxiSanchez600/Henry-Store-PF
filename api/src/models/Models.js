@@ -328,6 +328,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    totalprice: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    totalhc:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
   })
 
   sequelize.define('OrderDetail',{
@@ -340,14 +348,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    totalprice: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    totalhc:{
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
   })
 
   sequelize.define('OrderDetailCaracteristic', {
