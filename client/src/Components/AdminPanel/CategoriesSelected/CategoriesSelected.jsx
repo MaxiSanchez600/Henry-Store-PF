@@ -64,7 +64,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                                     <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
                                     <div className="checksContainer">
                                         {
-                                            catBack.find( catBack => catBack.name_category === cat).SubCategories?.map( (subCat, i) => {
+                                            catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
                                                 
                                                 return <label key={i}>
                                                     <input 
