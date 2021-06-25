@@ -293,7 +293,10 @@ const productsController = {
 
             return res.send(productSet);
         } catch (error) {
-            next(error);
+            if(error.message === 'llave duplicada viola restricción de unicidad «Products_name_key»') {
+                return res.status(502).send(error);
+            }
+            return res.status(500).send(error);
         }
     },
 };
