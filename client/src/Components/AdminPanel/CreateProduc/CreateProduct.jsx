@@ -8,6 +8,7 @@ import axios from "axios"
 import Swal from 'sweetalert2';
 
 function CreateProduct ({ editIsActive, productData }) {
+    const [flag, setFlag] = useState(false);
     const [catBack, setCatBack] = useState([]);
     const [carBack, setCarBack] = useState([]);
     const [json, setJson] = useState({
@@ -27,83 +28,88 @@ function CreateProduct ({ editIsActive, productData }) {
         images: []
     });
 
-    useEffect(() => {
-        const initialInfo = ()=>{
-            if(editIsActive){
-                /* setAllData({
-                    name:productData.name,
-                    price:productData.price,
-                    description:productData.description,
-                    unit_stock:productData.unit_stock,
-                    henry_coin:productData.henry_coin,
-                    weight:productData.weight,
-                    size:productData.size,
-                    percentage_discount:productData.percentage_discount,
-                })
-                
-                setTags(dataTags)
-                const objCat={}
-                productData.Categories.forEach(cat=>{
-                    objCat[cat.name_category]=true
-                })
-                const prevCaracteristicSize=productData.Caracteristics.length
-                setCategoriesSelected(objCat)
-                const imagesData=productData.Images.map(element=>element.name_image)
-                setJson({...json, 
-                    caracteristics:{[productData.Caracteristics[prevCaracteristicSize-1].name_caracteristic]:productData.Caracteristics[prevCaracteristicSize-1].values_caracteristic}, 
-                    images:imagesData,
-                    infoProduct:{
-                        name:productData.name,
-                        price:productData.price,
-                        description:productData.description,
-                        unit_stock:productData.unit_stock,
-                        henry_coin:productData.henry_coin,
-                        weight:productData.weight,
-                        size:productData.size,
-                        percentage_discount:productData.percentage_discount,
-                    },
-                    tags:dataTags,
-                    
-                }) */
-                const dataTags=productData.Tags.map(tag=>tag.name_tag)
-                const imagesData=productData.Images.map(element=>element.name_image)
-                const objCatAndSub={}
-                console.log(productData.Caracteristics.find(element => element.name_caracteristic==='type').values_caracteristic)
-                setJson({...json,
-                    infoProduct: {
-                        name:productData.name,
-                        price:productData.price,
-                        description:productData.description,
-                        unit_stock:productData.unit_stock,
-                        henry_coin:productData.henry_coin,
-                        weight:productData.weight,
-                        size:productData.size,
-                        percentage_discount:productData.percentage_discount, 
-                    },
-                    tags:dataTags,
-                    idProduct:productData.id_product,
-                    categories: {
+    const getInfo = async function() {
+        try {   
+            const responseCat = await axios.get('http://localhost:3001/product/categories')
+            setCatBack(responseCat.data);
+            const responseCaracteristics = await axios.get('http://localhost:3001/product/caracteristics')
+            setCarBack(responseCaracteristics.data.data)
+            setFlag(!flag);
+        }catch (error) {
+          console.error(error)
+        }   
+    };
 
-                    },
-                    images:imagesData,
-                })
+    const initialInfo = () => {
+        if(editIsActive) {
+            //pongo images y tags en el json
+            const tagsData = productData.Tags.map(tag => tag.name_tag);
+            const imagesData = productData.Images.map(element => element.name_image);
 
+            //pongo las categorias
+            let categoriesData = {};
+            for(let k = 0; k < productData.Categories.length; k++) {
+                categoriesData[productData.Categories[k].name_category] = [];
             }
+
+            //pongo las subcategorias
+            const typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type').values_caracteristic;
+            let categoriesAux = []; // [[cat1, sub11, sub12], [cat2, sub21, sub22], etc...]
+            for(let l = 0; l < catBack.length; l++) {
+                categoriesAux.push([catBack[l].name_category]);
+                for(let m = 0; m < catBack[l].SubCategories.length; m++) {
+                    categoriesAux[l].push(catBack[l].SubCategories[m].name_sub_category)
+                }
+            }
+            console.log(categoriesAux);
+            for(let n = 0; n < typeData.length; n++) {
+                for(let o = 0; o < categoriesAux.length; o++) {
+                    if(categoriesAux[o].slice(1).includes(typeData[n])) {
+                        categoriesData[categoriesAux[o][0]].push(typeData[n]);
+                    }
+                }
+            }
+
+            //pongo las caracteristicas
+            let caracteristicsData = {};
+            for(let p = 0; p < productData.Caracteristics.length; p++) {
+                if(productData.Caracteristics[p].name_caracteristic !== 'type') {
+                    caracteristicsData[productData.Caracteristics[p].name_caracteristic] = productData.Caracteristics[p].values_caracteristic;
+                }
+            }
+            
+            setJson({...json,
+                idProduct: productData.id_product,
+                infoProduct: {
+                    name: productData.name,
+                    price: productData.price,
+                    description: productData.description,
+                    unit_stock: productData.unit_stock,
+                    henry_coin: productData.henry_coin,
+                    weight: productData.weight,
+                    size: productData.size,
+                    percentage_discount: productData.percentage_discount, 
+                },
+                categories: {
+                   ...categoriesData 
+                },
+                caracteristics: {
+                    ...caracteristicsData
+                },
+                tags: tagsData,
+                images: imagesData,
+            })
+
         }
-        initialInfo()
-        const getInfo = async function() {
-            try {   
-                const responseCat = await axios.get('http://localhost:3001/product/categories')
-                setCatBack(responseCat.data);
-                const responseCaracteristics = await axios.get('http://localhost:3001/product/caracteristics')
-                setCarBack(responseCaracteristics.data.data)
-            }catch (error) {
-              console.error(error)
-            }   
-        };
+    }; 
+
+    useEffect(() => {
         getInfo();
-        
     },[]);
+
+    useEffect(() => {
+        initialInfo();
+    }, [flag]);
 
     const onClickCreateCategory = async () => {
         const { value: category } = await Swal.fire({
@@ -121,7 +127,7 @@ function CreateProduct ({ editIsActive, productData }) {
             setCatBack([
                 ...catBack,
                 {
-                    name_category: category,
+                    name_category: category[0].toUpperCase() + category.slice(1),
                     SubCategories: []
                 }
             ]);
@@ -145,7 +151,7 @@ function CreateProduct ({ editIsActive, productData }) {
             setCarBack([
                 ...carBack,
                 {
-                    name_caracteristic: caracteristic,
+                    name_caracteristic: caracteristic[0].toUpperCase() + caracteristic.slice(1),
                     values_caracteristic: []
                 }
             ]);
@@ -195,7 +201,7 @@ function CreateProduct ({ editIsActive, productData }) {
             }
             if(Object.entries(json.infoProduct)[j][0] !== 'name' 
             && Object.entries(json.infoProduct)[j][0] !== 'description' 
-            && Object.entries(json.infoProduct)[j][1].includes('-')) {
+            && Object.entries(json.infoProduct)[j][1].toString().includes('-')) {
                 return Swal.fire({
                     icon: 'warning',
                     title: 'Por favor, revisa los números negativos.',
@@ -260,6 +266,13 @@ function CreateProduct ({ editIsActive, productData }) {
         //creación del producto
         axios.post("http://localhost:3001/product", json)
         .then(res => {
+            if(editIsActive) {
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Producto modificado con éxito',
+                    confirmButtonText: `OK`
+                });
+            }
             Swal.fire({
                 icon: 'success',
                 title: 'Producto creado con éxito',
