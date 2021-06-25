@@ -39,7 +39,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
             for(let i = 0; i <= catBack.length - 1; i++) {
                 if(catBack[i].name_category === e.target.title) {
                     let resultCat = catBack[i];
-                    resultCat.SubCategories.push({ name_sub_category: subCategory[0].toUpperCase() + subCategory.slice(1) });
+                    resultCat.SubCategories.push({ name_sub_category: subCategory });
                     let copyCatBack = catBack;
                     copyCatBack.splice(i, 1, resultCat);
                     setCatBack([...copyCatBack]);
@@ -64,7 +64,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                                     <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
                                     <div className="checksContainer">
                                         {
-                                            catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
+                                            catBack.find( catBack => catBack.name_category === cat).SubCategories?.map( (subCat, i) => {
                                                 
                                                 return <label key={i}>
                                                     <input 

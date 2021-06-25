@@ -111,6 +111,7 @@ function CreateProduct ({ editIsActive, productData }) {
         initialInfo();
     }, [flag]);
 
+
     const onClickCreateCategory = async () => {
         const { value: category } = await Swal.fire({
             title: 'Añade una categoría',
@@ -131,7 +132,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
-            setJson({...json, categories:{...json.categories, [category]:[]}})
+            //setJson({...json, categories:{...json.categories, [category]:[]}})
             // Swal.fire(`La categoria "${category}" fue añadida con éxito.`);
         }
     };
@@ -156,7 +157,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
-            setJson({...json, caracteristics:{...json.caracteristics, [caracteristic]:[]}})
+            //setJson({...json, caracteristics:{...json.caracteristics, [caracteristic]:[]}})
             // Swal.fire(`La categoria "${caracteristic}" fue añadida con éxito.`);
         }
     };
@@ -416,6 +417,7 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
                             <Tags json={json} setJson={setJson}  textPlaceholder='presione enter para agregar un tag'/>
                         </div>
+                        <h4>Imagenes</h4>
                         <ImageUploader json={json} setJson={setJson} />
                     </div>
                 </div>
