@@ -1,6 +1,5 @@
 .img-uploader-container {
-    height: 20rem;
-    width: 40rem;
+    width: 40.4rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -11,11 +10,13 @@
 }
 
 .card-previewer {
+    min-height: 10rem;
     height: 65%;
     width: 100%;
     display: flex;
     border: 2px dashed #87868A;
     border-radius: 4px;
+    flex-wrap: wrap;
 }
 
 .card-footer {
@@ -55,7 +56,7 @@
     top: 0.25rem;
     left: 0.25rem;
     width: (40rem/3) - 0.6rem;
-    height: (20rem*0.65) - 0.7rem;
+    height: 90%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
@@ -72,11 +73,14 @@
 
 .onclose-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 7px;
+    right: 12px;
     background: transparent;
     border: none;
-    color: #d2d2d6;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
 .img-uploader {

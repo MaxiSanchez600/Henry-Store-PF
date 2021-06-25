@@ -1,5 +1,6 @@
 import React from "react";
 import './Tags.scss'
+import { IoMdCloseCircle } from "react-icons/io";
 function Tags ({textPlaceholder, json, setJson}){
     
 	const removeTags = indexToRemove => {
@@ -24,7 +25,8 @@ function Tags ({textPlaceholder, json, setJson}){
                 json.tags.map((tag, index) => (
 					<li key={index} className="tag">
 						<span className='tag-title'>{tag}</span>
-						<button className='tag-close-icon' onClick={() => removeTags(index)} type='button'>x</button>
+						{/* <button className='tag-close-icon' onClick={() => removeTags(index)} type='button'>x</button> */}
+						<IoMdCloseCircle className='tag-close-icon' onClick={() => removeTags(index)} type='button' size='1.3em'/>
 					</li>
 				))
             }

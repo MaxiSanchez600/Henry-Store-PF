@@ -49,20 +49,8 @@
 	background:#ffff7e;
 
 	.tag-close-icon {
-		all:unset;
-		display: block;
 		position: relative;
-		left: 5px;
-		bottom: 5px;
-		width: 15px;
-		height: 15px;
-		line-height: 16px;
-		text-align: center;
-		font-size: 20px;
-		color: rgb(73, 73, 73);
-		font-size: 15px;
-		border-radius: 8px;
-		background-color: rgb(255, 255, 255);
+		margin-left: 3px;
 		cursor: pointer;
 	}
 }

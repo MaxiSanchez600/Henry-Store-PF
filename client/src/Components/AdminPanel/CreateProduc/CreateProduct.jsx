@@ -125,6 +125,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
+            setJson({...json, categories:{...json.categories, [category]:[]}})
             // Swal.fire(`La categoria "${category}" fue añadida con éxito.`);
         }
     };
@@ -149,6 +150,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
+            setJson({...json, caracteristics:{...json.caracteristics, [caracteristic]:[]}})
             // Swal.fire(`La categoria "${caracteristic}" fue añadida con éxito.`);
         }
     };
