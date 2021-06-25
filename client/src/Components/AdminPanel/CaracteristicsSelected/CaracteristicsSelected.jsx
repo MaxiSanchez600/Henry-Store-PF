@@ -25,11 +25,10 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                     setCarBack([...copyCarBack]);
                 }
             }
-            // Swal.fire(`"${valueCar}" fue añadida con éxito.`);
         }
     };
 
-    const onclose = e => {
+    const onClose = e => {
         let copyJsonCaracteristics = json.caracteristics;
         delete copyJsonCaracteristics[e.target.name];
         setJson({
@@ -57,49 +56,40 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                        e.target.value
                    ] 
                }
-           });
+            });
         }
     };
 
     return (
         <div className='categoriesSelectedContainer'>
-            {
-                Object.keys(json.caracteristics)?.map( (car, index) => (
-                    <div className='tableSubCatWrap' key={index}>
-                        {
-                            
-                            <div className='tableSubCat'>
-                                <div className='titleAndClose'>
-                                    <div>{car}</div>
-                                    <button onClick={onclose} name={car}>x</button>
-                                </div>
-                                <div>
-                                    <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addValue} title={car}>agregue</span> los posibles valores:</div>
-                                    <div className="checksContainer">
-                                        {
-                                            carBack.find( carBack => carBack.name_caracteristic === car)?.values_caracteristic?.map( (valueCar, i) => {
-                                                return <div key={i}>
-                                                    <input 
-                                                        type='checkbox' 
-                                                        name={car} 
-                                                        onChange={onChangeValueCar} 
-                                                        value={valueCar}
-                                                        checked={json.caracteristics[car].includes(valueCar) ? true : false}
-                                                    />
-                                                    <label>{valueCar}</label>
-                                                </div>
-                                            })
-                                        }
-                                    
+            {Object.keys(json.caracteristics)?.map( (car, index) => (
+                <div className='tableSubCatWrap' key={index}>
+                    <div className='tableSubCat'>
+                        <div className='titleAndClose'>
+                            <div>{car}</div>
+                            <button onClick={onClose} name={car}>x</button>
+                        </div>
+                        <div>
+                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addValue} title={car}>agregue</span> los posibles valores:</div>
+                            <div className="checksContainer">
+                                {carBack.find( carBack => carBack.name_caracteristic === car)?.values_caracteristic?.map( (valueCar, i) => {
+                                    return <div key={i}>
+                                        <input 
+                                            type='checkbox' 
+                                            name={car} 
+                                            onChange={onChangeValueCar} 
+                                            value={valueCar}
+                                            checked={json.caracteristics[car].includes(valueCar) ? true : false}
+                                        />
+                                        <label>{valueCar}</label>
                                     </div>
-                                </div>
+                                })}
                             </div>
-                        }
+                        </div>
                     </div>
-                ))
-            }
+                </div>
+            ))}  
         </div>
-        
     )
 }
 

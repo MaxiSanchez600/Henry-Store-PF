@@ -13,14 +13,14 @@ function CreateProduct ({ editIsActive, productData }) {
     const [carBack, setCarBack] = useState([]);
     const [json, setJson] = useState({
         infoProduct: {
-            name:'',
-            price:'',
-            description:'',
-            unit_stock:'',
-            henry_coin:'',
-            weight:'',
-            size:'',
-            percentage_discount:'',  
+            name: '',
+            price: '',
+            description: '',
+            unit_stock: '',
+            henry_coin: '',
+            weight: '',
+            size: '',
+            percentage_discount: '',  
         },
         categories: {},
         caracteristics: {},
@@ -105,7 +105,7 @@ function CreateProduct ({ editIsActive, productData }) {
 
     useEffect(() => {
         getInfo();
-    },[]);
+    }, []);
 
     useEffect(() => {
         initialInfo();
@@ -132,8 +132,6 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
-            //setJson({...json, categories:{...json.categories, [category]:[]}})
-            // Swal.fire(`La categoria "${category}" fue añadida con éxito.`);
         }
     };
 
@@ -157,8 +155,6 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
-            //setJson({...json, caracteristics:{...json.caracteristics, [caracteristic]:[]}})
-            // Swal.fire(`La categoria "${caracteristic}" fue añadida con éxito.`);
         }
     };
 
@@ -285,14 +281,14 @@ function CreateProduct ({ editIsActive, productData }) {
                 if (result.isConfirmed) {
                     setJson({
                         infoProduct: {
-                            name:'',
-                            price:'',    
-                            description:'',
-                            unit_stock:'',
-                            henry_coin:'',
-                            weight:'',
-                            size:'',
-                            percentage_discount:'',  
+                            name: '',
+                            price: '',    
+                            description: '',
+                            unit_stock: '',
+                            henry_coin: '',
+                            weight: '',
+                            size: '',
+                            percentage_discount: '',  
                         },
                         categories: {},
                         caracteristics: {},
@@ -363,16 +359,14 @@ function CreateProduct ({ editIsActive, productData }) {
                                 <h4>Categoría</h4>      
                                 <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
                                 <div className='categoriesWrap'>
-                                    {
-                                        catBack?.map((cat, index)=>(
-                                            <button 
-                                                className='buttonCategory' 
-                                                name={cat.name_category} 
-                                                onClick={onClickAddCategory} 
-                                                key={index}
-                                            >{cat.name_category}</button>
-                                        ))  
-                                    }
+                                    {catBack?.map((cat, index) => (
+                                        <button 
+                                            className='buttonCategory' 
+                                            name={cat.name_category} 
+                                            onClick={onClickAddCategory} 
+                                            key={index}
+                                        >{cat.name_category}</button>
+                                    ))}
                                 </div>
                                 <CategoriesSelected 
                                     json={json}
@@ -380,30 +374,25 @@ function CreateProduct ({ editIsActive, productData }) {
                                     catBack={catBack}
                                     setCatBack={setCatBack}
                                 />
-                                
                         </div>
         
                     </div>
                     <div className="createContent2">
-                       
                         <div className="caracteristicsContainer">
                             <h4>Caracteristicas</h4>
                             <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>(Agregar caracteristica)</span></div>
                             <ul>
-                                {
-                                    carBack?.map((car, index) => {
-                                        if(car.name_caracteristic !== 'type') {
-                                                return <button 
-                                                    className='buttonCaracteristic' 
-                                                    name={car.name_caracteristic} 
-                                                    onClick={handleAddCaracteristic} 
-                                                    key={index}>
-                                                {car.name_caracteristic}</button>
-                                            }
-                                            return null;    //arregla un warning de que no se devuelve nada al final del arreglo (case type)
-                                        }
-                                    ) 
-                                }
+                                {carBack?.map((car, index) => {
+                                    if(car.name_caracteristic !== 'type') {
+                                        return <button 
+                                            className='buttonCaracteristic' 
+                                            name={car.name_caracteristic} 
+                                            onClick={handleAddCaracteristic} 
+                                            key={index}>
+                                        {car.name_caracteristic}</button>
+                                    }
+                                    return null;    //arregla un warning de que no se devuelve nada al final del arreglo (case type)
+                                })}
                             </ul>
                             <CaracteristicsSelected 
                                 json={json}
@@ -415,10 +404,17 @@ function CreateProduct ({ editIsActive, productData }) {
                         <div className="tagsContainer">
                             <h4>Tags</h4>
                             <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
-                            <Tags json={json} setJson={setJson}  textPlaceholder='presione enter para agregar un tag'/>
+                            <Tags 
+                                json={json} 
+                                setJson={setJson}  
+                                textPlaceholder='presione enter para agregar un tag'
+                            />
                         </div>
                         <h4>Imagenes</h4>
-                        <ImageUploader json={json} setJson={setJson} />
+                        <ImageUploader 
+                            json={json} 
+                            setJson={setJson} 
+                        />
                     </div>
                 </div>
                 <button onClick={creacteProduct} className='btn-final-form'>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
