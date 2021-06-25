@@ -34,8 +34,18 @@ export default function Orders () {
 
     let infoUser = (name,phone,email) => {
         Swal.fire({
+            buttonsStyling:false,
+            customClass:{
+                popup: 'popup-order-infouser',
+                title: 'title-order-infouser',
+                input: 'input-order-infouser',
+                htmlContainer: 'content-order-infouser',
+                validationMessage: 'validationMessage-order-infouser',
+                actions: 'actions-order-infouser',
+                confirmButton: 'confirmButton-order-infouser',
+            },
             title:`Contacto de${name?` ${name}`:"l Usuario"}`,
-            html:`Email: ${email}<br>Teléfono: ${phone?phone:"No tiene un teléfono cargado"} `
+            html:`Email: ${email?email:"Aún no tiene un email cargado"}<br>Teléfono: ${phone?phone:"Aún no tiene un teléfono cargado"} `
         })
     }
 
