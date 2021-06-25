@@ -193,6 +193,15 @@ function CreateProduct ({ editIsActive, productData }) {
                     confirmButtonText: `OK`
                 });
             }
+            if(Object.entries(json.infoProduct)[j][0] !== 'name' 
+            && Object.entries(json.infoProduct)[j][0] !== 'description' 
+            && Object.entries(json.infoProduct)[j][1].includes('-')) {
+                return Swal.fire({
+                    icon: 'warning',
+                    title: 'Por favor, revisa los números negativos.',
+                    confirmButtonText: `OK`
+                });
+            }
         }
         //validación categorías
         if(Object.keys(json.categories).length === 0) {
@@ -261,7 +270,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     setJson({
                         infoProduct: {
                             name:'',
-                            price:undefined,
+                            price:'',    
                             description:'',
                             unit_stock:'',
                             henry_coin:'',
