@@ -278,7 +278,14 @@ function CreateProduct ({ editIsActive, productData }) {
             });
         })
         .catch(error => {
-            Swal.fire({
+            if(error.toString().includes('status code 502')) {
+                return Swal.fire({
+                    icon: 'error',
+                    title: '¡Ya existe un producto con ese nombre!',
+                    confirmButtonText: `OK`,
+                });
+            }
+            return Swal.fire({
                 icon: 'error',
                 title: 'Algo salió mal, vuelve a intentar',
                 confirmButtonText: `OK`,
@@ -367,6 +374,7 @@ function CreateProduct ({ editIsActive, productData }) {
                                                     key={index}>
                                                 {car.name_caracteristic}</button>
                                             }
+                                            return null;    //arregla un warning de que no se devuelve nada al final del arreglo (case type)
                                         }
                                     ) 
                                 }
