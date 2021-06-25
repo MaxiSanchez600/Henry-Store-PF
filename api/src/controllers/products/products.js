@@ -179,6 +179,11 @@ const productsController = {
             let tagsAuxUnique = new Set(tagsAux),
             tagsAll = [...tagsAuxUnique];
 
+            //si no recibo ninguna imagen le asigno una por defecto
+            if(images.length === 0) {
+                images.push('https://redi.eu/wp-content/uploads/2015/08/not-available.png');
+            }
+
             //primero verifico si existen las categorias que se seleccionaron, las subcategorias, los tags y las caracteristicas (si no las creo)
             //creo las categorias
             let categoriesMapped = Object.keys(categories).map(category => {
