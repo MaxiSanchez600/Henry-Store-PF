@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
    
-    const onclose= (e) => {
+    const onclose= e => {
         let copyJsonCategories = json.categories;
         delete copyJsonCategories[e.target.name];
         setJson({
@@ -13,7 +13,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
         });
     };
 
-    const onChangeSubCat = (e)=>{
+    const onChangeSubCat = e => {
         setJson({
             ...json, 
             categories: {
@@ -31,25 +31,23 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
             showCancelButton: true,
             inputValidator: (value) => {
                 if (!value) {
-                return '¡Debe digitar un nombre para la subcategoria!'
+                    return '¡Debe digitar un nombre para la subcategoria!';
                 }
             }
-            })
+        });
+        if (subCategory) {
+            for(let i = 0; i <= catBack.length - 1; i++) {
+                if(catBack[i].name_category === e.target.title) {
+                    let resultCat = catBack[i];
+                    resultCat.SubCategories.push({ name_sub_category: subCategory });
+                    let copyCatBack = catBack;
+                    copyCatBack.splice(i, 1, resultCat);
+                    setCatBack([...copyCatBack]);
+                }
+            }
+        }
+    };
     
-            if (subCategory) {
-                for(let i = 0; i <= catBack.length - 1; i++) {
-                    if(catBack[i].name_category === e.target.title) {
-                        let resultCat = catBack[i];
-                        resultCat.SubCategories.push({ name_sub_category: subCategory })
-                        let copyCatBack = catBack;
-                        copyCatBack.splice(i, 1, resultCat);
-                        setCatBack([...copyCatBack]);
-                    }
-                }
-              
-            Swal.fire(`La subcategoria "${subCategory}" fue añadida con éxito.`)
-            }
-    }
     return (
         <div className='categoriesSelectedContainer'>
             {

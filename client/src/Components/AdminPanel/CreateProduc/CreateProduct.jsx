@@ -183,14 +183,79 @@ function CreateProduct ({ editIsActive, productData }) {
         });
     };
 
-    const creacteProduct = () => {
+    const creacteProduct = async () => {
+        //validación infoProduct
+        for(let j = 0; j < Object.values(json.infoProduct).length; j++) {
+            if(Object.values(json.infoProduct)[j] === '') {
+                return Swal.fire({
+                    icon: 'warning',
+                    title: 'Asegúrate de completar todos los campos de la información básica del producto.',
+                    confirmButtonText: `OK`
+                });
+            }
+        }
+        //validación categorías
+        if(Object.keys(json.categories).length === 0) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Asegúrate de seleccionar al menos una categoría.',
+                confirmButtonText: `OK`
+            });
+        }
+        for(let key in json.categories) {
+            if(json.categories[key].length === 0) {
+                return Swal.fire({
+                    icon: 'warning',
+                    title: 'Debe seleccionar una subcategoría por cada categoría.',
+                    confirmButtonText: `OK`
+                });
+            }
+        }
+        //validación características 
+        if(Object.keys(json.caracteristics).length === 0) {
+            return Swal.fire({
+                icon: 'warning',
+                title: 'Un producto con varias características mejora la experiencia de compra, elige al menos una.',
+                confirmButtonText: `OK`
+            });
+        }
+        for(let key in json.caracteristics) {
+            if(json.caracteristics[key].length === 0) {
+                return Swal.fire({
+                    icon: 'warning',
+                    title: 'Seleccione por lo menos un valor por cada característica.',
+                    confirmButtonText: `OK`
+                });
+            }
+        }
+        //validación tags
+        if(json.tags.length === 0) {
+            const result = await Swal.fire({
+                title: '¿Seguro no quiere agregar Tags?',
+                showDenyButton: true,
+                confirmButtonText: `Sí`,
+                denyButtonText: `Volver`,
+            });
+            if(result.isDenied) return;
+        }
+        //validación imágenes
+        if(json.images.length === 0) {
+            const result = await Swal.fire({
+                title: 'Una imagen del producto mejora la experiencia del usuario.',
+                showDenyButton: true,
+                confirmButtonText: `Continuar de todas formas`,
+                denyButtonText: `Volver`,
+            });
+            if(result.isDenied) return;
+        }
+        //creación del producto
         axios.post("http://localhost:3001/product", json)
         .then(res => {
             Swal.fire({
                 icon: 'success',
                 title: 'Producto creado con éxito',
                 confirmButtonText: `OK`
-              })
+            })
             .then((result) => {
                 if (result.isConfirmed) {
                     setJson({
@@ -221,7 +286,6 @@ function CreateProduct ({ editIsActive, productData }) {
         });
     };
     
-
     return(
         <div className='createContainer'>
             <div className="createWrap">
@@ -231,35 +295,35 @@ function CreateProduct ({ editIsActive, productData }) {
                         <div className="basicInfoWrap">
                             <div className="inputField">
                                 <label>Nombre:</label>
-                                <input className='input' name='name' onChange={onChangeInputs} value={json.infoProduct.name} ></input>
+                                <input className='input' type='text' name='name' onChange={onChangeInputs} value={json.infoProduct.name}></input>
                             </div>
                             <div className="inputField">
                                 <label>Precio:</label>
-                                <input className='smallInput' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
+                                <input className='smallInput' type='number' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>
-                                <textarea rows='5' name='description' onChange={onChangeInputs} value={json.infoProduct.description}></textarea>
+                                <textarea rows='5' type='text' name='description' onChange={onChangeInputs} value={json.infoProduct.description}></textarea>
                             </div>
                             <div className="inputField">
                                 <label>Stock:</label>
-                                <input className='smallInput' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock}></input>
+                                <input className='smallInput' type='number' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock}></input>
                             </div>
                             <div className="inputField">
                                 <label>Henry coins:</label>
-                                <input className='smallInput' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin}></input>
+                                <input className='smallInput' type='number' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin}></input>
                             </div>
                             <div className="inputField">
                                 <label>Peso:</label>
-                                <input className='smallInput' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight}></input>
+                                <input className='smallInput' type='number' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight}></input>
                             </div>
                             <div className="inputField">
                                 <label>Dimensiones (Largo x Alto x Ancho):</label>
-                                <input className='input' name='size' onChange={onChangeInputs} value={json.infoProduct.size}></input>
+                                <input className='input' type='number' name='size' onChange={onChangeInputs} value={json.infoProduct.size}></input>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
-                                <input className='smallInput' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount}></input>
+                                <input className='smallInput' type='number' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount}></input>
                             </div>
                         </div>
                         <div className="categoryContainer">
