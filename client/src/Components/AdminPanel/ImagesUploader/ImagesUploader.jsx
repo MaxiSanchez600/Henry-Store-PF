@@ -61,7 +61,7 @@ function ImageUploader ({ json, setJson }){
                 max='100' 
                 className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
             />
-            <label className='card-footer' >
+            <label className={json.images.length < 6 ? 'card-footer' : 'card-footer card-footer-disabled'} >
                 <input 
                     type='file' 
                     className='img-uploader' 
