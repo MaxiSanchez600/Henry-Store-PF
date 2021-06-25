@@ -61,7 +61,7 @@ function ImageUploader ({ json, setJson }){
                 max='100' 
                 className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
             />
-            <label className='card-footer' for='input-file'>
+            <label className='card-footer' >
                 <input 
                     type='file' 
                     className='img-uploader' 
@@ -69,7 +69,6 @@ function ImageUploader ({ json, setJson }){
                     disabled={json.images.length < 6 ? false : true}
                     multiple
                     accept="image/png, image/jpeg"
-                    id='input-file'
                 />
                 <BiImageAdd />
                 Agregar imágenes al producto  
