@@ -5,19 +5,30 @@ import Products from '../../Components/Products/Products';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
 import Sidebar from "../../Components/Sidebar/Sidebar";
+import Order from "../../Components/Order/Order";
 function Home({ queriesFromReducer, getProductsWithoutFilters }) {
- 
+
     function handleResetFilters(e) {
         e.preventDefault();
-        // console.log("Object.keys(queriesFromReducer): ", Object.keys(queriesFromReducer));
-        // console.log("document.getElementById(): ", document.getElementById());
+
         const allQueries = Object.keys(queriesFromReducer);
-        
+
         for (let i = 0; i < allQueries.length; i++) {
             console.log("allQueries[i]: ", allQueries[i]);
+            const filterToBeRemoved = document.getElementById(`filter_name_${allQueries[i]}`);
+            if (filterToBeRemoved) {
+                switch (filterToBeRemoved.type) {
+                    case "number":
+                        filterToBeRemoved.value = "";
+                        break;
+                    case "select-one":
+                        filterToBeRemoved.value = "default";
+                        break;
+                    default: break;
+                }
+            }
             delete queriesFromReducer[allQueries[i]];
         }
-        console.log("queriesFromReducer: ", queriesFromReducer);
         getProductsWithoutFilters({});
     }
 
@@ -36,6 +47,9 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                     <Filters />
                 </div>
                 <div className="body_Home">
+                    <div className="order">
+                        <Order />
+                    </div>
                     <div className="products">
                         <Products />
                     </div>

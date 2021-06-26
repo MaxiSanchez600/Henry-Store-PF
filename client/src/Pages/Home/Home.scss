@@ -4,16 +4,54 @@
     justify-content: space-around;
     flex-direction: row;
     background-color: #eeeeee;
-}
-.body-Home{
-    display: flex;
-    flex-direction: column;
-}
-.products{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 80vw;
+    .content_SidebarLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .reset_button {
+//             display: grid;
+//             justify-content: center;
+//             align-items: center;
+            background-color: $light_gray;
+            color: $dark_gray;
+            border: 1px solid $dark_gray;
+            font-weight: 700;
+//             border-width: 0;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 8px;
+            margin: 10px 0 0;
+            height: 40px;
+//             font-size: 10px;
+            &:hover {
+                background-color: $dark_gray;
+                color: $light_gray;
+                border: 3px solid $light_gray;
+            }
+        }
+        .reset_button_hidden {
+            margin: 10px 0 0;
+            height: 40px;
+            visibility: hidden;
+        }
+    }
+    .body_Home{
+//         border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        .order {
+//             border: 1px solid green;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .products{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 80vw;
+        }
+    }
 }
 
 .search_container{
@@ -29,30 +67,3 @@
 //     width: 200%;
 }
 
-.content_SidebarLeft {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .reset_button {
-//         display: grid;
-    //     justify-content: center;
-        background-color: $yellow_main;
-        color: #000000;
-        border-width: 0;
-        padding: 12.5px;
-        cursor: pointer;
-        transition: all 0.25s;
-        border-radius: 8px;
-        margin: 0;
-        height: 40px;
-
-        &:hover {
-            background-color: #000000;
-            color: $yellow_main;
-        }
-    }
-    .reset_button_hidden {
-        height: 40px;
-        visibility: hidden;
-    }
-}
