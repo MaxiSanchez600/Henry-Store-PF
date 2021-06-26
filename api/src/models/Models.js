@@ -332,10 +332,14 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    totalhc:{
+    spenthc:{
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    givenhc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
   })
 
   sequelize.define('OrderDetail',{

@@ -12,7 +12,7 @@ export function CartBar(props){
                     <h1>TU CARRITO</h1>
                     <h2 className = 'CartItems_CartBar'>{props.carritoactual.length + ' ITEMS'}</h2>
                 </div>
-                <Link to = {'/'} className = 'CartH2Continue_CartBar'>Continua con tu compra</Link>
+                <Link to = {'/home'} className = 'CartH2Continue_CartBar'>Continua con tu compra</Link>
             </div>
             <div className = 'CartLine_CartBar'>
             </div>

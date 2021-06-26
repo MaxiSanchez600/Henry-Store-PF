@@ -1,0 +1,98 @@
+.container-table-UserOrder {
+    margin: 10px;
+    padding: 20px 20px;
+    margin-left: 120px;
+    width: 95%; //posiblemente tenga que cambiar esto
+    height: 540px;
+}
+
+.icon-Filter svg{
+    width:18px;
+    height:18px;
+    color:rgb(81, 83, 83);
+}
+
+.num-orden{
+    width:320px;
+}
+.content-table-UserOrder{
+    border-collapse:collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 90%; //posiblemente tenga que cambiar esto
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.content-table-UserOrder .content-row-Title  {
+    background-color: #FFFF01;
+    font-size: 16px;
+    height: 50px;
+    color: #000000;
+    text-align:center;
+    font-weight: bold;
+}
+.content-table-UserOrder .content-row-Filter{
+    background-color: #909090;
+    color: #000000;
+    text-align: left;
+    font-weight: bold;
+}
+.content-table-UserOrder th,
+.content-table-UserOrder td {
+    padding: 12px 15px;
+  //  max-width: 300px;
+    overflow: hidden;
+}
+
+.content-table-UserOrder tr {
+    border-bottom: 1px solid #dddddd; 
+}
+
+.content-table-UserOrder tr:nth-of-type(even) {
+    background-color: #f3f3f3; 
+}
+
+.content-table-UserOrder tr:last-of-type {
+  //  border-bottom: 2px solid #FFFF01;
+}
+
+
+.Contenedor_UserOrder{
+    width: 100%;
+//     display: grid;
+//     grid-template-columns: 45% 45%;
+//     grid-template-rows: 32% 32%;
+    grid-gap: 10%;
+     overflow-y: scroll;
+//     height: 600px;
+//     padding: 1%;
+     padding-bottom: 1%;
+}
+
+// .CartCost_CartDetail{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+::-webkit-scrollbar{
+	width: 5px;
+}
+
+::-webkit-scrollbar-track-piece{
+	background-color: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: #CBCBCB;
+	outline: 2px solid #FAFAFA;
+	outline-offset: -2px;
+	border: .1px solid #7F7F7F;
+}
+
+::-webkit-scrollbar-thumb:hover{
+	background-color: #909090;
+}

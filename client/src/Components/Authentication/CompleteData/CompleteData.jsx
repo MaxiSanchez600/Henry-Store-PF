@@ -11,6 +11,8 @@ import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 import logo from "../../../Assets/Images/Logo_H_black.png";
 import Logo_Henry_black from "../../../Assets/Images/Logo_Henry_black.png";
 import {FaHome,} from 'react-icons/fa';
+import Sidebar from "../../Sidebar/Sidebar"
+
 
 export function validate(form){
   let errors={};
@@ -35,6 +37,7 @@ const CompleteData = () => {
 
     const stateFormData = {
         id:dataUSerLogin.id,
+        image:""||dataUSerLogin.image,
         firstname: "" || dataUSerLogin.name,
         lastname: "" || dataUSerLogin.lastname,
         email: "" || dataUSerLogin.email,
@@ -44,18 +47,19 @@ const CompleteData = () => {
         documentType:"",
         identification: "" || dataUSerLogin.identification,
         status:"",
-        image: "" || dataUSerLogin.image,
   };
   
   const [form, setForm] = useState(stateFormData);
   const [enableForm, setEnableForm] = useState(true);
   const [check,setCheck] = useState(null);
   const [errors, setErrors] = useState({});
-  
+  var userLogged = localStorage.getItem('userlogged');
+
   useEffect(() => {
+    dispatch(getUserLogin(userLogged));
     dispatch(getNacionalities());
     dispatch(getDocumentTypes());
-  }, [dispatch]);
+  }, []);
 
   const handleonSubmit = (e) => {
     e.preventDefault();
@@ -71,11 +75,11 @@ const CompleteData = () => {
     else{
     axios.put(PUT_DATA_USER,form)
     .then(()=>{
-      dispatch(getUserLogin(dataUSerLogin.id));
       setEnableForm(true)
     })
     .then(()=>{ 
-      setForm(stateFormData);
+      
+      dispatch(getUserLogin(dataUSerLogin.id));
       setCheck(null)
       Swal.fire({
         title:`Perfil Actualizado Correctamente!`,
@@ -161,7 +165,7 @@ const CompleteData = () => {
     <div className="containerCompleteData">
       <div className="divNavProfile">
         <div className="imageHenry">
-          <Link to="/">
+          <Link to="/home">
                 <img src={Logo_Henry_black}  alt="" width="200px" srcSet="" />
           </Link>
         </div>
@@ -173,7 +177,7 @@ const CompleteData = () => {
               <button onClick={chageStateForm}>{enableForm?"Editar Perfil":"volver"}</button>
             </div>
           <div className="iconBack">
-            <Link to="/">
+            <Link to="/home">
                 <FaHome/>
             </Link>
           </div>
@@ -246,7 +250,7 @@ const CompleteData = () => {
                 <div className="divInfoForm" >
                   <label>Tipo de Documento:</label>
                   <input className="inputDocumentType"
-                      type="text" name="documentType" id="documentType" value={form.documentType} disabled={true} required onChange={handleOnChange} 
+                      type="text" name="documentType" id="documentType" value={dataUSerLogin.documentType} disabled={true} required onChange={handleOnChange} 
                       placeholder={dataUSerLogin.documentType ==="Undefined"?"... ":dataUSerLogin.documentType }
                   />
                   { enableForm===false&&
@@ -262,7 +266,7 @@ const CompleteData = () => {
                   <label>Num. Identificacion: </label>
                   <input
                     type="text" name="identification" id="identification" value={form.identification}  onChange={handleOnChange} disabled={enableForm}  
-                    placeholder="numero de identidad..."
+                    placeholder={dataUSerLogin.identification ==="Undefined"?"numero de identidad...":dataUSerLogin.identification }
                     className={!enableForm&&(errors.identification&&"inputErrorIdentification")}
                   />
                   {!enableForm&&(errors.identification && (<p className="danger">{errors.identification}</p>))}
@@ -275,7 +279,7 @@ const CompleteData = () => {
 
           <div className="imag">
              <label>Imagen de Perfil</label>
-            <img src={form.image||logo} alt="not found" />
+            <img src={dataUSerLogin.image||logo} alt="not found" />
 
             {enableForm===false && 
             <>
@@ -296,6 +300,7 @@ const CompleteData = () => {
                 }
             </div>
         </div>
+        <Sidebar />
     </div>
   );
 };

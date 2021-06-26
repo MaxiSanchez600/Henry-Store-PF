@@ -97,11 +97,16 @@ const NavBar = () => {
           }
         </div>
       <div className="buttons-under-profile">
-      <select onChange = {onHandleChangeSelect}>
-          {currency.map(element => ((localStorage.getItem("currency") === (element.currencyExChange + "")) ? <option selected = "selected" name = {element.currencyName}
-          value = {element.currencyExChange}>{element.currencyName}</option> : <option name = {element.currencyName} value = {element.currencyExChange}
+      <select onChange = {onHandleChangeSelect} defaultValue="" >
+         
+          {currency.map((element,index) => ((localStorage.getItem("currency") === (element.currencyExChange + "")) ? 
+          <option selected = "selected" name = {element.currencyName } key={index}
+          value = {element.currencyExChange}>{element.currencyName}
+          </option> : 
+          <option name = {element.currencyName} value = {element.currencyExChange} key={index}
           >{element.currencyName}</option>))}
-        </select>
+      </select>
+
         <div data-tip data-for = "cart_tooltip_NavBar" className="carrito">
         <Link to={'/home/cart'}><FaShoppingCart color="white" size="22px"  /></Link>
         </div>

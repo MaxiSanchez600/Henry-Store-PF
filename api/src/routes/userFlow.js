@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { updateRolUser, updateStatusUser, updateStatusManyUsers, updateRoleManyUsers, updateNacionalityManyUsers, updateDocumentTypeManyUsers } = require ('../controllers/user/user.js');
+const { updateRolUser, updateStatusUser, updateStatusManyUsers, updateRoleManyUsers, updateNacionalityManyUsers, updateDocumentTypeManyUsers, getHcAmount, getUserOrders, getOrderAndProductDetails } = require ('../controllers/user/user.js');
 const { createUserStatus, readUserStatus, deleteUserStatus, updateUserStatus } = require ('../controllers/userStatus/userStatus.js');
 const { createDocumentTypes, readDocumentTypes, updateDocumentTypes, deleteDocumentTypes } = require ('../controllers/documentType/documentType.js');
 const { createRole, readRole, updateRole, deleteRole } = require('../controllers/role/role.js')
@@ -34,5 +34,10 @@ router.post('/documenttypes',createDocumentTypes);
 router.get('/documenttypes',readDocumentTypes);
 router.put('/documenttypes',updateDocumentTypes);
 router.delete('/documenttypes',deleteDocumentTypes);
+
+// router.get('/users/hcamount',getHcAmount);
+
+router.get('/myorders', getUserOrders);
+router.get('/myorder/detail', getOrderAndProductDetails)
 
 module.exports = router;

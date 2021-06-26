@@ -17,3 +17,5 @@ export const CATEGORIES_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}
 export const CARACTERISTICS_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/caracteristics?`;
 export const PUT_DATA_USER= `${workspace}/auth/login`;
 export const GET_STATUS= `${workspace}/userflow/userstatus`;
+export const GET_MYORDERS= `${workspace}/userflow/myorders`;  
+export const GET_DETAIL_ORDER= `${workspace}/userflow/myorder/detail`;  
