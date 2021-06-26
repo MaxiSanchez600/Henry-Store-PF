@@ -1,16 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getAllReviews } from '../../Redux/actions/actionsProducts';
 import StarRating from './StarRating.js'
-import './LoadMore.js'
+import './RenderReviews.js'
+import RenderReviews from './RenderReviews'
 
 const ReviewsExample = require('./Reviews_example.json')
 
 const AllReviews = () => {
+
+    const [reviewsToShow, setReviewsToShow] = useState([]);
+    const [next, setNext] = useState(3);
+    const reviewsPerPage = 3;
+    let arrayForHoldingPosts = [];
     let averageScore = 0;
     let fivestar = 0, fourstar = 0, threestar = 0, twostar = 0, onestar = 0;
-   
-    // ! CONTENT
+
+    const loopWithSlice = (start, end) => {
+        const slicedPosts = ReviewsExample.slice(start, end);
+        arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
+        setReviewsToShow(arrayForHoldingPosts);
+    };
+
+    useEffect(() => {
+        loopWithSlice(0, reviewsPerPage);
+    }, []);
+
+    const handleShowMorePosts = () => {
+        loopWithSlice(0, next + reviewsPerPage);
+        setNext(next + reviewsPerPage);
+    };
+
+    // ! CONTENT DETAIL PRODUCT
     return <div className="content_Reviews">
         <h1>Reseña sobre el producto:</h1>
         {
@@ -23,6 +44,11 @@ const AllReviews = () => {
                 if (review.score >= 0 && review.score <= 1) onestar += 1
             })
         }
+        <a href="#sec-2">
+            <div class="scroll-down"></div>
+        </a>
+
+    // ! CONTENT REVIEWS
         <div className="content_averageRating">
             <div className="left_rating">
                 <p className="main_point">{(averageScore / ReviewsExample.length).toFixed(1)}</p>
@@ -126,23 +152,9 @@ const AllReviews = () => {
         </div>
         <div className="container_allreviews ">
             <div className="flex">
-                {
-                    ReviewsExample && ReviewsExample.map(review => {
-                        return <div className="card_review">
-                            <label className="score_label" >
-                                <img src={review.imageUser} alt="not found" />
-                                <div className="user_info" >
-                                    <h4>{review.name + " " + review.last_name}</h4>
-                                    <h5>@{review.username}</h5>
-                                </div>
-                                <StarRating size_star="15" score={review.score} editable="off" /> <p>  - posted: {review.createdAt}</p>
-                            </label>
-                            <p className="opinion_text">{review.content}</p>
-                        </div>
-                    })
-                }
+                <RenderReviews reviewsToRender={reviewsToShow} />
             </div>
-            <a href="#" id="loadMore">Load More</a>
+            <button id="loadMore" onClick={handleShowMorePosts}>Load more</button>
         </div>
     </div>
 }
