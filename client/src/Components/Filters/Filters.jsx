@@ -33,13 +33,18 @@ function Filters({
 
   function closeSelectedFilterButton(e) {
     e.preventDefault();
-    const idToBeRemoved = document.getElementById(`${e.target.name}`);
-    if (idToBeRemoved) idToBeRemoved.value = "";
-    else {
-      const caracteristicsSelect = document.getElementById(`select_${e.target.name}`);
-      caracteristicsSelect.value = "default";
+    const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
+
+    switch (filterToBeRemoved.type) {
+      case "number":
+        filterToBeRemoved.value = "";
+        break;
+      case "select-one":
+        filterToBeRemoved.value = "default";
+        break;
+      default: break;
     }
-    
+
     delete queriesFromReducer[e.target.name];
     delete filtersToSend[e.target.name];
     setFiltersToSend({ ...filtersToSend });
@@ -63,6 +68,8 @@ function Filters({
                 switch (filterName) {
                   case "tag":
                   case "category":
+                  case "orderType":
+                  case "orderDirection":
                     return "";
                   default:
                     return (
@@ -84,25 +91,25 @@ function Filters({
       {/* PRECIO*/}
       <div className="name_filter">
         <h3 className="filter_title">Precio:<div className="title_stripe"></div></h3>
-        <p className="range_price_subtitle">Desde: {filtersToSend.rangePriceMin}</p>
+        <p className="range_price_subtitle">Desde: {queriesFromReducer.rangePriceMin}</p>
         <input
-          id={`rangePriceMin`}
+          id={`filter_name_rangePriceMin`}
           className="range_price"
           name="rangePriceMin"
           type="number"
           placeholder="Precio minimo"
-          value={filtersToSend.rangePriceMin}
+          value={queriesFromReducer.rangePriceMin ? filtersToSend.rangePriceMin : ""}
           onChange={e => handleFilters(e)}
           min={0}
         />
-        <p className="range_price_subtitle">Hasta: {filtersToSend.rangePriceMax}</p>
+        <p className="range_price_subtitle">Hasta: {queriesFromReducer.rangePriceMax}</p>
         <input
-          id={`rangePriceMax`}
+          id={`filter_name_rangePriceMax`}
           className="range_price"
           name="rangePriceMax"
           type="number"
           placeholder="Precio maximo"
-          value={filtersToSend.rangePriceMax}
+          value={queriesFromReducer.rangePriceMax ? filtersToSend.rangePriceMax : ""}
           onChange={e => handleFilters(e)}
           min={0}
         />
@@ -118,7 +125,7 @@ function Filters({
               name={caracteristic.name_caracteristic}
               className="list_select"
               onChange={e => handleFilters(e)}
-              id={`select_${caracteristic.name_caracteristic}`}
+              id={`filter_name_${caracteristic.name_caracteristic}`}
             >
               <option value="default" className="select_options">Elige una opcion...</option>
               {

@@ -98,6 +98,11 @@
         appearance: none;
     }
 
+    .range_price::-moz-inner-spin-button,
+    .range_price::-moz-outer-spin-button {
+        appearance: none;
+    }
+
     .range_price_subtitle {
         font-size: 10px;
         padding: 0;
