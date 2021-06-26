@@ -1,59 +1,77 @@
 @import '../../Sass/variables';
-.contain_NavBar{
+.contain_NavBar {
     position: relative;
     display: flex;
-    flex-direction: row;
+//     flex-direction: row;
     background-color: $black_main;
-    height: 12vh;
-    width: 100vw;
-    justify-content: space-around;  
-    padding: 10px;  
+    height: 90px;
+    // width: 100vw;
+    justify-content: space-between;
+//     padding: 10px;  
 
-    .left-box{
+    .left-box {
         display: flex;
-        flex-direction: column;
+//         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        .logohenry{
-            margin-top: 23px;
-            width: 200px;
-            padding-top: 2%;
+        justify-content: flex-start;
+        width: 250px;
+        .logohenry {
+            margin: 0 0 0 24px;
+            width: 100px;
+//             padding-top: 2%;
         }
-        .geolocation{
+        .store_text {
+            color: $white_main;
+            font-size: 24px;
+            font-weight: 900;
+            padding: 0;
+            margin: 0 0 0 5px;
+            letter-spacing: 3px;
+        }
+        .geolocation {
             padding-bottom: 2%;
         }
     }
 
-    .mid-box{
-        display: flex;
-        flex-direction: row;
-        width: 50%;
+    .mid-box {
+//         position: relative;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        width: 1000px;
         align-items: center;
-        justify-content: space-around;
-        padding-top: 10px;
-        a {
-            text-decoration: none;
-        }
-        p{
-            font-weight: 500;
-            font-size: 1.1em;
-            color: #ffffff;
-        }
-        p:hover{
-            color: $yellow_main;
-            transition: 1s all ease;
+        .links_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            // display: flex;
+            height: 100%;
+            // justify-content: flex-end;
+            align-items: flex-end;
+//             border: 1px solid $dark_gray;
+            .navbar_links {
+                text-align: right;
+                color: $white_main;
+                text-decoration: none;
+                font-size: 20px;
+                padding: 0 10px 2.5px 0;
+                &:hover {
+                    color: $yellow_main;
+                    transition: 0.25s all;
+                }
+            }
         }
     }
 
-    .right-box{
-        display: flex;
-        flex-direction: column;
-        width: 17%;
-        .profile-box{
-            height: 70%;
+    .right-box {
+//         display: flex;
+//         flex-direction: column;
+        display: grid;
+        grid-template-columns: 70% 20%;
+        column-gap: 10%;
+        width: 500px;
+        .profile-box {
             display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: start;
             .image {
                 width: 70px;
                 height: 70px;
@@ -62,50 +80,110 @@
                 object-fit: cover;
             }
         }
-        .buttons-under-profile{
-            height: 30%;
-            justify-content: space-around;
+        .buttons-under-profile {
+//             height: 30%;
+            display: grid;
+            grid-template-columns: 25% 25% 40%;
+            column-gap: 5%;
+//             border: 1px solid red;
+//             justify-content: center;
             align-items: center;
-            display: flex;
-
-            .menu_category{
-                position: relative;
-                display: block;
-                background-color: $yellow_main;
-                font-weight: 400;
-                font-size: 0.8em;
-                color: rgba(50, 50, 50, 0.9);
-                opacity: 0.95;
-                width: fit-content;
-                height: fit-content;
-                margin: 10px;
-                text-decoration: none;
-                border-radius: 4px;
-                height: 30px;
-                width: 100px;
-                z-index: 0;
-                transition: all 500ms ease;
-                border: 2px solid $yellow_main;
-                background-color: transparent;
-                color: #ffffff;
+//             margin: 0 auto;
+//             height: 100%;
+            .currency_container {
+//                 border: 1px solid yellow;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: auto 0 10px;
+                .currency_text {
+                    font-size: 20px;
+                    font-weight: 900;
+                    width: 15px;
+                    text-align: center;
+                    color: $yellow_main;
+                }
+                .currency_select {
+//                     display: grid;
+        //             align-items: end;
+                    width: 65px;
+                    height: 30px;
+                    border: 1px solid $light_gray;
+                    border-radius: 4px;
+                    background-color: $black_main;
+                    font-weight: 100;
+                    font-size: 12px;
+                    color: $white_main;
+                    outline: none;
+                    transition: all 0.25s;
+                    &:hover,
+                    &:focus {
+                        cursor: pointer;
+                        color: $yellow_main;
+                        background-color: $black_main;
+                        border: 1px solid $yellow_main;
+                    }
+                }
             }
-            .menu_category::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                margin: auto;
-                background-color: $yellow_main;
-                transition: all 500ms ease;
-                z-index: -1;
-              }
-              .menu_category:hover {
-                animation: shadow-pulse 1000ms 1;
-                background-color: $yellow_main;
-                color: #000000;
-                cursor: pointer;
-              }
+            .navbar_cart {
+//                 border: 1px solid purple;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    //             height: 100%;
+                .shop_cart_link {
+                    color: $white_main;
+                    transition: all 0.25s;
+                    &:hover {
+                        color: $yellow_main;
+                    }
+                }
+            }
+            .user_buttons_container {
+//                 border: 1px solid green;
+    //             display: grid;
+    //             grid-template-rows: 40% 40%;
+    //             row-gap: 10%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                .user_button {
+                    position: relative;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    font-weight: 400;
+                    font-size: 13px;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    height: 30px;
+                    width: 100px;
+                    z-index: 0;
+                    transition: all 500ms ease;
+                    border: 2px solid $yellow_main;
+                    background-color: transparent;
+                    color: $white_main;
+                }
+                .user_button::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    margin: auto;
+                    background-color: $yellow_main;
+                    transition: all 500ms ease;
+                    z-index: -1;
+                }
+                .user_button:hover {
+                    animation: shadow-pulse 1000ms 1;
+                    background-color: $yellow_main;
+                    color: $black_main;
+                    cursor: pointer;
+                }
+            }
         }
     }
 }
