@@ -1,52 +1,112 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import IMAGES from "../../Assets/images.json";
-import {IoIosArrowBack} from "react-icons/io"
-import {IoIosArrowForward} from "react-icons/io"
+import { IoIosArrowBack } from "react-icons/io"
+import { IoIosArrowForward } from "react-icons/io"
 import './slidercarrousel.scss'
 
 
-const SliderCarousel = ({ imageList = IMAGES }) => {
+const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [clickedButton, setClickedButton] = useState(true);
 
   const imageListLength = imageList.length;
 
+  useEffect(() => {
+    if (imageListLength) {
+      if (isBanner) {
+        if (clickedButton) {
+          setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
+        }
+      }
+      for (let i = 0; i < imageListLength; i++) {
+        continue;
+      }
+    }
+  }, [imageList, imageListLength, isBanner, handleNextImage, clickedButton, currentImage]);
+
+
   function handlePreviousImage() {
+    setClickedButton(false);
     setCurrentImage(currentImage === 0 ? imageListLength - 1 : currentImage - 1);
   }
 
   function handleNextImage() {
+    setClickedButton(false);
     setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1);
   }
 
+  function handleImageButtons(e) {
+    setCurrentImage(e.target.name - 1);
+  }
+
   return (
-    <div >
+    <div>
       {
         imageListLength > 0 ?
           imageListLength !== 1 ?
-            <div className = 'Carrousel_SliderCarrousel'>
-              <div className = 'Icon_SliderCarrousel'>
-                <IoIosArrowBack onClick={handlePreviousImage} size = '3em' cursor = 'pointer'/>
+            <div className={isBanner ? "carruosel_container banner_container" : "carruosel_container"}>
+              <div
+                className={
+                  isBanner ?
+                    "Carrousel_SliderCarrousel banner_carrousel_display" :
+                    "Carrousel_SliderCarrousel cropped_container"
+                }
+                onM
+              >
+                <div
+                  className={
+                    isBanner ?
+                      "Icon_SliderCarrousel_left banner_Icon_SliderCarrousel_left" :
+                      "Icon_SliderCarrousel_left"
+                  }
+                >
+                  <IoIosArrowBack onClick={handlePreviousImage} className="icon_left" />
+                </div>
+                {
+                  imageList.map((image, index) => {
+                    if (index === currentImage) {
+                      return (
+                        <div className="image_container">
+                          <img
+                            className={isBanner ? "banner_image" : "cropped_image"}
+                            key={image.id_image}
+                            src={image.name_image}
+                            alt="not found"
+                          />
+                        </div>
+                      );
+                    }
+                    else return "";
+                  })
+                }
+                <div
+                  className={
+                    isBanner ?
+                      "Icon_SliderCarrousel_right banner_Icon_SliderCarrousel_right" :
+                      "Icon_SliderCarrousel_right"
+                  }
+                >
+                  <IoIosArrowForward onClick={handleNextImage} className="icon_right" />
+                </div>
               </div>
               {
-                imageList.map((image, index) => {
-                  if (index === currentImage) {
-                    return (
-                      <div>
-                        <img
-                          width="200px"
-                          key={image.id_image}
-                          src={image.name_image}
-                          alt="not found"
-                        />
-                      </div>
-                    );
-                  }
-                  else return "";
-                })
+                isBanner ?
+                  <div className="slider_dot_buttons_container">
+                    {
+                      imageList.map((image) => {
+                        return (
+                          <div className="dot_button_container">
+                            <button
+                              name={image.id_image}
+                              onClick={handleImageButtons}
+                              className={image.id_image - 1 === currentImage ? "dot_button active" : "dot_button"}
+                            ></button>
+                          </div>
+                        );
+                      })
+                    }
+                  </div> : ""
               }
-              <div className = 'Icon_SliderCarrousel'>
-                <IoIosArrowForward onClick={handleNextImage}  size="3em" cursor = 'pointer'/>
-              </div>
             </div> :
             <div>
               <img
