@@ -285,10 +285,13 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   </div>
                 </div>
               </div>
-
+              <a href="#sec-2">
+                <div class="scroll-down"></div>
+              </a>
             </div>
-            <AllReviews />
-            <PostReview />
+            <section id="sec-2">
+              <AllReviews />
+            </section>
           </div> : ""
       }
 

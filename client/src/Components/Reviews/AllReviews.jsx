@@ -44,11 +44,9 @@ const AllReviews = () => {
                 if (review.score >= 0 && review.score <= 1) onestar += 1
             })
         }
-        <a href="#sec-2">
-            <div class="scroll-down"></div>
-        </a>
 
-    // ! CONTENT REVIEWS
+
+        {/* ! CONTENT REVIEWS */}
         <div className="content_averageRating">
             <div className="left_rating">
                 <p className="main_point">{(averageScore / ReviewsExample.length).toFixed(1)}</p>
@@ -154,11 +152,12 @@ const AllReviews = () => {
             <div className="flex">
                 <RenderReviews reviewsToRender={reviewsToShow} />
             </div>
-            <button id="loadMore" onClick={handleShowMorePosts}>Load more</button>
+            <button id="loadMore" onClick={handleShowMorePosts}>Show more</button>
         </div>
     </div>
 }
 
+// ! REDUX
 function mapStateToProps(state) {
     return {
         ListProducts: state.products.products,
