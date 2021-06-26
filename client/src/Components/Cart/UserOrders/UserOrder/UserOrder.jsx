@@ -6,61 +6,57 @@ import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router-dom";
 import './UserOrder.scss'
 
-var idUser="QtPzcRRHoqXnpfbXMAJuB7254hk1";
-
-const myOrder =
-[
-    {
-        id_order: "13509980d47a11eb8cb72df2b289b295",
-        status:"pagada",
-        createdAt:"2021-06-23 18:23:54",
-        updateAt:"2021-06-23 18:23:54",
-        totalprice:"200",
-        spenthc:"5",
-        givenhc:"2",
-    },
-    {
-        id_order: "57cd0e40d48411eb8cb72df2b289b295",
-        status:"completa",
-        createdAt:"2021-06-23 19:37:23",
-        updateAt:"2021-06-23 18:23:54",
-        totalprice:"500",
-        spenthc:"10",
-        givenhc:"20",
-    }
-]
-
-
+import { FaFilter } from "react-icons/fa";
 const UserOrder = () => {
 
 var userLogged = localStorage.getItem('userlogged');
-const [orders, setOrders] = useState([]);
 const [stateOrder, setStateOrder] = useState("");
+const [orders, setOrders] = useState([]);
+const [sortOrders, setSortOrders] = useState(false);
 
     useEffect(() => {
-    // axios.get(`${GET_MYORDERS}?id=${userLogged}`)
-    // .then((response) => {
-    //     // setOrders(response)
-    //     // console.log(orders);
-    // })
-    // .catch((e)=>{
-    //     alert(e);
-    //     //console.log(orders);
-    // })
-    setOrders(myOrder)
-    }, []);
+    axios.get(`${GET_MYORDERS}?id=${userLogged}`)
+    .then((response) => {
+        if(!sortOrders){
+            setOrders(response.data)
+        }else{
+            setOrders(response.data.reverse())
+        }
+    })
+    .catch((e)=>{
+        alert(e);
+    })
+    }, [sortOrders]);
 
+const orderReverse=(e)=>{
+    e.preventDefault();
+    if(sortOrders){
+        setSortOrders(false)
+    }else {
+        setSortOrders(true)
+    }
+}
 
     return (
         <div>
             <div className="container-table-UserOrder">
                 <h1>Mis Ordenes</h1>
                 <table className="content-table-UserOrder">
-                    < tbody > 
-                    <tr>
+                    <tr className="content-row-Title">
                         <th></th>
-                        <th>Num. Orden</th>
-                        <th>Estado : 
+                        <th className="num-orden">Num. Orden</th>
+                        <th>Estado : </th>
+                        <th>Fecha Actualizacion</th>
+                        <th>Valor Pagado</th>
+                        <th>Henry Coints Gastados</th>
+                        <th>Henry Coints Otorgados</th>
+                        <th>ver</th>
+                        <th></th>
+                    </tr>
+                    <tr className="content-row-Filter">
+                        <th className="icon-Filter"><FaFilter/></th>
+                        <th><input /></th>
+                        <th>
                           <div>
                             <select name="nacionality" onChange={(e)=>setStateOrder(e.target.value)} defaultValue="" >
                                 <option value="">Seleccione</option>
@@ -70,24 +66,32 @@ const [stateOrder, setStateOrder] = useState("");
                                 <option value="cancelada">Cancelada</option>
                             </select>
                           </div>
-                      </th>
-                        <th>Fecha Actualizacion</th>
-                        <th>Valor Pagado</th>
-                        <th>Henry Coints Gastados</th>
-                        <th>Henry Coints Otorgados</th>
-                        <th>ver</th>
+                        </th>
+                        <th>
+                            <button onClick={orderReverse}>{sortOrders?"recientes":"mas antiguas"}</button>
+                        </th>
+                        <th><input /></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
-                     {stateOrder?orders.filter((order)=>order.status===stateOrder).map((order)=>{
+                    < tbody className = 'Contenedor_UserOrder'> 
+                 
+                     {
+                       
+                     stateOrder?orders.filter((order)=>order.status===stateOrder).map((order)=>{
                         return (
-                        <tr key={order.id_order}>
+                        <tr key={order.id_order}  >
                             <td></td>
-                            <td>{order.id_order}</td>
+                            <td className="num-orden">{order.id_order}</td>
                             <td>{order.status}</td>
                             <td>{order.createdAt}</td>
-                            <td>{order.totalprice}</td>
+                            <td>{` $ ${order.totalprice}`}</td>
                             <td>{order.spenthc}</td>
                             <td>{order.givenhc}</td>
                             <td><Link to={`/home/myorders/${order.id_order}`}><MdRemoveRedEye/></Link></td> 
+                            <td></td>
                         </tr>)
                     }):
 
@@ -95,13 +99,14 @@ const [stateOrder, setStateOrder] = useState("");
                         return (
                         <tr key={order.id_order}>
                             <td></td>
-                            <td>{order.id_order}</td>
+                            <td className="num-orden">{order.id_order}</td>
                             <td>{order.status}</td>
                             <td>{order.createdAt}</td>
-                            <td>{order.totalprice}</td>
+                            <td>{`  $ ${order.totalprice}`}</td>
                             <td>{order.spenthc}</td>
                             <td>{order.givenhc}</td>
                             <td><Link to={`/home/myorders/${order.id_order}`} ><MdRemoveRedEye/></Link></td> 
+                            <td></td>
                         </tr>)
                     })
                     } 
