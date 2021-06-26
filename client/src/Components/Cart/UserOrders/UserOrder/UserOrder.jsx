@@ -13,18 +13,20 @@ const myOrder =
     {
         id_order: "13509980d47a11eb8cb72df2b289b295",
         status:"pagada",
-        date:"2021-06-23 18:23:54",
-        totalPrice:"200",
-        hcSpent:"5",
-        hcEarned:"2",
+        createdAt:"2021-06-23 18:23:54",
+        updateAt:"2021-06-23 18:23:54",
+        totalprice:"200",
+        spenthc:"5",
+        givenhc:"2",
     },
     {
         id_order: "57cd0e40d48411eb8cb72df2b289b295",
         status:"completa",
-        date:"2021-06-23 19:37:23",
-        totalPrice:"500",
-        hcSpent :"10",
-        hcEarned:"20",
+        createdAt:"2021-06-23 19:37:23",
+        updateAt:"2021-06-23 18:23:54",
+        totalprice:"500",
+        spenthc:"10",
+        givenhc:"20",
     }
 ]
 
@@ -36,16 +38,16 @@ const [orders, setOrders] = useState([]);
 const [stateOrder, setStateOrder] = useState("");
 
     useEffect(() => {
-    axios.get(`${GET_MYORDERS}?id=${userLogged}`)
-    .then((response) => {
-        // setOrders(response)
-        // console.log(orders);
-    })
-    .catch((e)=>{
-        alert(e);
-        setOrders(myOrder)
-        //console.log(orders);
-        })
+    // axios.get(`${GET_MYORDERS}?id=${userLogged}`)
+    // .then((response) => {
+    //     // setOrders(response)
+    //     // console.log(orders);
+    // })
+    // .catch((e)=>{
+    //     alert(e);
+    //     //console.log(orders);
+    // })
+    setOrders(myOrder)
     }, []);
 
 
@@ -54,17 +56,18 @@ const [stateOrder, setStateOrder] = useState("");
             <div className="container-table-UserOrder">
                 <h1>Mis Ordenes</h1>
                 <table className="content-table-UserOrder">
+                    < tbody > 
                     <tr>
                         <th></th>
                         <th>Num. Orden</th>
                         <th>Estado : 
                           <div>
-                            <select name="nacionality" onChange={(e)=>setStateOrder(e.target.value)} defaultValue="">
-                                <option value="">todas</option>
-                                <option value="pagada">pagada</option>
-                                <option value="coordinar">coordinar</option>
-                                <option value="completa">completa</option>
-                                <option value="cancelada">cancelada</option>
+                            <select name="nacionality" onChange={(e)=>setStateOrder(e.target.value)} defaultValue="" >
+                                <option value="">Seleccione</option>
+                                <option value="pagada">Pagada</option>
+                                <option value="coordinar">Coordinar</option>
+                                <option value="completa">Completa</option>
+                                <option value="cancelada">Cancelada</option>
                             </select>
                           </div>
                       </th>
@@ -74,33 +77,35 @@ const [stateOrder, setStateOrder] = useState("");
                         <th>Henry Coints Otorgados</th>
                         <th>ver</th>
                     </tr>
-                     {stateOrder?orders.filter((order)=>order.status===stateOrder).map(order=>{
+                     {stateOrder?orders.filter((order)=>order.status===stateOrder).map((order)=>{
                         return (
-                        <tr>
+                        <tr key={order.id_order}>
                             <td></td>
                             <td>{order.id_order}</td>
                             <td>{order.status}</td>
-                            <td>{order.date}</td>
-                            <td>{order.totalPrice}</td>
-                            <td>{order.hcSpent}</td>
-                            <td>{order.hcEarned}</td>
-                            <td><Link to={`/home/myorders/${order.id_order}`} key={order.id_order}><MdRemoveRedEye/></Link></td> 
+                            <td>{order.createdAt}</td>
+                            <td>{order.totalprice}</td>
+                            <td>{order.spenthc}</td>
+                            <td>{order.givenhc}</td>
+                            <td><Link to={`/home/myorders/${order.id_order}`}><MdRemoveRedEye/></Link></td> 
                         </tr>)
                     }):
+
                     orders.map(order=>{
                         return (
-                        <tr>
+                        <tr key={order.id_order}>
                             <td></td>
                             <td>{order.id_order}</td>
                             <td>{order.status}</td>
-                            <td>{order.date}</td>
-                            <td>{order.totalPrice}</td>
-                            <td>{order.hcSpent}</td>
-                            <td>{order.hcEarned}</td>
-                            <td><Link to={`/home/myorders/${order.id_order}`} key={order.id_order}><MdRemoveRedEye/></Link></td> 
+                            <td>{order.createdAt}</td>
+                            <td>{order.totalprice}</td>
+                            <td>{order.spenthc}</td>
+                            <td>{order.givenhc}</td>
+                            <td><Link to={`/home/myorders/${order.id_order}`} ><MdRemoveRedEye/></Link></td> 
                         </tr>)
                     })
                     } 
+                      </tbody > 
                 </table>
             </div>
             <Sidebar />
