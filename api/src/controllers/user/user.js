@@ -1,4 +1,4 @@
-let { User, Role, UserStatus } = require ('../../db.js')
+let { User, Role, UserStatus, Order, OrderDetail, OrderDetailCaracteristic, Product } = require ('../../db.js')
 const { Op } = require("sequelize");
 
 function updateRolUser (req,res,next) {
@@ -111,6 +111,25 @@ function getHcAmount (req,res,next) {
   
 };
 
+function getUserOrders (req, res, next) {
+    
+    const { id } = req.query;
+
+    Order.findAll({
+        where: {
+            UserIdUser: id
+        },
+        order: [['updatedAt', 'DESC']]
+    })
+    .then(response => {
+        return res.send(response);
+    })
+    .catch(error => {
+        next(error);
+    });
+
+};
+
 module.exports ={
     updateRolUser,
     updateStatusUser,
@@ -118,5 +137,6 @@ module.exports ={
     updateRoleManyUsers,
     updateNacionalityManyUsers,
     updateDocumentTypeManyUsers,
-    getHcAmount
+    getHcAmount,
+    getUserOrders
 };
