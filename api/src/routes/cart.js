@@ -23,5 +23,7 @@ router.post('/setpriceandgetid', setPriceSetID.setCartPriceReturnID)
 router.get('/getorder', setPriceSetID.getOrderComplete)
 router.post('/adduseraddress', UserAddressRoutes.AddUserAddress)
 router.get('/getuseraddress', UserAddressRoutes.GetUserAddress)
+router.get('/getaddressbyid', UserAddressRoutes.GetAddressById)
+router.put('/updateaddress', UserAddressRoutes.UpdateAddress)
 
 module.exports = router;

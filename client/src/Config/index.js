@@ -20,3 +20,6 @@ export const GET_STATUS= `${workspace}/userflow/userstatus`;
 export const ADD_USER_ADDRESS = `${workspace}/cart/adduseraddress`;
 export const GET_USER_ADDRESS = `${workspace}/cart/getuseraddress`;
 export const LOCALIDAD_GET = "https://apis.datos.gob.ar/georef/api/localidades?provincia=";
+export const DIRECCION_EDIT = `${workspace}/cart/adduseraddress`;
+export const DIRECCION_BY_ID = `${workspace}/cart/getaddressbyid`;
+export const UPDATE_DIRECCION = `${workspace}/cart/updateaddress`;
