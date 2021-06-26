@@ -328,6 +328,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    totalprice: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    spenthc:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    givenhc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
   })
 
   sequelize.define('OrderDetail',{
@@ -337,14 +349,6 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     product_amount: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    totalprice: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    totalhc:{
       type: DataTypes.INTEGER,
       allowNull: false
     }
@@ -375,6 +379,37 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     }
+  })
+
+  sequelize.define("UserAddress", {
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    localidad: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    numerodireccion: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    postal_code: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone_contact: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   })
 
 };

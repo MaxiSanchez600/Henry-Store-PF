@@ -1,5 +1,24 @@
+@import '../../../Sass/variables';
 .LeftInfoConteiner_LeftInfo{
     width: 65%;
     height: 100vh;
-    background-color: red;
+    background-color: white;
+    padding: 5em;
+    overflow-y: scroll;
 }
+
+.divTitles_LeftInfo{
+    display: flex;
+    .h1Info_LeftInfo{
+        font-family: "Avenir_Book";
+        font-size: 1.5em;
+        margin-right: 1em;
+    }
+    .h1Info2_LeftInfo{
+        font-family: "Avenir_Book";
+        font-size: 1.1em;
+        color: #DEDEDE;
+        margin-top: 0.36em;
+    }
+}
+

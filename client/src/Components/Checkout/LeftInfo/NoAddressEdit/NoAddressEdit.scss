@@ -1,0 +1,68 @@
+@import '../../../../Sass/variables';
+.H1Principal_NoAddressEdit{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    span{
+        font-family: "Avenir_Black";
+    }
+}
+.SinEmbargo_NoAddressEdit{
+    margin-top: 1em;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    color: $gray_main;
+    font-size: 0.9em;
+    span{
+        font-family: "Avenir_Black";
+    }
+}
+
+
+
+.Buttons_NoAddressEdit{
+    margin-top: 1em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonVolver_NoAddressEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border-color: black;
+    border-width: 0.1em;
+    background-color: transparent;
+    border-radius: 0.35em;
+}
+
+.ButtonNext_NoAddressEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 0.35em;
+    filter: blur();
+    transition: all 0.3s ease 0s;
+
+}
+
+.ButtonNext_NoAddressEdit:hover{
+    background-color: $gray_main;
+}
+
+.FullConteiner_NoAddressEdit{
+    margin-top: 2em;
+}

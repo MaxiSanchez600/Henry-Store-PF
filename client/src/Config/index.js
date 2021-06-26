@@ -6,7 +6,7 @@ export const REGISTER_URL= `${workspace}/auth/register`;
 export const LOGIN_URL= `${workspace}/auth/login` ;
 export const GUEST_CART_USER = `${workspace}/cart/changecarts`;
 export const GET_NACIONALITIES=`${workspace}/userflow/nacionalities`;
-export const GET_DOCUMENT_TYPES=`${workspace}/userflow/documenttypes`;
+export const GET_DOCUMENT_TYPES =`${workspace}/userflow/documenttypes`;
 export const GET_ALL_USERS= `${workspace}/admin/users`;
 export const CHANGE_ROL= `${workspace}/userflow/users/rol`;
 export const CHANGE_STATUS= `${workspace}/userflow/users/status`;
@@ -17,3 +17,6 @@ export const CATEGORIES_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}
 export const CARACTERISTICS_URL = `${PRODUCTS_URL.slice(0, PRODUCTS_URL.length - 1)}/caracteristics?`;
 export const PUT_DATA_USER= `${workspace}/auth/login`;
 export const GET_STATUS= `${workspace}/userflow/userstatus`;
+export const ADD_USER_ADDRESS = `${workspace}/cart/adduseraddress`;
+export const GET_USER_ADDRESS = `${workspace}/cart/getuseraddress`;
+export const LOCALIDAD_GET = "https://apis.datos.gob.ar/georef/api/localidades?provincia=";

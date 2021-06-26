@@ -1,5 +1,25 @@
+@import '../../../Sass/variables';
+
 .RightInfoConteiner_RightInfo{
     width: 35%;
     height: 100vh;
-    background-color: green;
+    background-color: black;
+    .ConteinerInfo_RightInfo{
+        padding: 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        .ConteinerResumen_RightInfo{
+            height: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .h1Resumen_RightInfo{
+                font-family: "Avenir_Black";
+                color: white;
+            }
+        }
+    }
 }
+

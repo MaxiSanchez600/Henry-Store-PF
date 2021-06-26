@@ -34,6 +34,7 @@ const rootReducer = (state = initialState, action) => {
         case SET_CARRITO:
             let total = 0;
             let hc = 0;
+            let hcorder = 0;
             action.payload.forEach(producto =>{
                 total = total + (producto.precio * producto.actual_amount)
                 hc = hc + (producto.hc * producto.actual_amount)

@@ -1,0 +1,133 @@
+@import '../../../../Sass/variables';
+
+.FullContainer_PCCC{
+    border-radius: 0.5em;
+    cursor: pointer;
+    filter: blur();
+}
+.divContainerTitlePrice_PCCC{
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    .h1ProductTotal_PCCC{
+        color: white;
+        font-size: 1em;
+        font-family: "Avenir_Black";
+        margin-top: auto;
+        margin-right: 0.5em;
+    }
+    .CurrencyName_PCCC{
+        color: white;
+        font-size: 1em;
+        margin-top: auto;
+        font-family: "Avenir_Black";
+        cursor: pointer;
+    }
+    .Arrow_PCCC{
+        color: white;
+        margin-left: 1em;
+        cursor: pointer;
+        filter: blur();
+    }
+    div{
+        display: flex;
+        .h1ProductName_PCCC{
+            margin-top: auto;
+            font-size: 1em;
+            font-family: "Avenir_Black";
+            color: $yellow_main;
+        }
+        .h2Multi_PCCC{
+            margin-left: 0.5em;
+            font-weight: 100;
+            font-family: "Avenir_Book";
+            color: white;
+            margin-top: auto;
+            font-size: 0.8em;
+        }
+    }
+}
+.divContainerAmountCarac_PCCC{
+    margin-top: 0.7em;
+}
+.Cart_PCCC--labels {
+    max-width: 50%;
+    display: grid;
+    gap: 5px 10px;
+    grid-template-columns: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    .Cart_PCCC--label {
+        font-family: "Avenir_Black";
+        background-color: white;
+        border-radius: 20px;
+        color: black;
+        font-size: 0.7em;
+        padding: 3px 15px;
+        text-transform: capitalize;
+        text-align: center;
+        font-weight: 300;
+    }
+}
+
+.rotate {
+    animation: rotate-keyframes 0.5s;
+    animation-fill-mode: both;
+   }
+   
+   @keyframes rotate-keyframes {
+    from {
+     transform: rotate(0deg);
+    }
+   
+    to {
+     transform: rotate(180deg);
+    }
+}
+
+ .rotatebackwards {
+     animation: rotate-keyframes-backwards 0.25s;
+     animation-fill-mode: both;
+    }
+   
+    @keyframes rotate-keyframes-backwards {
+     from {
+      transform: rotate(180deg);
+     }
+   
+     to {
+      transform: rotate(360deg);
+     }
+ }
+
+
+ .rotatebackwards {
+    animation: rotate-keyframes-backwards 0.25s;
+    animation-fill-mode: both;
+   }
+   @keyframes rotate-keyframes-backwards {
+    from {
+     transform: rotate(180deg);
+    }
+  
+    to {
+     transform: rotate(360deg);
+    }
+}
+
+.scaleproduct {
+    animation: scale 0.25s;
+    animation-fill-mode: both;
+    @keyframes scale {
+        0% {
+            transform: scale(1);
+        }
+    
+        50% {
+            transform: scale(0.98);
+        }
+    
+        100% {
+            transform: scale(1);
+        }
+    }
+}

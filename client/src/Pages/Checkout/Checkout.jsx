@@ -8,7 +8,7 @@ export default function Checkout(){
     return(
         <div className = 'CheckOutConteiner_CheckOut'>
             <LeftInfo></LeftInfo>
-            <RightInfo></RightInfo>
+            <RightInfo orderid = {id}></RightInfo>
         </div>
     )
 }

@@ -13,6 +13,7 @@ function readUserInfo (req,res,next) {
 //---------------------------------------------
 
 function updateUserInfo (req,res,next) {
+    console.log(req.body)
     let {id, firstname, hc, lastname, email, image, phone, username, identification, nacionality, documentType} = req.body;
     User.findOne({where:{id_user: id}})
     .then((userFound)=>{

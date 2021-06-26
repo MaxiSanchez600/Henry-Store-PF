@@ -1,0 +1,66 @@
+@import '../../../../Sass/variables';
+.AddressEdit_Conteiner{
+    margin-top: 2em;
+}
+.H1Elegi_AddressEdit{
+    font-size: 1.5em;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+        span{
+            font-family: "Avenir_Black";
+        }
+}
+
+.Buttons_AddressEdit{
+    margin-top: 1em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonVolver_AddressEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border-color: black;
+    border-width: 0.1em;
+    background-color: transparent;
+    border-radius: 0.35em;
+}
+
+.ButtonNext_AddressEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 0.35em;
+    filter: blur();
+    transition: all 0.3s ease 0s;
+
+}
+
+.ButtonNext_AddressEdit:hover{
+    background-color: $gray_main;
+}
+
+.Anadir_AddressEdit{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 0.9em;
+    text-decoration: underline;
+    margin-top: 2em;
+    cursor: pointer;
+    color: black;
+}

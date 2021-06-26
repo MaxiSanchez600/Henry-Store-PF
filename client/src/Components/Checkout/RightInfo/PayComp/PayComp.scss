@@ -1,0 +1,39 @@
+@import '../../../../Sass/variables';
+
+
+.TotalPrice_PayComp{
+    display: flex;
+    justify-content: space-between;
+    .Total_PayComp{
+        color: white;
+        font-size: 1em;
+        font-family: "Avenir_Black";
+        margin-top: auto;
+    }
+    .OrderCurrency_PayComp{
+        display: flex;
+    }
+    .Order_PayComp{
+        color: white;
+        font-size: 1em;
+        font-family: "Avenir_Book";
+        font-weight: 100;
+    }
+    .CurrencyName_PayComp{
+        color: white;
+        font-size: 1em;
+        font-family: "Avenir_Book";
+        font-weight: 100;
+    }
+}
+
+.HCUtilizadas_PayComp{
+    color: white;
+    font-size: 0.45em;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+}
+
+.Spent_CartPay{
+    font-family: "Avenir_Black";
+}

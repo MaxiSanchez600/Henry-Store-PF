@@ -16,6 +16,7 @@ export function CartList(props){
             const options = {
                 method: 'GET',
             }
+            //Aca cargar las HC del usuario logeado en Redux para poder usarlas en cartpay
             const response = await fetch(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem('userlogged')}`, options)
             const responsejson = await response.json()
             props.setCarrito(responsejson)

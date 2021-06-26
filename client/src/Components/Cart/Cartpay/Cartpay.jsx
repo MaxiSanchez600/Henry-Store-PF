@@ -44,16 +44,19 @@ export function Cartpay(props){
     let onSubmitCart = () =>{
 
       if(props.carritoactual.length > 0){
-        if(localStorage.getItem('userlogged') !== null){
-          axios.get(URL_BASE + `cart/getorderdetails?userid=${localStorage.getItem('userlogged')}`)
-        }
-        else if (localStorage.getItem('userid') !== null){
-          
-        }
-        //history.push(`/checkout${}`)
-      }
+        let useractual = (localStorage.getItem('userlogged') !== null) ? localStorage.getItem('userlogged') : localStorage.getItem('userid')
+        axios.post(URL_BASE + `cart/setpriceandgetid`, {
+            userid: useractual,
+            price: props.pricetotal,
+            hc: hc,
+            hccart: props.hctotal
+        })
+        .then(value =>{
+            history.push(`/checkout/${value.data.id_order}`)
+        })
+      } 
       else{
-        console.log('carrito vacio')
+        alert('carrito vacio')
       }
     }
     return(

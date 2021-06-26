@@ -1,0 +1,49 @@
+@import '../../../../../Sass/variables';
+.InfoConteiner_AddressUserList{
+    width: 90%;
+    background-color: #F3F3F3;
+    padding: 1em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+.Edit_AddressUserList{
+    font-size: 0.8em;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.Edit_AddressUserList:hover{
+    transform: scale(1.05);
+}
+.active_AddressUserList{
+    background-color: $normal_gray;
+}
+.H1_AddressUserList{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 1.5em;
+}
+
+.H2_AddressUserList{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 0.8em;
+    color: #343434;
+}
+
+.H3_AddressUserList{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 0.8em;
+    color: #343434;
+}
+
+.P_AddressUserList{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 0.8em;
+    color: #343434;
+}
