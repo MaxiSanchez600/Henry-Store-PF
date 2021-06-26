@@ -77,7 +77,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
             if(format.test(e.target.value) || /\d/.test(e.target.value)){
                 seterrores({
                      ...erorres,
-                     [e.target.name]: 'Name/Lastname'
+                     [e.target.name]: 'Nombre o apellido invalido'
                     })
                 }
                 else{
@@ -93,7 +93,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
             if(!emailformat.test(e.target.value) && e.target.value !== ''){
                 seterrores({
                     ...erorres,
-                    [e.target.name]: 'Email'
+                    [e.target.name]: 'Mail invalido'
                 })
             }
             else{
@@ -109,7 +109,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
             if(!textformat.test(e.target.value) && e.target.value !== ''){
                 seterrores({
                     ...erorres,
-                    [e.target.name]: 'phone'
+                    [e.target.name]: 'Telefono invalido'
                 })
             }
             else{
@@ -125,7 +125,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
             if(!textformat.test(e.target.value) && e.target.value !== ''){
                 seterrores({
                     ...erorres,
-                    [e.target.name]: 'Id'
+                    [e.target.name]: 'DNI invalido'
                 })
             }
             else{
@@ -182,18 +182,18 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
                     <div className = 'CommonDiv_UserEdit'>
                         <label>Nombre</label>
                         <input name = "firstname" placeholder = "Nombre" className = 'Input_UserEdit' value = {input.firstname} onChange = {onHandleChange}></input>
-                        <label>{erorres.firstname !== "" && erorres.firstname}</label>
+                        <label className = "LabelError_UserEdit">{erorres.firstname !== "" && erorres.firstname}</label>
                     </div>
                     <div className = 'CommonDiv_UserEdit'>
                         <label>Apellido</label>
                         <input name = "lastname" placeholder = "Apellido" className = 'Input_UserEdit' value = {input.lastname} onChange = {onHandleChange}></input>
-                        <label>{erorres.lastname !== "" && erorres.lastname}</label>
+                        <label className = "LabelError_UserEdit">{erorres.lastname !== "" && erorres.lastname}</label>
                     </div>
                 </div>
                 <div className = "CommonDiv_UserEdit">
                     <label>Correo electronico</label>
                     <input name = "email" placeholder = "Correo electronico" className = 'Input_UserEdit' value = {input.email} onChange = {onHandleChange}></input>
-                    <label>{erorres.email !== "" && erorres.email}</label>
+                    <label className = "LabelError_UserEdit">{erorres.email !== "" && erorres.email}</label>
                 </div>
                 <div className = "CommonDiv_UserEdit">
                     <label>Nacionalidad</label>
@@ -201,7 +201,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
                             <option value = "">Selecciona</option>
                             {nacionality.map(nacionality => <option value = {nacionality.id}>{nacionality.nacionality}</option>)}
                     </select>
-                    <label>{erorres.nacionality !== "" && erorres.nacionality}</label>
+                    <label className = "LabelError_UserEdit">{erorres.nacionality !== "" && erorres.nacionality}</label>
                 </div>
                 <div className = "CommonDiv_UserEdit">
                     <label>Lugar de residencia</label>
@@ -209,12 +209,12 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
                             <option value = "">Selecciona</option>
                             {nacionality.map(nacionality => <option value = {nacionality.id}>{nacionality.nacionality}</option>)}
                     </select>
-                    <label>{erorres.nacionality !== "" && erorres.nacionality}</label>
+                    <label className = "LabelError_UserEdit">{erorres.nacionality !== "" && erorres.nacionality}</label>
                 </div>
                 <div className = "CommonDiv_UserEdit">
                     <label>Telefono</label>
                     <input name = "phone" placeholder = "Ej: 1141588259" className = 'Input_UserEdit' value = {input.phone} onChange = {onHandleChange}></input>
-                    <label>{erorres.phone !== "" && erorres.phone}</label>
+                    <label className = "LabelError_UserEdit">{erorres.phone !== "" && erorres.phone}</label>
                 </div>
                 <div className = 'NameLastName_UserEdit'>
                     <div className = 'CommonDiv_UserEdit'>
@@ -223,12 +223,12 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
                             <option value = "">Selecciona</option>
                             {documents.map(document => <option value = {document.id}>{document.type}</option>)}
                         </select>
-                        <label>{erorres.documentType !== "" && erorres.documentType}</label>
+                        <label className = "LabelError_UserEdit">{erorres.documentType !== "" && erorres.documentType}</label>
                     </div>
                     <div className = 'CommonDiv_UserEdit'>
                         <label>Identificacion</label>
                         <input name = "identification" placeholder = "Identificacion" className = 'Input_UserEdit' value = {input.identification} onChange = {onHandleChange}></input>
-                        <label>{erorres.identification !== "" && erorres.identification}</label>
+                        <label className = "LabelError_UserEdit">{erorres.identification !== "" && erorres.identification}</label>
                     </div>
                 </div>
             </div>

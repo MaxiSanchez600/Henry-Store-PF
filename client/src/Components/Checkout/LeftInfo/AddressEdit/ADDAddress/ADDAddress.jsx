@@ -58,7 +58,7 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
             if(format.test(e.target.value) || /\d/.test(e.target.value)){
                 setErrores({
                      ...errores,
-                     [e.target.name]: 'Direccion/Description'
+                     [e.target.name]: 'Direccion o descripcion invalida'
                     })
                 }
                 else{
@@ -73,7 +73,7 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
             if(!textformat.test(e.target.value) && e.target.value !== ''){
                 setErrores({
                     ...errores,
-                    [e.target.name]: 'numerodireccion'
+                    [e.target.name]: 'Numero invalido'
                 })
             }
             else{
@@ -88,7 +88,7 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
             if(format.test(e.target.value)){
                 setErrores({
                      ...errores,
-                     [e.target.name]: 'PostalCode'
+                     [e.target.name]: 'Codigo postal invalido'
                     })
                 }
                 else{
