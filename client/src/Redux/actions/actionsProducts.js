@@ -10,6 +10,8 @@ export const SET_TOTAL_PRICE = "SET_TOTAL_PRICE";
 export const POST_PRODUCT = 'POST_PRODUCT';
 export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
 export const GET_CURRENCY = 'GET_CURRENCY';
+export const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS';
+
 
 /* ============================== ACTIONS ============================================== */
 export function getAllFilteredProducts(allQueries) {
@@ -86,6 +88,29 @@ export function setCurrencyStore (payload){
       payload: payload
     })
   }
+}
+
+// ! REVIEWS PRODUCTS
+export function getAllReviews (id){       
+  return async function(dispatch) {
+      try {   
+        const response =await axios.get("http://localhost:3001/product_reviews?id="+id)
+        dispatch({ type: GET_ALL_REVIEWS, payload: response.data });
+      }catch (error) {
+        console.error(error)
+      }   
+  };
+}
+
+export function postReview (payload){       
+  return async function() {
+      try {   
+          await axios.post("http://localhost:3001/product_reviews", payload)
+          alert('Review creada con exito')
+      }catch (error) {
+        console.error(error)
+      }   
+  };
 }
 
 //SI NO USA NADIE ESTA ACTION BORRARLA

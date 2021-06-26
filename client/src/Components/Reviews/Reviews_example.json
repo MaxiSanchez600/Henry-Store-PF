@@ -1,0 +1,101 @@
+[
+    {
+        "id_review": 1,
+        "score": 5,
+        "content": "Excelente producto y de muy buena calidad",
+        "createdAt": "25 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 2,
+        "score": 5,
+        "content": "Producto de muy buena calidad. Me gustó mucho.",
+        "createdAt": "26 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 3,
+        "score": 3,
+        "content": "Me encantó la gorra",
+        "createdAt": "27 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 4,
+        "score": 1.5,
+        "content": "No me gusto mucho el producto porque no llegó a tiempo.",
+        "createdAt": "28 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 5,
+        "score": 2.4,
+        "content": "La mejor remera del mundo",
+        "createdAt": "29 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 6,
+        "score": 2.4,
+        "content": "La mejor remera del mundo",
+        "createdAt": "29 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 7,
+        "score": 2.4,
+        "content": "La mejor remera del mundo",
+        "createdAt": "29 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 8,
+        "score": 2.4,
+        "content": "La mejor remera del mundo",
+        "createdAt": "29 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    },
+    {
+        "id_review": 9,
+        "score": 2.4,
+        "content": "La mejor remera del mundo",
+        "createdAt": "29 Enero de 2021",
+        "name": "Daniel",
+        "last_name": "Gil",
+        "username": "danniegil",
+        "UserIdUser": "5",
+        "imageUser": "https://avatars.githubusercontent.com/u/78768844?v=4"
+    }
+]

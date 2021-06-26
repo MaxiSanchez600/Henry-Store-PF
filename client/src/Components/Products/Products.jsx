@@ -57,7 +57,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
             {displayProducts}
         </div>
 
-        {displayProducts.length !== 0 ? <div className="pagination">
+        {displayProducts.length !== 0 ? <div className={displayProducts.length >7 ? "pagination_full" : "pagination_simple"}>
             <ReactPaginate
                 previousLabel={<IoIosArrowBack />}
                 nextLabel={<IoIosArrowForward />}

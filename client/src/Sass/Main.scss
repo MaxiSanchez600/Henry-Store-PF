@@ -4,10 +4,12 @@
 @import "../Components/Footer/Footer.scss";
 @import "../Components/Navbar/Navbar.scss";
 @import "../Components/Products/Products.scss";
-@import '../Pages//Product_Detail/Product_Detail.scss';
+@import '../Pages/Product_Detail/Product_Detail.scss';
+@import "../Components/Reviews/Reviews.scss";
 @import "../Components/SearchBar/SearchBar.scss";
 @import '../Components//Authentication/Login/Login.scss';
 @import "../Components/AdminPanel/AdminPanel.scss";
+
 /*===== PAGES =====*/
 @import '../Pages/Home/Home.scss';
 

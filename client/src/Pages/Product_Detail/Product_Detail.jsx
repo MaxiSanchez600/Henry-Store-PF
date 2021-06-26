@@ -5,80 +5,82 @@ import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/ac
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
+import AllReviews from '../../Components/Reviews/AllReviews'
+import PostReview from '../../Components/Reviews/PostReview'
 
-function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname}) {
+function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname }) {
 
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
-  
+
   const [productCaracteristics, setProductCaracteristics] = useState({
     caracteristics: {}
   });
 
-  let sendproduct = async () =>{
-    if(localStorage.getItem('userlogged') !== null){
+  let sendproduct = async () => {
+    if (localStorage.getItem('userlogged') !== null) {
       //Esta logeado
       productCaracteristics.user_id = localStorage.getItem('userlogged')
       const options = {
         method: 'POST',
         body: JSON.stringify(productCaracteristics),
-        headers : { 
+        headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       }
       await fetch(URL_BASE + 'cart/addproducttocart', options)
-      .then(()=>
-        Swal.fire({
-        title:`Producto agregado al Carrito &#128076`,
-        icon:'success',
-        showConfirmButton: false,
-        timer:1500
-      }))
+        .then(() =>
+          Swal.fire({
+            title: `Producto agregado al Carrito &#128076`,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+          }))
     }
-    else{
-      if(localStorage.getItem('userid') === null){
-          //No esta lgoeado y no hay guest => Lo creo
-          const userguest = await fetch(URL_BASE + 'cart/adduserguest', {method: 'PUT'})
-          const userguestresponse = await userguest.json()
-          localStorage.setItem('userid', userguestresponse.userid)
-          productCaracteristics.user_id = userguestresponse.userid
-          const options = {
-            method: 'POST',
-            body: JSON.stringify(productCaracteristics),
-            headers : { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
+    else {
+      if (localStorage.getItem('userid') === null) {
+        //No esta lgoeado y no hay guest => Lo creo
+        const userguest = await fetch(URL_BASE + 'cart/adduserguest', { method: 'PUT' })
+        const userguestresponse = await userguest.json()
+        localStorage.setItem('userid', userguestresponse.userid)
+        productCaracteristics.user_id = userguestresponse.userid
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(productCaracteristics),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           }
-          await fetch(URL_BASE + 'cart/addproducttocart', options)
-          .then(()=>
-          Swal.fire({
-          title:`Producto agregado al Carrito`,
-          icon:'success',
-          showConfirmButton: false,
-          timer:1500
-          }))
+        }
+        await fetch(URL_BASE + 'cart/addproducttocart', options)
+          .then(() =>
+            Swal.fire({
+              title: `Producto agregado al Carrito`,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500
+            }))
       }
-      else{
-          //No esta logeado pero hay guest
-          productCaracteristics.user_id = localStorage.getItem('userid')
-          const options = {
-            method: 'POST',
-            body: JSON.stringify(productCaracteristics),
-            headers : { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
+      else {
+        //No esta logeado pero hay guest
+        productCaracteristics.user_id = localStorage.getItem('userid')
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(productCaracteristics),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           }
-          await fetch(URL_BASE + 'cart/addproducttocart', options)
-          .then(()=>
-          Swal.fire({
-          title:`Producto agregado al Carrito`,
-          icon:'success',
-          showConfirmButton: false,
-          timer:1500
-          }))
+        }
+        await fetch(URL_BASE + 'cart/addproducttocart', options)
+          .then(() =>
+            Swal.fire({
+              title: `Producto agregado al Carrito`,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500
+            }))
       }
     }
   }
@@ -87,23 +89,23 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
     if (!ListProducts.length) getAllFilteredProducts();
   }, []);
 
-   useEffect(() => {
-        if (ID_Product && ID_Product.unit_stock > 0) {
-       setProductCaracteristics((previousState) => {
-         const initialState = {
-           product_id: ID_Product.id_product,
-           amount: 1,
-           caracteristics: {}
-         }
-         ID_Product.Caracteristics.forEach(caracteristic => {
-           initialState.caracteristics[caracteristic.name_caracteristic] = caracteristic.values_caracteristic[0];
-         })
-         return initialState;
-       });
-     }
-   }, [ID_Product]);
+  useEffect(() => {
+    if (ID_Product && ID_Product.unit_stock > 0) {
+      setProductCaracteristics((previousState) => {
+        const initialState = {
+          product_id: ID_Product.id_product,
+          amount: 1,
+          caracteristics: {}
+        }
+        ID_Product.Caracteristics.forEach(caracteristic => {
+          initialState.caracteristics[caracteristic.name_caracteristic] = caracteristic.values_caracteristic[0];
+        })
+        return initialState;
+      });
+    }
+  }, [ID_Product]);
 
-  let handleproductCaracteristics  = (e) => {
+  let handleproductCaracteristics = (e) => {
     e.preventDefault();
     const name = e.target.getAttribute("name").split("_")[0];
     if (e.target.getAttribute("name") !== "amount") {
@@ -164,10 +166,10 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   // }
 
   return (
-    <div >
+    <div className="content_product_detail" >
       {
         ID_Product ?
-          <div className="body_Home">
+          <div className="body_Home_detail">
             <div className="webcontent_home">
 
               <div className="card-wrapper">
@@ -176,7 +178,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                     <div className="img-display">
                       <div className="img-showcase">
                         {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
-                        <SliderCarousel imageList={ID_Product.Images}/>
+                        <SliderCarousel imageList={ID_Product.Images} />
                       </div>
                     </div>
 
@@ -202,59 +204,53 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                       <p>{ID_Product.description}</p>
                       {
                         ID_Product.Caracteristics.map(caracteristic => (
-                          caracteristic.name_caracteristic !== "type" ? 
-                          <div key={caracteristic.name_caracteristic}>
-                            <h4 className = 'H4_Produtc_Detail'>Elige tu {caracteristic.name_caracteristic}:</h4>
-                            <div className = 'LabelConteiner_Product_Detail'>
-                            {
-                              caracteristic.values_caracteristic.map(value => (
-                                 (productCaracteristics.caracteristics[caracteristic.name_caracteristic] === value) ?
-                                 <label
-                                   className = 'LabelCarac_Product_Detail_Chosen'
-                                   key={value}
-                                   name= {`${caracteristic.name_caracteristic}_caracteristic`}
-                                   value= {value}
-                                   onClick = {handleproductCaracteristics}
-                                 >{value}</label>
-                                 :
-                                <label
-                                  className = 'LabelCarac_Product_Detail'
-                                  key={value}
-                                  name= {`${caracteristic.name_caracteristic}_caracteristic`}
-                                  value= {value}
-                                  onClick = {handleproductCaracteristics}
-                                >{value}</label>
-                              ))
-                            }
-                            </div>
-                          </div> : ""
+                          caracteristic.name_caracteristic !== "type" ?
+                            <div key={caracteristic.name_caracteristic}>
+                              <h4 className='H4_Produtc_Detail'>Elige tu {caracteristic.name_caracteristic}:</h4>
+                              <div className='LabelConteiner_Product_Detail'>
+                                {
+                                  caracteristic.values_caracteristic.map(value => (
+                                    (productCaracteristics.caracteristics[caracteristic.name_caracteristic] === value) ?
+                                      <label
+                                        className='LabelCarac_Product_Detail_Chosen'
+                                        key={value}
+                                        name={`${caracteristic.name_caracteristic}_caracteristic`}
+                                        value={value}
+                                        onClick={handleproductCaracteristics}
+                                      >{value}</label>
+                                      :
+                                      <label
+                                        className='LabelCarac_Product_Detail'
+                                        key={value}
+                                        name={`${caracteristic.name_caracteristic}_caracteristic`}
+                                        value={value}
+                                        onClick={handleproductCaracteristics}
+                                      >{value}</label>
+                                  ))
+                                }
+                              </div>
+                            </div> : ""
                         ))
                       }
-                      {/* <ul>
-                        <li>Color: <span>Black</span></li>
-                        <li>Disponibilidad:: <span>in stock</span></li>
-                        <li>Categoria(s): <span>Shoes</span></li>
-                        <li>Áreas Envío: <span>All over the world</span></li>
-                        <li>Precio Envío: <span>Free</span></li>
-                      </ul> */}
+
 
                     </div>
                     {
                       ID_Product.unit_stock > 0 ?
                         <div className="purchase-info">
-                          <div className = 'Cantidad_ProductDetail'>
-                            <h4 className = "Cantidad_Product_Detail">
+                          <div className='Cantidad_ProductDetail'>
+                            <h4 className="Cantidad_Product_Detail">
                               Cantidad:
                             </h4>
                             <input
-                                type="number"
-                                name="amount"
-                                min="1"
-                                max={ID_Product.unit_stock}
-                                value={productCaracteristics.amount}
-                                onChange={e => handleproductCaracteristicsInput(e)}
-                              />
-                            </div>
+                              type="number"
+                              name="amount"
+                              min="1"
+                              max={ID_Product.unit_stock}
+                              value={productCaracteristics.amount}
+                              onChange={e => handleproductCaracteristicsInput(e)}
+                            />
+                          </div>
                           <button type="button" className="btn" onClick={sendproduct}>
                             <b className="fas fa-shopping-cart">Agregar al carrito</b>
                           </button>
@@ -291,18 +287,23 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
               </div>
 
             </div>
+            <AllReviews />
+            <PostReview />
           </div> : ""
       }
+
     </div>
   )
 }
 
 function mapStateToProps(state) {
-  return { ListProducts: state.products.products,
-           userid : state.user_id,
-           currencyactual: state.products.currency,
-           currencyactualname: state.products.currencyname }
-          }
+  return {
+    ListProducts: state.products.products,
+    userid: state.user_id,
+    currencyactual: state.products.currency,
+    currencyactualname: state.products.currencyname
+  }
+}
 
 
 function mapDispatchToProps(dispatch) {

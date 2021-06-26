@@ -1,4 +1,4 @@
-import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT } from '../actions/actionsProducts';
+import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT, GET_ALL_REVIEWS } from '../actions/actionsProducts';
 import { GET_CATEGORIES, GET_CARACTERISTICS, GET_CURRENCY } from '../actions/actionsProducts'
 
 const initialState = {
@@ -59,12 +59,16 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             product:action.payload
         }
-
         case GET_CURRENCY:
         return{
             ...state,
             currency: action.payload.value,
             currencyname: action.payload.name
+        }
+        case GET_ALL_REVIEWS:
+        return{
+            ...state,
+            product:action.payload
         }
         default:
             return {

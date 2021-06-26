@@ -1,0 +1,194 @@
+// !CONTENT_REVIEWS
+
+.content_Reviews {
+    margin: 2rem 6rem 6rem 6rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    padding-top: 40px;
+
+    .content_averageRating {
+        margin: 0rem 2rem 3rem 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        padding: 2rem 0rem 1rem 0rem;
+        width: auto;
+        text-align: end;
+        display: flex;
+
+        .left_rating {
+            .main_point {
+                line-height: 0.95;
+                text-align: right;
+                color: rgba(0, 0, 0, 0.8);
+                font-size: 3rem;
+                font-weight: 300;
+                padding-bottom: 1rem;
+            }
+        }
+
+        .rigth_rating {
+            display: inline-block;
+            max-width: 315px;
+            width: 100%;
+            border-left: 1px solid rgba(0,0,0, 0.1);
+            margin-left: 2rem;
+            .ul_star {
+                display: inline-block;
+                width: 100%;
+                .li_star {
+                    margin-bottom: 12px;
+                    display: -ms-grid;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 35px;
+                    -ms-grid-columns: 1fr 1fr 35px;
+
+                    .name_star {
+                        display: -webkit-flex;
+                        display: flex;
+                        -webkit-flex-direction: column;
+                        // flex-direction: column;
+                        justify-content: center;
+                        .span_name_star {
+                            color: rgba(0, 0, 0, 0.45);
+                            font-family: "Avenir_Roman";
+                        }
+                    }
+                    .content_bars {
+                        display: -webkit-flex;
+                        display: flex;
+                        -webkit-flex-direction: column;
+                        flex-direction: column;
+                        justify-content: center;
+                        .bars_rating {
+                            border-radius: 100px;
+                            display: inline-block;
+                            height: 4px;
+                            margin-top: 4px;
+                            position: relative;
+                            vertical-align: middle;
+                            .bar__background {
+                                background-color: rgba(0,0,0,.1);
+                                border-radius: 100px;
+                                bottom: 0;
+                                display: block;
+                                height: 110%;
+                                left: 0;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                width: 100%;
+                            }
+                            .fill__background {
+                                background-color: #ffc107;
+                                border-radius: 100px;
+                                bottom: 0;
+                                display: block;
+                                height: 105%;
+                                left: 0;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                box-shadow: 1px 1px 80px 0.5px #000000;
+                                border: 1px solid #fda901d4;
+                            }
+                        }
+                    }
+                    .total_points {
+                        display: -webkit-flex;
+                        display: flex;
+                        -webkit-flex-direction: column;
+                        flex-direction: column;
+                        justify-content: center;
+                        .points_label {
+                            color: rgba(0, 0, 0, 0.45);
+                            font-family: "Avenir_Roman";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+    .card_review {
+        padding: 1rem;
+        border-radius: 2rem;
+
+        &:hover {
+            background: rgb(219, 219, 219);
+        }
+    }
+
+    .score_label {
+        display: flex;
+        font-size: 0.7rem;
+        align-items: center;
+    }
+
+    img {
+        border-radius: 50%;
+        padding-right: 5px;
+        height: 55px;
+    }
+
+    img:hover {
+        cursor: pointer;
+    }
+
+    .user_info {
+        display: block;
+    }
+
+    .opinion_text {
+        margin: 0.3rem 0rem 0rem 3.5rem;
+    }
+
+
+    #loadMore {
+        width: 200px;
+        color: #fff;
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        background-color: blue;
+        transition: .3s;
+      }
+      #loadMore:hover {
+        color: blue;
+        background-color: #fff;
+        border: 1px solid blue;
+        text-decoration: none;
+      }
+      .noContent {
+        color: #000 !important;
+        background-color: transparent !important;
+        pointer-events: none;
+      }
+}
+
+// ! STAR RATING
+.StarRating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .star_radio_on {
+        display: none;
+    }
+
+    .star_radio_off {
+        pointer-events: none;
+    }
+
+    .star {
+        cursor: pointer;
+        transition: color 200ms;
+    }
+    .label_rating {
+        font-size: 0.7rem;
+    }
+}

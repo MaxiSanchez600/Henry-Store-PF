@@ -196,8 +196,18 @@
   color: black;
 }
 
-.pagination {
-  top: 40rem;
+.pagination_full {
+    left: 50%;
+    bottom: 0;
+}
+
+.pagination_simple{
+    padding: 30px 0;
+    line-height: 1.5;
+    position: relative;
+    width: 100%;
+    margin-top: 25%;
+
 }
 
 
