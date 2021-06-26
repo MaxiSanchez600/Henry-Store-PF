@@ -222,8 +222,7 @@ const Register = ({RegisterClose,LoginOpen}) => {
           </span>
         </div>
         <form className="formu-register" onSubmit={createAccount}>
-        <h2 className="name-register">Registro</h2>
-        <div className="register_strip"></div>
+        <h2 className="name-register">Registro<div className="register_strip"></div></h2>
               <input className="inText-register" type="text" name="email" id="email" onChange={handleOnChange} value={form.email} required  placeholder="Email..."/>
               <input className="inText-register" type={check?"password":"text"} name="password" id="password" onChange={handleOnChange} value={form.password} required  placeholder="Contraseña..."/>
               <input className="inText-register" type={check?"password":"text"} name="confimationPass" id="confimationPass" onChange={handleOnChange} value={form.confimationPass} required  placeholder="Confirmacion de Contraseña..."/>
