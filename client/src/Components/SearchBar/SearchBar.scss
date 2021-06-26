@@ -2,13 +2,13 @@
 
 .content_SearchBar {
     padding: 20px 0;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: 50px auto;
+//     grid-template-columns: auto auto auto;
     justify-content: center;
     align-items: center;
     font-family: "Avenir_Roman";
-//     height: 175px;
-
+    height: 125px;
     .searchbar_input {
         display: flex;
         align-items: center;
@@ -22,27 +22,53 @@
             padding-right: 11px;
             padding-top: 4px;
             padding-bottom: 4px;
-            font-size: 13px;
+            font-size: 14px;
             color: $black_main;
             background-color: $white_main;
             margin: 10px 5px 5px 5px;
             transition: all 0.25s;
+            outline: none;
         }
         .input_search:focus {
             background-color: $light_gray;
             border: 1px solid $yellow_main;
+            // border: 1px solid red;
             outline: none;
+        }
+        .input_search_error {
+            position: relative;
+            border: 1px solid red;
+            height: 2.1875rem;
+            width: 38em;
+            border-radius: 8px;
+            padding-left: 31px;
+            padding-right: 11px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            font-size: 14px;
+            color: $black_main;
+            background-color: $white_main;
+            margin: 10px 5px 5px 5px;
+            transition: all 0.25s;
+            outline: none;
+        }
+        .input_search_error:focus {
+            color: $black_main;
+            background-color: $light_gray;
+            border: 1px solid red;
         }
 
         .button_search {
             height: 2.1875rem;
-            width: fit-content;
+//             width: fit-content;
             border-style: none;
             font-family: "Avenir_Roman";
-            background: transparent;
-            vertical-align: bottom;
+//             background: transparent;
+//             vertical-align: bottom;
+            padding: 5px 0 0 0;
+            margin: 0 10px;
             font-size: 2em;
-            transition: 0.5s all ease;
+            transition: 0.25s all ease;
             cursor: pointer;
 
             &:hover {
@@ -51,8 +77,8 @@
         }
     }
     .box_filter {
-        height: 2.1875rem;
-        margin-left: 1.5rem;
+//         height: 2.1875rem;
+        margin-left: 5px;
         font-family: "Avenir_Book";
         display: grid;
         grid-template-columns: 77.5% 17.5%;
@@ -88,5 +114,10 @@
                 color: $yellow_main;
             }
         }
+    }
+    .error_message {
+        font-size: 12px;
+        padding: 5px;
+        color: red;
     }
 }

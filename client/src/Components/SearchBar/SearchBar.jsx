@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
 import { FaSearch } from "react-icons/fa"
@@ -12,16 +12,32 @@ const SearchBar = ({
 }) => {
 
   const [search, setSearch] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!queriesFromReducer.tag) {
+      setError("");
+    }
+  }, [queriesFromReducer.tag]);
 
   function handleSearch(e) {
 
-    if (!e.target.value) closeSearchButton(e);
+    if (!e.target.value) {
+      setError("");
+      closeSearchButton(e);
+    }
 
-    else {
+    else if (e.target.value && e.target.value.length < 37) {
+      setError("");
       setSearch(e.target.value);
       const removedPreviousFilters = removePreviousFilters();
       sendFiltersToActions({ ...removedPreviousFilters, [e.target.name]: e.target.value });
       getCaracteristicsFromActions({ [e.target.name]: e.target.value });
+    }
+
+    else if (e.target.value && e.target.value.length === 37) {
+      setSearch(e.target.value);
+      setError("No creemos que exista algo asi en el universo, respira y reformula tu busqueda :)");
     }
   }
 
@@ -35,11 +51,13 @@ const SearchBar = ({
 
   function closeSearchButton(e) {
     e.preventDefault();
+    const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
+    if (filterToBeRemoved) filterToBeRemoved.value = "";
     setSearch("");
     const removedPreviousFilters = removePreviousFilters();
     const { tag, ...removedTagQuery } = { ...removedPreviousFilters };
     sendFiltersToActions({ ...removedTagQuery });
-    getCaracteristicsFromActions();
+    delete queriesFromReducer[e.target.name];
   }
 
   function handleSubmit(e) {
@@ -51,22 +69,26 @@ const SearchBar = ({
     <div className="content_SearchBar">
       <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>
         <input
-          className="input_search"
+          id={`filter_name_tag`}
+          className={error ? "input_search_error" : "input_search"}
           name="tag"
           type="text"
           placeholder="Buscar productos, accesorios..."
-          value={search}
+          value={queriesFromReducer.tag ? search : e => handleSearch(e)}
           onChange={e => handleSearch(e)}
         />
         <button className="button_search" type="submit"><FaSearch /></button>
       </form>
       {
-        search ?
-          <div className="box_filter">
-            <p className="filter_title_selected">{search}</p>
-            <button className="button_filtered" name={search} onClick={e => closeSearchButton(e)} ><MdClose /></button>
-          </div> : ""
+        !error ?
+          queriesFromReducer.tag ?
+            <div className="box_filter">
+              <p className="filter_title_selected">{queriesFromReducer.tag}</p>
+              <button className="button_filtered" name="tag" onClick={e => closeSearchButton(e)} ><MdClose /></button>
+            </div> : ""
+          : <p className="error_message">{error}</p>
       }
+      {/* <p>{queriesFromReducer.tag.length}</p> */}
     </div>
   );
 };
