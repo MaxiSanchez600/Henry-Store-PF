@@ -94,7 +94,7 @@ export function setCurrencyStore (payload){
 export function getAllReviews (id){       
   return async function(dispatch) {
       try {   
-        const response =await axios.get("http://localhost:3001/product_reviews?id="+id)
+        const response =await axios.get("http://localhost:3001/review?id_product="+id)
         dispatch({ type: GET_ALL_REVIEWS, payload: response.data });
       }catch (error) {
         console.error(error)
@@ -112,18 +112,3 @@ export function postReview (payload){
       }   
   };
 }
-
-//SI NO USA NADIE ESTA ACTION BORRARLA
-
-// export function getOneProduct (id){       
-//   return async function(dispatch) {
-//       try {   
-//         const response =await axios.get("http://localhost:3001/product?id="+id)
-//         dispatch({ type: GET_ONE_PRODUCT, payload: response.data });
-//       }catch (error) {
-//         console.error(error)
-//       }   
-//   };
-// }
-// =======================================================================================
-

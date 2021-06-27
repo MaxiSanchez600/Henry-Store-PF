@@ -68,7 +68,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_ALL_REVIEWS:
         return{
             ...state,
-            product:action.payload
+            reviews:action.payload
         }
         default:
             return {

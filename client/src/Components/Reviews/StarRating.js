@@ -23,14 +23,14 @@ const StarRating = ({ size_star, score, editable, completeinfo }) => {
                     {
                         editable == "on" ? <FaStar
                             className="star"
-                            color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                            color={ratingValue <= (hover || score) ? "#ffc107" : "#e4e5e9"}
                             size={size_star}
                             {...console.log("prueba")}
                             onMouseEnter={() => { setHover(ratingValue) }}
                             onMouseLeave={() => { setHover(null) }}
                         /> : <FaStar
                             className="star"
-                            color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                            color={ratingValue <= (hover || score) ? "#ffc107" : "#e4e5e9"}
                             size={size_star}
                         />
                     }

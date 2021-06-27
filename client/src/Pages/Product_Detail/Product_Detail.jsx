@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
-import { getAllFilteredProducts, addProductToCart } from '../../Redux/actions/actionsProducts';
+import { getAllFilteredProducts, addProductToCart, getAllReviews } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 import AllReviews from '../../Components/Reviews/AllReviews'
-import PostReview from '../../Components/Reviews/PostReview'
+import StarRating from '../../Components/Reviews/StarRating'
 
-function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname }) {
+function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname, getAllReviews, ReviewsProduct }) {
 
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
@@ -87,6 +87,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
 
   useEffect(() => {
     if (!ListProducts.length) getAllFilteredProducts();
+    getAllReviews(id)
   }, []);
 
   useEffect(() => {
@@ -165,7 +166,17 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
   //   sendProductDetailsToActions(productCaracteristics);
   // }
 
+
+
+    let total_reviews = ReviewsProduct && ReviewsProduct.length !== 0 ? ReviewsProduct.length : 0;
+    let averageScore = 0;
+    ReviewsProduct && ReviewsProduct.map(review => {
+          averageScore += review.score;
+      })
+        let score = total_reviews === 0 ? 0 : averageScore / total_reviews;
+
   return (
+
     <div className="content_product_detail" >
       {
         ID_Product ?
@@ -177,7 +188,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
                         <SliderCarousel imageList={ID_Product.Images} />
                       </div>
                     </div>
@@ -186,12 +196,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   <div className="product-content">
                     <h2 className="product-title">{ID_Product.name}</h2>
                     <div className="product-rating">
-                      <span className="iconify" data-icon="noto:star" data-inline="false"></span>
-                      <span className="iconify" data-icon="noto:star" data-inline="false"></span>
-                      <span className="iconify" data-icon="noto:star" data-inline="false"></span>
-                      <span className="iconify" data-icon="noto:star" data-inline="false"></span>
-                      <span className="iconify" data-icon="noto:star" data-inline="false"></span>
-                      <span>4.7(21)</span>
+                    <StarRating size_star="20" score={score} editable="off" completeinfo="no" />
+                      <span>{score.toFixed(1)}({total_reviews})</span>
                     </div>
                     <div className="product-price">
                       {/* <p className="last-price">Old Price: <span>{ID_Product.price}</span></p> */}
@@ -290,7 +296,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
               </a>
             </div>
             <section id="sec-2">
-              <AllReviews />
+              <AllReviews ReviewsProduct={ReviewsProduct} />
             </section>
           </div> : ""
       }
@@ -304,7 +310,8 @@ function mapStateToProps(state) {
     ListProducts: state.products.products,
     userid: state.user_id,
     currencyactual: state.products.currency,
-    currencyactualname: state.products.currencyname
+    currencyactualname: state.products.currencyname,
+    ReviewsProduct: state.products.reviews,
   }
 }
 
@@ -313,7 +320,8 @@ function mapDispatchToProps(dispatch) {
   return {
     // getProducts: products_list =>   dispatch(getProducts(products_list)),
     getAllFilteredProducts: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
-    sendProductDetailsToActions: (product) => dispatch(addProductToCart(product))
+    sendProductDetailsToActions: (product) => dispatch(addProductToCart(product)),
+    getAllReviews: (Id_Product) => dispatch(getAllReviews(Id_Product)),
   }
 }
 

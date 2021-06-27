@@ -5,15 +5,14 @@
     font-family: "Avenir_Roman";
 }
 
-.content_product_detail{
+.content_product_detail {
     background-color: #eeeeee;
 }
 
-.body_Home_detail{
+.body_Home_detail {
     margin: 0rem 8rem;
     background-color: #fff;
-    box-shadow: 0 1px 2px 0 #eeeeee
-    
+    box-shadow: 0 1px 2px 0 #eeeeee;
 }
 
 .card-wrapper {
@@ -73,6 +72,10 @@
     width: 80px;
     background: #12263a;
 }
+.product-rating{
+    display: flex;
+}
+
 .product-link {
     text-decoration: none;
     text-transform: uppercase;
@@ -99,17 +102,17 @@
     margin: 1rem 0;
     font-size: 1.6rem;
     font-weight: 700;
-    span{
-        padding: 8px;   
+    span {
+        padding: 8px;
         border-radius: 15px;
         background-color: #343434;
         color: white;
         transition: all 0.5s ease;
-        &:hover{
-            background-color: #F64749;
+        &:hover {
+            background-color: #f64749;
         }
     }
-    label{
+    label {
         font-size: 0.6em;
         font-family: "Avenir_Book";
         color: #333333;
@@ -184,8 +187,13 @@
 }
 .social-links {
     display: flex;
+    position: relative;
     align-items: center;
+    // left: 11rem;
 }
+
+
+
 .social-links a {
     display: flex;
     align-items: center;
@@ -227,7 +235,7 @@
     }
 }
 
-.LabelCarac_Product_Detail{
+.LabelCarac_Product_Detail {
     background-color: #343434;
     color: white;
     padding: 5px;
@@ -235,14 +243,13 @@
     cursor: pointer;
     font-size: 0.8em;
     transition: all 0.3s ease 0s;
-    &:hover{
-        background-color: #F64749;
+    &:hover {
+        background-color: #f64749;
         transform: scale(1.1);
     }
 }
 
-
-.LabelConteiner_Product_Detail{
+.LabelConteiner_Product_Detail {
     width: 50%;
     display: grid;
     gap: 5px 25px;
@@ -250,9 +257,8 @@
     text-align: center;
 }
 
-
-.LabelCarac_Product_Detail_Chosen{
-    background-color: #F64749;
+.LabelCarac_Product_Detail_Chosen {
+    background-color: #f64749;
     color: white;
     padding: 5px;
     border-radius: 15px;
@@ -262,83 +268,83 @@
     transform: scale(1.1);
 }
 
-.H4_Produtc_Detail{
+.H4_Produtc_Detail {
     color: #343434;
     margin-top: 1em;
     margin-bottom: 5px;
     font-size: 1em;
 }
 
-.Cantidad_Product_Detail{
+.Cantidad_Product_Detail {
     color: #343434;
     font-size: 1em;
 }
 
-.Cantidad_ProductDetail{
+.Cantidad_ProductDetail {
     display: flex;
     align-items: center;
     height: 55px;
     justify-content: space-between;
     width: 28%;
-    input{
+    input {
         margin-top: 1.4em;
     }
 }
 
- html {
+html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-  }
+}
 
-  #sec-1 {
-    background-color: rgb(214, 228, 92);
-  }
-  #sec-2 {
-    background-color: aliceblue;
-  }
-  .scroll-down {
-    height: 50px;
-    width: 30px;
-    border: 2px solid black;
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .scroll-down::before,
-  .scroll-down::after {
-    content: "";
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    height: 10px;
-    width: 10px;
-    transform: translate(-50%, -100%) rotate(45deg);
-    border: 2px solid black;
-    border-top: transparent;
-    border-left: transparent;
-    animation: scroll-down 1s ease-in-out infinite;
-  }
-  .scroll-down::before {
-    top: 30%;
-    animation-delay: 0.3s;
-  }
-  
-  @keyframes scroll-down {
+
+@media screen and (max-height: 750px){
+    .social-links {
+        left: 11rem;
+    }
+
+    .scroll-down {
+        height: 50px;
+        width: 30px;
+        border: 2px solid black;
+        position: relative;
+        left: 50%;
+        bottom: 5rem;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    .scroll-down::before,
+    .scroll-down::after {
+        content: "";
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        height: 10px;
+        width: 10px;
+        transform: translate(-50%, -100%) rotate(45deg);
+        border: 2px solid black;
+        border-top: transparent;
+        border-left: transparent;
+        animation: scroll-down 1s ease-in-out infinite;
+    }
+    .scroll-down::before {
+        top: 30%;
+        animation-delay: 0.3s;
+    }
+}
+
+
+@keyframes scroll-down {
     0% {
-      /* top:20%; */
-      opacity: 0;
+        opacity: 0;
     }
     30% {
-      opacity: 1;
+        opacity: 1;
     }
     60% {
-      opacity: 1;
+        opacity: 1;
     }
     100% {
-      top: 90%;
-      opacity: 0;
+        top: 90%;
+        opacity: 0;
     }
-  }
-  
+}
