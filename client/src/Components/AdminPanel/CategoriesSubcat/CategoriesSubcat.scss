@@ -1,0 +1,26 @@
+.container_categories_subcategories{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.header-left{
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.container-buttons-categories{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container-buttons-subcategories{
+    display: flex;
+    flex-direction: column;
+}
+
+.button-categories{
+    width: 6rem;
+}

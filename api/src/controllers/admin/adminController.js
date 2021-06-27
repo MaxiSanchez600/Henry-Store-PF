@@ -111,7 +111,7 @@ function readOrders (req,res,next) {
             },
             {model: User, attributes:['name', 'email','username','phone']}
         ],
-        order: [['createdAt',order]],
+        order: [['createdAt',(order||"DESC")]],
     })
     .then((response)=>{
         result.total = response.length;

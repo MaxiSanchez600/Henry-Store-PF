@@ -72,7 +72,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         const { value: accept } = await Swal.fire({
         title: 'UNBAN',
         input: 'checkbox',
-        inputValue: 1,
+        inputValue: 0,
         buttonsStyling:false,
         customClass:{
           popup: 'popup',
@@ -120,7 +120,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         const { value: accept } = await Swal.fire({
         title: 'BAN',
         input: 'checkbox',
-        inputValue: 1,
+        inputValue: 0,
         buttonsStyling:false,
         customClass:{
           popup: 'popup',
@@ -276,7 +276,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
       const { value: reset } = await Swal.fire({
         title: 'Reset Pass',
         input: 'checkbox',
-        inputValue: 1,
+        inputValue: 0,
         buttonsStyling:false,
         customClass:{
           popup: 'popup',
