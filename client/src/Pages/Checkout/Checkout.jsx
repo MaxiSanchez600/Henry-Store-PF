@@ -7,7 +7,7 @@ export default function Checkout(){
     const { id } = useParams();
     return(
         <div className = 'CheckOutConteiner_CheckOut'>
-            <LeftInfo></LeftInfo>
+            <LeftInfo orderid = {id}></LeftInfo>
             <RightInfo orderid = {id}></RightInfo>
         </div>
     )

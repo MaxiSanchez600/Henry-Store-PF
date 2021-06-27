@@ -10,7 +10,7 @@ import {GET_NACIONALITIES} from '../../../Config/index.js'
 
 var Router = require("react-router");
 
-export default function LeftInfo(){
+export default function LeftInfo({orderid}){
     let history = useHistory()
     const [webactual, setWebActual] = React.useState("userinfo")
     const [punto1, setPunto1] = React.useState("1. Información y facturación")
@@ -57,7 +57,7 @@ export default function LeftInfo(){
                 <h1 className = 'h1Info2_LeftInfo'>{punto2}</h1>
             </div>
             {(webactual === "userinfo") && <UserEdit nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
-            {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality === "Argentina")) && <AddressEdit nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
+            {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality === "Argentina")) && <AddressEdit orderid = {orderid} nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
             {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality !== "Argentina")) && <NoAddressEdit nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
         </div>
     )

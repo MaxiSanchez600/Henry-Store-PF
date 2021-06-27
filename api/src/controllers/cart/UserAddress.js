@@ -44,7 +44,6 @@ const UserAddressRoutes = {
 
     GetAddressById: (req, res, next) =>{
         const {direcid} = req.query
-        console.log(direcid)
         UserAddress.findOne({where: {id: direcid}})
         .then(value =>{
             res.send(value)
@@ -71,6 +70,8 @@ const UserAddressRoutes = {
             next(error)
         })
     }
+
+    
 }
 
 module.exports = UserAddressRoutes

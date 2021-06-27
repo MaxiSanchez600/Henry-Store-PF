@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import provinciasJson from '../../../../../Assets/jsons/provincias.json'
 import {LOCALIDAD_GET, ADD_USER_ADDRESS, DIRECCION_BY_ID, UPDATE_DIRECCION} from '../../../../../Config/index'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 import "./ADDAddress.scss"
 
 export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, paisid}){
@@ -103,12 +104,41 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
     const AddPutDireccion = (() =>{
         for(const error in errores){
             if(errores[error] !== ""){
-                return alert("Corregi los errores")
+                return Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-order_UserEdit',
+                    title: 'title-order_UserEdit',
+                    input: 'input-order_UserEdit',
+                    validationMessage: 'validationMessage-order_UserEdit',
+                    actions: 'actions-order_UserEdit',
+                    confirmButton: 'confirmButton-order_UserEdit',
+                    icon: 'iconpopup_UserEdit',
+                  },
+                    icon:"error",
+                    title:"Corregi los errores",
+                    text: "Para continuar es necesario que corrijas los errores"
+                })
             }
         }
         for(const inputs in input){
             if(input[inputs] === ""){
-                return alert("Completa todos los campos")
+                return Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                        popup: 'popup-order_UserEdit',
+                        title: 'title-order_UserEdit',
+                        input: 'input-order_UserEdit',
+                        validationMessage: 'validationMessage-order_UserEdit',
+                        actions: 'actions-order_UserEdit',
+                        confirmButton: 'confirmButton-order_UserEdit',
+                  },
+                    icon:"error",
+                    title:"Completa todos los campos",
+                    text: "Para continuar es necesario que completes los campos"
+                })
             }
         }
         if(idEdit !== undefined){
@@ -123,7 +153,21 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
                 description: input.description
             })
             .then(() =>{
-                alert("Listo, actualizar la info")
+                Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#49AF41",
+                    customClass:{
+                        popup: 'popup-order_UserEdit',
+                        title: 'title-order_UserEdit',
+                        input: 'input-order_UserEdit',
+                        validationMessage: 'validationMessage-order_UserEdit',
+                        actions: 'actions-order_UserEdit',
+                        confirmButton: 'confirmButton-order_UserEdit_success',
+                  },
+                    icon:"success",
+                    title:"Editada con exito",
+                    text: "Ahora podes seleccionarla en tu lista de direcciones"
+                })
                 updateAddress()
                 close()
             })
@@ -140,7 +184,21 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
                 description: input.description
             })
             .then(() =>{
-                alert("Listo, anadir la info")
+                Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#49AF41",
+                    customClass:{
+                        popup: 'popup-order_UserEdit',
+                        title: 'title-order_UserEdit',
+                        input: 'input-order_UserEdit',
+                        validationMessage: 'validationMessage-order_UserEdit',
+                        actions: 'actions-order_UserEdit',
+                        confirmButton: 'confirmButton-order_UserEdit_success',
+                  },
+                    icon:"success",
+                    title:"Añadida con exito",
+                    text: "Ahora podes seleccionarla en tu lista de direcciones"
+                })
                 updateAddress()
                 close()
             })

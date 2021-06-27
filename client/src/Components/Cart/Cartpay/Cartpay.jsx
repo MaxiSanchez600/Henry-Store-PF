@@ -102,10 +102,11 @@ const mapStateToProps = (state) => {
       userid: state.user_id,
       pricetotal: state.products.price,
       hctotal: state.products.hc,
-      userhc: state.products.userhc,
+      userhc: state.users.dataUSerLogin.hc,
       currencyactual: state.products.currency,
       currencyactualname: state.products.currencyname,
-      carritoactual: state.products.carrito
+      carritoactual: state.products.carrito,
+      
     }
   }
   

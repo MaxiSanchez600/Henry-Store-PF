@@ -4,6 +4,8 @@ import {GET_NACIONALITIES} from '../../../../Config/index.js'
 import {LOGIN_URL} from '../../../../Config/index.js'
 import './UserEdit.scss'
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
 export default function UserEdit({nextClick, volverClick, residenciaSelected}){
     const iduser = (localStorage.getItem('userlogged') !== null) ? localStorage.getItem('userlogged') : (localStorage.getItem('userid') !== null) && localStorage.getItem('userid');
     const whichuser = (localStorage.getItem('userlogged') !== null) ? true : (localStorage.getItem('userid') !== null) && false;
@@ -140,16 +142,60 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
     const onNext = (() =>{
         for(const error in erorres){
             if(erorres[error] !== ""){
+                return Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-order_UserEdit',
+                    title: 'title-order_UserEdit',
+                    input: 'input-order_UserEdit',
+                    validationMessage: 'validationMessage-order_UserEdit',
+                    actions: 'actions-order_UserEdit',
+                    confirmButton: 'confirmButton-order_UserEdit',
+                    icon: 'iconpopup_UserEdit',
+                  },
+                    icon:"error",
+                    title:"Corregi los errores",
+                    text: "Para continuar es necesario que corrijas los errores"
+                })
                 return alert("Corregi los errores")
             }
         }
         for(const inputs in input){
             if(input[inputs] === ""){
-                return alert("Completa todos los campos")
+                return Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                        popup: 'popup-order_UserEdit',
+                        title: 'title-order_UserEdit',
+                        input: 'input-order_UserEdit',
+                        validationMessage: 'validationMessage-order_UserEdit',
+                        actions: 'actions-order_UserEdit',
+                        confirmButton: 'confirmButton-order_UserEdit',
+                  },
+                    icon:"error",
+                    title:"Completa todos los campos",
+                    text: "Para continuar es necesario que completes los campos"
+                })
             }
         }
         if(residencia === ""){
-            return alert("Completa todos los campos")
+            return Swal.fire({
+                buttonsStyling:false,
+                iconColor: "#F64749",
+                customClass:{
+                    popup: 'popup-order_UserEdit',
+                    title: 'title-order_UserEdit',
+                    input: 'input-order_UserEdit',
+                    validationMessage: 'validationMessage-order_UserEdit',
+                    actions: 'actions-order_UserEdit',
+                    confirmButton: 'confirmButton-order_UserEdit',
+              },
+                icon:"error",
+                title:"Completa todos los campos",
+                text: "Para continuar es necesario que completes los campos"
+            })
         }
         //Todo listo para pasar al prox componente
         axios.put(LOGIN_URL, {

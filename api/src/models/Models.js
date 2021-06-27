@@ -339,6 +339,10 @@ module.exports = (sequelize) => {
     givenhc: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    paymentid: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   })
 
@@ -411,7 +415,6 @@ module.exports = (sequelize) => {
       allowNull: false
     },
   })
-
 };
 
 

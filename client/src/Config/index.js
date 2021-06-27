@@ -23,3 +23,6 @@ export const LOCALIDAD_GET = "https://apis.datos.gob.ar/georef/api/localidades?p
 export const DIRECCION_EDIT = `${workspace}/cart/adduseraddress`;
 export const DIRECCION_BY_ID = `${workspace}/cart/getaddressbyid`;
 export const UPDATE_DIRECCION = `${workspace}/cart/updateaddress`;
+export const GET_PAYMENT_ID = `${workspace}/cart/createpayment`;
+export const GET_ORDER = `${workspace}/cart/getorder`;
+export const ORDER_TO_PAGADO_RETURN_TOTAL_PRICE = `${workspace}/cart/ordentopagado`;

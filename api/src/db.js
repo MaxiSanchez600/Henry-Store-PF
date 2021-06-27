@@ -121,6 +121,10 @@ UserAddress.belongsTo(User);
 Nacionality.hasMany(UserAddress)
 UserAddress.belongsTo(Nacionality)
 
+//Relacion Order
+UserAddress.hasMany(Order)
+Order.belongsTo(UserAddress)
+
 
 //Precarga Role
 Role.count().then((value) =>{

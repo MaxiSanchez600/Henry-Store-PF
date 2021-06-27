@@ -16,6 +16,7 @@ import CreateProduct from "../AdminPanel/CreateProduc/CreateProduct";
 import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
 import EditProduct from "../AdminPanel/EditProduct/EditProduct";
+import CartSuccess from "../CartResult/CartSuccess/CartSuccess";
 
 // !ACTIONS
 import Users from "../AdminPanel/Users/Users";
@@ -37,6 +38,7 @@ function App() {
             <BrowserRouter>
               <Route path="/home" component={NavBar}/>
               <Switch>
+              <Route exact path = "/home/cart/success/:orderid/:addressid" component = {CartSuccess}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />
