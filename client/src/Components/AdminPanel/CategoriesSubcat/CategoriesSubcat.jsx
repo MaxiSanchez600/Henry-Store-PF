@@ -2,7 +2,7 @@ import axios from "axios"
 import "./CategoriesSubcat.scss"
 import { useEffect, useState } from "react"
 import { GET_CATEGORIES } from "../../../Config"
-import {addCategory, editSubCategory, addsubCategory, deleteSubCategory, editCategory, deleteCategory} from "./actionsUponCatSubcat/actionsUponCatSubcat"
+import {addCategory, addsubCategory, actionsSubcategory, actionsCategory} from "./actionsUponCatSubcat/actionsUponCatSubcat"
 
 export default function Categories () {
     let initialState = {
@@ -45,8 +45,7 @@ export default function Categories () {
                     {categories?.map(cat=>{
                         return <div>
                                 <button id={cat.name_category} className="button-categories" onClick={()=>chargeCard(cat)}>{cat.name_category}</button>
-                                <button onClick={()=>editCategory(setReset, cat.id_category,setCard,card)}>edit</button>
-                                <button onClick={()=>deleteCategory(setReset, cat.id_category,setCard,initialState)}>delete</button>
+                                <button onClick={()=>actionsCategory(setReset, cat.id_category,setCard,card,initialState)}>action</button>
                             </div>
                     })}
                 </div>
@@ -55,14 +54,16 @@ export default function Categories () {
                 {card?<div>
                         <div>
                             <h1>Subcategorias</h1>
+                            <div>
                             <h2>{card.title}</h2>
                             {card.title?<button onClick={()=>addsubCategory(setReset,card.idcat)}>Nueva Subcategoria</button>:null}
+                            </div>
                         </div>
                         <div className="container-buttons-subcategories">
                             {card.subcat?.map(e=>{
-                                return <div><span>{e.name_sub_category}</span>
-                                            <button onClick={()=>{editSubCategory(setReset, e.id_sub_category)}}>edit</button>
-                                            <button onClick={()=>{deleteSubCategory(setReset, e.id_sub_category)}}>delete</button>
+                                return <div>
+                                            <button onClick={()=>{actionsSubcategory(setReset, e.id_sub_category)}}>action</button>
+                                            <span>{e.name_sub_category}</span>
                                        </div>
                             })}
                         </div>

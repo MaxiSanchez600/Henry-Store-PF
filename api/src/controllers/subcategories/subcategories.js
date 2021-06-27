@@ -1,4 +1,4 @@
-const { Category, SubCategory } = require('../../db');
+const { SubCategory, ProductCaracteristic } = require('../../db');
 
 const subcategoriesController = {
 
@@ -33,10 +33,30 @@ const subcategoriesController = {
     deleteSubCategories: (req,res,next) => {
         let { id_subcat } = req.body;
 
-        SubCategory.destroy({
+        SubCategory.findAll({
             where:{
-                id_sub_category: id_subcat
+                CategoryIdCategory:id_subcat
             }
+        })
+        .then((response)=>{
+            let array=response.map(e=>{
+                return ProductCaracteristic.findAll({
+                    where:{
+                        value_caracteristic: e.name_sub_category
+                    }
+                })
+            })
+            return Promise.all(array)
+        })
+        .then((result)=>{
+            result.flat().forEach(e=>{
+                e.destroy()
+            })
+            SubCategory.destroy({
+                where:{
+                    CategoryIdCategory:id_subcat
+                }
+            })
         })
         .then(()=>res.sendStatus(200))
         .catch((e)=>next(e))
