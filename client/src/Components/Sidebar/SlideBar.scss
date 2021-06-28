@@ -17,7 +17,7 @@
   cursor: pointer;
   color:$gray_main;
   margin-top: 0.2rem;
-  color:white;
+  color:$white_main;
 }
 
 .close-btn:hover {
@@ -50,7 +50,7 @@
   font-family: "Avenir_Book";
   padding: 1rem 1rem;
   padding-left: 40px;
-  color:white;
+  color:$white_main;
   transition: all 0.3s linear;
   letter-spacing:  0.1rem;
   
@@ -58,19 +58,19 @@
 
 .links a:hover,.spanOut:hover  {
   background: rgb(241, 245, 248);
-  color: black;
+  color: $black_main;
   font-weight: bolder;
 }
 //iconos
 .links a svg, .spanOut svg {
   font-size: 1.5rem;
-  color:white;
+  color:$white_main;
   margin-right: 1rem;
   transition: all 0.3s linear;
 }
 .links a:hover svg, .spanOut:hover svg {
-  color: #FFFF01;
-  background-color: black;
+  color: $yellow_main;
+  background-color: $black_main;
 }
 
 .social-icons {
@@ -81,25 +81,25 @@
 .social-icons a {
   font-size: 1.5rem;
   margin: 0 0.5rem;
-  color:white;
+  color:$white_main;
   transition:all 0.3s linear;
 }
 .social-icons a:hover {
-  color: #FFFF01;
+  color: $yellow_main;
 }
 
 .sidebar {
   position: fixed;
-  top: 108px;
+  top: 90px;
   right: 0;
-  width: 100%;
+  // width: 100%;
   height: 100%;
-  background:black; 
+  background:$black_main; 
   opacity: 0.85;
   display: grid;
   grid-template-rows: auto 1fr auto;
   row-gap: 1rem;
-  box-shadow: rgb(187, 37, 37);
+  // box-shadow: rgb(187, 37, 37);
   transition: all 0.3s linear;
   transform: translate(+100%);
   z-index: 9999;
