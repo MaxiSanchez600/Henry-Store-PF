@@ -5,6 +5,7 @@ import Register from "../Authentication/Register/Register";
 import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
 import FilterCategories from "../FilterCategories/FilterCategories";
+import SearchBar from "../SearchBar/SearchBar";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 import { useSelector } from 'react-redux';
 import { useUser } from "reactfire";
@@ -77,12 +78,7 @@ const NavBar = () => {
       {/* <div className="left-box">
       </div> */}
       <div className="mid-box">
-        <div className="links_container">
-          <Link className="navbar_links" to="/home/working">Nosotros</Link>
-          <Link className="navbar_links" to="/home/working">Sucursales</Link>
-          <Link className="navbar_links" to="/home/working">Contacto</Link>
-          <Link className="navbar_links" to="/home/working">FAQ</Link>
-        </div>
+        <SearchBar />
         <FilterCategories />
       </div>
       <div className="right-box">
