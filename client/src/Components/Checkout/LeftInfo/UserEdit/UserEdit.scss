@@ -1,0 +1,179 @@
+@import '../../../../Sass/variables';
+
+.FullConteiner_UserEdit{
+    margin-top: 2.5em;
+}
+.Complete_UserEdit{
+    font-family: "Avenir_Roman";
+    font-size: 1em;
+    margin-bottom: 1.5em;
+}
+.GridInputs_UserEdit{
+    display: grid;
+    width: 90%;
+    gap: 2em 2em;
+    grid-template-columns: 50%;
+    grid-template-columns: repeat(2, 1fr);
+}
+//ELEMENTS
+.NameLastName_UserEdit{
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 2em 2em;
+}
+
+.CommonDiv_UserEdit{
+    display: flex;
+    flex-direction: column;
+    label{
+        margin-bottom: 0.5em;
+        font-family: "Avenir_Book";
+        font-weight: 100;
+    }
+}
+
+.Input_UserEdit{
+    height: 3.5em;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
+    border-radius: 0.2em;
+    filter: blur();
+    padding: 1em;
+}
+
+.Input_UserEdit:focus{
+    box-shadow: 0 0 10px $yellow_main;
+}
+::placeholder{
+    color: #BBBBBB;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 1.2em;
+}
+
+.Select_UserEdit{
+    height: 3.5em;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
+    padding: 1em;
+}
+
+.Select_UserEdit:focus{
+    box-shadow: 0 0 10px $yellow_main;
+}
+
+.Buttons_UserEdit{
+    margin-top: 1em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonVolver_UserEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border-color: black;
+    border-width: 0.1em;
+    background-color: transparent;
+    border-radius: 0.35em;
+}
+
+.ButtonNext_UserEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 0.35em;
+    filter: blur();
+    transition: all 0.3s ease 0s;
+
+}
+
+.ButtonNext_UserEdit:hover{
+    background-color: $gray_main;
+}
+
+.LabelError_UserEdit{
+    margin-top: 0.5em;
+    color: #F64749;
+    font-size: 0.8em;
+}
+
+// Sweetalert
+.popup-order_UserEdit{
+    background-color: white;
+    width: 30rem;
+    height: 22rem;
+    color:black;
+    font-family: "Avenir_Black";
+}
+.popup-order-small_UserEdit{
+    background-color: $black_main;
+    width: 30rem;
+    height: 15rem;
+    color:black;
+    font-family: "Avenir_Black";
+}
+.title-order_UserEdit{
+    font-family: "Avenir_Roman";
+    font-weight: 100;
+    color: black;
+    font-size: 2em;
+}
+
+.confirmButton-order_UserEdit{
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: #F64749;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 1rem;
+    cursor: pointer;
+    transition: 0.4s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+}
+
+.confirmButton-order_UserEdit_success {
+    @extend .confirmButton-order_UserEdit;
+    background-color: #49AF41;
+}
+
+.input-order_UserEdit{
+    background-color: black;
+    color: white;
+}
+
+.validationMessage-order_UserEdit{
+    background-color: black;
+    color: #cc0000;
+    height: 1.5rem;
+}
+
+// .iconpopup_UserEdit{
+//     .swal2-icon.swal2-error {
+//         color: white !important;
+//         border-color: white !important;
+//     }
+// }

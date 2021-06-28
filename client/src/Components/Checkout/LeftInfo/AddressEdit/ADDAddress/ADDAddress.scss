@@ -1,0 +1,118 @@
+@import '../../../../../Sass/variables';
+.Full_ADDAddress{
+    margin-bottom: 2em;
+    width: 90%;
+    padding-bottom: 2em;
+    border-bottom: 1px black solid;
+}
+
+.TotalConteiner_ADDAddress{
+    margin-top: 2em;
+  section:first-child{
+    display: flex;
+    justify-content: space-between;
+    gap: 0 1em;
+    &>div{
+        width: 50%;
+    }
+  }
+  section:not(:first-child){
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      display: flex;
+      justify-content: space-between;
+      gap: 0 1em;
+      &>div{
+        width: 33%;
+    }
+  }
+}
+
+.CommonDiv_ADDAddress{
+    display: flex;
+    flex-direction: column;
+    label{
+        font-family: "Avenir_Book";
+        font-weight: 100;
+    }
+}
+
+.Input_ADDAddress{
+    height: 3.5em;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
+    border-radius: 0.2em;
+    filter: blur();
+    padding: 1em;
+    &:focus{
+        box-shadow: 0 0 10px $yellow_main;
+    }
+}
+
+::placeholder{
+    color: #BBBBBB;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 1.2em;
+}
+
+.Select_ADDAddress{
+    height: 3.5em;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
+    padding: 1em;
+    &:focus{
+        box-shadow: 0 0 10px $yellow_main;
+    }
+}
+
+.Buttons_ADDAddress{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonVolver_ADDAddress{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border-color: black;
+    border-width: 0.1em;
+    background-color: transparent;
+    border-radius: 0.35em;
+}
+
+.ButtonNext_ADDAddress{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 15%;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 0.35em;
+    filter: blur();
+    transition: all 0.3s ease 0s;
+
+}
+
+.ButtonNext_ADDAddress:hover{
+    background-color: $gray_main;
+}
+
+.LabelError_ADDAddress{
+    margin-top: 0.5em;
+    color: #F64749;
+    font-size: 0.8em;
+}

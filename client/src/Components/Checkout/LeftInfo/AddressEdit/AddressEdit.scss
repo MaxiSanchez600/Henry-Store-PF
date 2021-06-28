@@ -1,0 +1,88 @@
+@import '../../../../Sass/variables';
+.AddressEdit_Conteiner{
+    margin-top: 2em;
+}
+.H1Elegi_AddressEdit{
+    font-size: 1.5em;
+    font-family: "Avenir_Book";
+    font-weight: 100;
+        span{
+            font-family: "Avenir_Black";
+        }
+}
+
+.Buttons_AddressEdit{
+    margin-top: 1em;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonVolver_AddressEdit{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding: 0.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 150px;
+    height: 45px;
+    outline: none;
+    cursor: pointer;
+    border-color: black;
+    border-width: 0.1em;
+    background-color: transparent;
+    border-radius: 0.35em;
+}
+
+button.mercadopago-button{
+    font-family: "Avenir_Roman";
+    font-size: 0.8em;
+    padding-top: 7px;
+    padding-bottom: 8px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 0.35em;
+    filter: blur();
+    transition: all 0.3s ease 0s;
+    width: 150px;
+    height: 45px;
+    &:hover{
+        background-color: $gray_main;
+    }
+}
+
+.mercadopago-button{
+    background-color: red;
+}
+
+.ButtonNext_AddressEdit:hover{
+    background-color: $gray_main;
+}
+
+.Anadir_AddressEdit{
+    font-family: "Avenir_Book";
+    font-weight: 100;
+    font-size: 0.9em;
+    text-decoration: underline;
+    margin-top: 2em;
+    cursor: pointer;
+    color: black;
+}
+
+// Loading
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #FFFF01; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

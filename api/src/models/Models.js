@@ -339,6 +339,10 @@ module.exports = (sequelize) => {
     givenhc: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    paymentid: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   })
 
@@ -351,7 +355,7 @@ module.exports = (sequelize) => {
     product_amount: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
+    }
   })
 
   sequelize.define('OrderDetailCaracteristic', {
@@ -381,6 +385,36 @@ module.exports = (sequelize) => {
     }
   })
 
+  sequelize.define("UserAddress", {
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    localidad: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    numerodireccion: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    postal_code: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone_contact: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+  })
 };
 
 
