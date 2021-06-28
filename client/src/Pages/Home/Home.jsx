@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 import Products from '../../Components/Products/Products';
-import SearchBar from '../../Components/SearchBar/SearchBar';
 import Filters from '../../Components/Filters/Filters';
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Order from "../../Components/Order/Order";
@@ -35,7 +34,6 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
     return (
         <div >
             <div className="search_container">
-                <SearchBar />
             </div>
             <div className="content_Home" >
                 <div className="content_SidebarLeft" >
