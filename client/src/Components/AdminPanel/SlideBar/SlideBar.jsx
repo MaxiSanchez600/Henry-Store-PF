@@ -19,14 +19,13 @@ function SlideBar (){
                     <Link to='/admin/createProduct'><li>Crear un producto</li></Link>
                     <Link to='/admin/products'><li>Panel de Productos</li></Link>
                 </ul>
-                <h3>Categorias</h3>
+                <h3>Categorias y Subcategorias</h3>
                 <ul>
-                    <li>Crear categorias</li>
-                    <li>Listado de categorias</li>
+                <Link to='/admin/categories'><li>Panel general</li></Link>
                 </ul>
                 <h3>Ordenes</h3>
                 <ul>
-                    <li>Todas las ordenes</li>
+                    <Link to='/admin/orders'><li>Todas las ordenes</li></Link>
                     <li>Por despachar</li>
                 </ul>
                 <h3>Usuarios</h3>

@@ -27,6 +27,8 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import UserOrder from "../Cart/UserOrders/UserOrder/UserOrder.jsx";
 import OrderDetail from "../Cart/UserOrders/OrderDetail/OrderDetail.jsx"
+import Orders from "../AdminPanel/Orders/Orders";
+import CategoriesSubcat from "../AdminPanel/CategoriesSubcat/CategoriesSubcat";
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -56,6 +58,8 @@ function App() {
               <Route exact path="/admin/createProduct" component={CreateProduct} />
               <Route exact path="/admin/users" component={Users}/>
               <Route exact path="/admin/products" component={Products}/>
+              <Route exact path="/admin/orders" component={Orders}/>
+              <Route exact path="/admin/categories" component={CategoriesSubcat}/>
               <Route exact path="/admin/editProduct/:id" render={(props)=>(
                 <EditProduct {...props}/>)}>
               </Route>

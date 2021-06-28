@@ -1,8 +1,10 @@
-.container-table {
+@import "../../../Sass/variables";
+
+.container-table-users {
     margin: 10px;
     padding: 20px 20px;
 }
-.content-table{
+.content-table-users{
     border-collapse:collapse;
     margin: 25px 0;
     font-size: 0.9em;
@@ -12,27 +14,60 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.content-table tr th {
+.content-table-users tr th {
     background-color: #FFFF01;
     color: #000000;
     text-align: left;
     font-weight: bold;
 }
-.content-table th,
-.content-table td {
+.content-table-users th,
+.content-table-users td {
     padding: 12px 15px;
     max-width: 190px;
     overflow: hidden;
+    text-align: center;
 }
 
-.content-table tr {
+.content-table-users tr {
     border-bottom: 1px solid #dddddd; 
 }
 
-.content-table tr:nth-of-type(even) {
+.content-table-users tr:nth-of-type(even) {
     background-color: #f3f3f3; 
 }
 
-.content-table tr:last-of-type {
+.content-table-users tr:last-of-type {
     border-bottom: 2px solid #FFFF01;
+}
+
+.action-wheel-users{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.users-refresh-qty{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-refresh-user{
+    display: flex;
+    border-radius: 20px;
+    border: 1px solid $black_main;
+    background-color: $yellow_main;
+    color: #000000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.4s all;
+    box-shadow: 0.1rem 0.15rem 5px black;
+    &:hover {
+        transform: scale(1.07);
+    }
+    margin-left: 1rem;
 }

@@ -1,5 +1,5 @@
 const adminapp = require ('../../utils/config/firebaseAdmin.js');
-const { User, Role, DocumentType, Nacionality, UserStatus } = require ('../../db.js');
+const { User, Role, DocumentType, Nacionality, UserStatus, Order, OrderDetail, Product, Image } = require ('../../db.js');
 
 function readUsers (req,res,next) {
 
@@ -78,21 +78,78 @@ function resetEmailUser (req,res,next) {
 
 function resetPassUser (req,res,next) {
     let {id} = req.body;
+    let defaultPassword = "soyHenrySTORE"
     adminapp
     .auth()
     .updateUser(id, {
-        password: "valuecaracteristics07",
+        password: defaultPassword,
     })
-    .then((userRecord) => {
-        res.send(userRecord);
+    .then(() => {
+        res.send(defaultPassword);
     })
     .catch(e=>next(e));
 
+}
+
+function readOrders (req,res,next) {
+    let { filter, page, limit,order} = req.query;
+    page = Number(page)
+    limit= Number(limit)
+    let result = {}
+    const limitDefault = 5;
+    const pageDefault = 1;
+    const startIndex = ((page||pageDefault)-1) *(limit||limitDefault);
+    const endIndex = (page||pageDefault) * (limit||limitDefault);
+    Order.findAll({
+        //ponerle un order por createdAt
+        include:[
+            {model: OrderDetail,
+                include:{model: Product, 
+                    include:{model: Image, attributes:['name_image']},
+                    attributes:['name','price']}, 
+                attributes:{exclude: ['createdAt', 'updatedAt','OrderIdOrder']}
+            },
+            {model: User, attributes:['name', 'email','username','phone']}
+        ],
+        order: [['createdAt',(order||"DESC")]],
+    })
+    .then((response)=>{
+        result.total = response.length;
+        if(!filter){
+            result.results= response.slice(startIndex,endIndex)
+            return res.send(result)
+        }
+        if(filter){
+            result.results = response.filter(order=>{
+                return order.status === filter.toLowerCase()
+            }).slice(startIndex,endIndex)
+            return res.send(result)
+        }
+    })
+    .catch(e=>next(e))
+    
+}
+
+function updateOrder (req, res, next) {
+    let {id, newstatus} = req.body;
+
+    Order.update({
+        status: newstatus
+    },
+    {
+        where:{
+            id_order: id
+        }
+    })
+    .then(()=>res.sendStatus(200))
+    .catch(e=>next(e))
 }
 
 module.exports ={
     banUser,
     resetEmailUser,
     resetPassUser,
-    readUsers
+    readUsers,
+    readOrders,
+    updateOrder
 }

@@ -8,25 +8,26 @@ import { Link } from "react-router-dom";
 
 export default function Products () {
     const [products,setProducts] = useState([])
-    const [productsCount,setProductsCount] = useState ("cargando...")
     const [reset,setReset] = useState (false)
 
     useEffect(()=>{
         axios.get(PRODUCTS_URL)
         .then(response=>{
             setProducts(response.data.data)
-            setProductsCount(response.data.data.length);
             setReset(false)
         })
     },[reset])
 
     return <div>
-        <div className="container-table">
+        <div className="container-table-product">
         <h1>Panel de Productos</h1>
-         <h4>Cantidad de productos creados: {productsCount}</h4><button onClick={()=>setReset(true)}><VscRefresh/></button>
+        <div className = "products-refresh-qty">
+         <h4>Cantidad de productos creados: {products.length}</h4>
+         <button className= "button-refresh-product" onClick={()=>setReset(true)}><VscRefresh/></button>
+        </div>
          <div className="content-products">
          <div>
-            <table className="content-table">
+            <table className="content-table-product">
                 <tr>
                     <th></th>
                     <th>Imagen</th>
@@ -47,7 +48,7 @@ export default function Products () {
             </table>
         </div>
         <div>
-            <table className="content-table">
+            <table className="content-table-product">
                 <tr>
                     <th></th>
                     <th>Imagen</th>

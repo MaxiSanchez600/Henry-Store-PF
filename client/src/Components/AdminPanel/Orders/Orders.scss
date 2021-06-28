@@ -1,0 +1,137 @@
+@import "../../../Sass/variables";
+
+.container-table-order {
+    margin: 10px;
+    padding: 20px 20px;
+}
+.content-table-order{
+    border-collapse:collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px; //posiblemente tenga que cambiar esto
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table-order tr th {
+    background-color: #FFFF01;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    
+}
+.content-table-order th,
+.content-table-order td {
+    padding: 12px 15px;
+    max-width: 14rem;
+    width: 14rem;
+    height: 3.7rem;
+    text-align: center;
+    vertical-align: center;
+}
+
+.content-table-order tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table-order .order-rows:nth-of-type(even) {
+    background-color: #f3f3f3; 
+}
+
+.content-table-order tr:last-of-type {
+    border-bottom: 2px solid #FFFF01;
+}
+
+.content-table-order .row-product:last-of-type {
+    border-bottom: none;
+}
+.content-table-order .row-product2:last-of-type {
+    border-bottom: none
+}
+
+.action-wheel-order{
+    width: min-content;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.img-product-order{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.order-refresh-qty{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-refresh-order{
+    display: flex;
+    border-radius: 20px;
+    border: 1px solid $black_main;
+    background-color: $yellow_main;
+    color: #000000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.4s all;
+    box-shadow: 0.1rem 0.15rem 5px black;
+    &:hover {
+        transform: scale(1.07);
+    }
+    margin-left: 1rem;
+}
+
+
+.popup-order-infouser{
+    background-color: $black_main;
+    width: 27rem;
+    height: 14rem;
+    color:black;
+    font-family: "Avenir_Black";
+}
+.title-order-infouser{
+    color: $yellow_main;
+}
+
+.confirmButton-order-infouser{
+    border-radius: 20px;
+    border: 1px solid $yellow_main;
+    background-color: $yellow_main;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 1rem;
+    cursor: pointer;
+    transition: 0.4s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+}
+
+
+.input-order-infouser{
+    background-color: black;
+    color: white;
+}
+
+.validationMessage-order-infouser{
+    background-color: black;
+    color: #cc0000;
+    height: 1.5rem;
+}
+
+.content-order-infouser{
+    color: white;
+}
