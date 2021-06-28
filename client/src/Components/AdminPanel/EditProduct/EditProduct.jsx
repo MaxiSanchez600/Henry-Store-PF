@@ -12,7 +12,7 @@ function EditProduct ({match, title}){
     const getDataProduct = async function() {
       try {   
           const response = await axios.get(`${PRODUCTS_URL}id=${+id}`)
-          window.localStorage.setItem('productToEdit', JSON.stringify(response.data.data[0]))
+          //window.localStorage.setItem('productToEdit', JSON.stringify(response.data.data[0]))
           setData(response.data.data[0])
       }catch (error) {
         console.error(error)

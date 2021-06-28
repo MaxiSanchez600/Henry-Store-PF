@@ -2,19 +2,20 @@
     flex: 4;
     z-index: 1;
     background-color:rgb(247, 247, 247);
-    padding-left: 20px;
+    min-height: 100vh;
 }
 
 .createContent{
     display: flex;
     background-color: rgb(255, 255, 255);
-    margin-right: 50px;
     
+    margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px 8px #d0d0d0;
 }
 .createContent2{
     margin-left: 50px;
+    padding-right: 25px;
 }
 
 .createContent h4{
@@ -42,7 +43,7 @@
     font-size: 18px;
 }
 
-.basicInfoWrap .inputField .input{
+.basicInfoWrap .inputField .normalInput{
     width: 30em;
     outline: none;
     font-size: 16px;
@@ -51,13 +52,22 @@
     border-radius: 3px;
     transition: all 0.3s ease;
 }
-.basicInfoWrap .inputField .input:focus,
+
+
+
+.basicInfoWrap .inputField .normalInput:focus,
 .basicInfoWrap .inputField textarea:focus,
 .basicInfoWrap .inputField .smallInput:focus{
     border:1px solid #FFFF01;
     box-shadow: 0 0 8px 0 #FFFF01; 
 }
 
+.basicInfoWrap .inputField .smallInput:valid,
+.basicInfoWrap .inputField textarea:valid,
+.basicInfoWrap .inputField .normalInput:valid{
+    border:2px solid #FFFF01;
+    
+}
 
 .basicInfoWrap .inputField textarea{
     width: 30em;
@@ -67,14 +77,17 @@
     padding: 8px 10px;
     border-radius: 3px;
     transition: all 0.3s ease;
-    margin-left: 10px;
+    resize: none;
+    
 }
 
-
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
 
 .basicInfoWrap .inputField .smallInput{
-    width: 60px;
+    width: 5em;
     outline: none;
     font-size: 16px;
     border: 1px solid black;
@@ -91,11 +104,6 @@
     font-size: 1rem;
     font-weight: bold;
 
-}
-
-.buttonCategory{
-    margin-left: 10px;
-    
 }
 
 .btn-final-form {
@@ -125,27 +133,32 @@
     align-items: center;
     flex-direction: column;
 }
+
+.createContainer h1{
+    margin-top: 20px;
+    margin-left: 50px;
+}
 .categoryContainer{
     margin-bottom: 25px;
 }
 
-.buttonCategory{
+
+.buttonCategory, .buttonCaracteristic{
     all: unset;
-    border: 1px solid #FFFF01;
-    margin:0 10px 10px 10px;
+    margin:15px 10px 10px 10px;
     padding: 8px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
     border-radius: 5px;
-    background-color: black;
+    background-color: #87868a;
     color: white;
 }
 
-  
-  .buttonCategory:hover {
-    box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
-  }
+
+.buttonCategory:hover, .buttonCaracteristic:hover {
+box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
+}
   
   .buttonCategory:before {
     content: "";
@@ -163,12 +176,14 @@
     transition: all 650ms;
   }
   
-  .buttonCategory:hover:before {
+  .buttonCategory:hover:before,
+  .buttonCaracteristic:hover:before
+  {
     left: 100%;
   }
   
 
-.addCategory{ 
+.addCategory, .addCaracteristic{ 
     display: inline-block;
     font-weight: bold;
     cursor: pointer;

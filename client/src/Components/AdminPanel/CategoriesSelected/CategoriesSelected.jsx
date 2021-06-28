@@ -1,84 +1,85 @@
-import React, {useEffect} from "react";
+import React from "react";
 import './CategoriesSelected.scss'
+import Swal from 'sweetalert2';
 
-function CategoriesSelected ({categoriesSelected, categoriesStateController, categoriesSaves, subCatSelected, setSubCatSelected, json, setJson}){
-    useEffect(()=>{
-        setJson({...json, categories:subCatSelected})
-    },[subCatSelected])
-    const onclose=(e)=>{
-        e.preventDefault()
-        categoriesStateController({...categoriesSelected, [e.target.name]:false})
-        setSubCatSelected({...subCatSelected,[e.target.name]:[]})
-    }
+function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
+   
+    const onClose = e => {
+        let copyJsonCategories = json.categories;
+        delete copyJsonCategories[e.target.name];
+        setJson({
+            ...json,
+            categories: copyJsonCategories
+        });
+    };
 
-    const getSubCategories = (category)=>{
-        const result=categoriesSaves.find(e=>e.name_category.toLowerCase() ===category.toLowerCase() )
-        return result.SubCategories
-    
-    }
+    const onChangeSubCat = e => {
+        setJson({
+            ...json, 
+            categories: {
+                ...json.categories, 
+                [e.target.name]: [e.target.value] 
+            }
+        });  
+    };
 
-    const onChangeSubCat = (e)=>{
-        //si se hace un check
-        if(e.target.checked){
-            if(!subCatSelected.hasOwnProperty(e.target.title)){
-                setSubCatSelected({...subCatSelected, [e.target.title]:[e.target.value]})   
-                           
-            }else{
-                if(!subCatSelected[e.target.title].includes(e.target.value)){
-                    const addSubCat=subCatSelected[e.target.title].concat(e.target.value)
-                    setSubCatSelected({...subCatSelected, [e.target.title]:addSubCat})
-                
+    const addSubcategory = async (e) => {
+        const { value: subCategory } = await Swal.fire({
+            title: 'Añade una sunCategoría',
+            input: 'text',
+            inputLabel: 'Nombre:',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return '¡Debe digitar un nombre para la subcategoria!';
                 }
             }
-
-            //si se hace uncheck
-        }else{
-            const resultRemove = subCatSelected[e.target.title].filter(element => element !== e.target.value)
-            setSubCatSelected({...subCatSelected, [e.target.title]:resultRemove})
-        }   
-        
-         
-    }
-    return(
-        <div className='categoriesSelectedContainer'>
-            {
-                Object.entries(categoriesSelected).map( (e,index) =>(
-                    <div className='tableSubCatWrap' key={index}>
-                        {
-                            e[1]===true?
-                            <div className='tableSubCat'>
-                                <div className='titleAndClose'>
-                                    <div>{e[0]}</div>
-                                    <button onClick={onclose} name={e[0]}>x</button>
-                                </div>
-                                <div>
-                                    <div className='checkText'>Seleccione una o mas subCategorias:</div>
-                                    <div className="checksContainer">
-                                        {/* <select onChange={onChangeSubCat} title={e[0]}>
-                                            <option value=''>Seleccione</option>
-                                            {
-                                                getSubCategories(e[0]).map((element, index2)=>(
-                                                    <option value={element.name_sub_category} key={index2}>{element.name_sub_category}</option>
-                                                ))
-                                            }
-                                        </select> */
-                                            getSubCategories(e[0]).map((element, index2)=>(
-                                                <div className='checksWrap' key={index2}>
-                                                    <input type='checkbox' title={e[0]} value={element.name_sub_category} onChange={onChangeSubCat}></input>
-                                                    <label>{element.name_sub_category}</label>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-                            </div>:null
-                        }
-                    </div>
-                ))
+        });
+        if (subCategory) {
+            for(let i = 0; i <= catBack.length - 1; i++) {
+                if(catBack[i].name_category === e.target.title) {
+                    let resultCat = catBack[i];
+                    resultCat.SubCategories.push({ name_sub_category: subCategory[0].toUpperCase() + subCategory.slice(1) });
+                    let copyCatBack = catBack;
+                    copyCatBack.splice(i, 1, resultCat);
+                    setCatBack([...copyCatBack]);
+                }
             }
-            {/* <SubCategorySelected subCatSelected={subCatSelected} setSubCatSelected={setSubCatSelected} json={json} setJson={setJson}/> */}
+        }
+    };
+    
+    return (
+        <div className='categoriesSelectedContainer'>
+            {Object.keys(json.categories)?.map( (cat, index) => (
+                <div className='tableSubCatWrap' key={index}>
+                    <div className='tableSubCat'>
+                        <div className='titleAndClose'>
+                            <div>{cat}</div>
+                            <button onClick={onClose} name={cat}>x</button>
+                        </div>
+                        <div>
+                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
+                            <div className="checksContainer">
+                                {catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
+                                    
+                                    return <label key={i}>
+                                        <input 
+                                            type='radio'  
+                                            value={subCat.name_sub_category}
+                                            name={cat} 
+                                            checked={json.categories[cat].includes(subCat.name_sub_category) ? true : false}
+                                            onChange={onChangeSubCat}
+                                            />
+                                            {subCat.name_sub_category}
+                                        <br/>
+                                    </label>
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
-        
     )
 }
 

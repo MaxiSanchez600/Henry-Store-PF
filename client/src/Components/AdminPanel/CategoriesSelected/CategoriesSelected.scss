@@ -5,7 +5,7 @@
 .tableSubCat{
     
     width: 12em;
-    margin: 0 10px 20px 10px;
+    margin: 10px 10px 20px 10px;
     box-shadow: 0 0 20px 1px #e7e7e7;
 }
 
@@ -39,4 +39,24 @@
 
 .checksContainer{
     padding-bottom: 10px;
+    padding-left: 12px;
+}
+
+.checksContainer button{
+    margin-top: 10px;
+}
+
+.checksContainer input{
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+    margin-bottom: 10px;
+}
+
+.addSubCategory{
+    cursor: pointer;
+}
+
+.buttonCloseCat{
+    
 }

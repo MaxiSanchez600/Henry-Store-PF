@@ -10,8 +10,8 @@ function ImageUploader ({ json, setJson }){
 
     const handleUploadImage = async (files) => {
         let arrAux = [];
-        if(files.length > (3 - json.images.length)) {
-            var iterations = (3 - json.images.length);
+        if(files.length > (6 - json.images.length)) {
+            var iterations = (6 - json.images.length);
         } else {
             var iterations = files.length;
         }
@@ -61,15 +61,14 @@ function ImageUploader ({ json, setJson }){
                 max='100' 
                 className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
             />
-            <label className='card-footer' for='input-file'>
+            <label className={json.images.length < 6 ? 'card-footer' : 'card-footer card-footer-disabled'} >
                 <input 
                     type='file' 
                     className='img-uploader' 
                     onInput={e => handleUploadImage(e.target.files)}
-                    disabled={json.images.length < 3 ? false : true}
+                    disabled={json.images.length < 6 ? false : true}
                     multiple
                     accept="image/png, image/jpeg"
-                    id='input-file'
                 />
                 <BiImageAdd />
                 Agregar imágenes al producto  

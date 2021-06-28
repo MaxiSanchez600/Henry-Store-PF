@@ -1,25 +1,32 @@
 import React from "react";
 import './Tags.scss'
-function Tags ({tags, setTags, textPlaceholder, json, setJson, subCatSelected}){
+import { IoMdCloseCircle } from "react-icons/io";
+function Tags ({textPlaceholder, json, setJson}){
     
 	const removeTags = indexToRemove => {
-		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
+		setJson({
+			...json, 
+			tags: json.tags.filter((_, index) => index !== indexToRemove)
+		});
 	};
 	const addTags = event => {
 		if (event.target.value !== "") {
-			setTags([...tags, event.target.value]);
+			setJson({
+				...json, 
+				tags: [...json.tags, event.target.value]
+			})
 			event.target.value = "";
-			setJson({...json,categories:subCatSelected, tags:tags})
 		}
 	};
     return(
         <div className="tags-input">
             <ul id="tags">
             {
-                tags.map((tag, index) => (
+                json.tags.map((tag, index) => (
 					<li key={index} className="tag">
 						<span className='tag-title'>{tag}</span>
-						<button className='tag-close-icon' onClick={() => removeTags(index)} type='button'>x</button>
+						{/* <button className='tag-close-icon' onClick={() => removeTags(index)} type='button'>x</button> */}
+						<IoMdCloseCircle className='tag-close-icon' onClick={() => removeTags(index)} type='button' size='1.3em'/>
 					</li>
 				))
             }
