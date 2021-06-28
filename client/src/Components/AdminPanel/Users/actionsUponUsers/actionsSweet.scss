@@ -1,7 +1,7 @@
 @import "../../../../Sass/variables";
 
 .popup{
-    background-color: $black_main;
+    background-color: white;
     width: 45rem;
     height: 15rem;
     color:black;
@@ -17,7 +17,7 @@
 }
 
 .title{
-    color: $yellow_main;
+    color: black;
 }
 
 .title-final{
@@ -44,8 +44,8 @@
 
 
 .input{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .validationMessage{

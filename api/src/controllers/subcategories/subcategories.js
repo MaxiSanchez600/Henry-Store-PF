@@ -49,6 +49,7 @@ const subcategoriesController = {
             return Promise.all(array)
         })
         .then((result)=>{
+            res.send(result)
             result.flat().forEach(e=>{
                 e.destroy()
             })
