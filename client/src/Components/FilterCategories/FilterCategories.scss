@@ -2,11 +2,10 @@
 
 .FilterCategories {
     display: grid;
-//     border: 1px solid $white_main;
     height: 40px;
     grid-template-rows: 100% 100%;
+
     .filter_menu_category {
-//         margin: 0 10px 0 10px;
         max-width: fit-content;
         border-style: none;
         background-color: $black_main;
@@ -15,6 +14,7 @@
         color: $white_main;
         outline: none;
         padding: 0 10px 0 1px;
+        
         &:hover,
         &:focus {
             cursor: pointer;
@@ -23,7 +23,6 @@
         }
     }
     .category_box_filter {
-//         height: 2.1875rem;
         margin: auto 0;
         font-family: "Avenir_Book";
         display: grid;
