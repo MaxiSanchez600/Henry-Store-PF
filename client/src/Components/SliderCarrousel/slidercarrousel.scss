@@ -2,31 +2,38 @@
 
 .carruosel_container {
     margin: 10px 0;
+
     .Carrousel_SliderCarrousel {
+
         .Icon_SliderCarrousel_left,
         .Icon_SliderCarrousel_right {
             color: $light_gray;
             transition: all 0.25s;
             z-index: 10;
+
             &:hover {
                 transform: scale(1.075);
                 color: $white_main;
             }
+
             &:active {
                 transition: all 0.13s;
                 transform: scale(1.013);
                 color: $black_main;
             }
+
             .icon_left,
             .icon_right {
                 background-color: $dark_gray;
             }
+
             .icon_left {
                 border-radius: 0 8px 8px 0;
                 cursor: pointer;
                 height: 3em;
                 width: 3em;
             }
+
             .icon_right {
                 border-radius: 8px 0 0 8px;
                 cursor: pointer;
@@ -34,12 +41,15 @@
                 width: 3em;
             }
         }
+
         .banner_Icon_SliderCarrousel_left {
             margin: 0 0 0 8px;
         }
+
         .banner_Icon_SliderCarrousel_right {
             margin: 0 0 0 -48px;
         }
+
         .image_container {
             .cropped_image,
             .banner_image {
@@ -50,16 +60,19 @@
                 -ms-user-select: none;
                 user-select: none;
             }
+
             .cropped_image {
                 max-width: 100%;
                 max-height: 390px;
             }
+
             .banner_image {
                 width: 1800px;
                 height: 400px;
             }
         }
     }
+
     .cropped_container {
         display: flex;
         align-items: center;
@@ -69,6 +82,7 @@
         border: 4px solid $dark_gray;
         border-radius: 8px;
     }
+
     .banner_carrousel_display {
         display: grid;
         grid-template-columns: 8px 1800px 8px;
@@ -76,17 +90,20 @@
         justify-content: center;
         height: 100%;
     }
+
     .slider_dot_buttons_container {
         display: flex;
         justify-content: center;
         margin: -25px 0 0 0;
         padding: 0;
+
         .dot_button_container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 16px;
             margin: 0 10px;
+
             .dot_button {
                 margin: 0;
                 background-color: $dark_gray;
@@ -96,9 +113,7 @@
                 transition: all 0.25s;
                 outline: none;
             }
-            &:hover {
-                border: 1px solid red;
-            }
+            
             .active {
                 background-color: $white_main;
                 padding: 7.5px;

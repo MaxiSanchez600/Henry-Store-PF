@@ -9,7 +9,6 @@ import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 function Product_Detail({
   ListProducts,
   getAllFilteredProducts,
-  // sendProductDetailsToActions,
   currencyactual,
   currencyactualname
 }) {
@@ -164,10 +163,6 @@ function Product_Detail({
       }
     }
   }
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   sendProductDetailsToActions(productCaracteristics);
-  // }
 
   return (
     <div >
