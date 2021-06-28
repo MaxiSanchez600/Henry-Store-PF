@@ -13,30 +13,35 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
 
   useEffect(() => {
     if (imageListLength) {
-      if (isBanner) {
-        if (clickedButton) {
-          setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
-        }
+      if (clickedButton) {
+        setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
       }
-      for (let i = 0; i < imageListLength; i++) {
-        continue;
-      }
+      // if (isBanner) {
+      // }
+      // for (let i = 0; i < imageListLength; i++) {
+      //   continue;
+      // }
     }
-  }, [imageList, imageListLength, isBanner, handleNextImage, clickedButton, currentImage]);
+  }, [imageList, imageListLength, isBanner, clickedButton, currentImage]);
 
 
   function handlePreviousImage() {
-    setClickedButton(false);
     setCurrentImage(currentImage === 0 ? imageListLength - 1 : currentImage - 1);
   }
 
   function handleNextImage() {
-    setClickedButton(false);
     setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1);
   }
 
   function handleImageButtons(e) {
     setCurrentImage(e.target.name - 1);
+  }
+
+  function pauseAutoScroll() {
+    setClickedButton(false);
+  }
+  function playAutoScroll() {
+    setClickedButton(true);
   }
 
   return (
@@ -51,7 +56,8 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
                     "Carrousel_SliderCarrousel banner_carrousel_display" :
                     "Carrousel_SliderCarrousel cropped_container"
                 }
-                onM
+                onMouseOver={pauseAutoScroll}
+                onMouseLeave={playAutoScroll}
               >
                 <div
                   className={

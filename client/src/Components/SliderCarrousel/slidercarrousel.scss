@@ -94,6 +94,10 @@
                 border-width: 0;
                 border-radius: 50%;
                 transition: all 0.25s;
+                outline: none;
+            }
+            &:hover {
+                border: 1px solid red;
             }
             .active {
                 background-color: $white_main;
