@@ -1,83 +1,74 @@
 @import "../../Sass/variables";
 
 .content_SearchBar {
-    padding: 20px 0;
     display: grid;
-    grid-template-rows: 50px auto;
-//     grid-template-columns: auto auto auto;
-    justify-content: center;
-    align-items: center;
+    grid-template-rows: 45px auto;
+    justify-content: end;
+    align-items: end;
     font-family: "Avenir_Roman";
-    height: 125px;
+    position: relative;
+    margin: 0 50px 0 0;
+
     .searchbar_input {
         display: flex;
-        align-items: center;
+
         .input_search {
-            position: relative;
-            border: 1px solid $gray_main;
-            height: 2.1875rem;
-            width: 38em;
+            border: 2.5px solid $white_main;
+            height: 35px;
+            width: 650px;
             border-radius: 8px;
-            padding-left: 31px;
-            padding-right: 11px;
-            padding-top: 4px;
-            padding-bottom: 4px;
+            padding: 0 10px;
             font-size: 14px;
             color: $black_main;
-            background-color: $white_main;
-            margin: 10px 5px 5px 5px;
+            background-color: $light_gray;
+            margin: 0;
             transition: all 0.25s;
             outline: none;
+
+            &:focus {
+                background-color: $white_main;
+                border: 2.5px solid $yellow_main;
+                outline: none;
+            }
         }
-        .input_search:focus {
-            background-color: $light_gray;
-            border: 1px solid $yellow_main;
-            // border: 1px solid red;
-            outline: none;
-        }
-        .input_search_error {
-            position: relative;
-            border: 1px solid red;
-            height: 2.1875rem;
-            width: 38em;
-            border-radius: 8px;
-            padding-left: 31px;
-            padding-right: 11px;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            font-size: 14px;
-            color: $black_main;
-            background-color: $white_main;
-            margin: 10px 5px 5px 5px;
-            transition: all 0.25s;
-            outline: none;
-        }
-        .input_search_error:focus {
-            color: $black_main;
-            background-color: $light_gray;
-            border: 1px solid red;
+
+        .search_error {
+            border: 2.5px solid red;
+            
+            &:focus {
+                border: 2.5px solid red;
+            }
         }
 
         .button_search {
-            height: 2.1875rem;
-//             width: fit-content;
+            color: $white_main;
+            height: 35px;
             border-style: none;
             font-family: "Avenir_Roman";
-//             background: transparent;
-//             vertical-align: bottom;
-            padding: 5px 0 0 0;
+            background: transparent;
+            padding: 2.5px 0 0 0;
             margin: 0 10px;
-            font-size: 2em;
-            transition: 0.25s all ease;
+            font-size: 32px;
+            transition:  all 0.25s;
             cursor: pointer;
 
             &:hover {
-                transform: scale(1.1);
+                color: $light_gray;
+                transform: scale(1.125);
             }
         }
     }
+
+    .error_message {
+        font-size: 12px;
+        padding: 5px 0;
+        position: absolute;
+        left: 250px;
+        top: 50px;
+        color: red;
+    }
+
     .box_filter {
-//         height: 2.1875rem;
         margin-left: 5px;
         font-family: "Avenir_Book";
         display: grid;
@@ -114,10 +105,5 @@
                 color: $yellow_main;
             }
         }
-    }
-    .error_message {
-        font-size: 12px;
-        padding: 5px;
-        color: red;
     }
 }

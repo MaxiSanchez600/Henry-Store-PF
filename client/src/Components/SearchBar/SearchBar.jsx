@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getAllFilteredProducts, getAllCaracteristics } from '../../Redux/actions/actionsProducts';
 import { FaSearch } from "react-icons/fa"
-import { MdClose } from "react-icons/md"
 
 const SearchBar = ({
   queriesFromReducer,
@@ -70,7 +69,7 @@ const SearchBar = ({
       <form className="searchbar_input" onSubmit={e => handleSubmit(e)}>
         <input
           id={`filter_name_tag`}
-          className={error ? "input_search_error" : "input_search"}
+          className={error ? "input_search search_error" : "input_search"}
           name="tag"
           type="text"
           placeholder="Buscar productos, accesorios..."
@@ -80,13 +79,7 @@ const SearchBar = ({
         <button className="button_search" type="submit"><FaSearch /></button>
       </form>
       {
-        !error ?
-          queriesFromReducer.tag ?
-            <div className="box_filter">
-              <p className="filter_title_selected">{queriesFromReducer.tag}</p>
-              <button className="button_filtered" name="tag" onClick={e => closeSearchButton(e)} ><MdClose /></button>
-            </div> : ""
-          : <p className="error_message">{error}</p>
+        !error ? "" : <p className="error_message">{error}</p>
       }
       {/* <p>{queriesFromReducer.tag.length}</p> */}
     </div>
