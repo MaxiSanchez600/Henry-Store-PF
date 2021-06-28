@@ -39,11 +39,14 @@
 
 .links .spanOut:hover{
     color: rgb(187, 37, 37);
-
+    font-weight: bolder;
+}
+.links .icon-bicoin:hover{
+    color: black;
     font-weight: bolder;
 }
 
-.links a, .spanOut{
+.links a, .spanOut,.icon-bicoin {
   display: flex;
   align-items: center;
   font-size: 1.25rem;
@@ -53,24 +56,24 @@
   color:white;
   transition: all 0.3s linear;
   letter-spacing:  0.1rem;
-  
+  text-decoration: none
 }
 
-.links a:hover,.spanOut:hover  {
+.links a:hover,.spanOut:hover, .icon-bicoin:hover   {
   background: rgb(241, 245, 248);
   color: black;
   font-weight: bolder;
 }
 //iconos
-.links a svg, .spanOut svg {
+.links a svg, .spanOut svg, .icon-bicoin svg {
   font-size: 1.5rem;
   color:white;
   margin-right: 1rem;
   transition: all 0.3s linear;
 }
-.links a:hover svg, .spanOut:hover svg {
-  color: #FFFF01;
-  background-color: black;
+.links a:hover svg, .spanOut:hover svg, .icon-bicoin:hover svg {
+  color: black;
+  //background-color: black;
 }
 
 .social-icons {
@@ -110,11 +113,9 @@
 }
 @media screen and (min-width: 676px) {
   .sidebar {
-    width: 250px;
+    width: 270px;
   }
 }
-
-
 .iconHenryCoint{
   display: flex;
   align-items: center;
@@ -133,18 +134,7 @@
   color: black;
   font-weight: bolder;
 }
-// .iconHenryCoint{
-//   display: flex;
-//   display:flow-root;
-//   background-image: url("../../Assets/Images/HenryCoint1.png");
-//   border-radius: 300px;
-//   width: 25px;
-//   padding-right: 25px;
-//   margin-right: 25px;
-//   justify-content: center;
-//   background-repeat: no-repeat;
-//   transition: all 0.3s linear;
-// }
+
 
 
 
