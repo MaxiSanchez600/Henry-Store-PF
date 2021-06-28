@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
-import { URL_BASE, henryExchange } from '../../../../Config/index.js'
+import { URL_BASE, henryExchangeRoute} from '../../../../Config/index.js'
 import './PayComp.scss'
 export default function PayComp({orderid}){
+    const [henryExchange, sethenryExchange] = React.useState(0)
     const currency = localStorage.getItem("currency")
     const currencyname = localStorage.getItem("currencyname")
     const [order, setOrder] = React.useState([])
     const orderpricefinal = (order.totalprice - (order.spenthc * henryExchange)) * currency
-    useEffect(() =>{
+    useEffect(async () =>{
+        sethenryExchange(await henryExchangeRoute())
          axios.get(URL_BASE + `cart/getorder?id=${orderid}`)
          .then(value =>{
              console.log(value.data)

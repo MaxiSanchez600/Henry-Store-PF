@@ -1,4 +1,6 @@
 // export const PRODUCTS_URL = `https://soyhenry-store.herokuapp.com/products?`;
+import axios from 'axios'
+
 export const URL_BASE = 'http://localhost:3001/';
 const workspace = "http://localhost:3001";
 export const PRODUCTS_URL = `${workspace}/product?`;
@@ -31,4 +33,9 @@ export const UPDATE_DIRECCION = `${workspace}/cart/updateaddress`;
 export const GET_PAYMENT_ID = `${workspace}/cart/createpayment`;
 export const GET_ORDER = `${workspace}/cart/getorder`;
 export const ORDER_TO_PAGADO_RETURN_TOTAL_PRICE = `${workspace}/cart/ordentopagado`;
-export const henryExchange = 0.50;
+export const henryExchangeRoute = () =>{
+    return axios.get(`${workspace}/cart/gethenryexchange`)
+    .then(value =>{
+        return value.data
+    })
+}

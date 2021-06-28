@@ -415,6 +415,17 @@ module.exports = (sequelize) => {
       allowNull: false
     },
   })
+
+  sequelize.define("HenryExchange", {
+    exchange: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    userid:{
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  })
 };
 
 

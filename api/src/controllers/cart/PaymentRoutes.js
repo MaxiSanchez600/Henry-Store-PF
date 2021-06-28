@@ -1,4 +1,4 @@
-const {CurrencyChange, Order, User, Role} = require('../../db');
+const {CurrencyChange, Order, User, Role, HenryExchange} = require('../../db');
 const { Sequelize, or } = require('sequelize');
 const Op = Sequelize.Op;
 const url = "http://localhost:3000"
@@ -113,6 +113,17 @@ const paymentMethods = {
         .catch(error =>{
             next(error)
         })
+    },
+
+
+    getHenryExchange: (req, res, next) =>{
+       HenryExchange.findAll()
+       .then(value =>{
+            return res.send(value[0].exchange + "")
+       })
+       .catch(error =>{
+           next(error)
+       })
     }
 
 }

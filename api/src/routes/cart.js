@@ -28,6 +28,7 @@ router.get('/getaddressbyid', UserAddressRoutes.GetAddressById)
 router.put('/updateaddress', UserAddressRoutes.UpdateAddress)
 router.get('/createpayment', paymentMethods.createPayment)
 router.put('/ordentopagado', paymentMethods.OrderToPagado)
+router.get('/gethenryexchange', paymentMethods.getHenryExchange)
 
 
 module.exports = router;
