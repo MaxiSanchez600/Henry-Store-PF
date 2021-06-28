@@ -25,7 +25,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
         return (
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
                 <div className="heart_product"><AiFillHeart /></div>
-                <img src={product.Images[0].name_image} alt="" className="product_image" id={product.index} />
+                <img src={product.Images.length ? product.Images[0].name_image : ""} alt="" className="product_image" id={product.index} />
                 <div className="product_name">
                     {product.name}
                     <div className="product_stripe"></div>

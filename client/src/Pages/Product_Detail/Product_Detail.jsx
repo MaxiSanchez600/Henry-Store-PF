@@ -8,7 +8,7 @@ import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 import AllReviews from '../../Components/Reviews/AllReviews'
 import StarRating from '../../Components/Reviews/StarRating'
 
-function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetailsToActions, currencyactual, currencyactualname, getAllReviews, ReviewsProduct }) {
+function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, getAllReviews, ReviewsProduct }) {
 
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
@@ -161,10 +161,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
       }
     }
   }
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   sendProductDetailsToActions(productCaracteristics);
-  // }
 
 
 
@@ -188,7 +184,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <SliderCarousel imageList={ID_Product.Images} />
+                        {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
+                        <SliderCarousel imageList={ID_Product.Images} isBanner={false}/>
                       </div>
                     </div>
 
@@ -200,8 +197,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                       <span>{score.toFixed(1)}({total_reviews})</span>
                     </div>
                     <div className="product-price">
-                      {/* <p className="last-price">Old Price: <span>{ID_Product.price}</span></p> */}
-                      {/* <p className="new-price">New Price: <span>{ID_Product.price * 0.9} (10%)</span></p> */}
                       <span>${ID_Product.price * currencyactual}</span>
                       <label>{currencyactualname}</label>
                     </div>
@@ -238,8 +233,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                             </div> : ""
                         ))
                       }
-
-
                     </div>
                     {
                       ID_Product.unit_stock > 0 ?
@@ -260,7 +253,6 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, sendProductDetai
                           <button type="button" className="btn" onClick={sendproduct}>
                             <b className="fas fa-shopping-cart">Agregar al carrito</b>
                           </button>
-                          {/* <button type="button" className="btn">Comparar</button> */}
                         </div> :
                         <div className="purchase-info">
                           <button type="button" className="btn">
@@ -318,7 +310,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // getProducts: products_list =>   dispatch(getProducts(products_list)),
     getAllFilteredProducts: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
     sendProductDetailsToActions: (product) => dispatch(addProductToCart(product)),
     getAllReviews: (Id_Product) => dispatch(getAllReviews(Id_Product)),

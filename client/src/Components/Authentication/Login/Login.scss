@@ -94,15 +94,15 @@
     font-family: "Avenir_Black";
     margin-bottom: 2rem;
     color: black;
+    .name_strip{
+            background-color: yellow;
+            width: auto;
+            height: 8px;
+            margin-top: -8.8px;
+            z-index: -10;
+    }
   }
 
-.name_strip{
-        background-color: yellow;
-        width: 3.5rem;
-        height: 8px;
-        margin-top: -2.8rem;
-        z-index: -10;
-}
 .container_close_login{
     display: flex;
     justify-content: flex-start;

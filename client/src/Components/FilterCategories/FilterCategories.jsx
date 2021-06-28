@@ -8,6 +8,7 @@ import {
 } from "../../Redux/actions/actionsProducts";
 
 function FilterCategories({
+  ListProducts,
   queriesFromReducer,
   categoriesFromReducer,
   caracteristicsFromReducer,
@@ -19,20 +20,26 @@ function FilterCategories({
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-    if (!categoriesFromReducer.length) getCategoriesFromActions();
-    if (!caracteristicsFromReducer.length) getCaracteristicsFromActions();
-  }, [categoriesFromReducer]);
+    if (ListProducts.length) {
+      // if (!categoriesFromReducer.length && !caracteristicsFromReducer.length) {
+      //   getCategoriesFromActions();
+      //   getCaracteristicsFromActions();
+      // }
+      if (!categoriesFromReducer.length) getCategoriesFromActions();
+      if (!caracteristicsFromReducer.length) getCaracteristicsFromActions();
+    }
+  }, [ListProducts, getCategoriesFromActions, getCaracteristicsFromActions, categoriesFromReducer, caracteristicsFromReducer]);
 
   function handleOptions(e) {
-    if (!e.target.value) {
+    if (e.target.value === "default") {
       closeSelectedFilterButton(e);
     }
-    else {
+    else if (e.target.value !== "default") {
       const removedPreviousFilters = removePreviousFilters();
       sendFiltersToActions({ ...removedPreviousFilters, [e.target.name]: e.target.value });
       getCaracteristicsFromActions({ [e.target.name]: e.target.value });
+      setSelectedCategory(e.target.value);
     }
-    setSelectedCategory(e.target.value);
   }
 
   function removePreviousFilters() {
@@ -45,12 +52,10 @@ function FilterCategories({
 
   function closeSelectedFilterButton(e) {
     e.preventDefault();
+    const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
+    if (filterToBeRemoved) filterToBeRemoved.value = "default";
     setSelectedCategory("");
-    // const test = document.getElementById(`rangePriceMin`);
-    // test.value = 1;
-
     const removedPreviousFilters = removePreviousFilters();
-
     sendFiltersToActions({ ...removedPreviousFilters });
     getCaracteristicsFromActions();
   }
@@ -58,8 +63,12 @@ function FilterCategories({
   // ! CONTENT
   return (
     <div className="FilterCategories">
-      <select className="menu_category" name="category" onChange={e => handleOptions(e)}>
-        <option value="">Selecciona una categoria...</option>
+      <select
+        id={`filter_name_category`}
+        className="filter_menu_category"
+        name="category"
+        onChange={e => handleOptions(e)}>
+        <option value="default">Categorias</option>
         {
           categoriesFromReducer.map(category => (
             <option key={category.id_category} value={category.name_category}>{category.name_category}</option>
@@ -67,12 +76,13 @@ function FilterCategories({
         }
       </select>
       {
-        selectedCategory ?
-          <div>
-            <p>Categoria: {selectedCategory}</p>
+        queriesFromReducer.category ?
+          <div className="category_box_filter">
+            <p className="category_filter_title_selected">Categoria: {queriesFromReducer.category}</p>
             <button
-              name={selectedCategory}
+              name="category"
               onClick={e => closeSelectedFilterButton(e)}
+              className="category_button_filtered"
             >x</button>
           </div> :
           ""
@@ -83,6 +93,7 @@ function FilterCategories({
 
 function mapStateToProps(state) {
   return {
+    ListProducts: state.products.products,
     queriesFromReducer: state.products.queries,
     categoriesFromReducer: state.products.categories,
     caracteristicsFromReducer: state.products.caracteristics,

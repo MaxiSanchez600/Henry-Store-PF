@@ -8,7 +8,6 @@ import {
 function Filters({
   queriesFromReducer,
   caracteristicsFromReducer,
-  // getCaracteristicsFromActions,
   sendFiltersToActions
 }) {
 
@@ -21,28 +20,35 @@ function Filters({
   });
 
   function handleFilters(e) {
-    setFiltersToSend({
-      ...filtersToSend,
-      [e.target.name]: e.target.value
-    });
-    if (!e.target.value) closeSelectedFilterButton(e);
+    if (e.target.value === "default" || !e.target.value) closeSelectedFilterButton(e);
 
-    else sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
-
+    else if (e.target.value !== "default") {
+      setFiltersToSend({
+        ...filtersToSend,
+        [e.target.name]: e.target.value
+      });
+      sendFiltersToActions({ ...queriesFromReducer, [e.target.name]: e.target.value });
+    }
   }
 
   function closeSelectedFilterButton(e) {
     e.preventDefault();
+    const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
 
-    const idToBeRemoved = document.getElementById(`${e.target.name}`);
-    if (idToBeRemoved) idToBeRemoved.value = "";
+    switch (filterToBeRemoved.type) {
+      case "number":
+        filterToBeRemoved.value = "";
+        break;
+      case "select-one":
+        filterToBeRemoved.value = "default";
+        break;
+      default: break;
+    }
 
     delete queriesFromReducer[e.target.name];
     delete filtersToSend[e.target.name];
-
     setFiltersToSend({ ...filtersToSend });
     sendFiltersToActions({ ...queriesFromReducer });
-    // setSelectedFilter("");
   }
 
   function handleSubmit(e) {
@@ -53,20 +59,31 @@ function Filters({
   // ! ****************** CONTENT ****************** */
   return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
+      {/* <p>{Object.keys(filtersToSend).length}</p> */}
       {
-        Object.keys(filtersToSend).length ?
+        Object.keys(queriesFromReducer).length ?
           <div className="container_box">
             {
-              Object.keys(filtersToSend).map((filterName) => (
-                <div key={filterName} className="box_filter" id={`${filterName}_${filtersToSend[filterName]}`}>
-                  <p className="filter_title_selected">{`${filterName}: ${filtersToSend[filterName]}`}</p>
-                  <button
-                    className="button_filtered"
-                    name={filterName}
-                    onClick={e => closeSelectedFilterButton(e)}
-                  >x</button>
-                </div>
-              ))
+              Object.keys(queriesFromReducer).map((filterName) => {
+                switch (filterName) {
+                  case "tag":
+                  case "category":
+                  case "orderType":
+                  case "orderDirection":
+                    return "";
+                  default:
+                    return (
+                      <div key={filterName} className="box_filter" id={`${filterName}_${queriesFromReducer[filterName]}`}>
+                        <p className="filter_title_selected">{`${filterName}: ${queriesFromReducer[filterName]}`}</p>
+                        <button
+                          className="button_filtered"
+                          name={filterName}
+                          onClick={e => closeSelectedFilterButton(e)}
+                        >x</button>
+                      </div>
+                    );
+                }
+              })
             }
           </div> : <div className="container_box"></div>
       }
@@ -74,25 +91,25 @@ function Filters({
       {/* PRECIO*/}
       <div className="name_filter">
         <h3 className="filter_title">Precio:<div className="title_stripe"></div></h3>
-        <p className="range_price_subtitle">Desde: {filtersToSend.rangePriceMin}</p>
+        <p className="range_price_subtitle">Desde: {queriesFromReducer.rangePriceMin}</p>
         <input
-          id={`rangePriceMin`}
+          id={`filter_name_rangePriceMin`}
           className="range_price"
           name="rangePriceMin"
           type="number"
           placeholder="Precio minimo"
-          value={filtersToSend.rangePriceMin}
+          value={queriesFromReducer.rangePriceMin ? filtersToSend.rangePriceMin : ""}
           onChange={e => handleFilters(e)}
           min={0}
         />
-        <p className="range_price_subtitle">Hasta: {filtersToSend.rangePriceMax}</p>
+        <p className="range_price_subtitle">Hasta: {queriesFromReducer.rangePriceMax}</p>
         <input
-          id={`rangePriceMax`}
+          id={`filter_name_rangePriceMax`}
           className="range_price"
           name="rangePriceMax"
           type="number"
           placeholder="Precio maximo"
-          value={filtersToSend.rangePriceMax}
+          value={queriesFromReducer.rangePriceMax ? filtersToSend.rangePriceMax : ""}
           onChange={e => handleFilters(e)}
           min={0}
         />
@@ -100,13 +117,17 @@ function Filters({
       {
         caracteristicsFromReducer.map(caracteristic => (
           <div className="name_filter" key={caracteristic.name_caracteristic}>
-            <h3 className="filter_title">{`${caracteristic.name_caracteristic}:`}<div className="title_stripe"></div></h3>
+            <h3 className="filter_title">
+              {`${caracteristic.name_caracteristic}:`}
+              <div className="title_stripe"></div>
+            </h3>
             <select
               name={caracteristic.name_caracteristic}
               className="list_select"
               onChange={e => handleFilters(e)}
+              id={`filter_name_${caracteristic.name_caracteristic}`}
             >
-              <option value="" className="select_options">Elige una opcion...</option>
+              <option value="default" className="select_options">Elige una opcion...</option>
               {
                 caracteristic.values_caracteristic.map(value => (
                   <option value={value} key={value} className="select_options">{value}</option>
@@ -116,27 +137,6 @@ function Filters({
           </div>
         ))
       }
-      {/* {
-        queriesFromReducer.category === "Ropa" ?
-          <div className="name_filter">
-            <h3>Genero:</h3>
-            <select className="list_select" name="genero" onChange={e => handleFilters(e)}>
-              <option value="">Genero...</option>
-              <option value="Unisex">Unisex</option>
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-            </select>
-            <h3>Talle:</h3>
-            <select className="list_select" name="size" onChange={e => handleFilters(e)}>
-              <option value="">Talle...</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
-            </select>
-          </div> : ""
-      } */}
     </form>
   </div>
 }

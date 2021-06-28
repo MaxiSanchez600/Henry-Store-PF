@@ -6,6 +6,7 @@ import { FirebaseAppProvider } from 'reactfire'
 import React, {Suspense} from "react";
 
 // ! PAGES
+import Landing from "../../Pages/Landing/Landing";
 import Home from "../../Pages/Home/Home";
 import Product_Detail from "../../Pages/Product_Detail/Product_Detail";
 import Checkout from "../../Pages/Checkout/Checkout.jsx";
@@ -43,6 +44,7 @@ function App() {
               <Route path="/home" component={NavBar}/>
               <Switch>
               <Route exact path = "/home/cart/success/:orderid/:addressid" component = {CartSuccess}/>
+              <Route exact path="/" component={Landing}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />

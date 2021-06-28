@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
+import "./Order.scss"
 
 function Order({ queriesFromReducer, sendFiltersToActions }) {
 
@@ -9,7 +10,7 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   const [orderDirection, setOrderDirection] = useState("");
 
   function handleOrder(e) {
-    if (e.target.value) {
+    if (e.target.value !== "default") {
       setOrderType(e.target.name);
       setOrderDirection(e.target.value);
       sendFiltersToActions({ ...queriesFromReducer, orderType: e.target.name, orderDirection: e.target.value });
@@ -19,6 +20,9 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
 
   function closeOrderButton(e) {
     e.preventDefault();
+    const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
+    console.log("filterToBeRemoved: ", filterToBeRemoved);
+    if (filterToBeRemoved) filterToBeRemoved.value = "default";
     setOrderType("");
     setOrderDirection("");
     const { orderType, orderDirection, ...removedOrderQueries } = { ...queriesFromReducer };
@@ -26,22 +30,34 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   }
 
   return (
-    <div>
+    <div className="order_container">
+      <div className="order_filter">
+        <h3 className="order_filter_title">
+          Ordenar por:
+          {/* <div></div> */}
+        </h3>
+        <select
+          name="price"
+          onChange={e => handleOrder(e)}
+          id={`filter_name_orderType`}
+          className="order_list_select"
+        >
+          <option value="default">Elige una opcion...</option>
+          <option value="ASC">Menor precio</option>
+          <option value="DESC">Mayor precio</option>
+        </select>
+      </div>
       {
-        orderType && orderDirection ?
-          <div>
-            <p>{`${orderType}: ${orderDirection}`}</p>
+        queriesFromReducer.orderType && queriesFromReducer.orderDirection ?
+          <div className="order_box_filter">
+            <p className="order_filter_title_selected">{`${queriesFromReducer.orderType}: ${queriesFromReducer.orderDirection}`}</p>
             <button
-              name={orderType}
+              name="orderType"
               onClick={e => closeOrderButton(e)}
+              className="order_button_filtered"
             >x</button>
           </div> : ""
       }
-      <select name="price" onChange={e => handleOrder(e)}>
-        <option value="">Ordenar de...</option>
-        <option value="ASC">Menor a mayor precio</option>
-        <option value="DESC">Mayor a menor precio</option>
-      </select>
     </div>
   );
 }

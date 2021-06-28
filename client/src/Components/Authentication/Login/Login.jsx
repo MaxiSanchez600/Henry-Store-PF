@@ -190,8 +190,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       </div>
 
       <form className="formu-login" onSubmit={handleSubmit}>
-          <h1 className="name">Login</h1>
-          <div className="name_strip"></div>
+          <h1 className="name">Login<div className="name_strip"></div></h1>
           <input
             className="imput_login" type="text" name="email" id="email" value={form.email}  onChange={handleOnChange} placeholder="Email..."
           />
