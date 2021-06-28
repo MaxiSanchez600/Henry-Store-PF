@@ -68,7 +68,7 @@ const NavBar = () => {
         <ForgotPassword isOpened={ModalForgotPass} 
                         forgotPassClose={() => setModalForgotPass(false)}
                         LoginOpen={() => setModalLogin(true)}
-                        />
+        />
       </Modal>
       <div className="left-box">
         <Link to="/home">

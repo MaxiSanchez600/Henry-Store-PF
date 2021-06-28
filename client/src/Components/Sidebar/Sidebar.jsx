@@ -11,7 +11,7 @@ import { useFirebaseApp } from "reactfire";
 import Swal from 'sweetalert2';
 import {  useSelector } from 'react-redux';
 import { AiOutlineFileSearch } from "react-icons/ai";
-import HenryCointWhite from "../../Assets/Images/HenryCoint1.png"
+import { BiCoin } from "react-icons/bi";
 
 const Sidebar = () => {
 
@@ -57,11 +57,10 @@ const Sidebar = () => {
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/admin"> <RiAdminFill/> Admin</Link> </li> 
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/profile"> <BsPersonFill/> Profile</Link> </li> 
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/myorders"> <AiOutlineFileSearch/> Mis Ordenes</Link> </li> 
-          <li className="liLinks" onClick={()=>{closeSidebar(); HenryCoint()}}> <span className='iconHenryCoint'><img src={HenryCointWhite}  alt="" width="25px"/>HenryCoints</span></li>  
-            
+          <li className="liLinks"><span className='icon-bicoin' onClick={()=>{closeSidebar(); HenryCoint()}}><BiCoin/> HenryCoints</span></li>       
           </>
           }
-          <li className="liLinks"><span className='spanOut'  onClick={()=>{logOut();closeSidebar()}}><RiLogoutCircleRLine/>Cerrar sesión</span></li>
+          <li className="liLinks"><Link to="/home" className='spanOut'  onClick={()=>{logOut();closeSidebar() }} ><RiLogoutCircleRLine/>Cerrar sesión</Link></li>
         </ul>
         
       </div>

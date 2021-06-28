@@ -4,7 +4,6 @@ import { GET_DETAIL_ORDER } from "../../../../Config/index";
 import PostReview from '../../../Reviews/PostReview'
 import "./OrderDetail.scss"
 
-
 const OrderDetail = (props) => {
   const idUrl = props.match.params.id;
   const [detailOrder, setDetailOrder] = useState({});
