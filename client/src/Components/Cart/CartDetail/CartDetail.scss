@@ -59,8 +59,9 @@
 
 .CartCost_CartDetail{
     width: 90%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 5px 10px;
+    grid-template-columns: repeat(3, 1fr);
     select{
         margin-top: 0.4em;
         height: 2em;

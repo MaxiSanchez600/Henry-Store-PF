@@ -20,7 +20,6 @@ export default function ProductCartCheckOut({productInfo}){
         return labels
     }
     const wrapperActivate = () =>{
-        console.log('eeeeeee')
         showCarac()
         scaleActivate()
     }

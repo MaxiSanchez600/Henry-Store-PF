@@ -71,7 +71,7 @@ export default function UserEdit({nextClick, volverClick, residenciaSelected}){
     const onValidate = ((e) =>{
         //Define Regex
         var textformat = /^[0-9]*$/
-        var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        var format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         var emailformat = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
         //Validate Name Lastname

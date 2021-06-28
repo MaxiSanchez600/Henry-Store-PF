@@ -3,7 +3,7 @@ import './Cartpay.scss'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import axios from 'axios'
-import { URL_BASE } from '../../../Config/index.js'
+import { URL_BASE, henryExchange } from '../../../Config/index.js'
 
 export function Cartpay(props){
     let history = useHistory()
@@ -65,10 +65,9 @@ export function Cartpay(props){
               <div className= "topPrice_pay">
                 <div className = 'TotalPrice_CartPay'>
                   <h2 className ='Label1_Cartpay'>TOTAL</h2>
-                  <h2 className ='Label2_Cartpay'>{(props.pricetotal * props.currencyactual) - (hc * (props.pricetotal * props.currencyactual) / 100)} {props.currencyactualname}</h2>
+                  <h2 className ='Label2_Cartpay'>{(props.pricetotal - (hc * henryExchange)) * props.currencyactual} {props.currencyactualname}</h2>
                 </div>
-                {(localStorage.getItem('userlogged') != null) ? <label className ='Label3_Cartpay'>¡Utilizando {hc} de tus <span>{props.userhc} Henry Coins</span> tenes un <span>{hc}%</span>, ahorrando
-                <span> {(hc * (props.pricetotal * props.currencyactual) / 100)}!</span></label> : <label label className ='Label3_Cartpay'>Al no estar logeado no dispones de <span>Henry Coins</span> para
+                {(localStorage.getItem('userlogged') != null) ? <label className ='Label3_Cartpay'>¡Utilizando {hc} de tus <span>{props.userhc} Henry Coins</span> ahorras <span>{(hc * henryExchange) * props.currencyactual} {props.currencyactualname}</span></label> : <label label className ='Label3_Cartpay'>Al no estar logeado no dispones de <span>Henry Coins</span> para
                 utlizar en tu compra.</label>}
               </div>
               <div className = 'HC_CartPay'>
@@ -90,7 +89,7 @@ export function Cartpay(props){
                 <br></br>
                 <br></br>
                 {(localStorage.getItem('userlogged') === null) && <label>Si ya tenes tu carrito listo, pero no estas registrado... ¡Podes <span className = 'SpanRegister_Cartpay' onClick = {OpenRegister}>registrate aqui</span> y se cargara automaticamente!</label>}
-                <button className = 'buttoncheckout_CartPay' onClick = {onSubmitCart}>CHECKOUT</button>
+                {(props.carritoactual.length > 0) && <button className = 'buttoncheckout_CartPay' onClick = {onSubmitCart}>CHECKOUT</button>}
               </div>
   
             </div>

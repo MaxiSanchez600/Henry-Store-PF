@@ -32,7 +32,7 @@ export default function AddressUserList({useraddress, clickEvent, addressSelecte
                 <h3 className = "H3_AddressUserList">{useraddress.phone_contact}</h3>
                 <p className = "P_AddressUserList">{useraddress.description}</p>
             </div>
-            <h3 className = "Edit_AddressUserList" onClick = {editClick}>Edit</h3>
+            <h3 className = "Edit_AddressUserList" onClick = {editClick}>Editar</h3>
         </div>
     )
 }

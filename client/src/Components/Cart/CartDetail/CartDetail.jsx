@@ -102,11 +102,11 @@ export function CartDetail(props){
                 </div>
                 <div className = 'CartCost_CartDetail'>
                         <select onChange = {changeAmount}>{getOptions().map(element =>
-                        (element === props.product.actual_amount) ?
-                        <option value = {element} selected = 'selected'>{element}</option> :
-                        <option value = {element}>{element}</option>)}
+                            (element === props.product.actual_amount) ?
+                            <option value = {element} selected = 'selected'>{element}</option> :
+                            <option value = {element}>{element}</option>)}
                         </select>
-                        <h2>{props.product.precio * amount}</h2>
+                        <h2>{(props.product.precio * amount) * props.currencyactual}{props.currencyactualname}</h2>
                         <h2>{props.product.hc * amount + ' HC por tu compra'}</h2>
                 </div>
                 <div className = 'CartOptions_CartDetail'>
@@ -122,7 +122,8 @@ export function CartDetail(props){
 //sirve de algo este mapstatetoprops?
 const mapStateToProps = (state) => {
     return{
-      
+        currencyactual: state.products.currency,
+        currencyactualname: state.products.currencyname,
     }
   }
   

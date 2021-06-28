@@ -407,7 +407,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     phone_contact: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
     },
     description: {

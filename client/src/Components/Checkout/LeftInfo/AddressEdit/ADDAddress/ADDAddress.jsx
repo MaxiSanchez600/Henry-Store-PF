@@ -54,7 +54,7 @@ export default function ADDAddress({onClose, updateAddress, showAdd, idEdit, pai
 
     const checkErrores = ((e) =>{
         var textformat = /^[0-9]*$/
-        var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        var format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         if(e.target.name === "direccion" || e.target.name === "description"){
             if(format.test(e.target.value) || /\d/.test(e.target.value)){
                 setErrores({
