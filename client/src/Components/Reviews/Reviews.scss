@@ -1,205 +1,199 @@
 // !CONTENT_REVIEWS
 
 .content_Reviews {
-    margin: 2rem 6rem 0rem 6rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    padding-top: 40px;
+  margin: 2rem 6rem 0rem 6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding-top: 40px;
 
-    .content_averageRating {
-        margin: 0rem 2rem 3rem 1.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-        padding: 2rem 0rem 1rem 0rem;
-        width: auto;
-        text-align: end;
-        display: flex;
+  .content_averageRating {
+    margin: 0rem 2rem 3rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 2rem 0rem 1rem 0rem;
+    width: auto;
+    text-align: end;
+    display: flex;
 
-        .left_rating {
-            .main_point {
-                line-height: 0.95;
-                text-align: right;
-                color: rgba(0, 0, 0, 0.8);
-                font-size: 3rem;
-                font-weight: 300;
-                padding-bottom: 1rem;
+    .left_rating {
+      .main_point {
+        line-height: 0.95;
+        text-align: right;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 3rem;
+        font-weight: 300;
+        padding-bottom: 1rem;
+      }
+    }
+
+    .rigth_rating {
+      display: inline-block;
+      max-width: 315px;
+      width: 100%;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      margin-left: 2rem;
+      .ul_star {
+        display: inline-block;
+        width: 100%;
+        .li_star {
+          margin-bottom: 12px;
+          display: -ms-grid;
+          display: grid;
+          grid-template-columns: 1fr 1fr 35px;
+          -ms-grid-columns: 1fr 1fr 35px;
+
+          .name_star {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            // flex-direction: column;
+            justify-content: center;
+            .span_name_star {
+              color: rgba(0, 0, 0, 0.45);
+              font-family: "Avenir_Roman";
             }
-        }
-
-        .rigth_rating {
-            display: inline-block;
-            max-width: 315px;
-            width: 100%;
-            border-left: 1px solid rgba(0,0,0, 0.1);
-            margin-left: 2rem;
-            .ul_star {
-                display: inline-block;
+          }
+          .content_bars {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            justify-content: center;
+            .bars_rating {
+              border-radius: 100px;
+              display: inline-block;
+              height: 4px;
+              margin-top: 4px;
+              position: relative;
+              vertical-align: middle;
+              .bar__background {
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 100px;
+                bottom: 0;
+                display: block;
+                height: 110%;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
                 width: 100%;
-                .li_star {
-                    margin-bottom: 12px;
-                    display: -ms-grid;
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 35px;
-                    -ms-grid-columns: 1fr 1fr 35px;
-
-                    .name_star {
-                        display: -webkit-flex;
-                        display: flex;
-                        -webkit-flex-direction: column;
-                        // flex-direction: column;
-                        justify-content: center;
-                        .span_name_star {
-                            color: rgba(0, 0, 0, 0.45);
-                            font-family: "Avenir_Roman";
-                        }
-                    }
-                    .content_bars {
-                        display: -webkit-flex;
-                        display: flex;
-                        -webkit-flex-direction: column;
-                        flex-direction: column;
-                        justify-content: center;
-                        .bars_rating {
-                            border-radius: 100px;
-                            display: inline-block;
-                            height: 4px;
-                            margin-top: 4px;
-                            position: relative;
-                            vertical-align: middle;
-                            .bar__background {
-                                background-color: rgba(0,0,0,.1);
-                                border-radius: 100px;
-                                bottom: 0;
-                                display: block;
-                                height: 110%;
-                                left: 0;
-                                position: absolute;
-                                right: 0;
-                                top: 0;
-                                width: 100%;
-                            }
-                            .fill__background {
-                                background-color: #ffc107;
-                                border-radius: 100px;
-                                bottom: 0;
-                                display: block;
-                                height: 105%;
-                                left: 0;
-                                position: absolute;
-                                right: 0;
-                                top: 0;
-                                box-shadow: 1px 1px 80px 0.5px #000000;
-                                border: 1px solid #fda901d4;
-                            }
-                        }
-                    }
-                    .total_points {
-                        display: -webkit-flex;
-                        display: flex;
-                        -webkit-flex-direction: column;
-                        flex-direction: column;
-                        justify-content: center;
-                        .points_label {
-                            color: rgba(0, 0, 0, 0.45);
-                            font-family: "Avenir_Roman";
-                        }
-                    }
-                }
+              }
+              .fill__background {
+                background-color: #ffc107;
+                border-radius: 100px;
+                bottom: 0;
+                display: block;
+                height: 105%;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                box-shadow: 1px 1px 80px 0.5px #000000;
+                border: 1px solid #fda901d4;
+              }
             }
+          }
+          .total_points {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            justify-content: center;
+            .points_label {
+              color: rgba(0, 0, 0, 0.45);
+              font-family: "Avenir_Roman";
+            }
+          }
         }
+      }
     }
+  }
 
-.rendered_reviews_container{
+  .rendered_reviews_container {
     padding-bottom: 5rem;
-}
+  }
 
-    .card_review {
-        padding: 1rem;
-        border-radius: 2rem;
+  .card_review {
+    padding: 1rem;
+    border-radius: 2rem;
 
-        &:hover {
-            background: rgb(219, 219, 219);
-        }
+    &:hover {
+      background: rgb(219, 219, 219);
     }
+  }
 
-    .score_label {
-        display: flex;
-        font-size: 0.7rem;
-        align-items: center;
-    }
+  .score_label {
+    display: flex;
+    font-size: 0.7rem;
+    align-items: center;
+  }
 
-    img {
-        border-radius: 50%;
-        padding-right: 5px;
-        height: 55px;
-    }
+  img {
+    border-radius: 50%;
+    padding-right: 5px;
+    height: 55px;
+  }
 
-    img:hover {
-        cursor: pointer;
-    }
+  img:hover {
+    cursor: pointer;
+  }
 
-    .user_info {
-        display: block;
-    }
+  .user_info {
+    display: block;
+  }
 
-    .opinion_text {
-        margin: 0.3rem 0rem 0rem 3.5rem;
-    }
-
-
-   
+  .opinion_text {
+    margin: 0.3rem 0rem 0rem 3.5rem;
+  }
 }
 
 // ! STAR RATING
 .StarRating {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    .star_radio_on {
-        display: none;
-    }
+  .star_radio_on {
+    display: none;
+  }
 
-    .star_radio_off {
-        pointer-events: none;
-    }
+  .star_radio_off {
+    pointer-events: none;
+  }
 
-    .star {
-        cursor: pointer;
-        transition: color 200ms;
-    }
-    .label_rating {
-        font-size: 0.7rem;
-    }
+  .star {
+    cursor: pointer;
+    transition: color 200ms;
+  }
+  .label_rating {
+    font-size: 0.7rem;
+  }
 }
-
-
-
 
 body {
   overflow: hidden;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400");
 
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
 .container2 {
-    margin: 0rem 50% 6rem 40%;
+  margin: 0rem 50% 6rem 40%;
   .bg,
-.button {
+  .button {
     position: absolute;
     width: 210px;
     height: 45px;
     border-radius: 10rem;
-}
+  }
 
-.bg {
+  .bg {
     animation: pulse 1.2s ease infinite;
     background: #ff3466;
   }
-  
+
   .button {
     display: flex;
     justify-content: center;
@@ -211,17 +205,15 @@ body {
     background-size: 18px;
     cursor: pointer;
     outline: none;
-    color: #FFF;
+    color: #fff;
     font-size: 17px;
 
-    span{
-        font-size: 0.8rem;
-        font-family: 'Avenir_Roman';
+    span {
+      font-size: 0.8rem;
+      font-family: "Avenir_Roman";
     }
   }
 }
-
-
 
 @keyframes pulse {
   0% {
@@ -234,4 +226,141 @@ body {
     transform: scale(1.5);
     opacity: 0;
   }
+}
+
+// ! POSTREVIEWS
+.content_PostReview {
+  .container3 {
+
+    .rating {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      overflow: hidden;
+      flex-direction: row-reverse;
+      height: 150px;
+      position: relative;
+    }
+
+    .rating-0 {
+      filter: grayscale(100%);
+    }
+
+    .rating > input {
+      display: none;
+    }
+
+    .rating > label {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      margin-top: auto;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23e3e3e3' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 76%;
+      transition: 0.3s;
+    }
+
+    .rating > input:checked ~ label,
+    .rating > input:checked ~ label ~ label {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fcd93a' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+    }
+
+    .rating > input:not(:checked) ~ label:hover,
+    .rating > input:not(:checked) ~ label:hover ~ label {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23d8b11e' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+    }
+
+    .emoji-wrapper {
+      width: 100%;
+      text-align: center;
+      height: 100px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .emoji-wrapper:before,
+    .emoji-wrapper:after {
+      content: "";
+      height: 15px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+    }
+
+    .emoji-wrapper:before {
+      top: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 1) 35%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    .emoji-wrapper:after {
+      bottom: 0;
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 1) 35%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    .emoji {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    .emoji > svg {
+      margin: 15px 0;
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+    }
+
+    #rating-1:checked ~ .emoji-wrapper > .emoji {
+      transform: translateY(-100px);
+    }
+    #rating-2:checked ~ .emoji-wrapper > .emoji {
+      transform: translateY(-200px);
+    }
+    #rating-3:checked ~ .emoji-wrapper > .emoji {
+      transform: translateY(-300px);
+    }
+    #rating-4:checked ~ .emoji-wrapper > .emoji {
+      transform: translateY(-400px);
+    }
+    #rating-5:checked ~ .emoji-wrapper > .emoji {
+      transform: translateY(-500px);
+    }
+
+    .feedback {
+      max-width: 360px;
+      background-color: #fff;
+      width: 100%;
+      padding: 30px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+
+.content_PostReview{
+    background: black;
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 1px solid yellow;
 }
