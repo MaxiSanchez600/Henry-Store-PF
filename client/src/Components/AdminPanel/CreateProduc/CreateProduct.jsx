@@ -61,7 +61,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     categoriesAux[l].push(catBack[l].SubCategories[m].name_sub_category)
                 }
             }
-            console.log(categoriesAux);
+            
             for(let n = 0; n < typeData.length; n++) {
                 for(let o = 0; o < categoriesAux.length; o++) {
                     if(categoriesAux[o].slice(1).includes(typeData[n])) {
@@ -114,10 +114,21 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const onClickCreateCategory = async () => {
         const { value: category } = await Swal.fire({
-            title: 'Añade una categoría',
+            title: 'Agregue una categoría',
             input: 'text',
             inputLabel: 'Nombre:',
-            showCancelButton: true,
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            showCancelButton:false,
+            inputPlaceholder:'Nombre',
+            inputLabel:false,
+            confirmButtonText:'Agregar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: value => {
                 if (!value) {
                     return '¡Debe digitar un nombre para la catergoria!';
@@ -132,15 +143,32 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+              })
         }
     };
 
     const onClickCreateCaracteristic = async () => {
         const { value: caracteristic } = await Swal.fire({
-            title: 'Añade una caracteristica',
+            title: 'Agregue una caracteristica',
             input: 'text',
             inputLabel: 'Nombre:',
-            showCancelButton: true,
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            showCancelButton:false,
+            inputPlaceholder:'Nombre',
+            inputLabel:false,
+            confirmButtonText:'Agregar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: value => {
                 if (!value) {
                     return '¡Debe digitar un nombre para la caracteristica!';
@@ -155,6 +183,12 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+              })
         }
     };
 
@@ -195,7 +229,13 @@ function CreateProduct ({ editIsActive, productData }) {
                 return Swal.fire({
                     icon: 'warning',
                     title: 'Asegúrate de completar todos los campos de la información básica del producto.',
-                    confirmButtonText: `OK`
+                    confirmButtonText: `OK`,
+                    buttonsStyling:false,
+                    customClass:{
+                        popup:'popCreate',
+                        title:'titlePopCreate',
+                        confirmButton:'warningBtn',
+                    },
                 });
             }
             if(Object.entries(json.infoProduct)[j][0] !== 'name' 
@@ -203,8 +243,14 @@ function CreateProduct ({ editIsActive, productData }) {
             && Object.entries(json.infoProduct)[j][1].toString().includes('-')) {
                 return Swal.fire({
                     icon: 'warning',
-                    title: 'Por favor, revisa los números negativos.',
-                    confirmButtonText: `OK`
+                    title: 'Verificar que ningún campo tenga números negativos.',
+                    confirmButtonText: `OK`,
+                    buttonsStyling:false,
+                    customClass:{
+                        popup:'popCreate',
+                        title:'titlePopCreate',
+                        confirmButton:'warningBtn',
+                    },
                 });
             }
         }
@@ -213,7 +259,13 @@ function CreateProduct ({ editIsActive, productData }) {
             return Swal.fire({
                 icon: 'warning',
                 title: 'Asegúrate de seleccionar al menos una categoría.',
-                confirmButtonText: `OK`
+                confirmButtonText: `OK`,
+                buttonsStyling:false,
+                customClass:{
+                    popup:'popCreate',
+                    title:'titlePopCreate',
+                    confirmButton:'warningBtn',
+                },
             });
         }
         for(let key in json.categories) {
@@ -221,7 +273,13 @@ function CreateProduct ({ editIsActive, productData }) {
                 return Swal.fire({
                     icon: 'warning',
                     title: 'Debe seleccionar una subcategoría por cada categoría.',
-                    confirmButtonText: `OK`
+                    confirmButtonText: `OK`,
+                    buttonsStyling:false,
+                    customClass:{
+                        popup:'popCreate',
+                        title:'titlePopCreate',
+                        confirmButton:'warningBtn',
+                    },
                 });
             }
         }
@@ -230,7 +288,13 @@ function CreateProduct ({ editIsActive, productData }) {
             return Swal.fire({
                 icon: 'warning',
                 title: 'Un producto con varias características mejora la experiencia de compra, elige al menos una.',
-                confirmButtonText: `OK`
+                confirmButtonText: `OK`,
+                buttonsStyling:false,
+                customClass:{
+                    popup:'popCreate',
+                    title:'titlePopCreate',
+                    confirmButton:'warningBtn',
+                },
             });
         }
         for(let key in json.caracteristics) {
@@ -238,7 +302,13 @@ function CreateProduct ({ editIsActive, productData }) {
                 return Swal.fire({
                     icon: 'warning',
                     title: 'Seleccione por lo menos un valor por cada característica.',
-                    confirmButtonText: `OK`
+                    confirmButtonText: `OK`,
+                    buttonsStyling:false,
+                    customClass:{
+                        popup:'popCreate',
+                        title:'titlePopCreate',
+                        confirmButton:'warningBtn',
+                    },
                 });
             }
         }
@@ -249,6 +319,13 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Sí`,
                 denyButtonText: `Volver`,
+                buttonsStyling:false,
+                customClass:{
+                    popup:'popCreate',
+                    title:'titlePopCreate',
+                    confirmButton:'confirmBtnPop',
+                    denyButton:'dennyBtnPop'
+                },
             });
             if(result.isDenied) return;
         }
@@ -259,6 +336,13 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Continuar de todas formas`,
                 denyButtonText: `Volver`,
+                buttonsStyling:false,
+                customClass:{
+                    popup:'popCreate',
+                    title:'titlePopCreate',
+                    confirmButton:'confirmBtnPop',
+                    denyButton:'dennyBtnPop'
+                },
             });
             if(result.isDenied) return;
         }
@@ -380,7 +464,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     <div className="createContent2">
                         <div className="caracteristicsContainer">
                             <h4>Caracteristicas</h4>
-                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>(Agregar caracteristica)</span></div>
+                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>Agregar caracteristica</span></div>
                             <ul>
                                 {carBack?.map((car, index) => {
                                     if(car.name_caracteristic !== 'type') {
@@ -415,9 +499,11 @@ function CreateProduct ({ editIsActive, productData }) {
                             json={json} 
                             setJson={setJson} 
                         />
+                        <div className='finalBtnContainer'>
+                            <button onClick={creacteProduct} className='btn-final-form'>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
+                        </div>
                     </div>
                 </div>
-                <button onClick={creacteProduct} className='btn-final-form'>{editIsActive?'Modificar producto' : 'Crear producto'}</button>
             </div>
         </div>
         

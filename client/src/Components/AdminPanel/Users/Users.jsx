@@ -21,7 +21,7 @@ export default function Users () {
         setReset(true)
     }
 
-    return <div>
+    return <div className='usersWrap'>
         <div className="container-table-users">
         <div className="users-refresh-qty">
             <div>

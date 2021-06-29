@@ -25,10 +25,21 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
 
     const addSubcategory = async (e) => {
         const { value: subCategory } = await Swal.fire({
-            title: 'Añade una sunCategoría',
+            title: 'Añade una subcategoría',
             input: 'text',
             inputLabel: 'Nombre:',
-            showCancelButton: true,
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            showCancelButton:false,
+            inputPlaceholder:'Nombre',
+            inputLabel:false,
+            confirmButtonText:'Agregar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: (value) => {
                 if (!value) {
                     return '¡Debe digitar un nombre para la subcategoria!';
@@ -45,6 +56,12 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                     setCatBack([...copyCatBack]);
                 }
             }
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+              })
         }
     };
     
@@ -58,7 +75,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                             <button onClick={onClose} name={cat}>x</button>
                         </div>
                         <div>
-                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
+                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subcategoria:</div>
                             <div className="checksContainer">
                                 {catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
                                     

@@ -55,13 +55,8 @@ function ImageUploader ({ json, setJson }){
                         <button className='onclose-btn' value={url} onClick={e => handleOnClose(e.target.value)}>X</button>
                     </div>
                 })}
-            </div>
-            <progress 
-                value={progress} 
-                max='100' 
-                className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
-            />
-            <label className={json.images.length < 6 ? 'card-footer' : 'card-footer card-footer-disabled'} >
+                <label className={json.images.length < 6 ? 'card-footer' : 'card-footer card-footer-disabled'} >
+                <div><BiImageAdd size='2em'/></div>
                 <input 
                     type='file' 
                     className='img-uploader' 
@@ -70,9 +65,15 @@ function ImageUploader ({ json, setJson }){
                     multiple
                     accept="image/png, image/jpeg"
                 />
-                <BiImageAdd />
                 Agregar imágenes al producto  
             </label>
+            </div>
+            <progress 
+                value={progress} 
+                max='100' 
+                className= {progressVisible ? 'progress-bar-active' : 'progress-bar-inactive'} 
+            />
+
         </div>
     );
 }
