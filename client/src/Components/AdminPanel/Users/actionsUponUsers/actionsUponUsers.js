@@ -34,17 +34,17 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             inputOptions: inputOptions,
             buttonsStyling:false,
             customClass:{
-              popup: 'popup',
-              title: 'title',
-              input: 'input',
-              validationMessage: 'validationMessage',
-              actions: 'actions',
-              confirmButton: 'confirmButton',
+              popup: 'popup-users',
+              title: 'title-users',
+              input: 'input-users',
+              validationMessage: 'validationMessage-users',
+              actions: 'actions-users',
+              confirmButton: 'confirmButton-users',
             },
             confirmButtonText: 'Continuar <i class="fa fa-arrow-right"></i>',
             inputValidator: (value) => {
               if (!value) {
-                return 'Necesitas elegir una acción!'
+                return 'Necesitas elegir una acción'
               }
             }
           })
@@ -75,19 +75,19 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         inputValue: 0,
         buttonsStyling:false,
         customClass:{
-          popup: 'popup',
-          title: 'title',
-          input: 'input',
-          validationMessage: 'validationMessage',
-          actions: 'actions',
-          confirmButton: 'confirmButton',
+          popup: 'popup-users',
+          title: 'title-users',
+          input: 'input-users',
+          validationMessage: 'validationMessage-users',
+          actions: 'actions-users',
+          confirmButton: 'confirmButton-users',
         },
         inputPlaceholder:
             `Seguro deseas darle nuevamente acceso a${name?(" "+ name):"l Usuario"}?`,
         confirmButtonText:
             'Continuar <i class="fa fa-arrow-right"></i>',
         inputValidator: (result) => {
-            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro'
+            return !result && 'Necesitas confirmar que quieres darle acceso nuevamente'
         }
         })
         if (accept) {
@@ -98,22 +98,31 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then(()=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`El Usuario puede acceder nuevamente!`,
                 icon:"success",
               })})
-              .catch(Swal.fire({
-                icon:"error",
-                title:"Hubo un problema"
-            }))
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema al darle acceso"
+                })
+              })
         }
     }
     if(!boolean && !rol && !entry && !pass){
@@ -123,12 +132,12 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         inputValue: 0,
         buttonsStyling:false,
         customClass:{
-          popup: 'popup',
-          title: 'title',
-          input: 'input',
-          validationMessage: 'validationMessage',
-          actions: 'actions',
-          confirmButton: 'confirmButton',
+          popup: 'popup-users',
+          title: 'title-users',
+          input: 'input-users',
+          validationMessage: 'validationMessage-users',
+          actions: 'actions-users',
+          confirmButton: 'confirmButton-users',
         },
         inputPlaceholder:
             `Seguro deseas prohibirle el acceso a${name?(" "+ name):"l Usuario"}?`,
@@ -146,22 +155,31 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then(()=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`El Usuario ha sido baneado!`,
                 icon:"success",
               })})
-              .catch(Swal.fire({
-                icon:"error",
-                title:"Hubo un problema"
-            }))
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema al banear al usuario"
+                })
+              })
         }
     }
     if(rol && !boolean){
@@ -182,12 +200,12 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             inputOptions: inputOptions,
             buttonsStyling:false,
             customClass:{
-              popup: 'popup',
-              title: 'title',
-              input: 'input',
-              validationMessage: 'validationMessage',
-              actions: 'actions',
-              confirmButton: 'confirmButton',
+              popup: 'popup-users',
+              title: 'title-users',
+              input: 'input-users',
+              validationMessage: 'validationMessage-users',
+              actions: 'actions-users',
+              confirmButton: 'confirmButton-users',
             },
             inputValidator: (value) => {
               if (!value) {
@@ -204,22 +222,31 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then(()=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`Listo!`,
                 icon:"success",
               })})
-              .catch(Swal.fire({
-                icon:"error",
-                title:"Hubo un problema"
-            }))
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema"
+                })
+              })
           }
           if (action === "admin") {
             axios.put(CHANGE_ROL,{
@@ -229,22 +256,31 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then(()=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`Listo!`,
-                icon:"sucess",
+                icon:"success",
               })})
-              .catch(Swal.fire({
-                icon:"error",
-                title:"Hubo un problema"
-            }))
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema"
+                })
+              })
           }
           if (action === "guest") {
             axios.put(CHANGE_ROL,{
@@ -254,22 +290,31 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then(()=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`Listo!`,
                 icon:"success",
               })})
-              .catch(Swal.fire({
-                icon:"error",
-                title:"Hubo un problema"
-            }))
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema"
+                })
+              })
           }
     }
     if(pass && !rol && !boolean){
@@ -279,19 +324,19 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
         inputValue: 0,
         buttonsStyling:false,
         customClass:{
-          popup: 'popup',
-          title: 'title',
-          input: 'input',
-          validationMessage: 'validationMessage',
-          actions: 'actions',
-          confirmButton: 'confirmButton',
+          popup: 'popup-users',
+          title: 'title-users',
+          input: 'input-users',
+          validationMessage: 'validationMessage-users',
+          actions: 'actions-users',
+          confirmButton: 'confirmButton-users',
         },
         inputPlaceholder:
             `Seguro deseas resetear la contraseña del Usuario`,
         confirmButtonText:
             'Continuar <i class="fa fa-arrow-right"></i>',
         inputValidator: (result) => {
-            return !result && 'Si no deseas realizar esta acción solo da click fuera del recuadro'
+            return !result && 'Necesitas confirmar que quieres resetear la contraseña'
         }
         })
         if (reset) {
@@ -301,13 +346,12 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             .then((res)=>{
               refreshAfterAction()
               Swal.fire({
+                iconColor: "#49AF41",
                 customClass:{
-                  popup: 'popup-final',
-                  title: 'title-final',
-                  input: 'input',
-                  validationMessage: 'validationMessage',
-                  actions: 'actions',
-                  confirmButton: 'confirmButton',
+                  popup: 'popup-final-confirm',
+                  title: 'title-final-confirm',
+                  input: 'input-confirm',
+                  confirmButton: 'confirmButton-confirm',
                 },
                 buttonsStyling:false,
                 title:`Contraseña cambiada`,
@@ -315,10 +359,20 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 icon:"success",
               })
             })
-            .catch(Swal.fire({
-              icon:"error",
-              title:"Hubo un problema"
-          }))
+            .catch(()=>{
+              Swal.fire({
+                buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"No se pudo actualizar"
+              })
+            })
         }
     }
 }

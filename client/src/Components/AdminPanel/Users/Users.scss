@@ -49,8 +49,24 @@
 .users-refresh-qty{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
+}
+.title-panel-users{
+    font-family: "Avenir_Black";
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    width: fit-content;
+}
+.title_stripe_users {
+    background-color: $yellow_main;
+    width: 96%;
+    height: 8px;
+    margin-top: -13px;
+    z-index: -10;
+}
+.qty-panel-users{
+    font-family: "Avenir_Roman";
 }
 
 .button-refresh-user{

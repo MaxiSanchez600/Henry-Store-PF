@@ -1,29 +1,17 @@
 @import "../../../../Sass/variables";
 
-.popup{
+.popup-users{
     background-color: white;
     width: 45rem;
     height: 15rem;
     color:black;
     font-family: "Avenir_Black";
 }
-
-.popup-final{
-    background-color: $black_main;
-    width: 35rem;
-    height: 22rem;
-    color:black;
+.title-users{
     font-family: "Avenir_Black";
-}
-
-.title{
     color: black;
 }
-
-.title-final{
-    color: white;
-}
-.confirmButton{
+.confirmButton-users{
     border-radius: 20px;
     border: 1px solid $yellow_main;
     background-color: $yellow_main;
@@ -41,16 +29,44 @@
         transform: scale(1.07);
     }
 }
-
-
-.input{
+.input-users{
     background-color: white;
     color: black;
 }
 
-.validationMessage{
-    background-color: black;
+.validationMessage-users{
+    background-color: white;
     color: #cc0000;
     height: 1.5rem;
 }
 
+.popup-final-confirm{
+    background-color: white;
+    width: 35rem;
+    height: 22rem;
+    color:black;
+    
+}
+.title-final-confirm{
+    color: black;
+    font-family: "Avenir_Black";
+}
+
+.confirmButton-confirm{
+    font-family: "Avenir_Roman";
+    border-radius: 20px;
+    border: none;
+    background-color: #49AF41;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.4s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+}
