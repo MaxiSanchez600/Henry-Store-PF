@@ -114,13 +114,13 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const onClickCreateCategory = async () => {
         const { value: category } = await Swal.fire({
-            title: 'Añade una categoría',
+            title: 'Añada una categoría',
             input: 'text',
             inputLabel: 'Nombre:',
             showCancelButton: true,
             inputValidator: value => {
                 if (!value) {
-                    return '¡Debe digitar un nombre para la catergoria!';
+                    return '¡Debe digitar un nombre para la catergoría!';
                 }
             }
         });
@@ -137,13 +137,13 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const onClickCreateCaracteristic = async () => {
         const { value: caracteristic } = await Swal.fire({
-            title: 'Añade una caracteristica',
+            title: 'Añada una característica',
             input: 'text',
             inputLabel: 'Nombre:',
             showCancelButton: true,
             inputValidator: value => {
                 if (!value) {
-                    return '¡Debe digitar un nombre para la caracteristica!';
+                    return '¡Debe digitar un nombre para la característica!';
                 }
             }
         });
@@ -200,10 +200,14 @@ function CreateProduct ({ editIsActive, productData }) {
             }
             if(Object.entries(json.infoProduct)[j][0] !== 'name' 
             && Object.entries(json.infoProduct)[j][0] !== 'description' 
-            && Object.entries(json.infoProduct)[j][1].toString().includes('-')) {
+            && (
+                Object.entries(json.infoProduct)[j][1].toString().includes('-')
+                || Object.entries(json.infoProduct)[j][1].toString().includes('.')
+                || Object.entries(json.infoProduct)[j][1].toString().includes(',')
+                )) {
                 return Swal.fire({
                     icon: 'warning',
-                    title: 'Por favor, revisa los números negativos.',
+                    title: 'Por favor, no utilices números negativos o decimales.',
                     confirmButtonText: `OK`
                 });
             }
@@ -348,12 +352,12 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Peso:</label>
                                 <input className='smallInput' type='number' min='0' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight} required></input>
-                                <label className='inputUnits'>kg</label>
+                                <label className='inputUnits'>g</label>
                             </div>
                             <div className="inputField">
-                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000.000'>Peso volumen*:</label>
+                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000'>Peso volumen*:</label>
                                 <input className='smallInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
-                                <label className='inputUnits'>kg</label>
+                                <label className='inputUnits'>g</label>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
@@ -363,7 +367,7 @@ function CreateProduct ({ editIsActive, productData }) {
                         </div>
                         <div className="categoryContainer">
                                 <h4>Categoría</h4>      
-                                <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
+                                <div>Seleccione una o más categorías, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
                                 <div className='categoriesWrap'>
                                     {catBack?.map((cat, index) => (
                                         <button 
@@ -385,8 +389,8 @@ function CreateProduct ({ editIsActive, productData }) {
                     </div>
                     <div className="createContent2">
                         <div className="caracteristicsContainer">
-                            <h4>Caracteristicas</h4>
-                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>(Agregar caracteristica)</span></div>
+                            <h4>Características</h4>
+                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. Seleccione una o <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>agregue una nueva:</span></div>
                             <ul>
                                 {carBack?.map((car, index) => {
                                     if(car.name_caracteristic !== 'type') {
@@ -409,14 +413,14 @@ function CreateProduct ({ editIsActive, productData }) {
                         </div>
                         <div className="tagsContainer">
                             <h4>Tags</h4>
-                            <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
+                            <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida.</div>
                             <Tags 
                                 json={json} 
                                 setJson={setJson}  
                                 textPlaceholder='presione enter para agregar un tag'
                             />
                         </div>
-                        <h4>Imagenes</h4>
+                        <h4>Imágenes</h4>
                         <ImageUploader 
                             json={json} 
                             setJson={setJson} 

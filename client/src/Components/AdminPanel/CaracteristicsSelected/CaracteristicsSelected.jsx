@@ -5,7 +5,7 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
 
     const addValue = async e => {
         const { value: valueCar } = await Swal.fire({
-            title: 'Añade un valor',
+            title: 'Añada un valor',
             input: 'text',
             inputLabel: 'Nombre:',
             showCancelButton: true,

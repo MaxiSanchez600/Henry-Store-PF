@@ -25,7 +25,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
 
     const addSubcategory = async (e) => {
         const { value: subCategory } = await Swal.fire({
-            title: 'Añade una sunCategoría',
+            title: 'Añada una subcategoría',
             input: 'text',
             inputLabel: 'Nombre:',
             showCancelButton: true,
@@ -58,7 +58,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                             <button onClick={onClose} name={cat}>x</button>
                         </div>
                         <div>
-                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subCategoria:</div>
+                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subcategoría:</div>
                             <div className="checksContainer">
                                 {catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
                                     
