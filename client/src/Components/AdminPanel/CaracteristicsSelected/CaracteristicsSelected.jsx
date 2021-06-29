@@ -5,10 +5,21 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
 
     const addValue = async e => {
         const { value: valueCar } = await Swal.fire({
-            title: 'Añade un valor',
+            title: 'Agregue un valor',
             input: 'text',
             inputLabel: 'Nombre:',
-            showCancelButton: true,
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            showCancelButton:false,
+            inputPlaceholder:'Nombre',
+            inputLabel:false,
+            confirmButtonText:'Agregar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: value => {
                 if (!value) {
                     return '¡Debe digitar un nombre!';
@@ -25,6 +36,12 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                     setCarBack([...copyCarBack]);
                 }
             }
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregado con éxito',
+                showConfirmButton: false,
+                timer: 1400
+              })
         }
     };
 
