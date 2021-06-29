@@ -19,9 +19,9 @@ export default function Categories () {
         .then(res=>{
             setCategories(res.data)
             setReset(false)
-            if(card.subcat.length !== 0){
-                document.querySelector(`#${card.title}`).click()
-            }
+            // if(card.subcat.length !== 0){
+            //     document.querySelector(`#${card.title}`).click()
+            // }
         })
     },[reset])
 
@@ -62,7 +62,7 @@ export default function Categories () {
                         <div className="container-buttons-subcategories">
                             {card.subcat?.map(e=>{
                                 return <div>
-                                            <button onClick={()=>{actionsSubcategory(setReset, e.id_sub_category)}}>action</button>
+                                            <button onClick={()=>{actionsSubcategory(setReset, e.id_sub_category,card,setCard)}}>action</button>
                                             <span>{e.name_sub_category}</span>
                                        </div>
                             })}

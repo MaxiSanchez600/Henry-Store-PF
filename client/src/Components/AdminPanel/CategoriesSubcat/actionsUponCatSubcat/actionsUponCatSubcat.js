@@ -25,19 +25,12 @@ export async function addCategory (resetfunc) {
                 title: "Categoría creada"
             })
         })
-        .catch(Swal.fire({
-            buttonsStyling:false,
-            customClass:{
-            popup: 'popup-order',
-            title: 'title-order',
-            input: 'input-order',
-            validationMessage: 'validationMessage-order',
-            actions: 'actions-order',
-            confirmButton: 'confirmButton-order',
-          },
+        .catch(()=>{
+          Swal.fire({
             icon:"error",
             title:"Hubo un problema"
-        }))
+          })
+        })
     
     }
 }
@@ -60,25 +53,18 @@ export async function addsubCategory (resetfunc,idcat) {
             id_category : idcat
         })
         .then(()=>{
-            resetfunc(true)
-            Swal.fire({
-                icon:"success",
-                title: "Subcategoría creada"
-            })
+          resetfunc(true)
+          Swal.fire({
+            icon:"success",
+            title: "Subcategoría creada"
+          })
         })
-        .catch(Swal.fire({
-            buttonsStyling:false,
-            customClass:{
-            popup: 'popup-order',
-            title: 'title-order',
-            input: 'input-order',
-            validationMessage: 'validationMessage-order',
-            actions: 'actions-order',
-            confirmButton: 'confirmButton-order',
-          },
+        .catch(()=>{
+          Swal.fire({
             icon:"error",
             title:"Hubo un problema"
-        }))
+          })
+        })
     
     }
 }
@@ -130,19 +116,12 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
                         title: "Categoria Modificada"
                     })
                 })
-                .catch(Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                    popup: 'popup-order',
-                    title: 'title-order',
-                    input: 'input-order',
-                    validationMessage: 'validationMessage-order',
-                    actions: 'actions-order',
-                    confirmButton: 'confirmButton-order',
-                  },
+                .catch(()=>{
+                  Swal.fire({
                     icon:"error",
                     title:"Hubo un problema"
-                }))
+                  })
+                })
             
             }
       }
@@ -174,19 +153,12 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
                     title: "Categoría eliminada"
                 })
             })
-            .catch(Swal.fire({
-                buttonsStyling:false,
-                customClass:{
-                popup: 'popup-order',
-                title: 'title-order',
-                input: 'input-order',
-                validationMessage: 'validationMessage-order',
-                actions: 'actions-order',
-                confirmButton: 'confirmButton-order',
-              },
+            .catch(()=>{
+              Swal.fire({
                 icon:"error",
                 title:"Hubo un problema"
-            }))
+              })
+            })
           }
       }
 }
@@ -235,19 +207,12 @@ export async function actionsSubcategory (resetfunc, id){
                         title: "Subcategoria Modificada"
                     })
                 })
-                .catch(Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                    popup: 'popup-order',
-                    title: 'title-order',
-                    input: 'input-order',
-                    validationMessage: 'validationMessage-order',
-                    actions: 'actions-order',
-                    confirmButton: 'confirmButton-order',
-                  },
+                .catch(()=>{
+                  Swal.fire({
                     icon:"error",
                     title:"Hubo un problema"
-                }))
+                  })
+                })
             
             }
       }
@@ -259,7 +224,7 @@ export async function actionsSubcategory (resetfunc, id){
             inputPlaceholder:
               'Estas seguro que deseas eliminar esta subcategoría? Todos los productos con ella quedaran desconectados!',
             confirmButtonText:
-              'Continue <i class="fa fa-arrow-right"></i>',
+              'Continuar <i class="fa fa-arrow-right"></i>',
             inputValidator: (result) => {
               return !result && 'Necesitas confirmar que quieres eliminarla!'
             }
@@ -278,19 +243,12 @@ export async function actionsSubcategory (resetfunc, id){
                     title: "Subcategoría eliminada"
                 })
             })
-            .catch(Swal.fire({
-                buttonsStyling:false,
-                customClass:{
-                popup: 'popup-order',
-                title: 'title-order',
-                input: 'input-order',
-                validationMessage: 'validationMessage-order',
-                actions: 'actions-order',
-                confirmButton: 'confirmButton-order',
-              },
+            .catch(()=>{
+              Swal.fire({
                 icon:"error",
                 title:"Hubo un problema"
-            }))
+              })
+            })
           }
       }
 }

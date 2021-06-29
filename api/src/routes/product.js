@@ -17,6 +17,7 @@ router.delete('/categories', categoriesController.deleteCategories);
 
 router.get('/caracteristics', caracteristicsController.getCaracteristics);
 
+router.get('/subcategories',subcategoriesController.getSubCategories)
 router.post('/subcategories',subcategoriesController.createSubCategories);
 router.put('/subcategories',subcategoriesController.updateSubCategories);
 router.delete('/subcategories',subcategoriesController.deleteSubCategories);
