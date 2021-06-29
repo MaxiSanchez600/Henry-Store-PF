@@ -50,7 +50,7 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
             if(!isPago){
                 setisLoading(true)
                 setispago(true)
-                axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${idaddress}`)
+                axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${idaddress}&residencia=${residenciaSelected}`)
                 .then(value =>{
                     const script = document.createElement('script');
                     script.type = 'text/javascript';

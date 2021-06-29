@@ -11,6 +11,7 @@ export default function CartSuccess(){
     //external_reference=null&payment_type=credit_card&merchant_order_id=2866193969&preference_id=209521005-3e33f6a8-f33f-4b9e-8d0d-
     //400c042d1bbe&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
     const [totalprice, setTotalPrice] = React.useState("")
+    const [pais, setPais] = React.useState("")
     const [direccion, setDireccion] = React.useState({})
     
     // NacionalityIdNacionality: 1
@@ -26,7 +27,7 @@ export default function CartSuccess(){
     // province: "San Luis"
     // updatedAt: "2021-06-26T05:43:44.244Z"
 
-    const { orderid, addressid } = useParams();
+    const { orderid, addressid, residenceid} = useParams();
     const search = useLocation().search;
     const paymentid = new URLSearchParams(search).get("payment_id");
     // console.log(orderid, paymentid, addressid)
@@ -35,19 +36,25 @@ export default function CartSuccess(){
     let today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 
     
-    useEffect(() =>{
-        axios.put(ORDER_TO_PAGADO_RETURN_TOTAL_PRICE + `?orderid=${orderid}&direcid=${addressid}&paymentid=${paymentid}&userid=${iduser}`)
+    useEffect(async () =>{
+        await axios.put(ORDER_TO_PAGADO_RETURN_TOTAL_PRICE + `?orderid=${orderid}&direcid=${addressid}&paymentid=${paymentid}&userid=${iduser}&residenceid=${residenceid}`)
         .then(value =>{
             console.log(value.data)
-            setTotalPrice(value.data)
-            return axios.get(DIRECCION_BY_ID + `?direcid=${addressid}`)
-        })
-        .then(value =>{
-            setDireccion(value.data)
+            setTotalPrice(value.data.pricetotal)
+            setPais(value.data.pais)
         })
         .catch(error =>{
             alert(error)
         })
+        if(addressid !== "undefined"){
+            return axios.get(DIRECCION_BY_ID + `?direcid=${addressid}`)
+            .then(value =>{
+                setDireccion(value.data)
+            })
+            .catch(error =>{
+                alert(error)
+            })
+        }
     }, [])
 
     return(
@@ -67,7 +74,8 @@ export default function CartSuccess(){
                 <tr>
                     <th>Dirección</th>
                         <td>{
-                        direccion.direccion + ' ' + direccion.numerodireccion
+                       (direccion.direccion !== undefined) ? direccion.direccion + ' ' + direccion.numerodireccion
+                       : "Direccion de envío a coordinar"
                         }</td>
                 </tr>
                 <tr>
@@ -80,7 +88,7 @@ export default function CartSuccess(){
                 </tr>
                 <tr>
                     <th>País</th>
-                    <td>Argentina</td>
+                    <td>{pais}</td>
                 </tr>
                 <tr>
                     <th>Teléfono de contacto</th>

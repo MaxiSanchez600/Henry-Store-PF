@@ -43,7 +43,7 @@ function App() {
             <BrowserRouter>
               <Route path="/home" component={NavBar}/>
               <Switch>
-              <Route exact path = "/home/cart/success/:orderid/:addressid" component = {CartSuccess}/>
+              <Route exact path = "/home/cart/success/:orderid/:addressid/:residenceid" component = {CartSuccess}/>
               <Route exact path="/" component={Landing}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
               <Route exact path="/home/profile" component={CompleteData} />

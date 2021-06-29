@@ -12,8 +12,8 @@ const initialState = {
     categories: [], //en el otro reducer index estaban como un objeto
     caracteristics: [],
     queries: {},
-    currency: localStorage.getItem('currency'),
-    currencyname: localStorage.getItem("currencyname")
+    currency: (localStorage.getItem('currency') !== null) ? localStorage.getItem('currency') : 1,
+    currencyname: (localStorage.getItem('currencyname') !== null) ? localStorage.getItem('currencyname') : "USD",
 };
 
 const rootReducer = (state = initialState, action) => {

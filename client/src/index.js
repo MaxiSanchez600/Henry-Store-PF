@@ -7,6 +7,10 @@ import { AppProvider } from './context';
 import {getUserLogin} from "./Redux/actions/actionsUsers";
 
 var userLogged = localStorage.getItem('userlogged');
+if(localStorage.getItem("currency") === null){
+  localStorage.setItem("currency", "1")
+  localStorage.setItem("currencyname", "USD")
+}
 
   if(userLogged){
     store.dispatch(getUserLogin(userLogged))

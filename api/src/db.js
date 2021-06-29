@@ -126,8 +126,9 @@ UserAddress.belongsTo(Nacionality)
 UserAddress.hasMany(Order)
 Order.belongsTo(UserAddress)
 
-
-
+//Realcion Order Nacionality
+Nacionality.hasMany(Order)
+Order.belongsTo(Nacionality)
 
 
 //Precarga Role
