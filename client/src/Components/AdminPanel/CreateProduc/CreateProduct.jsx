@@ -348,12 +348,12 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Peso:</label>
                                 <input className='smallInput' type='number' min='0' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight} required></input>
-                                <label className='inputUnits'>KG</label>
+                                <label className='inputUnits'>kg</label>
                             </div>
                             <div className="inputField">
-                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000.000'>Peso volumétrico:</label>
+                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000.000'>Peso volumen*:</label>
                                 <input className='smallInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
-                                <label className='inputUnits'>KG</label>
+                                <label className='inputUnits'>kg</label>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
