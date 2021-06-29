@@ -329,6 +329,7 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Precio:</label>
                                 <input className='smallInput' type='number' min='0' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
+                                <label className='inputUnits'>USD</label>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>
@@ -337,22 +338,27 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Stock:</label>
                                 <input className='smallInput' type='number'  min='0' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock} required></input>
+                                <label className='inputUnits'>unidades</label>
                             </div>
                             <div className="inputField">
-                                <label>Henry coins:</label>
+                                <label title='Representa la cantidad de HC que entrega al usuario cuando éste compra el producto.'>Henry coins:</label>
                                 <input className='smallInput' type='number' min='0' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin} required></input>
+                                <label className='inputUnits'>HC</label>
                             </div>
                             <div className="inputField">
                                 <label>Peso:</label>
                                 <input className='smallInput' type='number' min='0' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight} required></input>
+                                <label className='inputUnits'>KG</label>
                             </div>
                             <div className="inputField">
-                                <label>Dimensiones (Largo x Alto x Ancho):</label>
-                                <input className='normalInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
+                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000.000'>Peso volumétrico:</label>
+                                <input className='smallInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
+                                <label className='inputUnits'>KG</label>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
                                 <input className='smallInput' type='number' min='0' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount} required></input>
+                                <label className='inputUnits'>%</label>
                             </div>
                         </div>
                         <div className="categoryContainer">
