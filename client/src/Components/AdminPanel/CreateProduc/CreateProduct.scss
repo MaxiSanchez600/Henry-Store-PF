@@ -4,7 +4,9 @@
     background-color:rgb(247, 247, 247);
     min-height: 100vh;
 }
-
+.createContainer h1{
+    font-family: 'Avenir_Roman';
+}
 .createContent{
     display: flex;
     background-color: rgb(255, 255, 255);
@@ -21,6 +23,7 @@
 .createContent h4{
     margin-bottom: 10px;
     margin-top: 15px;
+    font-family: 'Avenir_Roman';
 }
 
 .basicInfo{
@@ -107,7 +110,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .btn-final-form {
-    width: 40%;
+    width: 20%;
     text-align: center;
     background: #000;
     font-size: 20px;

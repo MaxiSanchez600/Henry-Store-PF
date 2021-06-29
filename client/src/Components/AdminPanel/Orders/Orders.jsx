@@ -49,7 +49,7 @@ export default function Orders () {
         })
     }
 
-    return <div>
+    return <div className='orderWrap'>
     <div className="container-table-order">
     <h1>Panel de Ordenes</h1>
     <div className = "order-refresh-qty">

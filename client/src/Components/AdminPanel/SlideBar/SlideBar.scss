@@ -1,33 +1,99 @@
 
 .slideBarContainer{ 
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #282828;
+    background-color: #000000;
     min-height: 100vh;
     max-width: 30vh;
     min-width: 25vh;
     h3{
         color:#FFFF01 ;
+        font-size: 1em;
+        margin-top: 15px;
     }
     ul{
-         list-style-type:none;
+        padding: 5px;
          li{
+             cursor: pointer;
+             list-style: none;
              color:#ffffff;
+             margin-left: 5px;
+             margin-top: 5px;
+             padding: 5px; 
+             border-radius: 5px;
          }
          li:hover{
              color:#FFFF01;
+             background-color: rgb(43, 43, 43);
          }
+    }
+    img{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
     }
 
 }
+
+.slideBarWraper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 20px 20px;
+}
+.slideBarWraper h2{
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: 'Avenir_Roman';
+}
+
+.slideBarMenu{
+    margin-bottom: 10px;
+}
+
+.slideBarMenu li.active{
+    color:#FFFF01;
+    background-color: rgb(43, 43, 43);
+}
+
+.iconLi{
+    margin-right: 20px;
+}
+
 .profilePic{
     position: relative;
     margin-top: 30px;
     width: 150px;
     height: 150px;
-    border:1px solid black;
+    border:1px solid rgb(255, 255, 255);
     border-radius: 100px;
     object-fit: contain;
+}
+
+.backHomeButton{
+    all: unset;
+    margin-top: 100px;
+    background-color: yellow;
+    color: black;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.iconHome{
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.backButton{
+    all: unset;
+    cursor: pointer;
+    color: yellow;
+    margin: 10px 0 0 10px; 
+
+    &:hover {
+        color: rgb(255, 0, 0);
+    }
 }

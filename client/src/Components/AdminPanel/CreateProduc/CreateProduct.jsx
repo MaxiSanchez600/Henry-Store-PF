@@ -61,7 +61,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     categoriesAux[l].push(catBack[l].SubCategories[m].name_sub_category)
                 }
             }
-            console.log(categoriesAux);
+            
             for(let n = 0; n < typeData.length; n++) {
                 for(let o = 0; o < categoriesAux.length; o++) {
                     if(categoriesAux[o].slice(1).includes(typeData[n])) {
@@ -380,7 +380,7 @@ function CreateProduct ({ editIsActive, productData }) {
                     <div className="createContent2">
                         <div className="caracteristicsContainer">
                             <h4>Caracteristicas</h4>
-                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>(Agregar caracteristica)</span></div>
+                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>Agregar caracteristica</span></div>
                             <ul>
                                 {carBack?.map((car, index) => {
                                     if(car.name_caracteristic !== 'type') {
