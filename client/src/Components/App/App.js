@@ -18,6 +18,8 @@ import SlideBar from "../AdminPanel/SlideBar/SlideBar";
 import Analytics from "../AdminPanel/Analytics/Analytics";
 import EditProduct from "../AdminPanel/EditProduct/EditProduct";
 import CartSuccess from "../CartResult/CartSuccess/CartSuccess";
+import CartFailure from "../CartResult/CartFailure/CartFailure";
+import CartPending from "../CartResult/CartPending/CartPending";
 
 // !ACTIONS
 import Users from "../AdminPanel/Users/Users";
@@ -44,6 +46,8 @@ function App() {
               <Route path="/home" component={NavBar}/>
               <Switch>
               <Route exact path = "/home/cart/success/:orderid/:addressid/:residenceid" component = {CartSuccess}/>
+              <Route exact path = "/home/cart/failure/" component = {CartFailure} />
+              <Route exact path = "/home/cart/pending/" component = {CartPending} />
               <Route exact path="/" component={Landing}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
               <Route exact path="/home/profile" component={CompleteData} />

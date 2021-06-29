@@ -33,8 +33,8 @@ const paymentMethods = {
             ],
             back_urls: {
                 success: url + `/home/cart/success/${orderid}/${addressid}/${residencia}`,
-                failure: "https://www.youtube.com/watch?v=wEtEm0Y6EYc&ab_channel=MercadoPagoDevelopers",
-                pending: "https://image.shutterstock.com/image-illustration/pending-rubber-stamp-260nw-120765172.jpg"
+                failure: url + `/home/cart/failure/`,
+                pending: url + `/home/cart/pending/`
             },
             auto_return: "all"
         }
