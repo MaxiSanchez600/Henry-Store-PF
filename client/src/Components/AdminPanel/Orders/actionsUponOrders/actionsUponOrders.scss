@@ -1,26 +1,29 @@
 @import "../../../../Sass/variables";
 
-.popup-order{
-    background-color: $black_main;
+.popup-order-info{
+    background-color: white;
     width: 30rem;
-    height: 22rem;
+    height: 16rem;
     color:black;
+}
+.title-order-info{
     font-family: "Avenir_Black";
+    color: black;
 }
-.popup-order-small{
-    background-color: $black_main;
-    width: 30rem;
-    height: 15rem;
-    color:black;
-    font-family: "Avenir_Black";
+.input-order-info{
+    background-color: white;
+    color: black;
+    font-family: "Avenir_Roman";
 }
-.title-order{
-    color: $yellow_main;
+.validationMessage-order-info{
+    background-color: white;
+    color: #cc0000;
+    height: 1.5rem;
 }
-
-.confirmButton-order{
+.confirmButton-order-info{
+    font-family: "Avenir_Roman";
     border-radius: 20px;
-    border: 1px solid $yellow_main;
+    border: none;
     background-color: $yellow_main;
     color: #000000;
     font-size: 12px;
@@ -29,7 +32,78 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
-    margin: 1rem;
+    cursor: pointer;
+    transition: 0.4s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+}
+
+.popup-order-success{
+    background-color: white;
+    width: 30rem;
+    height: 20rem;
+    color:black;
+}
+.title-order-success{
+    font-family: "Avenir_Black";
+    color: black;
+}
+
+.input-order-success{
+    background-color: white;
+    color: black;
+    font-family: "Avenir_Roman";
+}
+
+.confirmButton-order-success{
+    font-family: "Avenir_Roman";
+    border-radius: 20px;
+    border: none;
+    background-color: #49AF41;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.4s all;
+    &:hover {
+        transform: scale(1.07);
+    }
+}
+
+.popup-order-error{
+    background-color: white;
+    width: 30rem;
+    height: 20rem;
+    color:black;
+}
+.title-order-error{
+    font-family: "Avenir_Black";
+    color: black;
+}
+
+.input-order-error{
+    background-color: white;
+    color: black;
+    font-family: "Avenir_Roman";
+}
+
+.confirmButton-order-error{
+    font-family: "Avenir_Roman";
+    border-radius: 20px;
+    border: none;
+    background-color: #F64749;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
     cursor: pointer;
     transition: 0.4s all;
     &:hover {
@@ -38,14 +112,4 @@
 }
 
 
-.input-order{
-    background-color: black;
-    color: white;
-}
-
-.validationMessage-order{
-    background-color: black;
-    color: #cc0000;
-    height: 1.5rem;
-}
 

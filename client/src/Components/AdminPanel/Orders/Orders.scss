@@ -8,13 +8,14 @@
     border-collapse:collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    min-width: 400px; //posiblemente tenga que cambiar esto
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 80vw;
 }
 
 .content-table-order tr th {
+    font-family: "Avenir_Roman";
     background-color: #FFFF01;
     color: #000000;
     text-align: center;
@@ -50,55 +51,69 @@
     border-bottom: none
 }
 
+.row-product2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    height: 5rem;
+}
+
 .action-wheel-order{
     width: min-content;
     &:hover{
+        transition: 0.5s all ease;
         cursor: pointer;
+        transform: scale(1.4);
     }
 }
 
 .img-product-order{
-    width: 4rem;
-    height: 4rem;
-    object-fit: cover;
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
 }
 
 .order-refresh-qty{
     display: flex;
+    height: 4rem;
     flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+.title-panel-orders{
+    font-family: "Avenir_Black";
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    width: fit-content;
+}
+.title_stripe_orders {
+    background-color: $yellow_main;
+    width: 96%;
+    height: 8px;
+    margin-top: -13px;
+    z-index: -10;
+}
+
+.qty-panel-orders{
+    font-family: "Avenir_Roman";
+}
+
+.divbuttons{
+    display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.button-refresh-order{
-    display: flex;
-    border-radius: 20px;
-    border: 1px solid $black_main;
-    background-color: $yellow_main;
-    color: #000000;
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 0.2rem;
-    transition: transform 80ms ease-in;
-    cursor: pointer;
-    transition: 0.4s all;
-    box-shadow: 0.1rem 0.15rem 5px black;
-    &:hover {
-        transform: scale(1.07);
-    }
-    margin-left: 1rem;
-}
-
-
 .popup-order-infouser{
-    background-color: $black_main;
+    background-color: white;
     width: 27rem;
     height: 14rem;
     color:black;
     font-family: "Avenir_Black";
 }
 .title-order-infouser{
-    color: $yellow_main;
+    color: black;
 }
 
 .confirmButton-order-infouser{
@@ -120,18 +135,68 @@
     }
 }
 
-
-.input-order-infouser{
-    background-color: black;
-    color: white;
-}
-
-.validationMessage-order-infouser{
-    background-color: black;
-    color: #cc0000;
-    height: 1.5rem;
-}
-
 .content-order-infouser{
-    color: white;
+    color: black;
+}
+
+.list_select_orders {
+    border: 1px solid $light_gray;
+    border-radius: 8px;
+    width: fit-content;
+    font-family: "Avenir_Roman";
+    align-items: flex-end;
+    margin: 10px;
+    outline: none;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 14px;
+    align-items: center;
+    transition: all 0.25s;
+    cursor: pointer;
+    background-color: $light_gray;
+    &:hover,
+    &:focus {
+        color: $black_main;
+        background-color: $white_main;
+    }
+}
+
+.buttons-pagination-orders {
+    background-color: black;
+    color: $yellow_main;
+    width: auto;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    &:hover{
+        color: black;
+        background-color: $yellow_main;
+    }
+  }
+
+.buttons-pagination-orders-disabled {
+    background-color: #D2D2D6;
+    color: black;
+    width: auto;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s all ease;
+}
+
+.ontableclickeable{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    &:visited{
+        text-decoration: none;
+    }
+    &:hover{
+        transition: 0.5s all ease;
+        font-weight: 800;
+    }
 }

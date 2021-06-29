@@ -304,6 +304,19 @@ const productsController = {
             return res.status(500).send(error);
         }
     },
+
+    updateStock: (req, res, next) => {
+        let {id, newstock} = req.body;
+        Product.update({
+            unit_stock : newstock
+        },{
+            where:{
+                id_product:id
+            }
+        })
+        .then(()=>res.sendStatus(200))
+        .catch(e=>next(e))
+    }
 };
 
 module.exports = productsController;

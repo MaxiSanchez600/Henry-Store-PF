@@ -9,58 +9,59 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
             const { value: newstate } = await Swal.fire({
                 title: 'Cancelar orden',
                 input: 'checkbox',
-                inputValue: "cancelada",
+                inputValue: 0,
                 buttonsStyling:false,
                 customClass:{
-                  popup: 'popup-order-small',
-                  title: 'title-order',
-                  input: 'input-order',
-                  validationMessage: 'validationMessage-order',
-                  actions: 'actions-order',
-                  confirmButton: 'confirmButton-order',
+                  popup: 'popup-order-info',
+                  title: 'title-order-info',
+                  input: 'input-order-info',
+                  validationMessage: 'validationMessage-order-info',
+                  confirmButton: 'confirmButton-order-info',
                 },
                 inputPlaceholder:
                   'Seguro desea cancelar esta orden?',
                 confirmButtonText:
                   'Continuar <i class="fa fa-arrow-right"></i>',
                 inputValidator: (result) => {
-                  return !result && 'Necesitas confirmar que quieres cancelar!'
+                  return !result && 'Necesitas confirmar para cancelar la orden'
                 }
               })
               
               if (newstate) {
                 axios.put(ADMIN_ORDERS,{
                     id: id,
-                    newstatus: "cancelada"
+                    newstatus: "cancelada",
+                    oldstatus: prevstate
                 })
                 .then(()=>{
                     refreshOrders()
                     Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#49AF41",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                      popup: 'popup-order-success',
+                      title: 'title-order-success',
+                      input: 'input-order-success',
+                      confirmButton: 'confirmButton-order-success',
                     },
                     icon:"success",
                     title:"Orden cancelada"
                 })})
-                .catch(Swal.fire({
+                .catch(()=>{
+                  Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#F64749",
                     customClass:{
-                    popup: 'popup-order',
-                    title: 'title-order',
-                    input: 'input-order',
-                    validationMessage: 'validationMessage-order',
-                    actions: 'actions-order',
-                    confirmButton: 'confirmButton-order',
-                  },
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
+                    },
                     icon:"error",
-                    title:"Hubo un problema"
-                }))
+                    title:"Hubo un problema",
+                    text:"No pudimos cancelar la orden"
+                  })
+                })
               }
               break;
         };
@@ -80,24 +81,23 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                 inputOptions: inputOptions,
                 buttonsStyling:false,
                 customClass:{
-                  popup: 'popup-order-small',
-                  title: 'title-order',
-                  input: 'input-order',
-                  validationMessage: 'validationMessage-order',
-                  actions: 'actions-order',
-                  confirmButton: 'confirmButton-order',
+                  popup: 'popup-order-info',
+                  title: 'title-order-info',
+                  input: 'input-order-info',
+                  validationMessage: 'validationMessage-order-info',
+                  confirmButton: 'confirmButton-order-info',
                 },
                 inputValidator: (value) => {
                   if (!value) {
-                    return 'Si no deseas realizar esta acción solo da click fuera del recuadro'
+                    return 'Necesitas seleccionar una opción'
                   }
                 }
               })
             if(newstate==="cancelada"){
-                //aca tambien hay que devolverle el dinero al cliente, si es una promesa trabajar con un Promise.All 
                 let order = axios.put(ADMIN_ORDERS,{
                   id: id,
-                  newstatus: newstate
+                  newstatus: newstate,
+                  oldstatus: prevstate
                 })
                 let hcUser =axios.put(LOGIN_URL,{
                     id: idUser,
@@ -108,66 +108,68 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                     refreshOrders()
                     Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#49AF41",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                      popup: 'popup-order-success',
+                      title: 'title-order-success',
+                      input: 'input-order-success',
+                      confirmButton: 'confirmButton-order-success',
                     },
                     icon:"success",
                     title:"Orden cancelada"
                 })})
-                .catch(Swal.fire({
+                .catch(()=>{
+                  Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#F64749",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
                     },
                     icon:"error",
-                    title:"Hubo un problema"
-                }))
+                    title:"Hubo un problema",
+                    text:"No pudimos cancelar la orden"
+                  })
+                })
             }
             if(newstate==="completa"){
-                //en este caso pasaria de pagada a completa, habria que implementar cuando se despacha ejecute esta accion directamente
                 axios.put(ADMIN_ORDERS,{
                   id: id,
-                  newstatus: newstate
+                  newstatus: newstate,
+                  oldstatus: prevstate
                 })
                 .then(()=>{
                   refreshOrders()
                   Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#49AF41",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                      popup: 'popup-order-success',
+                      title: 'title-order-success',
+                      input: 'input-order-success',
+                      confirmButton: 'confirmButton-order-success',
                     },
                     icon:"success",
                     title:"Orden despachada"
                   })}
                 )
-                .catch(Swal.fire({
+                .catch(()=>{
+                  Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#F64749",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
                     },
                     icon:"error",
-                    title:"Hubo un problema"
-                }))
+                    title:"Hubo un problema",
+                    text:"No pudimos completar la orden"
+                  })
+                })
             }
             
             break;
@@ -187,25 +189,24 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                 input: 'radio',
                 buttonsStyling:false,
                 customClass:{
-                  popup: 'popup-order-small',
-                  title: 'title-order',
-                  input: 'input-order',
-                  validationMessage: 'validationMessage-order',
-                  actions: 'actions-order',
-                  confirmButton: 'confirmButton-order',
+                  popup: 'popup-order-info',
+                  title: 'title-order-info',
+                  input: 'input-order-info',
+                  validationMessage: 'validationMessage-order-info',
+                  confirmButton: 'confirmButton-order-info',
                 },
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
                   if (!value) {
-                    return 'Si no deseas realizar esta acción solo da click fuera del recuadro'
+                    return 'Necesitas seleccionar una opción'
                   }
                 }
               })
             if(newstate==="cancelada"){
-                //aca tambien hay que devolverle el dinero al cliente, si es una promesa trabajar con un Promise.All 
                 let order = axios.put(ADMIN_ORDERS,{
                   id: id,
-                  newstatus: newstate
+                  newstatus: newstate,
+                  oldstatus: prevstate
                 })
                 let hcUser =axios.put(LOGIN_URL,{
                     id: idUser,
@@ -213,86 +214,87 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                 })
                 Promise.all([order,hcUser])
                 .then(()=>{
-                    refreshOrders()
-                    Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
-                    },
-                    icon:"success",
-                    title:"Orden cancelada"
-                })})
-                .catch(Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
-                    },
-                    icon:"error",
-                    title:"Hubo un problema"
-                }))
+                  refreshOrders()
+                  Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#49AF41",
+                  customClass:{
+                    popup: 'popup-order-success',
+                    title: 'title-order-success',
+                    input: 'input-order-success',
+                    confirmButton: 'confirmButton-order-success',
+                  },
+                  icon:"success",
+                  title:"Orden cancelada"
+              })})
+              .catch(()=>{
+                Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                  popup: 'popup-order-error',
+                  title: 'title-order-error',
+                  input: 'input-order-error',
+                  confirmButton: 'confirmButton-order-error',
+                  },
+                  icon:"error",
+                  title:"Hubo un problema",
+                  text:"No pudimos cancelar la orden"
+                })
+              })
             }
             if(newstate==="completa"){
-                //en este caso pasaria de pagada a completa, habria que implementar cuando se despacha ejecute esta accion directamente
                 axios.put(ADMIN_ORDERS,{
                   id: id,
-                  newstatus: newstate
+                  newstatus: newstate,
+                  oldstatus: prevstate
                 })
                 .then(()=>{
                   refreshOrders()
                   Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#49AF41",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                      popup: 'popup-order-success',
+                      title: 'title-order-success',
+                      input: 'input-order-success',
+                      confirmButton: 'confirmButton-order-success',
                     },
                     icon:"success",
                     title:"Orden despachada"
                   })}
                 )
-                .catch(Swal.fire({
+                .catch(()=>{
+                  Swal.fire({
                     buttonsStyling:false,
+                    iconColor: "#F64749",
                     customClass:{
-                      popup: 'popup-order',
-                      title: 'title-order',
-                      input: 'input-order',
-                      validationMessage: 'validationMessage-order',
-                      actions: 'actions-order',
-                      confirmButton: 'confirmButton-order',
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
                     },
                     icon:"error",
-                    title:"Hubo un problema"
-                }))
+                    title:"Hubo un problema",
+                    text:"No pudimos completar la orden"
+                  })
+                })
             }
             break;
         }
         default: {
             Swal.fire({
                 buttonsStyling:false,
-                customClass:{
-                  popup: 'popup-order',
-                  title: 'title-order',
-                  input: 'input-order',
-                  validationMessage: 'validationMessage-order',
-                  actions: 'actions-order',
-                  confirmButton: 'confirmButton-order',
-                },
+                iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
+                    },
                 icon:"error",
                 title:`La orden esta ${(prevstate === "completa")?"despachada":prevstate}`,
-                text:"no puedes realizar ninguna acción sobre ella"
+                text:"No puedes realizar ninguna acción sobre ella"
             })
             break;
         }

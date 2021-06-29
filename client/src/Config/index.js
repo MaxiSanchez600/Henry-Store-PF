@@ -1,6 +1,6 @@
 // export const PRODUCTS_URL = `https://soyhenry-store.herokuapp.com/products?`;
 export const URL_BASE = 'http://localhost:3001/';
-const workspace = "http://localhost:3001";
+export const workspace = "http://localhost:3001";
 export const PRODUCTS_URL = `${workspace}/product?`;
 export const REGISTER_URL= `${workspace}/auth/register`;
 export const LOGIN_URL= `${workspace}/auth/login` ;

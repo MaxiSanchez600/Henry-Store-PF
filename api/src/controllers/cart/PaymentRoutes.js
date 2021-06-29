@@ -21,7 +21,7 @@ const paymentMethods = {
 
         var mercadopago = require('mercadopago');
         mercadopago.configure({
-            access_token: "TEST-6642840300672372-062619-9a31f14dceae7457916d5061933a8e00-209521005"
+            access_token: "APP_USR-6642840300672372-062619-0deaff518a075f2dc836a4492dc55f75-209521005"
         });
         var preference = {
             items: [

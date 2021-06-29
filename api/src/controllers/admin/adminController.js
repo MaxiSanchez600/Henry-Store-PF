@@ -1,5 +1,6 @@
 const adminapp = require ('../../utils/config/firebaseAdmin.js');
 const { User, Role, DocumentType, Nacionality, UserStatus, Order, OrderDetail, Product, Image } = require ('../../db.js');
+const axios = require('axios')
 
 function readUsers (req,res,next) {
 
@@ -130,19 +131,114 @@ function readOrders (req,res,next) {
     
 }
 
-function updateOrder (req, res, next) {
-    let {id, newstatus} = req.body;
-
-    Order.update({
-        status: newstatus
-    },
-    {
-        where:{
-            id_order: id
-        }
-    })
-    .then(()=>res.sendStatus(200))
-    .catch(e=>next(e))
+function updateOrder (req, res, next) { 
+let {id, oldstatus, newstatus, shipping_id} = req.body; //recibir el numero de envio y hacer busqueda del email del usuario con el id de la orden
+    let tokenMP= "APP_USR-6642840300672372-062619-0deaff518a075f2dc836a4492dc55f75-209521005"
+    if((oldstatus === "pagada" || oldstatus === "coordinar") && newstatus === "cancelada"){
+        Order.findOne({
+            where:{
+                id_order: id
+            }
+        })
+        .then(orderfound=>{
+            axios.post(`https://api.mercadopago.com/v1/payments/${orderfound.paymentid}/refunds?access_token=${tokenMP}`)
+            .then(()=>{
+                var nodemailer = require('nodemailer');
+                var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'henrystorecommerce@gmail.com',
+                    pass: 'Bluebuff123'
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+                });
+                var mailOptions = {
+                    from: 'henrystorecommerce@gmail.com',
+                    to: result.email,
+                    subject: 'Devolución de dinero Henry Store',
+                    text: `Se realizó la devolución del dinero por la orden n° ${orderfound.paymentid}. Cualquier duda o consulta puede comunicarse con el personal de Henry Store. Saludos`
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                    console.log(error);
+                    } else {
+                    console.log('Email sent: ' + info.response);
+                    }
+                });
+                Order.update({
+                    status: newstatus
+                },
+                {
+                    where:{
+                        id_order: id
+                    }
+                })
+            })
+            .then(()=>res.sendStatus(200))
+            .catch(e=>next(e))
+        })
+        .catch(e=>next(e))
+    }
+    if(newstatus === "completa"){
+        Order.findOne({
+            where:{
+                id_order: id
+            }
+        })
+        .then(order=>{
+            return User.findByPk(order.UserIdUser)
+        })
+        .then(result=>{
+            var nodemailer = require('nodemailer');
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'henrystorecommerce@gmail.com',
+                    pass: 'Bluebuff123'
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            });
+            var mailOptions = {
+                from: 'henrystorecommerce@gmail.com',
+                to: result.email,
+                subject: 'Confirmacion de envío Henry Store',
+                text: `Gracias por su compra, puede hacer el seguimiento de su envio aquí: ${shipping_id}`
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                console.log(error);
+                } else {
+                console.log('Email sent: ' + info.response);
+                }
+            });
+            Order.update({
+                status: newstatus
+            },
+            {
+                where:{
+                    id_order: id
+                }
+            })
+        })
+        .then(()=>res.sendStatus(200))
+        .catch(e=>next(e))
+    }
+    if(oldstatus==="carrito" && newstatus==="cancelada"){
+        Order.update({
+            status: newstatus
+        },
+        {
+            where:{
+                id_order: id
+            }
+        })
+        .then(()=>res.sendStatus(200))
+        .catch(e=>next(e))
+    }
 }
 
 module.exports ={

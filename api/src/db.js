@@ -39,7 +39,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange, UserAddress} = sequelize.models;
+  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange, UserAddress, HenryExchange} = sequelize.models;
 
 
 //Relacion Tag Productos
@@ -149,7 +149,7 @@ Role.count().then((value) =>{
  })
 
 //Precarga Categorias
-/* Category.count().then((value) => {
+ Category.count().then((value) => {
   if(value < 3){
     let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
     arrayconst.map(async (element) =>{
@@ -157,7 +157,7 @@ Role.count().then((value) =>{
       await element
     })
   }
-}) */
+}) 
 
 //Precarga documentTypes
 DocumentType.count().then((value) =>{
@@ -171,7 +171,7 @@ DocumentType.count().then((value) =>{
 })
 
 //Precarga SubCategorias
-/* const subarray = ['remera', 'pantalon', 'camisa']
+ const subarray = ['remera', 'pantalon', 'camisa']
 SubCategory.count().then((value) =>{
   if(value < 9){ 
     const uno = SubCategory.create({
@@ -224,9 +224,9 @@ SubCategory.count().then((value) =>{
     })
   }
 })
- */
+ 
 //Precarga de caracteristic
-/* Caracteristic.count().then((value) =>{
+ Caracteristic.count().then((value) =>{
   if(value < 4){
     let constarray = ['color', 'size', 'genero', 'type']
     constarray.forEach(element => {
@@ -235,7 +235,7 @@ SubCategory.count().then((value) =>{
       })
     })
   }
-}) */
+}) 
 
 //Precarga de Nacionalidades
 Nacionality.count().then((value) =>{
