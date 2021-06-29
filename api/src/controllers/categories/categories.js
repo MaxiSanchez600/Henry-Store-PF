@@ -7,7 +7,8 @@ const categoriesController = {
             include: [{
                 model: SubCategory,
                 attributes: ['id_sub_category', 'name_sub_category', 'description']
-            }]
+            }],
+            order:[['name_category', 'ASC']],
         })
         .then( response => {
             res.send(response);

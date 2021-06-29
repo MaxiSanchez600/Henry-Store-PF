@@ -7,7 +7,8 @@ const subcategoriesController = {
          SubCategory.findAll({
                 where:{
                     CategoryIdCategory: id_category
-                }
+                },
+                order:[['name_sub_category', 'ASC']],
             })
         .then(response=>res.send(response))
         .catch(e=>next(e))
