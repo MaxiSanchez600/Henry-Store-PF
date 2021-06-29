@@ -35,7 +35,7 @@ export async function addCategory (resetfunc) {
     }
 }
 
-export async function addsubCategory (resetfunc,idcat) {
+export async function addsubCategory (resetfunc,card,setCard) {
     const { value: namesubcat } = await Swal.fire({
     title: 'Nueva subcategoría',
     input: 'text',
@@ -50,14 +50,21 @@ export async function addsubCategory (resetfunc,idcat) {
     if (namesubcat) {
         axios.post(PROD_SUBCATEGORIES,{
             nameSubcat: namesubcat,
-            id_category : idcat
+            id_category : card.idcat
         })
         .then(()=>{
-          resetfunc(true)
-          Swal.fire({
-            icon:"success",
-            title: "Subcategoría creada"
-          })
+          return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+        })
+        .then((response)=>{
+            setCard({
+              ...card,
+              subcat: response.data
+            })
+            resetfunc(true)
+            Swal.fire({
+                icon:"success",
+                title: "Subcategoria Modificada"
+            })
         })
         .catch(()=>{
           Swal.fire({
@@ -163,7 +170,7 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
       }
 }
 
-export async function actionsSubcategory (resetfunc, id){
+export async function actionsSubcategory (resetfunc, id,card,setCard){
     const inputOptions = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
@@ -201,6 +208,13 @@ export async function actionsSubcategory (resetfunc, id){
                     idSubcat: id,
                 })
                 .then(()=>{
+                  return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+                })
+                .then((response)=>{
+                    setCard({
+                      ...card,
+                      subcat: response.data
+                    })
                     resetfunc(true)
                     Swal.fire({
                         icon:"success",
@@ -237,10 +251,17 @@ export async function actionsSubcategory (resetfunc, id){
                 }
             })
             .then(()=>{
+              return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+            })
+            .then((response)=>{
+                setCard({
+                  ...card,
+                  subcat: response.data
+                })
                 resetfunc(true)
                 Swal.fire({
                     icon:"success",
-                    title: "Subcategoría eliminada"
+                    title: "Subcategoria eliminada"
                 })
             })
             .catch(()=>{
