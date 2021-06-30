@@ -5,6 +5,7 @@ const productRouter = require('./product');
 const userRoute = require ('./userFlow.js');
 const adminRoute = require ('./admin.js')
 const reviewRouter = require('./review');
+const wishlistRouter = require('./wishlist');
 // Importar todos los routers;
 const router = Router();
 
@@ -15,5 +16,6 @@ router.use('/cart', cartsRoute)
 router.use('/userflow',userRoute)
 router.use('/admin',adminRoute)
 router.use('/review', reviewRouter);
+router.use('/wishlist', wishlistRouter);
 
 module.exports = router;
