@@ -353,13 +353,15 @@ function CreateProduct ({ editIsActive, productData }) {
                 return Swal.fire({
                     icon: 'success',
                     title: 'Producto modificado con éxito',
-                    confirmButtonText: `OK`
+                    showConfirmButton: false,
+                    timer: 1400
                 });
             }
             Swal.fire({
                 icon: 'success',
                 title: 'Producto creado con éxito',
-                confirmButtonText: `OK`
+                showConfirmButton: false,
+                timer: 1400
             })
             .then((result) => {
                 if (result.isConfirmed) {
