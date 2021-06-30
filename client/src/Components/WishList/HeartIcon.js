@@ -8,6 +8,11 @@ function HeartIcon({ id_product }) {
   const handleChangex = (e) => {
     var id_user = localStorage.getItem('userlogged');
 
+    useEffect(() => {
+    
+    }, [])
+
+
     // 'Body data'
     const New_Wish_Item = {
       "UserIdUser": id_user,
