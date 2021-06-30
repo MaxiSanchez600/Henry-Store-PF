@@ -1,14 +1,42 @@
 .container_categories_subcategories{
-    display: flex;
     flex: 4;
     width: 100%;
     justify-content: space-around;
     align-items: flex-start;
+
+    h1{
+        margin-top: 20px;
+        margin-left: 50px;
+    }
 }
 
-.header-left{
+.catAndSubcat{
     display: flex;
-    margin-bottom: 2rem;
+    
+}
+
+.categories_subcategoriesWrap{
+    display: flex;
+    width: auto;
+    background-color: white;
+    margin: 20px 0 0 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 8px #d0d0d0;
+    padding: 20px;
+}
+
+
+
+.catContainer{
+    max-width: 280px;
+} 
+
+.subcatCont{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 .container-buttons-categories{
@@ -20,8 +48,86 @@
 .container-buttons-subcategories{
     display: flex;
     flex-direction: column;
+ 
 }
 
+.buttonCatWrap{
+    padding-left: 10px;
+    margin-top: 10px;
+    width: 12em;
+}
+
+.buttonCatWrap button.unActive{
+    all: unset;
+    padding: 6px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    width: 80%;
+    cursor: pointer;
+    &:hover{
+        background-color: rgb(255, 255, 98);
+        box-shadow: 0 0 3px 1px #53532b;
+    }
+}
+
+.buttonCatWrap button.active{
+    all: unset;
+    padding: 6px;
+    background-color:rgb(255, 255, 98);
+    box-shadow: 0 0 3px 1px #4b4b4b;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.newCategory{
+    border: none;
+    padding: 10px;
+    margin: 20px 0 20px 12px;
+    width: 14em;
+    border-radius: 5px;
+    transition: 0.5s ease;
+
+    &:hover {
+        box-shadow: 0 0 3px 1px #000000;
+        color: #000;
+        background: #FFFF01;
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+}
+
+.newSubcategory{
+    border: none;
+    padding: 5px;
+    margin: 10px 0 20px 0px;
+    width: 10em;
+    border-radius: 5px;
+    transition: 0.5s ease;
+
+    &:hover {
+        box-shadow: 0 0 3px 1px #000000;
+        color: #000;
+        background: #fcfc83;
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+}
+
+.subcategory{
+    margin-top: 5px;
+
+}
+
+.configIcon{
+    all: unset;
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.textListCat{
+    margin: 10px 0 5px 0;
+}
 .button-categories{
     width: 6rem;
 }
