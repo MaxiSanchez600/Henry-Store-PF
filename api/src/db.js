@@ -149,15 +149,15 @@ Role.count().then((value) =>{
  })
 
 //Precarga Categorias
- Category.count().then((value) => {
-  if(value < 3){
-    let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
-    arrayconst.map(async (element) =>{
-      console.log('Se cargo la categoria' + element)
-      await element
-    })
-  }
-}) 
+//  Category.count().then((value) => {
+//   if(value < 3){
+//     let arrayconst = [Category.create({name_category: 'Ropa'}), Category.create({name_category: 'Accesorios'}), Category.create({name_category: 'Otros'})]
+//     arrayconst.map(async (element) =>{
+//       console.log('Se cargo la categoria' + element)
+//       await element
+//     })
+//   }
+// }) 
 
 //Precarga documentTypes
 DocumentType.count().then((value) =>{
@@ -171,71 +171,71 @@ DocumentType.count().then((value) =>{
 })
 
 //Precarga SubCategorias
- const subarray = ['remera', 'pantalon', 'camisa']
-SubCategory.count().then((value) =>{
-  if(value < 9){ 
-    const uno = SubCategory.create({
-      name_sub_category: 'Remera',
-      description: 'Descripcion de remera',
-      CategoryIdCategory: 1
-    })
-    const dos = SubCategory.create({
-      name_sub_category: 'Pantalon',
-      description: 'Descripcion de pantalon',
-      CategoryIdCategory: 1
-    })
-    const tres = SubCategory.create({
-      name_sub_category: 'Buso',
-      description: 'Descripcion de buso',
-      CategoryIdCategory: 1
-    })
-    const cuatro = SubCategory.create({
-      name_sub_category: 'Camisa',
-      description: 'Descripcion de camisa',
-      CategoryIdCategory: 1
-    })
-    const cinco = SubCategory.create({
-      name_sub_category: 'Gorra',
-      description: 'Descripcion de gorra',
-      CategoryIdCategory: 1
-    })
-    const seis = SubCategory.create({
-      name_sub_category: 'Taza',
-      description: 'Descripcion de taza',
-      CategoryIdCategory: 2
-    })
-    const siete = SubCategory.create({
-      name_sub_category: 'Cuaderno',
-      description: 'Descripcion de cuaderno',
-      CategoryIdCategory: 2
-    })
-    const ocho = SubCategory.create({
-      name_sub_category: 'Lentes',
-      description: 'Descripcion de lentes',
-      CategoryIdCategory: 2
-    })
-    const nueve = SubCategory.create({
-      name_sub_category: 'PowerBank',
-      description: 'Descripcion de powerbank',
-      CategoryIdCategory: 3
-    })
-    Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
-      console.log('Se cargaron las subcategory' + values)
-    })
-  }
-})
+// const subarray = ['remera', 'pantalon', 'camisa']
+// SubCategory.count().then((value) =>{
+//   if(value < 9){ 
+//     const uno = SubCategory.create({
+//       name_sub_category: 'Remera',
+//       description: 'Descripcion de remera',
+//       CategoryIdCategory: 1
+//     })
+//     const dos = SubCategory.create({
+//       name_sub_category: 'Pantalon',
+//       description: 'Descripcion de pantalon',
+//       CategoryIdCategory: 1
+//     })
+//     const tres = SubCategory.create({
+//       name_sub_category: 'Buso',
+//       description: 'Descripcion de buso',
+//       CategoryIdCategory: 1
+//     })
+//     const cuatro = SubCategory.create({
+//       name_sub_category: 'Camisa',
+//       description: 'Descripcion de camisa',
+//       CategoryIdCategory: 1
+//     })
+//     const cinco = SubCategory.create({
+//       name_sub_category: 'Gorra',
+//       description: 'Descripcion de gorra',
+//       CategoryIdCategory: 1
+//     })
+//     const seis = SubCategory.create({
+//       name_sub_category: 'Taza',
+//       description: 'Descripcion de taza',
+//       CategoryIdCategory: 2
+//     })
+//     const siete = SubCategory.create({
+//       name_sub_category: 'Cuaderno',
+//       description: 'Descripcion de cuaderno',
+//       CategoryIdCategory: 2
+//     })
+//     const ocho = SubCategory.create({
+//       name_sub_category: 'Lentes',
+//       description: 'Descripcion de lentes',
+//       CategoryIdCategory: 2
+//     })
+//     const nueve = SubCategory.create({
+//       name_sub_category: 'PowerBank',
+//       description: 'Descripcion de powerbank',
+//       CategoryIdCategory: 3
+//     })
+//     Promise.all([uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve]).then((values)=> {
+//       console.log('Se cargaron las subcategory' + values)
+//     })
+//   }
+// })
  
 //Precarga de caracteristic
- Caracteristic.count().then((value) =>{
-  if(value < 4){
-    let constarray = ['color', 'size', 'genero', 'type']
-    constarray.forEach(element => {
-      Caracteristic.create({
-        name_caracteristic: element
-      })
-    })
-  }
-}) 
+//  Caracteristic.count().then((value) =>{
+//   if(value < 4){
+//     let constarray = ['color', 'size', 'genero', 'type']
+//     constarray.forEach(element => {
+//       Caracteristic.create({
+//         name_caracteristic: element
+//       })
+//     })
+//   }
+// }) 
 
 //Precarga de Nacionalidades
 Nacionality.count().then((value) =>{
