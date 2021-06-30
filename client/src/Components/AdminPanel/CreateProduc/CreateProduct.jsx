@@ -244,10 +244,11 @@ function CreateProduct ({ editIsActive, productData }) {
                 Object.entries(json.infoProduct)[j][1].toString().includes('-')
                 || Object.entries(json.infoProduct)[j][1].toString().includes('.')
                 || Object.entries(json.infoProduct)[j][1].toString().includes(',')
+                || !parseInt(Object.entries(json.infoProduct)[j][1])
                 )) {
                 return Swal.fire({
                     icon: 'warning',
-                    title: 'Por favor, no utilices números negativos o decimales.',
+                    title: 'Por favor, no utilices números negativos, decimales o letras.',
                     confirmButtonText: `OK`,
                     buttonsStyling: false,
                     customClass: {
