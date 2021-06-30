@@ -75,7 +75,7 @@ const paymentMethods = {
 
         var mailOptions = {
             from: 'henrystorecommerce@gmail.com',
-            to: 'maxsanchezg@gmail.com',
+            to: email,
             subject: 'Confirmacion de pago Henry Store',
             text: 'Gracias por su compra, su numero de orden es ' + orderid
         };
