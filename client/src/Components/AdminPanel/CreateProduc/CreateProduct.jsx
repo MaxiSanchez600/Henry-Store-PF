@@ -53,7 +53,7 @@ function CreateProduct ({ editIsActive, productData }) {
             }
 
             //pongo las subcategorias
-            const typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type').values_caracteristic;
+            const typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type')?.values_caracteristic;
             let categoriesAux = []; // [[cat1, sub11, sub12], [cat2, sub21, sub22], etc...]
             for(let l = 0; l < catBack.length; l++) {
                 categoriesAux.push([catBack[l].name_category]);
