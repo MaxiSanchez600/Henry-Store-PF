@@ -28,7 +28,18 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
             title: 'Añada una subcategoría',
             input: 'text',
             inputLabel: 'Nombre:',
-            showCancelButton: true,
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            showCancelButton:false,
+            inputPlaceholder:'Nombre',
+            inputLabel:false,
+            confirmButtonText:'Agregar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: (value) => {
                 if (!value) {
                     return '¡Debe digitar un nombre para la subcategoria!';
@@ -45,6 +56,12 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                     setCatBack([...copyCatBack]);
                 }
             }
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+              })
         }
     };
     

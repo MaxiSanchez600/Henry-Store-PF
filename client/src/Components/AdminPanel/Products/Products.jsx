@@ -5,10 +5,14 @@ import { VscRefresh } from "react-icons/vsc";
 import './Products.scss'
 import { RiSettings4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { actionsUponProducts } from "./ActionsUponProducts/ActionsUponProducts";
 
 export default function Products () {
     const [products,setProducts] = useState([])
     const [reset,setReset] = useState (false)
+    let currencyname = localStorage.getItem("currencyname")
+    let currency = localStorage.getItem("currency")
+
 
     useEffect(()=>{
         axios.get(PRODUCTS_URL)
@@ -38,11 +42,11 @@ export default function Products () {
                 {products.slice(0,products.length/2).map((prod, i)=>{
                     return (
                     <tr key={i}>
-                        {<td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>}
-                        <td><img className="img-prod-table" src={ prod.Images[0].name_image } alt="not"/></td>
+                        {<td><RiSettings4Fill onClick={()=>actionsUponProducts(prod.id_product,setReset)}/></td>}
+                        <td><img className="img-prod-table" src={ prod.Images[0].name_image } alt="Not found"/></td>
                         <td>{prod.name}</td>
-                        <td>{prod.price}</td>
-                        <td>{prod.unit_stock}</td>
+                        <td>{prod.price+" USD"}</td>
+                        <td>{prod.unit_stock+" U."}</td>
                 </tr>)
                 })}
             </table>
@@ -60,11 +64,11 @@ export default function Products () {
                 {products.slice(products.length/2).map((prod, i)=>{
                     return (
                     <tr key={i}>
-                        <td><Link to={`editProduct/${prod.id_product}`}><RiSettings4Fill/></Link></td>
-                        <td><img className="img-prod-table" src={prod.Images[0].name_image } alt="not"/></td>
+                        {<td><RiSettings4Fill onClick={()=>actionsUponProducts(prod.id_product,setReset)}/></td>}
+                        <td><img className="img-prod-table" src={prod.Images[0].name_image } alt="Not found"/></td>
                         <td>{prod.name}</td>
-                        <td>{prod.price}</td>
-                        <td>{prod.unit_stock}</td>
+                        <td>{prod.price+" USD"}</td>
+                        <td>{prod.unit_stock+" U."}</td>
                     </tr>)
                 })}
             </table>

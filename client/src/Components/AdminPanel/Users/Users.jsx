@@ -21,12 +21,14 @@ export default function Users () {
         setReset(true)
     }
 
-    return <div>
+    return <div className='usersWrap'>
         <div className="container-table-users">
-        <h1>Panel de Usuarios</h1>
         <div className="users-refresh-qty">
-        <h4>Cantidad de usuarios creados: {users.length}</h4>
-        <button className="button-refresh-user" onClick={()=>setReset(true)}><VscRefresh/></button>
+            <div>
+                <h1 className="title-panel-users">Panel de Usuarios</h1>
+                <div className="title_stripe_users"></div>
+            </div> 
+        <h4 className="qty-panel-users">Cantidad de usuarios creados: {users.length}</h4>
         </div>
         <table className="content-table-users">
             <tr>

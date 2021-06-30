@@ -25,24 +25,17 @@ export async function addCategory (resetfunc) {
                 title: "Categoría creada"
             })
         })
-        .catch(Swal.fire({
-            buttonsStyling:false,
-            customClass:{
-            popup: 'popup-order',
-            title: 'title-order',
-            input: 'input-order',
-            validationMessage: 'validationMessage-order',
-            actions: 'actions-order',
-            confirmButton: 'confirmButton-order',
-          },
+        .catch(()=>{
+          Swal.fire({
             icon:"error",
             title:"Hubo un problema"
-        }))
+          })
+        })
     
     }
 }
 
-export async function addsubCategory (resetfunc,idcat) {
+export async function addsubCategory (resetfunc,card,setCard) {
     const { value: namesubcat } = await Swal.fire({
     title: 'Nueva subcategoría',
     input: 'text',
@@ -57,28 +50,28 @@ export async function addsubCategory (resetfunc,idcat) {
     if (namesubcat) {
         axios.post(PROD_SUBCATEGORIES,{
             nameSubcat: namesubcat,
-            id_category : idcat
+            id_category : card.idcat
         })
         .then(()=>{
+          return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+        })
+        .then((response)=>{
+            setCard({
+              ...card,
+              subcat: response.data
+            })
             resetfunc(true)
             Swal.fire({
                 icon:"success",
-                title: "Subcategoría creada"
+                title: "Subcategoria Modificada"
             })
         })
-        .catch(Swal.fire({
-            buttonsStyling:false,
-            customClass:{
-            popup: 'popup-order',
-            title: 'title-order',
-            input: 'input-order',
-            validationMessage: 'validationMessage-order',
-            actions: 'actions-order',
-            confirmButton: 'confirmButton-order',
-          },
+        .catch(()=>{
+          Swal.fire({
             icon:"error",
             title:"Hubo un problema"
-        }))
+          })
+        })
     
     }
 }
@@ -130,19 +123,12 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
                         title: "Categoria Modificada"
                     })
                 })
-                .catch(Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                    popup: 'popup-order',
-                    title: 'title-order',
-                    input: 'input-order',
-                    validationMessage: 'validationMessage-order',
-                    actions: 'actions-order',
-                    confirmButton: 'confirmButton-order',
-                  },
+                .catch(()=>{
+                  Swal.fire({
                     icon:"error",
                     title:"Hubo un problema"
-                }))
+                  })
+                })
             
             }
       }
@@ -174,24 +160,17 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
                     title: "Categoría eliminada"
                 })
             })
-            .catch(Swal.fire({
-                buttonsStyling:false,
-                customClass:{
-                popup: 'popup-order',
-                title: 'title-order',
-                input: 'input-order',
-                validationMessage: 'validationMessage-order',
-                actions: 'actions-order',
-                confirmButton: 'confirmButton-order',
-              },
+            .catch(()=>{
+              Swal.fire({
                 icon:"error",
                 title:"Hubo un problema"
-            }))
+              })
+            })
           }
       }
 }
 
-export async function actionsSubcategory (resetfunc, id){
+export async function actionsSubcategory (resetfunc, id,card,setCard){
     const inputOptions = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
@@ -229,25 +208,25 @@ export async function actionsSubcategory (resetfunc, id){
                     idSubcat: id,
                 })
                 .then(()=>{
+                  return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+                })
+                .then((response)=>{
+                    setCard({
+                      ...card,
+                      subcat: response.data
+                    })
                     resetfunc(true)
                     Swal.fire({
                         icon:"success",
                         title: "Subcategoria Modificada"
                     })
                 })
-                .catch(Swal.fire({
-                    buttonsStyling:false,
-                    customClass:{
-                    popup: 'popup-order',
-                    title: 'title-order',
-                    input: 'input-order',
-                    validationMessage: 'validationMessage-order',
-                    actions: 'actions-order',
-                    confirmButton: 'confirmButton-order',
-                  },
+                .catch(()=>{
+                  Swal.fire({
                     icon:"error",
                     title:"Hubo un problema"
-                }))
+                  })
+                })
             
             }
       }
@@ -259,7 +238,7 @@ export async function actionsSubcategory (resetfunc, id){
             inputPlaceholder:
               'Estas seguro que deseas eliminar esta subcategoría? Todos los productos con ella quedaran desconectados!',
             confirmButtonText:
-              'Continue <i class="fa fa-arrow-right"></i>',
+              'Continuar <i class="fa fa-arrow-right"></i>',
             inputValidator: (result) => {
               return !result && 'Necesitas confirmar que quieres eliminarla!'
             }
@@ -272,25 +251,25 @@ export async function actionsSubcategory (resetfunc, id){
                 }
             })
             .then(()=>{
+              return axios.get(`${PROD_SUBCATEGORIES}?id_category=${card.idcat}`)
+            })
+            .then((response)=>{
+                setCard({
+                  ...card,
+                  subcat: response.data
+                })
                 resetfunc(true)
                 Swal.fire({
                     icon:"success",
-                    title: "Subcategoría eliminada"
+                    title: "Subcategoria eliminada"
                 })
             })
-            .catch(Swal.fire({
-                buttonsStyling:false,
-                customClass:{
-                popup: 'popup-order',
-                title: 'title-order',
-                input: 'input-order',
-                validationMessage: 'validationMessage-order',
-                actions: 'actions-order',
-                confirmButton: 'confirmButton-order',
-              },
+            .catch(()=>{
+              Swal.fire({
                 icon:"error",
                 title:"Hubo un problema"
-            }))
+              })
+            })
           }
       }
 }
