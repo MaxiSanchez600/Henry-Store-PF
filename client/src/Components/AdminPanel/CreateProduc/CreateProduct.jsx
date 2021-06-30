@@ -6,6 +6,7 @@ import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 import axios from "axios"
 import Swal from 'sweetalert2';
+import { CATEGORIES_URL, CARACTERISTICS_URL, PRODUCTS_URL } from "../../../Config";
 
 function CreateProduct ({ editIsActive, productData }) {
     const [flag, setFlag] = useState(false);
@@ -30,9 +31,9 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const getInfo = async function() {
         try {   
-            const responseCat = await axios.get('http://localhost:3001/product/categories')
+            const responseCat = await axios.get(CATEGORIES_URL)
             setCatBack(responseCat.data);
-            const responseCaracteristics = await axios.get('http://localhost:3001/product/caracteristics')
+            const responseCaracteristics = await axios.get(CARACTERISTICS_URL)
             setCarBack(responseCaracteristics.data.data)
             setFlag(!flag);
         }catch (error) {
@@ -244,7 +245,7 @@ function CreateProduct ({ editIsActive, productData }) {
                 Object.entries(json.infoProduct)[j][1].toString().includes('-')
                 || Object.entries(json.infoProduct)[j][1].toString().includes('.')
                 || Object.entries(json.infoProduct)[j][1].toString().includes(',')
-                || !parseInt(Object.entries(json.infoProduct)[j][1])
+                || isNaN(Number((Object.entries(json.infoProduct)[j][1])))
                 )) {
                 return Swal.fire({
                     icon: 'warning',
@@ -308,11 +309,11 @@ function CreateProduct ({ editIsActive, productData }) {
                     icon: 'warning',
                     title: 'Seleccione por lo menos un valor por cada característica.',
                     confirmButtonText: `OK`,
-                    buttonsStyling:false,
+                    buttonsStyling: false,
                     customClass:{
-                        popup:'popCreate',
-                        title:'titlePopCreate',
-                        confirmButton:'warningBtn',
+                        popup: 'popCreate',
+                        title: 'titlePopCreate',
+                        confirmButton: 'warningBtn',
                     },
                 });
             }
@@ -324,12 +325,12 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Sí`,
                 denyButtonText: `Volver`,
-                buttonsStyling:false,
+                buttonsStyling: false,
                 customClass:{
-                    popup:'popCreate',
-                    title:'titlePopCreate',
-                    confirmButton:'confirmBtnPop',
-                    denyButton:'dennyBtnPop'
+                    popup: 'popCreate',
+                    title: 'titlePopCreate',
+                    confirmButton: 'confirmBtnPop',
+                    denyButton: 'dennyBtnPop'
                 },
             });
             if(result.isDenied) return;
@@ -341,18 +342,18 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Continuar de todas formas`,
                 denyButtonText: `Volver`,
-                buttonsStyling:false,
-                customClass:{
-                    popup:'popCreate',
-                    title:'titlePopCreate',
-                    confirmButton:'confirmBtnPop',
-                    denyButton:'dennyBtnPop'
+                buttonsStyling: false,
+                customClass: {
+                    popup: 'popCreate',
+                    title: 'titlePopCreate',
+                    confirmButton: 'confirmBtnPop',
+                    denyButton: 'dennyBtnPop'
                 },
             });
             if(result.isDenied) return;
         }
         //creación del producto
-        axios.post("http://localhost:3001/product", json)
+        axios.post(PRODUCTS_URL, json)
         .then(res => {
             if(editIsActive) {
                 return Swal.fire({
