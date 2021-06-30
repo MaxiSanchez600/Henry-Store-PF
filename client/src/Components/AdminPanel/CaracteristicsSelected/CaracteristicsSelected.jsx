@@ -36,12 +36,12 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                     setCarBack([...copyCarBack]);
                 }
             }
-            return Swal.fire({
-                icon: 'success',
-                title: 'Agregado con éxito',
-                showConfirmButton: false,
-                timer: 1400
-              })
+            // return Swal.fire({
+            //     icon: 'success',
+            //     title: 'Agregado con éxito',
+            //     showConfirmButton: false,
+            //     timer: 1400
+            // });
         }
     };
 
