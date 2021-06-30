@@ -306,27 +306,34 @@ const productsController = {
     },
 
     updateStock: (req, res, next) => {
-        let {id, newstock} = req.body;
+        let { id, newstock } = req.body;
         Product.update({
             unit_stock : newstock
         },{
             where:{
-                id_product:id
+                id_product: id
             }
         })
-        .then(()=>res.sendStatus(200))
-        .catch(e=>next(e))
+        .then(() => res.sendStatus(200))
+        .catch(e => next(e))
     },
 
     deleteProduct: (req, res, next) => {
-        let {id} = req.body;
-        Product.destroy(
-            {
-                where:{id_product:id}
+        let { id } = req.body;
+        Image.destroy({
+            where:{
+                ProductIdProduct: id
             }
-        )
-        .then(()=>res.sendStatus(200))
-        .catch(e=>next(e))
+        })
+        .then(() => {
+            Product.destroy(
+                {
+                    where:{ id_product: id }
+                }
+            )
+        })
+        .then(() => res.sendStatus(200))
+        .catch(e => next(e))
     }
 };
 

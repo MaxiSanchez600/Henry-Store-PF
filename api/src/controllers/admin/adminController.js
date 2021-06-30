@@ -1,5 +1,5 @@
 const adminapp = require ('../../utils/config/firebaseAdmin.js');
-const { User, Role, DocumentType, Nacionality, UserStatus, Order, OrderDetail, Product, Image } = require ('../../db.js');
+const { User, Role, DocumentType, Nacionality, UserStatus, Order, OrderDetail, Product, Image, HenryExchange, CurrencyChange } = require ('../../db.js');
 const axios = require('axios')
 
 function readUsers (req,res,next) {
@@ -241,11 +241,54 @@ let {id, oldstatus, newstatus, shipping_id} = req.body; //recibir el numero de e
     }
 }
 
+function getExchanges (req,res,next) {
+    CurrencyChange.findAll({
+        order:[["currencyName","ASC"]]
+    })
+    .then(response=>res.send(response))
+    .catch(e=>next(e))
+}
+function getHenryCoinValue (req,res,next) {
+    HenryExchange.findAll()
+    .then(response=>res.send(response))
+    .catch(e=>next(e))
+}
+function updateHenryCoinValue (req,res,next) {
+    let {idhc,iduser,newvalue} = req.body
+    newvalue = Number(newvalue)
+    HenryExchange.update({
+        exchange:newvalue,
+        userid: iduser
+    },{
+        where:{
+            id: idhc
+        }
+    })
+    .then(response=>res.send(response))
+    .catch(e=>next(e))
+}
+function updateExchanges (req,res,next) {
+    let {idexchange,newvalue} = req.body
+    CurrencyChange.update({
+        currencyExChange: newvalue
+    },{
+        where:{
+            id : idexchange
+        }
+    })
+    .then((response)=>res.send(response))
+    .catch(e=>next(e))
+}
+
 module.exports ={
     banUser,
     resetEmailUser,
     resetPassUser,
     readUsers,
     readOrders,
-    updateOrder
+    updateOrder,
+    getExchanges,
+    updateExchanges,
+    getHenryCoinValue,
+    updateHenryCoinValue
 }

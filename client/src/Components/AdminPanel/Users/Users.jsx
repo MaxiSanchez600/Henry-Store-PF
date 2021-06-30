@@ -2,7 +2,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { GET_ALL_USERS} from "../../../Config/index"
 import './Users.scss'
-import { VscRefresh } from "react-icons/vsc";
 import { RiSettings4Fill } from "react-icons/ri";
 import actionsUponUsers from './actionsUponUsers/actionsUponUsers'
 

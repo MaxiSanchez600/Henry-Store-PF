@@ -12,6 +12,7 @@ import {
     BsShuffle,
     BsPeople,
  } from "react-icons/bs";
+ import { BiCoin } from "react-icons/bi";
  import { IoMdArrowRoundBack } from "react-icons/io";
 function SlideBar (){
     const [pageActive, setPageActive] = useState('Estadisticas')
@@ -51,6 +52,10 @@ function SlideBar (){
                     <h3>Usuarios</h3>
                     <ul>
                     <Link to='/admin/users'><li className={pageActive === 'Panel de Usuarios' ? "active" : "unactive"} onClick={changePage}><BsPeople className='iconLi'/>Panel de Usuarios</li></Link>
+                    </ul>
+                    <h3>Economía</h3>
+                    <ul>
+                    <Link to='/admin/economy'><li className={pageActive === 'Panel de Usuarios' ? "active" : "unactive"} onClick={changePage}><BiCoin className='iconLi'/>Panel de economía</li></Link>
                     </ul>
                 </div>
             </div>

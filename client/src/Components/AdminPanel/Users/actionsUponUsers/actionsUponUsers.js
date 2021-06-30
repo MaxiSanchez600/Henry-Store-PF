@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import { BAN_USER, CHANGE_ROL, RESET_PASSWORD} from "../../../../Config/index"
+import { BAN_USER, CHANGE_ROL, LOGIN_URL, RESET_PASSWORD} from "../../../../Config/index"
 import axios from 'axios'
 import "./actionsSweet.scss"
 
@@ -12,7 +12,8 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
                 resolve({
                   'ban': (boolean?"Permitir su acceso":"Prohibir su acceso"),
                   'rol': 'Cambiar su rol',
-                  'pass':'Resetear su contraseña'
+                  'pass':'Resetear su contraseña',
+                  'givehc':'Otorgar HC'
                 })
               }, 1000)
             })
@@ -23,6 +24,7 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
               resolve({
                 'ban': (boolean?"Permitir su acceso":"Prohibir su acceso"),
                 'rol': 'Cambiar su rol',
+                'givehc':'Otorgar HC'
               })
             }, 1000)
           })
@@ -66,6 +68,46 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
             rol=false
             pass=true
             return actionsUponUsers(name, id, origin, null, rol, pass, entry, refreshAfterAction)
+          }
+          if(action==='givehc'){
+            const { value: number } = await Swal.fire({
+              title: 'Ingrese cantidad de HenryCoins',
+              input: 'number',
+              buttonsStyling:false,
+              customClass:{
+                popup: 'popup-products-delete',
+                title: 'title-products',
+                input: 'input-products-stock',
+                validationMessage: 'validationMessage-products',
+                actions: 'actions-products',
+                confirmButton: 'confirmButton-products',
+              },
+              inputValidator: (value) => {
+                if (!value) {
+                  return 'Solo puedes ingresar valores numéricos!'
+                }
+              }
+            })
+            if (number) {
+              axios.put(LOGIN_URL,{
+                id: id,
+                hc: number
+              })
+              .then(()=>{
+                refreshAfterAction()
+                Swal.fire({
+                  icon:"success",
+                  title:`El usuario recibio sus HC`,
+              })
+              })
+              .catch(()=>{
+                Swal.fire({
+                  icon:"error",
+                  title:`Error en la transacción`,
+              })
+              })
+              
+            }
           }
     }
     if(boolean && !rol && !entry && !pass){

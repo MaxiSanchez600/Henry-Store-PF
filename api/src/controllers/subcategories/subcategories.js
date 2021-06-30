@@ -27,16 +27,18 @@ const subcategoriesController = {
     },
 
     updateSubCategories: (req,res,next) => {
-        let {idSubcat, name , descriptionsub} = req.body;
+        let {idSubcat, name} = req.body;
         SubCategory.findByPk(idSubcat)
         .then(response=>{
-            if (name){
-                response.name_sub_category = name
-            }
-            if (descriptionsub){
-                response.description = descriptionsub
-            }
-            return response.save()
+            let changevalue_car = ProductCaracteristic.update({
+                value_caracteristic: name
+            },{
+                where:{
+                    value_caracteristic: response.name_sub_category
+                }
+            })
+            response.name_sub_category = name
+            return Promise.all([response.save(),changevalue_car])   
         })
         .then((response)=>res.send(response))
         .catch(e=>next(e))

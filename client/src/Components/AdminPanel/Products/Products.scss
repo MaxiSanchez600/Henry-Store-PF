@@ -8,7 +8,7 @@
     border-collapse:collapse;
     margin: 25px 0;
     font-size: 0.9em;
-    min-width: 400px; //posiblemente tenga que cambiar esto
+    min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -16,15 +16,21 @@
 .content-table-product tr th {
     background-color: #FFFF01;
     color: #000000;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
 }
-.content-table-product th,
+
 .content-table-product td {
     padding: 12px 15px;
     max-width: 190px;
     overflow: hidden;
     text-align: center;
+}
+
+.content-table-product th{
+    padding: 12px 15px;
+    max-width: 190px;
+    overflow: hidden;
 }
 
 .content-table-product tr {
@@ -44,36 +50,60 @@
     flex-direction: row;
     justify-content: space-around;
     margin: 40px;
-    width: 60vw;
+    width: 70vw;
 }
 
-.img-prod-table{
-    width: 150px;
-    height: 150px;
+.img-product-table{
+    width: 120px;
+    height: 120px;
     object-fit: contain;
 }
-.products-refresh-qty{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+
+.wheel-products-table{
+    width: min-content;
+    &:hover{
+        transition: 0.5s all ease;
+        cursor: pointer;
+        transform: scale(1.4);
+    }
 }
 
-.button-refresh-product{
-    display: flex;
-    border-radius: 20px;
-    border: 1px solid $black_main;
-    background-color: $yellow_main;
-    color: #000000;
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 0.2rem;
-    transition: transform 80ms ease-in;
+.ontableclickeableprod{
+    text-decoration: none;
+    color: black;
     cursor: pointer;
-    transition: 0.4s all;
-    box-shadow: 0.1rem 0.15rem 5px black;
-    &:hover {
-        transform: scale(1.07);
+    &:visited{
+        text-decoration: none;
     }
-    margin-left: 1rem;
+    &:hover{
+        transition: 0.5s all ease;
+        font-weight: 800;
+    }
+}
+
+.title-panel-products{
+    font-family: "Avenir_Black";
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    width: fit-content;
+}
+.title_stripe_products {
+    background-color: $yellow_main;
+    width: 96%;
+    height: 8px;
+    margin-top: -13px;
+    z-index: -10;
+}
+
+.product-refresh-qty{
+    display: flex;
+    height: 4rem;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-left: 115px;
+}
+
+.qty-panel-products{
+    font-family: "Avenir_Roman";
 }

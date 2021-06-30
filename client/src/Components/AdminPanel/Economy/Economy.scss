@@ -1,0 +1,44 @@
+@import "../../../Sass/variables" ;
+
+.each-currency-economy{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 30rem;
+    height: 3rem;
+}
+
+.container-economy{
+    background-color: #D2D2D6bb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40rem;
+    height: 25rem;
+    border-radius: 10px;
+}
+
+.container-general-economy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+}
+
+.title-economy{
+    font-family: "Avenir_Black";
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    width: fit-content;
+}
+.title-stripe-economy {
+    background-color: $yellow_main;
+    width: 96%;
+    height: 8px;
+    margin-top: -13px;
+    margin-bottom: 3rem;
+    z-index: -10;
+}
