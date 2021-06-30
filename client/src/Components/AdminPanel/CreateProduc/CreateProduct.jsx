@@ -53,7 +53,7 @@ function CreateProduct ({ editIsActive, productData }) {
             }
 
             //pongo las subcategorias
-            const typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type').values_caracteristic;
+            const typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type')?.values_caracteristic;
             let categoriesAux = []; // [[cat1, sub11, sub12], [cat2, sub21, sub22], etc...]
             for(let l = 0; l < catBack.length; l++) {
                 categoriesAux.push([catBack[l].name_category]);
@@ -353,13 +353,15 @@ function CreateProduct ({ editIsActive, productData }) {
                 return Swal.fire({
                     icon: 'success',
                     title: 'Producto modificado con éxito',
-                    confirmButtonText: `OK`
+                    showConfirmButton: false,
+                    timer: 1400
                 });
             }
             Swal.fire({
                 icon: 'success',
                 title: 'Producto creado con éxito',
-                confirmButtonText: `OK`
+                showConfirmButton: false,
+                timer: 1400
             })
             .then((result) => {
                 if (result.isConfirmed) {

@@ -32,7 +32,7 @@ function SlideBar (){
                     <h3>Resumen</h3>
                     <ul>
                         <Link to='/admin'><li className={pageActive === 'Estadisticas' ? "active" : "unactive"} onClick={changePage}><BsGraphUp className='iconLi'/>Estadisticas</li></Link>
-                        <li className={pageActive === 'Ventas' ? "active" : "unactive"} onClick={changePage}><BsBookmarkCheck className='iconLi'/>Ventas</li>
+                       {/*  <li className={pageActive === 'Ventas' ? "active" : "unactive"} onClick={changePage}><BsBookmarkCheck className='iconLi'/>Ventas</li> */}
                     </ul>
             
                     <h3>Productos</h3>

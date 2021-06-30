@@ -6,7 +6,18 @@ export async function addCategory (resetfunc) {
     const { value: name } = await Swal.fire({
     title: 'Nueva categoría',
     input: 'text',
-    inputLabel: 'Ingrese el nombre para la nueva categoría',
+    buttonsStyling:false,
+    iconColor: "#F64749",
+    showCancelButton:false,
+    inputPlaceholder:'Ingrese un nombre para la categoría',
+    inputLabel:false,
+    confirmButtonText:'Agregar',
+    customClass:{
+        popup:'popCreate',
+        title:'titlePopCreate',
+        confirmButton:'confirmBtnCreate',
+        input:'inputPopCreate',
+    },
     inputValidator: (value) => {
         if (!value) {
         return 'Necesitas darle un nombre!'
@@ -22,7 +33,9 @@ export async function addCategory (resetfunc) {
             resetfunc(true)
             Swal.fire({
                 icon:"success",
-                title: "Categoría creada"
+                title: "Categoría creada",
+                showConfirmButton: false,
+                timer: 1400
             })
         })
         .catch(()=>{
@@ -39,10 +52,19 @@ export async function addsubCategory (resetfunc,card,setCard) {
     const { value: namesubcat } = await Swal.fire({
     title: 'Nueva subcategoría',
     input: 'text',
-    inputLabel: 'Ingrese el nombre para la nueva subcategoría',
+    showCancelButton:false,
+    inputPlaceholder:'Ingrese un nombre para la subcategoría',
+    inputLabel:false,
+    confirmButtonText:'Agregar',
+    customClass:{
+        popup:'popCreate',
+        title:'titlePopCreate',
+        confirmButton:'confirmBtnCreate',
+        input:'inputPopCreate',
+    },
     inputValidator: (value) => {
         if (!value) {
-        return 'Necesitas darle un nombre!'
+        return 'Debe digitar un nombre!'
         }
     }
     })
@@ -63,7 +85,9 @@ export async function addsubCategory (resetfunc,card,setCard) {
             resetfunc(true)
             Swal.fire({
                 icon:"success",
-                title: "Subcategoria Modificada"
+                title: "Subcategoria creada con éxito",
+                showConfirmButton: false,
+                timer: 1400
             })
         })
         .catch(()=>{
@@ -86,9 +110,15 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
         }, 1000)
       })
       const { value: action } = await Swal.fire({
-        title: 'Que acción deseas realizar?',
+        title: '¿Que acción deseas realizar?',
         input: 'radio',
         inputOptions: inputOptions,
+        confirmButtonText:'Ok',
+        customClass:{
+            popup:'popCreate',
+            title:'titlePopCreate',
+            confirmButton:'confirmBtnCreate', 
+        },
         inputValidator: (value) => {
           if (!value) {
             return 'Necesitas elegir una opción!'
@@ -98,9 +128,17 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
       
       if (action==='edit') {
           const { value: cat } = await Swal.fire({
-            title: 'Modificar valor',
+            title: 'Modificar categoría',
             input: 'text',
-            inputLabel: 'Ingrese el nuevo nombre para la categoría',
+            inputPlaceholder:'Digite el nuevo nombre para la categoría',
+            inputLabel:false,
+            confirmButtonText:'Modificar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: (value) => {
                 if (!value) {
                 return 'Necesitas darle un nombre!'
@@ -120,7 +158,9 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
                     resetfunc(true)
                     Swal.fire({
                         icon:"success",
-                        title: "Categoria Modificada"
+                        title: "Categoria Modificada",
+                        showConfirmButton: false,
+                        timer: 1400
                     })
                 })
                 .catch(()=>{
@@ -137,12 +177,19 @@ export async function actionsCategory (resetfunc, id, setcard, card, initial){
             title: 'Eliminar categoría',
             input: 'checkbox',
             inputValue: 0,
-            inputPlaceholder:
-              'Estas seguro que deseas eliminar esta categoría? Todos los productos con ella quedaran desconectados!',
-            confirmButtonText:
-              'Continue <i class="fa fa-arrow-right"></i>',
+            buttonsStyling:false,
+            inputPlaceholder:'¿Estas seguro que deseas eliminar esta categoría? Todos los productos con ella quedaran desconectados',
+            confirmButtonText:'Eliminar',
+            showCancelButton:true,
+            cancelButtonText:'CANCELAR',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnDelete',
+                cancelButton:'confirmBtnCreate',
+            },
             inputValidator: (result) => {
-              return !result && 'Necesitas confirmar que quieres eliminarla!'
+              return !result && '¡Necesitas confirmar que quieres eliminarla!'
             }
           })
           
@@ -180,21 +227,36 @@ export async function actionsSubcategory (resetfunc, id,card,setCard){
         }, 1000)
       })
       const { value: action } = await Swal.fire({
-        title: 'Que acción deseas realizar?',
+        title: '¿Que acción deseas realizar?',
+        inputLabel:false,
+        customClass:{
+            popup:'popCreate',
+            title:'titlePopCreate',
+            confirmButton:'confirmBtnCreate',
+            
+        },
         input: 'radio',
         inputOptions: inputOptions,
         inputValidator: (value) => {
           if (!value) {
-            return 'Necesitas elegir una opción!'
+            return '¡Debe elegir una opción!'
           }
         }
       })
       
       if (action==='edit') {
         const { value: subcat } = await Swal.fire({
-            title: 'Modificar valor',
+            title: 'Modificar subcategoría',
             input: 'text',
-            inputLabel: 'Ingrese el nuevo nombre para la subcategoría',
+            inputPlaceholder:'Digite el nombre para la subcategoría',
+            inputLabel:false,
+            confirmButtonText:'Modificar',
+            customClass:{
+                popup:'popCreate',
+                title:'titlePopCreate',
+                confirmButton:'confirmBtnCreate',
+                input:'inputPopCreate',
+            },
             inputValidator: (value) => {
                 if (!value) {
                 return 'Necesitas darle un nombre!'
@@ -218,7 +280,9 @@ export async function actionsSubcategory (resetfunc, id,card,setCard){
                     resetfunc(true)
                     Swal.fire({
                         icon:"success",
-                        title: "Subcategoria Modificada"
+                        title: "Subcategoria Modificada",
+                        showConfirmButton: false,
+                        timer: 1400
                     })
                 })
                 .catch(()=>{
@@ -235,12 +299,20 @@ export async function actionsSubcategory (resetfunc, id,card,setCard){
             title: 'Eliminar subcategoría',
             input: 'checkbox',
             inputValue: 0,
+            buttonsStyling:false,
             inputPlaceholder:
-              'Estas seguro que deseas eliminar esta subcategoría? Todos los productos con ella quedaran desconectados!',
-            confirmButtonText:
-              'Continuar <i class="fa fa-arrow-right"></i>',
+              '¿Estas seguro que deseas eliminar esta subcategoría? Todos los productos con ella quedaran desconectados!',
+              confirmButtonText:'Eliminar',
+              showCancelButton:true,
+              cancelButtonText:'CANCELAR',
+              customClass:{
+                  popup:'popCreate',
+                  title:'titlePopCreate',
+                  confirmButton:'confirmBtnDelete',
+                  cancelButton:'confirmBtnCreate',
+              },
             inputValidator: (result) => {
-              return !result && 'Necesitas confirmar que quieres eliminarla!'
+              return !result && 'Debe confirmar que desea eliminarla!'
             }
           })
           
@@ -261,7 +333,9 @@ export async function actionsSubcategory (resetfunc, id,card,setCard){
                 resetfunc(true)
                 Swal.fire({
                     icon:"success",
-                    title: "Subcategoria eliminada"
+                    title: "Subcategoria eliminada",
+                    showConfirmButton: false,
+                    timer: 1400
                 })
             })
             .catch(()=>{

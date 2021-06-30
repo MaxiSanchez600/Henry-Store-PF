@@ -3,6 +3,7 @@ import "./CategoriesSubcat.scss"
 import { useEffect, useState } from "react"
 import { GET_CATEGORIES } from "../../../Config"
 import {addCategory, addsubCategory, actionsSubcategory, actionsCategory} from "./actionsUponCatSubcat/actionsUponCatSubcat"
+import { RiSettings4Fill } from "react-icons/ri";
 
 export default function Categories () {
     let initialState = {
@@ -33,39 +34,45 @@ export default function Categories () {
 
     return  (
         <div className="container_categories_subcategories">
-            <div>
-                <div className="header-left">
-                    <h1>Categorias</h1>
-                    <button onClick={()=>addCategory(setReset)}>Nueva Categoria</button>
+            <h1>Panel de categorias</h1>
+            <div className='catAndSubcat'>
+            <div className="categories_subcategoriesWrap">
+                <div className='catContainer'>
+                    <div className="header-left">
+                        <h3>Categorias</h3>
+                        <div className='textListCat'>Seleccione una categoria para ver el listado de subcategorias:</div>
+                        
+                    </div>
+                    <div className="container-buttons-categories">
+                        {categories?.map(cat=>{
+                            return <div className='buttonCatWrap'>
+                                    <button className='configIcon' onClick={()=>actionsCategory(setReset, cat.id_category,setCard,card,initialState)}><RiSettings4Fill/></button>
+                                    <button id={cat.name_category} className={card.title===cat.name_category ? "active" : 'unActive'} onClick={()=>chargeCard(cat)}>{cat.name_category}</button>
+                                </div>
+                        })}
+                    <button className='newCategory' onClick={()=>addCategory(setReset)}>Nueva Categoria</button>
+                    </div>
                 </div>
-                <div className="container-buttons-categories">
-                    {categories?.map(cat=>{
-                        return <div>
-                                <button id={cat.name_category} className="button-categories" onClick={()=>chargeCard(cat)}>{cat.name_category}</button>
-                                <button onClick={()=>actionsCategory(setReset, cat.id_category,setCard,card,initialState)}>action</button>
-                            </div>
-                    })}
-                </div>
-            </div>
-            <div>
-                {card?<div>
-                        <div>
-                            <h1>Subcategorias</h1>
+            
+                {card.title !== ''?
+                    <div className='subcatCont'>
+                        <div className="subcatWrap">
                             <div>
-                            <h2>{card.title}</h2>
-                            {card.title?<button onClick={()=>addsubCategory(setReset,card,setCard)}>Nueva Subcategoria</button>:null}
+                                <h3>Subcategorias</h3>
                             </div>
+                            <div className="container-buttons-subcategories">
+                                {card.subcat?.map(e=>{
+                                    return <div className='subcategory'>
+                                                <button className='configIcon' onClick={()=>{actionsSubcategory(setReset, e.id_sub_category,card,setCard)}}><RiSettings4Fill/></button>
+                                                <label>{e.name_sub_category}</label>
+                                        </div>
+                                })}
+                            </div>
+                            <button className='newSubcategory' onClick={()=>addsubCategory(setReset,card,setCard)}>Nueva Subcategoria</button>
                         </div>
-                        <div className="container-buttons-subcategories">
-                            {card.subcat?.map(e=>{
-                                return <div>
-                                            <button onClick={()=>{actionsSubcategory(setReset, e.id_sub_category,card,setCard)}}>action</button>
-                                            <span>{e.name_sub_category}</span>
-                                       </div>
-                            })}
-                        </div>
-                      </div>:null}
+                    </div>:null}
+                            
             </div>
-
+            </div>
         </div>)
 }
