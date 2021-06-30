@@ -316,6 +316,17 @@ const productsController = {
         })
         .then(()=>res.sendStatus(200))
         .catch(e=>next(e))
+    },
+
+    deleteProduct: (req, res, next) => {
+        let {id} = req.body;
+        Product.destroy(
+            {
+                where:{id_product:id}
+            }
+        )
+        .then(()=>res.sendStatus(200))
+        .catch(e=>next(e))
     }
 };
 

@@ -120,15 +120,15 @@ export default function Orders () {
                         <tr className="row-product2">
                             <td><img className="img-product-order" src={item.Product.Images[0].name_image} alt={item.Product.name}/></td>
                             <Link to= {`/home/item/${item.ProductIdProduct}`} ><td className="ontableclickeable">{item.Product.name}</td></Link>
-                            <td>{item.product_amount}</td>
-                            <td>{item.Product.price}</td>
+                            <td>{item.product_amount+" "+"U."}</td>
+                            <td>{`${item.Product.price} USD`}</td>
                         </tr>
                     )
                 })}
                 </tr>
                 <td>{order.spenthc?order.spenthc:0}</td>
                 <td>{order.givenhc?order.givenhc:0}</td>
-                <td>{order.totalprice?order.totalprice:"No especif."}</td>
+                <td>{order.totalprice?`${order.totalprice} USD`:"No especif."}</td>
             </tr>)
         })}
     </table>

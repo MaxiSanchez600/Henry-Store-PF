@@ -8,6 +8,7 @@ export async function actionsUponProducts (idProd,reset) {
           resolve({
             'edit': 'Editar producto',
             'stock': 'Modificar su stock',
+            'delete':'Eliminar producto'
           })
         }, 1000)
       })
@@ -57,5 +58,8 @@ export async function actionsUponProducts (idProd,reset) {
             })
             
           }
+      }
+      if (action === 'delete') {
+        
       }
 }
