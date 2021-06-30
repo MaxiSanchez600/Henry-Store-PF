@@ -9,27 +9,15 @@ import { getAllReviews } from '../../../../Redux/actions/actionsProducts';
 const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) => {
   const idUrl = match.params.id;
   const [detailOrder, setDetailOrder] = useState({});
-  const [ReviewsOrder, setIds] = useState([])
-  let arrayId = []
-
-  let Lasted = []
 
   useEffect(() => {
     axios.get(`${GET_DETAIL_ORDER}?idUrl=${idUrl}`)
       .then((response) => {
         setDetailOrder(response.data)
-        console.log(response.data)
-        response.data.products.map(id => {
-          arrayId.push(id.id_product)
-        })
-        setIds(arrayId)
-        arrayId.map(id => {
-          getAllReviews(id)
-        })
-
+        // console.log(response.data)
       })
       .catch((e) => {
-        alert(e);
+        // console.log(e)
       })
   }, []);
 
@@ -65,20 +53,12 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
             <th>Precio Total</th>
             <th>Califica!</th>
           </tr>
-          {
-
-            REVIEWS_ORDER?.map(addinfo => {
-              Lasted.push(addinfo)
-            })
-          }
-
-
-
-
-
 
           {
             detailOrder.products?.map((prod, index) => {
+              let OneReview = detailOrder.products.filter(e => e.id_product == prod.id_product)
+              console.log(OneReview[0].UserReviews)
+
               return (
                 <tr key={prod.id_product} className={show ? 'back_drop' : ""} >
                   <td>{prod.id_product}</td>
@@ -95,15 +75,47 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
                   <td>{prod.price * prod.product_amount}</td>
                   <td>{prod.percentage_discount} %</td>
                   <td>{(prod.price * prod.product_amount) - ((prod.price * prod.product_amount) * prod.percentage_discount) / 100}</td>
-                  <td>  <button className={show ? 'back_drop' : ""} onClick={() => {
-                    window.scrollTo(1000, 0, 'smooth')
-                    setshow(true);
-                    // console.log(Lasted)
-                    var check_orders = Lasted.filter(order => (order.UserIdUser === "UuCcTRPoW5XPwFUv0ra16cGkVVg1"));
-                    // console.log(check_orders[index]);
 
-                    setidproductReview(prod.id_product)
-                  }}> <span class="iconify" data-icon="openmoji:fire" data-inline="false"></span> Añadir!</button> </td>
+                  {(OneReview[0].UserReviews && OneReview[0].UserReviews.length === 0) ?
+                    <td>
+                      <div className="btnforPost">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                          <defs>
+                            <filter id="gooey">
+                              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                              <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
+                              <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+                            </filter>
+                          </defs>
+                        </svg>
+                        <button id="gooey-button" onClick={() => {
+                          window.scrollTo(1000, 0, 'smooth')
+                          setshow(true);
+                          setidproductReview(prod.id_product)
+                        }}>
+                        CALIFICA!
+                          <span className="bubbles">
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                            <span className="bubble"></span>
+                          </span>
+                        </button>
+
+                      </div>
+                    </td> :
+                    <td>
+                      <div className="btnforPost2">
+                        <div><span class="iconify" data-icon="emojione:white-heavy-check-mark" data-inline="false"></span> Ya calificaste! </div>
+                      </div>
+                    </td>}
+
                 </tr>)
             })
           }

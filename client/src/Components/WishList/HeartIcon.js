@@ -15,19 +15,17 @@ function HeartIcon({ id_product }) {
     }
 
     if (!e.target.classList[1]) {
-      console.log("Agregado Elemento")
       axios.post(`http://localhost:3001/wishlist`, New_Wish_Item)
         .then(res => {
-          console.log(res)
+          // console.log(res)
         })
         .catch(err => {
           console.log(err)
         })
     } else {
-      console.log("Eliminado Elemento")
       axios.delete(`http://localhost:3001/wishlist`,  { data: New_Wish_Item})
         .then(res => {
-          console.log(res)
+          // console.log(res)
         })
         .catch(err => {
           console.log(err)
