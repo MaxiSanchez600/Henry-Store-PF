@@ -6,6 +6,8 @@ import axios from 'axios';
 
 
 export default function NoAddressEdit({nextClick, volverClick, residenciaSelected, orderid}){
+    const [total, setTotal] = React.useState(0)
+    const [ars, setars] = React.useState(0)
     const [isLoading, setisLoading] = React.useState(true)
     const [henryExchange, sethenryExchange] = React.useState(0)
     const [residencia, setResidencia] = React.useState("")
@@ -20,6 +22,7 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
     const getOrderPrice = (() =>{
         return axios.get(GET_ORDER + `?id=${orderid}`)
         .then(value =>{
+            setTotal(value.data.totalprice)
             return (value.data.totalprice - (value.data.spenthc * henryExchange))
             //(order.totalprice - (order.spenthc * henryExchange)) * currency
         })
@@ -36,6 +39,7 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
          })
          axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${undefined}&residencia=${residenciaSelected}`)
                 .then(value =>{
+                    setars(value.data.currency)
                     const script = document.createElement('script');
                     script.type = 'text/javascript';
                     script.src =
@@ -54,7 +58,8 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
         <div>
             <div className = "FullConteiner_NoAddressEdit">
                 <h1 className = "H1Principal_NoAddressEdit">Por el momento no disponemos de envios a <span>{residencia}</span></h1>
-                <p className = "SinEmbargo_NoAddressEdit">Sin embargo, podes continuar con tu compra y te llegara un mail de confirmacion para coordinar el envio con el <span>Staff de Henry.</span></p>
+                <p className = "SinEmbargo_NoAddressEdit">Sin embargo, podes continuar con tu compra y te llegara un mail de confirmacion para coordinar el envio con el <span>Staff de Henry.</span> El cargo sera de <span>{total * ars} </span>
+                pesos argentinos, proximamente contaremos con mas medios de pago para todas las monedas.</p>               
             </div>
             <div className ='Buttons_NoAddressEdit'>
                 <button onClick = {goBack} className = 'ButtonVolver_NoAddressEdit'>Volver</button>

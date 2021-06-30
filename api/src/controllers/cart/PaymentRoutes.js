@@ -41,6 +41,7 @@ const paymentMethods = {
         mercadopago.preferences.create(preference)
         .then(response =>{
             let global = {}
+            global.currency = currency
             global.id = response.body.id;
             res.send(global)
         })
