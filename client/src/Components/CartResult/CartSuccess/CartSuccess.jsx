@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import queryString from 'query-string';
 import { useLocation } from 'react-router';
 import './CartSuccess.scss';
-import {ORDER_TO_PAGADO_RETURN_TOTAL_PRICE, DIRECCION_BY_ID} from '../../../Config/index'
+import {ORDER_TO_PAGADO_RETURN_TOTAL_PRICE, DIRECCION_BY_ID, REMOVE_PRODUCT_STOCK} from '../../../Config/index'
 import axios from 'axios'
 export default function CartSuccess(){
     const iduser = (localStorage.getItem('userlogged') !== null) ? localStorage.getItem('userlogged') : (localStorage.getItem('userid') !== null) && localStorage.getItem('userid');
@@ -37,9 +37,12 @@ export default function CartSuccess(){
 
     
     useEffect(async () =>{
+        await axios.put(REMOVE_PRODUCT_STOCK + `?orderid=${orderid}`)
+        .catch(error =>{
+            alert(error)
+        })
         await axios.put(ORDER_TO_PAGADO_RETURN_TOTAL_PRICE + `?orderid=${orderid}&direcid=${addressid}&paymentid=${paymentid}&userid=${iduser}&residenceid=${residenceid}`)
         .then(value =>{
-            console.log(value.data)
             setTotalPrice(value.data.pricetotal)
             setPais(value.data.pais)
         })

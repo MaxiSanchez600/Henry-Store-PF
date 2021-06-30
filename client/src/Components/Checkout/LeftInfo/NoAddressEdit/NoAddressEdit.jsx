@@ -15,9 +15,17 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
         volverClick(residenciaSelected)
     })
 
-    const goNext = (() =>{
-        alert("Pagar")
-    })
+    var MercadoPago = require('mercadopago');
+     const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {})
+    
+     const mpcheck= ((preferenceid) =>{
+         mp.checkout({
+             preference: {
+                 id: preferenceid
+             }
+         });
+     })
+
 
     const getOrderPrice = (() =>{
         return axios.get(GET_ORDER + `?id=${orderid}`)
@@ -40,6 +48,7 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
          axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${undefined}&residencia=${residenciaSelected}`)
                 .then(value =>{
                     setars(value.data.currency)
+                    console.log(value.data.id)
                     const script = document.createElement('script');
                     script.type = 'text/javascript';
                     script.src =

@@ -21,15 +21,18 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
 
     //false => add direc
     //true => edit direc 
-    var MercadoPago = require('mercadopago');
-    const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {})
-    const mpcheck= ((preferenceid) =>{
-        mp.checkout({
-            preference: {
-                id: preferenceid
-            }
-        });
-    })
+     var MercadoPago = require('mercadopago');
+     const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {
+         locale: 'es-AR'
+     })
+    
+     const mpcheck= ((preferenceid) =>{
+         mp.checkout({
+             preference: {
+                 id: preferenceid
+             }
+         });
+     })
 
     const goBack = (() =>{
         volverClick(residenciaSelected)
@@ -53,6 +56,7 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
                 axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${idaddress}&residencia=${residenciaSelected}`)
                 .then(value =>{
                     const script = document.createElement('script');
+                    console.log(value.data.id)
                     script.type = 'text/javascript';
                     script.src =
                         'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
