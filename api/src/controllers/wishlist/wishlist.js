@@ -54,7 +54,7 @@ const wishlistController = {
                 id_user,
                 id_product
             } = req.body;
-
+            
             const deleted = await Wishlist.destroy({
                 where: {
                     UserIdUser: id_user,

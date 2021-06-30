@@ -8,35 +8,30 @@ function HeartIcon({ id_product }) {
   const handleChangex = (e) => {
     var id_user = localStorage.getItem('userlogged');
 
-    useEffect(() => {
-    
-    }, [])
-
-
     // 'Body data'
     const New_Wish_Item = {
-      "UserIdUser": id_user,
+      "id_user": id_user,
       "id_product": id_product,
     }
 
     if (!e.target.classList[1]) {
-      console.log("Agregado")
-      // axios.post(`http://localhost:3001/review`, New_Wish_Item)
-      //   .then(res => {
-      // console.log(res)
-      //   })
-      //   .catch(err => {
-      // console.log(err)
-      //   })
+      console.log("Agregado Elemento")
+      axios.post(`http://localhost:3001/wishlist`, New_Wish_Item)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     } else {
-      console.log("Eliminado")
-      // axios.delete(`http://localhost:3001/review`, New_Wish_Item)
-      //   .then(res => {
-      // console.log(res)
-      //   })
-      //   .catch(err => {
-      // console.log(err)
-      //   })
+      console.log("Eliminado Elemento")
+      axios.delete(`http://localhost:3001/wishlist`,  { data: New_Wish_Item})
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
     $(`#${e.target.id}`).toggleClass("is-active");
   }

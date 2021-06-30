@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getMyWishList } from '../../Redux/actions/actionsProducts';
+
 // import HeartIcon from './HeartIcon'
 import './js/main'
 
-function WishList() {
+function WishList( { getMyWishList } ) {
+
+useEffect(() => {
+  var id_user = localStorage.getItem('userlogged');
+  getMyWishList(id_user)
+}, [])
 
   // ! CONTENT
   return (
@@ -53,4 +61,17 @@ function WishList() {
   )
 }
 
-export default WishList
+function mapStateToProps(state) {
+  return {
+      WishList: state.products.wishlist,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+      // getProducts: products_list =>   dispatch(getProducts(products_list)),
+      getMyWishList: (WishItem) => dispatch(getMyWishList(WishItem))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WishList);
