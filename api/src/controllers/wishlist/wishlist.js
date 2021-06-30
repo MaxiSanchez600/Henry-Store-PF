@@ -31,14 +31,39 @@ const wishlistController = {
     },
     addWishlist: async (req, res, next) => {
         try {
-            return res.send('add wishlist');
+            const { 
+                id_user,
+                id_product
+            } = req.body;
+
+            const wishlist = await Wishlist.findOrCreate({
+                where: {
+                    UserIdUser: id_user,
+                    ProductIdProduct: id_product
+                }
+            });
+
+            return res.send(wishlist);
         } catch (error) {
             return next(error);
         }
     },
     deleteWishlist: async (req, res, next) => {
         try {
-            return res.send('delete wishlist');
+            const { 
+                id_user,
+                id_product
+            } = req.body;
+
+            const deleted = await Wishlist.destroy({
+                where: {
+                    UserIdUser: id_user,
+                    ProductIdProduct: id_product
+                }
+            });
+
+            if(deleted) return res.sendStatus(200);
+            else return res.send('No hubo match');
         } catch (error) {
             return next(error);
         }
