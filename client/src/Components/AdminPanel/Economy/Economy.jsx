@@ -6,10 +6,10 @@ import Swal from 'sweetalert2'
 
 export default function Economy () {
     let initialform = {
-        ARS: "",
-        CLP: "",
-        MXN: "",
-        COP: "",
+        ARS: {value:""},
+        CLP: {value:""},
+        MXN: {value:""},
+        COP: {value:""},
     }
     const [exchanges,setExchanges] = useState([])
     const [henrycoin,setHenrycoin] = useState()
@@ -29,33 +29,48 @@ export default function Economy () {
     },[reset])
 
     function handleChangeHC (e) {
-        setFormhc(e.target.value)
+        setFormhc(Number(e.target.value))
     }
 
     function handleHC (e) {
         e.preventDefault();
-        axios.put(ADMIN_HENRYCOIN,{
-            idhc: henrycoin[0].id,
-            iduser: localStorage.getItem("userlogged"),
-            newvalue: formhc
-        })
-        .then(()=>{
-            setReset(true)
-            setFormhc("")
+        if(typeof(formhc) === "number"){
+            axios.put(ADMIN_HENRYCOIN,{
+                idhc: henrycoin[0].id,
+                iduser: localStorage.getItem("userlogged"),
+                newvalue: formhc
+            })
+            .then(()=>{
+                setReset(true)
+                setFormhc("")
+                Swal.fire({
+                  iconColor: "#49AF41",
+                  customClass:{
+                    popup: 'popup-final-confirm',
+                    title: 'title-final-confirm',
+                    input: 'input-confirm',
+                    confirmButton: 'confirmButton-confirm',
+                  },
+                  buttonsStyling:false,
+                  title:`Listo!`,
+                  icon:"success",
+                })})
+                .catch(()=>{
+                  Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
+                    },
+                    icon:"error",
+                    title:"Hubo un problema"
+                  })
+                })
+        }else{
             Swal.fire({
-              iconColor: "#49AF41",
-              customClass:{
-                popup: 'popup-final-confirm',
-                title: 'title-final-confirm',
-                input: 'input-confirm',
-                confirmButton: 'confirmButton-confirm',
-              },
-              buttonsStyling:false,
-              title:`Listo!`,
-              icon:"success",
-            })})
-            .catch(()=>{
-              Swal.fire({
                 buttonsStyling:false,
                 iconColor: "#F64749",
                 customClass:{
@@ -65,52 +80,68 @@ export default function Economy () {
                 confirmButton: 'confirmButton-order-error',
                 },
                 icon:"error",
-                title:"Hubo un problema"
+                title:"Debes colocar un número"
               })
-            })
+        }
+        
     }
 
     function handleChangeExchanges (e) {
         setFormEx({
             ...formEx,
             [e.target.name]:{
-                value:e.target.value,
+                value:Number(e.target.value),
                 idex:e.target.id
             }
         })
     }
     function handleExchange (e) {
         e.preventDefault();
-        axios.put(ADMIN_EXCHANGES,{
-            idexchange: formEx[e.target[0].name].idex,
-            newvalue: formEx[e.target[0].name].value
-        })
-        .then(()=>{
-            if(localStorage.getItem("currencyname")===e.target[0].name){
-                localStorage.setItem("currency",formEx[e.target[0].name].value)
-            }
-            setReset(true)
-            setFormEx({
-                ...formEx,
-                [e.target[0].name]:{
-                    ...e.target[0].name,
-                    value:""
-                }
+        if(typeof(formEx[e.target[0].name]?.value) === "number"){
+            axios.put(ADMIN_EXCHANGES,{
+                idexchange: formEx[e.target[0].name]?.idex,
+                newvalue: formEx[e.target[0].name]?.value
             })
+            .then(()=>{
+                if(localStorage.getItem("currencyname")===e.target[0].name){
+                    localStorage.setItem("currency",formEx[e.target[0].name].value)
+                }
+                setReset(true)
+                setFormEx({
+                    ...formEx,
+                    [e.target[0].name]:{
+                        ...[e.target[0].name],
+                        value:""
+                    }
+                })
+                Swal.fire({
+                iconColor: "#49AF41",
+                customClass:{
+                    popup: 'popup-final-confirm',
+                    title: 'title-final-confirm',
+                    input: 'input-confirm',
+                    confirmButton: 'confirmButton-confirm',
+                },
+                buttonsStyling:false,
+                title:`Listo!`,
+                icon:"success",
+                })})
+                .catch(()=>{
+                Swal.fire({
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
+                    },
+                    icon:"error",
+                    title:"Hubo un problema"
+                })
+                })
+        }else{
             Swal.fire({
-              iconColor: "#49AF41",
-              customClass:{
-                popup: 'popup-final-confirm',
-                title: 'title-final-confirm',
-                input: 'input-confirm',
-                confirmButton: 'confirmButton-confirm',
-              },
-              buttonsStyling:false,
-              title:`Listo!`,
-              icon:"success",
-            })})
-            .catch(()=>{
-              Swal.fire({
                 buttonsStyling:false,
                 iconColor: "#F64749",
                 customClass:{
@@ -120,9 +151,9 @@ export default function Economy () {
                 confirmButton: 'confirmButton-order-error',
                 },
                 icon:"error",
-                title:"Hubo un problema"
+                title:"Debes colocar un número"
               })
-            })
+        }
     }
 
     return <div className="container-general-economy">
@@ -131,32 +162,40 @@ export default function Economy () {
                     <div className="title-stripe-economy"></div>
                 </div>
                 <div className="container-economy">
-                {exchanges?.map(e=>{
-                    return <div className="Currencies-table">
-                                <div className="each-currency-economy">
-                                    <h3>{e.currencyName}</h3>
-                                    <form onSubmit={handleExchange}>
-                                        <input type="number" id={e.id} name={e.currencyName} placeholder="Nuevo valor..." onChange={handleChangeExchanges} value={formEx[e.currencyName].value}/>
-                                        <input type="submit" value="Modificar"/>
-                                    </form>
-                                    <div>
-                                        <h4>Valor Actual:</h4>
-                                        <h4>1 USD = {e.currencyExChange+" "+e.currencyName}</h4>
-                                    </div>
+                    <div className="table-inputs">
+                        {exchanges?.map(e=>{
+                            return <div >
+                                        <div className="each-currency-economy">
+                                            <h3 className="letters-name-black">{e.currencyName}</h3>
+                                            <form className="form-economy" onSubmit={handleExchange}>
+                                                <input className="exchange-input" type="number" id={e.id} name={e.currencyName} placeholder="Nuevo valor..." onChange={handleChangeExchanges} value={formEx[e.currencyName].value}/>
+                                                <input className="button_modify_economy" type="submit" value="Modificar"/>
+                                            </form>
+                                        </div>
                                 </div>
-                           </div>
-                })}
-                <div className="each-currency-economy">
-                    <h3>HC</h3>
-                    <form onSubmit={handleHC}>
-                    <input type="number" placeholder="Nuevo valor..." onChange={handleChangeHC} value={formhc}/>
-                    <input type="submit" value="Modificar"/>
-                    </form>
-                    <div>
-                        <h4>Valor Actual:</h4>
-                        <h4>1 USD = {henrycoin?henrycoin[0].exchange:null} HC</h4>
+                        })}
+                        <div className="each-currency-economy">
+                            <h3 className="letters-name-black">HC</h3>
+                            <form className="form-economy" onSubmit={handleHC}>
+                                <input type="number" className="exchange-input" placeholder="Nuevo valor..." onChange={handleChangeHC} value={formhc}/>
+                                <input className="button_modify_economy" type="submit" value="Modificar"/>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    <div className="actual-values-economy">
+                        <div className="value-economy">
+                            {exchanges?.map(e=>{
+                                return <div className="values-rows">
+                                            <h4 className="letters-name-roman-title">Valor Actual:</h4>
+                                            <h4 className="letters-name-roman">1 USD = {e.currencyExChange+" "+e.currencyName}</h4>
+                                        </div>
+                            })}
+                            <div className="values-rows">
+                            <h4 className="letters-name-roman-title">Valor Actual:</h4>
+                            <h4 className="letters-name-roman">1 USD = {henrycoin?henrycoin[0].exchange:null} HC</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
            </div>
 }

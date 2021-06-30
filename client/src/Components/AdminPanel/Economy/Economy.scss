@@ -1,33 +1,13 @@
 @import "../../../Sass/variables" ;
 
-.each-currency-economy{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 1rem;
-    width: 30rem;
-    height: 3rem;
-}
-
-.container-economy{
-    background-color: #D2D2D6bb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 40rem;
-    height: 25rem;
-    border-radius: 10px;
-}
-
 .container-general-economy{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-left:22rem;
     width: 80vw;
 }
-
 .title-economy{
     font-family: "Avenir_Black";
     font-size: 2.5rem;
@@ -41,4 +21,106 @@
     margin-top: -13px;
     margin-bottom: 3rem;
     z-index: -10;
+}
+
+.container-economy{
+    background-color: #D2D2D6bb;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50rem;
+    height: 30rem;
+    border-radius: 10px;
+    padding-left:5rem;
+    padding-right:8rem;
+}
+
+.letters-name-roman{
+    font-family: "Avenir_Roman";
+}
+
+.value-economy{
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    height: 20rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.table-inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    width: 20rem;
+    height: 20rem;
+}
+
+.values-rows{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.each-currency-economy{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.exchange-input {
+    border: 1px solid $light_gray;
+    border-radius: 8px;
+    width: 10rem;
+    font-family: "Avenir_Roman";
+    margin: 0 10px;
+    outline: none;
+    height: 2.5rem;
+    padding: 0 25px;
+    font-size: 15px;
+}
+
+.exchange-input::-webkit-inner-spin-button,
+.exchange-input::-webkit-outer-spin-button {
+    appearance: none;
+}
+
+.exchange-input::-moz-inner-spin-button,
+.exchange-input::-moz-outer-spin-button {
+    appearance: none;
+}
+
+.form-economy{
+    display: flex;
+}
+
+.button_modify_economy {
+    background-color: $yellow_main;
+    color: black;
+    border-radius: 8px;
+    width: 5rem;
+    height: 2.5rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: "Avenir_Roman";
+    letter-spacing: 0.06rem;
+    font-weight: 800;
+  
+    &:hover{
+      transition: 0.4s all ease;
+      background-color: #AEADB3;
+      color: $yellow_main;
+    }
+  }
+
+.letters-name-black{
+    font-family: "Avenir_Black";
+    font-weight: 500;
+}
+.letters-name-roman-title{
+    font-family: "Avenir_Roman";
+    margin-right: 0.5rem;
 }
