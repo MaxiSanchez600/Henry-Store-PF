@@ -31,6 +31,7 @@ import UserOrder from "../Cart/UserOrders/UserOrder/UserOrder.jsx";
 import OrderDetail from "../Cart/UserOrders/OrderDetail/OrderDetail.jsx"
 import Orders from "../AdminPanel/Orders/Orders";
 import CategoriesSubcat from "../AdminPanel/CategoriesSubcat/CategoriesSubcat";
+import SwishList from "../WishList/WishList";
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -61,6 +62,11 @@ function App() {
               <Route exact path="/admin" component={Analytics} />
               <Route exact path="/admin/createProduct" component={CreateProduct} />
               <Route exact path="/admin/users" component={Users}/>
+
+              {/* // PRUEBA DANIEL */}
+              <Route exact path="/prueba" component={SwishList}/>
+
+
               <Route exact path="/admin/products" component={Products}/>
               <Route exact path="/admin/orders" component={Orders}/>
               <Route exact path="/admin/categories" component={CategoriesSubcat}/>

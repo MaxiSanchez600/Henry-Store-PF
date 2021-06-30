@@ -230,8 +230,28 @@ body {
 
 // ! POSTREVIEWS
 .content_PostReview {
-  .container3 {
+  background-color: white;
+  /* width: 45rem; */
+  /* height: 15rem; */
+  color: black;
+  font-family: "Avenir_Black";
 
+  .submit {
+    border-radius: 20px;
+    border: 1px solid #ffff01;
+    background-color: #ffff01;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 1rem;
+    cursor: pointer;
+    transition: 0.4s all;
+  }
+  .container3 {
     .rating {
       display: flex;
       width: 100%;
@@ -341,26 +361,47 @@ body {
     #rating-5:checked ~ .emoji-wrapper > .emoji {
       transform: translateY(-500px);
     }
+  }
+  .feedback {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 
-    .feedback {
-      max-width: 360px;
-      background-color: #fff;
-      width: 100%;
-      padding: 30px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-items: center;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    .text_review {
+      margin: 0px;
+      width: 363px;
+      height: 89px;
+      font-size: 1rem;
+      font-family: "Avenir_Book";
     }
+  }
+
+  .rating-label {
+    position: relative;
+    max-width: 100%;
+    font-weight: 600;
+    text-align: center;
+    text-transform: none;
+    word-wrap: break-word;
+    font-family: "Avenir_Black";
   }
 }
 
+* {
+  .title-order-info2 {
+    font-family: "Avenir_Black" !important;
+  }
 
-.content_PostReview{
-    background: black;
-    padding: 3rem;
-    border-radius: 1rem;
-    border: 1px solid yellow;
+  .confirmButton-order-info2 {
+    background-color: #49af41 !important;
+    font-family: "Avenir_Black" !important;
+    border-radius: 3em;
+    width: 5rem;
+    height: 2rem;
+    cursor: pointer;
+  }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 
 const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) => {
@@ -25,24 +26,44 @@ const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) =>
     }
     axios.post(`http://localhost:3001/review`, content_Review)
       .then(res => {
-        console.log(res)
-        alert("Review Publicada")
+
+        Swal.fire({
+          title: 'Reseña Añadida Exitosamente!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          iconColor: "#49AF41",
+          buttonsStyling: true,
+          customClass: {
+            popup: 'popup-order-info2',
+            title: 'title-order-info2',
+            input: 'input-order-info2',
+            validationMessage: 'validationMessage-order-info2',
+            confirmButton: 'confirmButton-order-info2',
+          },
+        })
         closeModalHandler()
+
       })
       .catch(err => {
         console.log(err)
       })
+  
+
     event.preventDefault();
   }
 
   // ! CONTENT
   return <div className="content_PostReview"
     style={{
-      opacity: show ? '1' : '0'
+      opacity: show ? '1' : '0',
+      "text-align": "-webkit-center",
+      "border-radius": "1rem",
+      "padding": "1rem",
+      "box-shadow": "grey 0.4px 0.5px 3px 0.2px"
     }}
   >
-    <button onClick={closeModalHandler} >X</button>
-    <form class="rating-wrapper" onSubmit={handleSubmit}>
+    <form class="rating-wrapper" onSubmit={handleSubmit} name='rating' id="formpost">
+      <a onClick={closeModalHandler} href="#" className="close-button">Close</a>
       <label class="rating-label">CALIFICA TU PRODUCTO!
         <div class="ratingItemList">
           <div class="container3">
@@ -151,8 +172,8 @@ const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) =>
         </div>
       </label>
       <div class="feedback">
-        <textarea onChange={onChangeValue_Content} required placeholder="Te gustò el producto?"></textarea>
-        <button class="submit">ENVÌAR</button>
+        <textarea onChange={onChangeValue_Content} className="text_review" required placeholder="Te gustò el producto?"></textarea>
+        <button className="submit">ENVÌAR</button>
 
       </div>
     </form>
