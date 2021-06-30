@@ -1,4 +1,4 @@
-let { User, Role, UserStatus, Order, OrderDetail, OrderDetailCaracteristic, Product, Image, Caracteristic } = require ('../../db.js')
+let { User, Role, UserStatus, Order, OrderDetail, OrderDetailCaracteristic, Product, Image, Caracteristic, Review } = require ('../../db.js')
 const { Op } = require("sequelize");
 
 function updateRolUser (req,res,next) {
@@ -176,7 +176,8 @@ async function getOrderAndProductDetails (req, res, next) {
                 percentage_discount: products[i].percentage_discount,
                 product_amount: orderDetails[i].product_amount,
                 Images: [],
-                Caracteristics: []
+                Caracteristics: [],
+                UserReviews: []
             };
     
             //por cada producto busco las imagenes que le corresponden y las pusheo dentro de Images
@@ -210,6 +211,15 @@ async function getOrderAndProductDetails (req, res, next) {
                 };
                 productObj.Caracteristics.push(caracteristicObj);
             }
+
+            //por cada producto busco las reviews que hizo ese usuario y las agrego a UserReviews
+            const userReviews = await Review.findAll({
+                where: {
+                    ProductIdProduct: products[i].id_product,
+                    UserIdUser: order.UserIdUser
+                }
+            })
+            productObj.UserReviews = userReviews;
     
             result.products.push(productObj);
         }
