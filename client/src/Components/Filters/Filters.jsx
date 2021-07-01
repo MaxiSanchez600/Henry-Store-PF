@@ -70,6 +70,7 @@ function Filters({
                   case "category":
                   case "orderType":
                   case "orderDirection":
+                  case "currency":
                     return "";
                   default:
                     return (
