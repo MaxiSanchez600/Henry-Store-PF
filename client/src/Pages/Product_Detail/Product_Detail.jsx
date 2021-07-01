@@ -90,6 +90,12 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
     getAllReviews(id)
   }, []);
 
+
+  useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }, []);
+
   useEffect(() => {
     if (ID_Product && ID_Product.unit_stock > 0) {
 

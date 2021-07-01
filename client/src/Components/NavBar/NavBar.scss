@@ -2,19 +2,24 @@
 .contain_NavBar {
     position: relative;
     display: flex;
-    background-color: $black_main;
-    height: 90px;
     justify-content: space-between;
+//     display: grid;
+//     grid-template-columns: 300px 1000px 500px;
+//     column-gap: 8.5px;
+    background-color: $black_main;
+    height: 96px;
+    border-bottom: 1px solid $yellow_main;
 
     .left-box {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: 250px;
+        width: 300px;
 
         .logohenry {
-            margin: 0 0 0 24px;
-            width: 100px;
+            margin: auto;
+            width: 250px;
+            height: auto;
         }
 
         .store_text {
@@ -33,8 +38,27 @@
 
     .mid-box {
         display: grid;
-        grid-template-rows: 1fr 1fr;
-        width: 1000px;
+        grid-template-columns: 100%;
+        width: 400px;
+        justify-content: start;
+        margin: 0 550px 0 0;
+        .links_container {
+//             display: grid;
+//             grid-template-columns: 1fr 1fr 1fr;
+            display: flex;
+            justify-content: flex-start;
+//             width: 100%;
+//             height: 100%;
+            align-items: center;
+            .navbar_link {
+                font-size: 18px;
+                font-weight: 500;
+                color: $white_main;
+//                 text-transform: uppercase;
+//                 padding: 0 10px 0 0;
+                margin: 0 40px 0 0;
+            }
+        }
     }
 
     .right-box {

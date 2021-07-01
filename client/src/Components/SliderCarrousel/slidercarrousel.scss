@@ -42,12 +42,19 @@
             }
         }
 
-        .banner_Icon_SliderCarrousel_left {
-            margin: 0 0 0 8px;
-        }
+//         .banner_Icon_SliderCarrousel_left {
+//             margin: 0 0 0 -1807px;
+// //             margin: 0 1800px 0 0;
+
+// //             &:hover {
+// //                 background-color: red;
+// //                 margin: 0 0 0 -1750px;
+// // //                 transform: scale(1);
+// //             }
+//         }
 
         .banner_Icon_SliderCarrousel_right {
-            margin: 0 0 0 -48px;
+            margin: 0 0 0 -38px;
         }
 
         .image_container {
@@ -79,16 +86,52 @@
         justify-content: center;
         max-width: 485px;
         max-height: 385px;
-        border: 4px solid $dark_gray;
         border-radius: 8px;
+
+        .Icon_SliderCarrousel_left,
+        .Icon_SliderCarrousel_right {
+
+            .icon_left,
+            .icon_right {
+                color: $dark_gray;
+                background-color: $light_gray;
+
+                &:hover {
+                    color: $black_main;
+                    background-color: $normal_gray;
+                }
+            }
+        }
     }
 
     .banner_carrousel_display {
         display: grid;
-        grid-template-columns: 8px 1800px 8px;
+        grid-template-columns: 1800px 2px 2px;
         align-items: center;
         justify-content: center;
         height: 100%;
+        position: relative;
+
+        .image_container {
+            margin: 0 0 0 -7px;
+
+            .banner_image {
+                width: 1817px;
+            }
+
+        }
+        .banner_Icon_SliderCarrousel_left {
+//             margin: 0 0 0 -1807px;
+            position: absolute;
+            top: 175px;
+            margin: 0;
+
+//             &:hover {
+//                 background-color: red;
+//                 margin: 0 0 0 -1750px;
+// //                 transform: scale(1);
+//             }
+        }
     }
 
     .slider_dot_buttons_container {
@@ -96,6 +139,7 @@
         justify-content: center;
         margin: -25px 0 0 0;
         padding: 0;
+        z-index: 10;
 
         .dot_button_container {
             display: flex;
@@ -115,7 +159,7 @@
             }
             
             .active {
-                background-color: $white_main;
+                background-color: $yellow_main;
                 padding: 7.5px;
             }
         }

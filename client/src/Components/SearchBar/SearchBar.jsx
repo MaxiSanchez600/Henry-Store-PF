@@ -81,7 +81,6 @@ const SearchBar = ({
       {
         !error ? "" : <p className="error_message">{error}</p>
       }
-      {/* <p>{queriesFromReducer.tag.length}</p> */}
     </div>
   );
 };

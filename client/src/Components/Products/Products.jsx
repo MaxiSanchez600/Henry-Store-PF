@@ -10,11 +10,12 @@ import WishList from '../WishList/WishList'
 import HeartIcon from '../WishList/HeartIcon';
 
 
-function Products({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, MyWishList }) {
+function Products({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, MyWishList, queriesFromReducer }) {
 
     useEffect(() => {
-        if (!ListProducts.length) getAllFilteredProducts();
+        if (!ListProducts.length) getAllFilteredProducts({ ...queriesFromReducer, currency: currencyactual });
     }, [])
+    // }, [ListProducts.length, currencyactual, getAllFilteredProducts, queriesFromReducer])
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
@@ -27,10 +28,10 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
                 <div> <HeartIcon id_product={product.id_product} added={MyWishList?.filter(e => e.id_product == product.id_product).length !==0 ? true : false} /> </div>
                 <img src={product.Images.length ? product.Images[0].name_image : ""} alt="" className="product_image" id={product.index} />
-                <div className="product_name">
+                <h3 className="product_name">
                     {product.name}
                     <div className="product_stripe"></div>
-                </div>
+                </h3>
                 <div className="product_price">
                     <h5 className="product_number">{product.price * currencyactual}</h5>
                     <h5 className="product_usd"> {currencyactualname}</h5>
@@ -55,7 +56,14 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
     // ! CONTENT   
     return <div className="cards_container_products">
         <div className="all_Cards">
-            {displayProducts}
+            {
+                !displayProducts.length ?
+                    !Object.keys(queriesFromReducer).length ?
+                        // Aca puede ir un Loading
+                        ""
+                        : "No encontramos ningun producto, prueba usar otros filtros..."
+                    : displayProducts
+            }
         </div>
 
         {displayProducts.length !== 0 ? <div className={displayProducts.length > 7 ? "pagination_full" : "pagination_simple"}>
@@ -79,6 +87,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
 function mapStateToProps(state) {
     return {
         ListProducts: state.products.products,
+        queriesFromReducer: state.products.queries,
         currencyactual: state.products.currency,
         currencyactualname: state.products.currencyname
     }

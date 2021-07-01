@@ -14,11 +14,11 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
 
   useEffect(() => {
     if (imageListLength) {
-      if (clickedButton) {
-        setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
+      if (isBanner) {
+        if (clickedButton) {
+          setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
+        }
       }
-      // if (isBanner) {
-      // }
       // for (let i = 0; i < imageListLength; i++) {
       //   continue;
       // }
@@ -50,15 +50,17 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
       {
         imageListLength > 0 ?
           imageListLength !== 1 ?
-            <div className={isBanner ? "carruosel_container banner_container" : "carruosel_container"}>
+            <div
+              className={isBanner ? "carruosel_container banner_container" : "carruosel_container"}
+              onMouseOver={pauseAutoScroll}
+              onMouseLeave={playAutoScroll}
+            >
               <div
                 className={
                   isBanner ?
                     "Carrousel_SliderCarrousel banner_carrousel_display" :
                     "Carrousel_SliderCarrousel cropped_container"
                 }
-                onMouseOver={pauseAutoScroll}
-                onMouseLeave={playAutoScroll}
               >
                 <div
                   className={

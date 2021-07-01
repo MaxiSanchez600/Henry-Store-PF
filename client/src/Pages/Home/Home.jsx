@@ -2,19 +2,30 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllFilteredProducts, getMyWishList } from '../../Redux/actions/actionsProducts';
 import Products from '../../Components/Products/Products';
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import FilterCategories from '../../Components/FilterCategories/FilterCategories';
 import Filters from '../../Components/Filters/Filters';
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Order from "../../Components/Order/Order";
 function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, MyWishList }) {
 
+    const allQueries = Object.keys(queriesFromReducer);
+    // console.log("allQueries: ", allQueries);
+
+    const [currency, ...removedCurrency] = [...allQueries];
+    // console.log("removedCurrency: ", removedCurrency);
+
+    useEffect(() => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }, []);
+
     function handleResetFilters(e) {
         e.preventDefault();
 
-        const allQueries = Object.keys(queriesFromReducer);
-
-        for (let i = 0; i < allQueries.length; i++) {
-            console.log("allQueries[i]: ", allQueries[i]);
-            const filterToBeRemoved = document.getElementById(`filter_name_${allQueries[i]}`);
+        for (let i = 0; i < removedCurrency.length; i++) {
+            // console.log("removedCurrency[i]: ", removedCurrency[i]);
+            const filterToBeRemoved = document.getElementById(`filter_name_${removedCurrency[i]}`);
             if (filterToBeRemoved) {
                 switch (filterToBeRemoved.type) {
                     case "number":
@@ -26,9 +37,9 @@ function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, My
                     default: break;
                 }
             }
-            delete queriesFromReducer[allQueries[i]];
+            delete queriesFromReducer[removedCurrency[i]];
         }
-        getProductsWithoutFilters({});
+        getProductsWithoutFilters({ ...queriesFromReducer });
     }
 
     useEffect(() => {
@@ -37,13 +48,15 @@ function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, My
     }, [])
 
     return (
-        <div >
+        <main>
             <div className="search_container">
+                <FilterCategories />
+                <SearchBar />
             </div>
             <div className="content_Home" >
                 <div className="content_SidebarLeft" >
                     {
-                        Object.keys(queriesFromReducer).length ?
+                        removedCurrency.length ?
                             <button className="reset_button" onClick={e => handleResetFilters(e)}>Resetea tus filtros</button> :
                             <div className="reset_button_hidden"></div>
                     }
@@ -59,7 +72,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, My
                 </div>
                 <Sidebar />
             </div>
-        </div>
+        </main>
     )
 }
 function mapStateToProps(state) {

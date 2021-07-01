@@ -1,14 +1,14 @@
 
 .content_Home {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 25% 75%;
     background-color: #eeeeee;
 
     .content_SidebarLeft {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-end;
+        margin: 0 40px 0 0;
 
         .reset_button {
             background-color: $light_gray;
@@ -19,7 +19,7 @@
             cursor: pointer;
             transition: all 0.25s;
             border-radius: 8px;
-            margin: 10px 0 0;
+            margin: 10px 75px 0 0;
             height: 40px;
 
             &:hover {
@@ -43,6 +43,7 @@
         .order {
             display: flex;
             justify-content: flex-end;
+            margin: 0 125px 0 0;
         }
 
         .products {
@@ -55,6 +56,8 @@
 }
 
 .search_container {
+    display: grid;
+    grid-template-columns: 30% 70%;
     border-bottom: 5px solid $light_gray;
     background-color: #eeeeee;
     height: 130px;
