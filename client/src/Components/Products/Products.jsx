@@ -9,11 +9,18 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
 
-function Products({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname }) {
+function Products({
+    ListProducts,
+    queriesFromReducer,
+    getAllFilteredProducts,
+    currencyactual,
+    currencyactualname
+}) {
 
     useEffect(() => {
-        if (!ListProducts.length) getAllFilteredProducts();
+        if (!ListProducts.length) getAllFilteredProducts({ ...queriesFromReducer, currency: currencyactual });
     }, [])
+    // }, [ListProducts.length, currencyactual, getAllFilteredProducts, queriesFromReducer])
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
@@ -26,10 +33,10 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
                 <div className="heart_product"><AiFillHeart /></div>
                 <img src={product.Images.length ? product.Images[0].name_image : ""} alt="" className="product_image" id={product.index} />
-                <div className="product_name">
+                <h3 className="product_name">
                     {product.name}
                     <div className="product_stripe"></div>
-                </div>
+                </h3>
                 <div className="product_price">
                     <h5 className="product_number">{product.price * currencyactual}</h5>
                     <h5 className="product_usd"> {currencyactualname}</h5>
@@ -54,10 +61,17 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
     // ! CONTENT   
     return <div className="cards_container_products">
         <div className="all_Cards">
-            {displayProducts}
+            {
+                !displayProducts.length ?
+                    !Object.keys(queriesFromReducer).length ?
+                        // Aca puede ir un Loading
+                        ""
+                        : "No encontramos ningun producto, prueba usar otros filtros..."
+                    : displayProducts
+            }
         </div>
 
-        {displayProducts.length !== 0 ? <div className={displayProducts.length >7 ? "pagination_full" : "pagination_simple"}>
+        {displayProducts.length !== 0 ? <div className={displayProducts.length > 7 ? "pagination_full" : "pagination_simple"}>
             <ReactPaginate
                 previousLabel={<IoIosArrowBack />}
                 nextLabel={<IoIosArrowForward />}
@@ -78,6 +92,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
 function mapStateToProps(state) {
     return {
         ListProducts: state.products.products,
+        queriesFromReducer: state.products.queries,
         currencyactual: state.products.currency,
         currencyactualname: state.products.currencyname
     }
