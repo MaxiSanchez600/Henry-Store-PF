@@ -15,10 +15,13 @@ const productsController = {
                 rangePriceMin = 'not passed',
                 rangePriceMax = 'not passed',
                 page = 1,
+                limit = 100,
                 orderType = 'id_product',
                 orderDirection = 'ASC',
+                currency,
                 ...caracteristics
             } = req.query;
+            // console.log("req.query: ", req.query);
             //nos aseguramos que no haya problema con los rangos de precio
             if(rangePriceMax === '') {
                 rangePriceMax = 'not passed';
@@ -28,12 +31,12 @@ const productsController = {
             }
 
             //seteo el limit y el offset, es decir, la pagina
-            const perPage = 100;
-            const current = (page * perPage) - perPage;
+            // const limit = 100;
+            const current = (page * limit) - limit;
 
             //uso filtersCreator para filtrar por tags, categorias o rangos de precios en una primera estancia
             const products = await Product.findAll({
-                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, id),
+                ...filtersCreator(tag, category, rangePriceMin, rangePriceMax, id, currency),
             });
 
             // guardo solo los id de la primera instancia de filtro
@@ -96,7 +99,7 @@ const productsController = {
                     ],
                     order: [[orderType, orderDirection]],
                     offset: current,
-                    limit: perPage
+                    limit: limit
                 });
                 
                 // agregamos las caracteristicas sin usar el ORM

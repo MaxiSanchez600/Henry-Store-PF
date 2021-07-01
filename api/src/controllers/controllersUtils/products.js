@@ -2,7 +2,7 @@ const { Tag, Category } = require('../../db');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 
-const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, id) => {
+const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, id, currency) => {
     var filters = {};
 
     filters.include = [
@@ -37,12 +37,17 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, id) => {
         };
         filters.include[1].required = true;
     }
+    // console.log("localStorage.getItem('currency'): ", localStorage.getItem("currency"));
+    const convertedMinPrice = rangePriceMin !== "not passed" && currency ? parseInt(rangePriceMin) / parseInt(currency) : "";
+    const convertedMaxPrice = rangePriceMax !== "not passed" && currency ? parseInt(rangePriceMax) / parseInt(currency) : "";
     if(rangePriceMin !== 'not passed' && rangePriceMax !== 'not passed') {
         filters.where = {
             price: {
                 [Op.and]: {
-                    [Op.gte]: parseInt(rangePriceMin),  
-                    [Op.lte]: parseInt(rangePriceMax)
+                    // [Op.gte]: parseInt(rangePriceMin),  
+                    // [Op.lte]: parseInt(rangePriceMax)
+                    [Op.gte]: convertedMinPrice,
+                    [Op.lte]: convertedMaxPrice
                 }
             }
         }
@@ -50,14 +55,16 @@ const filtersCreator = (tag, category, rangePriceMin, rangePriceMax, id) => {
     if(rangePriceMin !== 'not passed' && rangePriceMax === 'not passed') { 
         filters.where = {
             price: {
-                [Op.gte]: parseInt(rangePriceMin)   
+                // [Op.gte]: parseInt(rangePriceMin)   
+                [Op.gte]: convertedMinPrice
             }
         }
     }
     if(rangePriceMin === 'not passed' && rangePriceMax !== 'not passed') { 
         filters.where = {
             price: {
-                [Op.lte]: parseInt(rangePriceMax)
+                // [Op.lte]: parseInt(rangePriceMax)
+                [Op.lte]: convertedMaxPrice
             }
         }
     }
