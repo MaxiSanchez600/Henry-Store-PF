@@ -2,8 +2,9 @@ import Swal from 'sweetalert2'
 import { ADMIN_ORDERS, LOGIN_URL } from "../../../../Config/index"
 import axios from 'axios'
 import "./actionsUponOrders.scss"
+import sendShippingURL from './sendShippingURL'
 
-export default async function actionsUponUsers( id, idUser, name, prevstate, hcSpend , hcEarned , refreshOrders ) {
+export default async function actionsUponOrders( id, idUser, name, prevstate, hcSpend , hcEarned , refreshOrders ) {
     switch(prevstate){
         case "carrito":{
             const { value: newstate } = await Swal.fire({
@@ -135,10 +136,14 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
                 })
             }
             if(newstate==="completa"){
-                axios.put(ADMIN_ORDERS,{
-                  id: id,
-                  newstatus: newstate,
-                  oldstatus: prevstate
+                sendShippingURL()
+                .then((res)=>{
+                  return axios.put(ADMIN_ORDERS,{
+                    id: id,
+                    newstatus: newstate,
+                    oldstatus: prevstate,
+                    shipping_id: res
+                  })
                 })
                 .then(()=>{
                   refreshOrders()
@@ -244,10 +249,14 @@ export default async function actionsUponUsers( id, idUser, name, prevstate, hcS
               })
             }
             if(newstate==="completa"){
-                axios.put(ADMIN_ORDERS,{
-                  id: id,
-                  newstatus: newstate,
-                  oldstatus: prevstate
+                sendShippingURL()
+                .then((res)=>{
+                  return axios.put(ADMIN_ORDERS,{
+                    id: id,
+                    newstatus: newstate,
+                    oldstatus: prevstate,
+                    shipping_id: res
+                  })
                 })
                 .then(()=>{
                   refreshOrders()

@@ -141,8 +141,10 @@ let {id, oldstatus, newstatus, shipping_id} = req.body; //recibir el numero de e
             }
         })
         .then(orderfound=>{
-            axios.post(`https://api.mercadopago.com/v1/payments/${orderfound.paymentid}/refunds?access_token=${tokenMP}`)
-            .then(()=>{
+            let user = User.findByPk(orderfound.UserIdUser)
+            let mp = axios.post(`https://api.mercadopago.com/v1/payments/${orderfound.paymentid}/refunds?access_token=${tokenMP}`)
+            Promise.all([user,mp])
+            .then((response)=>{
                 var nodemailer = require('nodemailer');
                 var transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -156,9 +158,9 @@ let {id, oldstatus, newstatus, shipping_id} = req.body; //recibir el numero de e
                 });
                 var mailOptions = {
                     from: 'henrystorecommerce@gmail.com',
-                    to: result.email,
+                    to: response[0].email,
                     subject: 'Devolución de dinero Henry Store',
-                    text: `Se realizó la devolución del dinero por la orden n° ${orderfound.paymentid}. Cualquier duda o consulta puede comunicarse con el personal de Henry Store. Saludos`
+                    text: `Se realizó la devolución del dinero por la orden n° ${response[1].paymentid}. Cualquier duda o consulta puede comunicarse con el personal de Henry Store. Saludos`
                 };
                 transporter.sendMail(mailOptions, function(error, info){
                     if (error) {

@@ -23,8 +23,8 @@ export default function Orders () {
     useEffect(()=>{
         axios.get(`${ADMIN_ORDERS}?${filter?`filter=${filter}&`:""}page=${page}&limit=${limit}&order=${order}`)
         .then(res=>{
-            setOrders(res.data.results)
-            setTotalOrders(res.data.total)
+            setOrders(res.data.results.filter(e=>e.OrderDetails.length>0))
+            setTotalOrders(res.data.results.filter(e=>e.OrderDetails.length>0).length) //revisar
             setReset(false)
         })
         .catch(e=>console.log(e))
@@ -91,6 +91,7 @@ export default function Orders () {
             <th></th>
             <th>ID Orden</th>
             <th>Estado</th>
+            <th>Destino</th>
             <th>Fecha</th>
             <th>Comprador</th>
             <tr>
@@ -108,6 +109,7 @@ export default function Orders () {
                 <td><div className="action-wheel-order"><RiSettings4Fill onClick={()=>actionsUponOrders(order.id_order, order.UserIdUser, order.User.name, order.status, order.spenthc, order.givenhc, refreshOrders, order.User.email )}/></div></td>
                 <td>{order.id_order}</td>
                 <td>{(order.status === "completa")?"Despachada":(order.status[0].toUpperCase().concat(order.status.slice(1)))}</td>
+                <td>{order.NacionalityIdNacionality?order.NacionalityIdNacionality:"No especif."}</td>
                 <td>
                     <div>
                         <p>{order.createdAt.slice(11,16)}</p>
