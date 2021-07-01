@@ -6,7 +6,7 @@ import {setUSerLogin} from "../../Redux/actions/actionsUsers";
 import { useFirebaseApp } from "reactfire";
 
 import { RiAdminFill,RiLogoutCircleRLine } from "react-icons/ri";
-import { AiOutlineFileSearch } from "react-icons/ai";
+import { AiOutlineFileSearch,AiTwotoneHeart } from "react-icons/ai";
 import {FaTimes,FaHome,} from 'react-icons/fa';
 import { BsPersonFill } from "react-icons/bs";
 import { BiCoin } from "react-icons/bi";
@@ -75,8 +75,9 @@ const Sidebar = () => {
           {dataUSerLogin.role==="admin"&& 
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/admin"> <RiAdminFill/> Admin</Link> </li> 
           }
-          <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/profile"> <BsPersonFill/> Profile</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/profile"> <BsPersonFill/> Profile</Link> </li>
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/myorders"> <AiOutlineFileSearch/> Mis Ordenes</Link> </li> 
+          <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/wishlist"> <AiTwotoneHeart/> Mis Favoritos</Link> </li> 
           <li className="liLinks"><span className='icon-bicoin' onClick={()=>{closeSidebar(); HenryCoint()}}><BiCoin/> HenryCoins</span></li>       
           <li className="liLinks"><Link to="/home" className='spanOut'  onClick={()=>{logOut();closeSidebar() }} ><RiLogoutCircleRLine/>Cerrar sesión</Link></li>
         </ul>

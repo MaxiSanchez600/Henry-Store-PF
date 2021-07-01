@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import $ from 'jquery'
 import axios from "axios";
+import {workspace} from '../../Config/index'
 
 function HeartIcon({ id_product, added }) {
 
@@ -15,7 +16,7 @@ function HeartIcon({ id_product, added }) {
     }
 
     if (!e.target.classList[1]) {
-      axios.post(`http://localhost:3001/wishlist`, New_Wish_Item)
+      axios.post(`${workspace}/wishlist`, New_Wish_Item)
         .then(res => {
           // console.log(res)
         })
@@ -23,7 +24,7 @@ function HeartIcon({ id_product, added }) {
           console.log(err)
         })
     } else {
-      axios.delete(`http://localhost:3001/wishlist`,  { data: New_Wish_Item})
+      axios.delete(`${workspace}/wishlist`,  { data: New_Wish_Item})
         .then(res => {
           // console.log(res)
         })

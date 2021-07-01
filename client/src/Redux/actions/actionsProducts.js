@@ -1,5 +1,6 @@
 import axios from "axios"
 import { PRODUCTS_URL } from "../../Config";
+import {workspace} from '../../Config/index';
 import { allProductsFilteredService, getAllCategoriesService, getCaracteristicsService, addProductToCartService } from "../services/products.service";
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
@@ -13,7 +14,6 @@ export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
 export const GET_CURRENCY = 'GET_CURRENCY';
 export const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS';
 export const GET_MY_WISHLIST = 'GET_MY_WISHLIST';
-
 
 /* ============================== ACTIONS ============================================== */
 export function getAllFilteredProducts(allQueries) {
@@ -55,16 +55,16 @@ export function getAllCaracteristics(query) {
 export function addProductToCart(product) {
   return function (dispatch) {
     return addProductToCartService(product)
-      // .then((response) => {
-      //   dispatch({
-      //     type: ADD_PRODUCT_TO_CART,
-      //     payload: response.data,
-      //   });
-      // });
+    // .then((response) => {
+    //   dispatch({
+    //     type: ADD_PRODUCT_TO_CART,
+    //     payload: response.data,
+    //   });
+    // });
   }
 }
-export function setCarrito(payload){
-  return function (dispatch){
+export function setCarrito(payload) {
+  return function (dispatch) {
     dispatch({
       type: SET_CARRITO,
       payload: payload
@@ -72,18 +72,18 @@ export function setCarrito(payload){
   }
 }
 
-export function postProduct (payload){       
-  return async function() {
-      try {   
-          await axios.post(PRODUCTS_URL, payload)
-      }catch (error) {
-        console.error(error)
-      }   
+export function postProduct(payload) {
+  return async function () {
+    try {
+      await axios.post(PRODUCTS_URL, payload)
+    } catch (error) {
+      console.error(error)
+    }
   };
 }
 
-export function setCurrencyStore (payload){
-  return function(dispatch){
+export function setCurrencyStore(payload) {
+  return function (dispatch) {
     dispatch({
       type: GET_CURRENCY,
       payload: payload
@@ -92,25 +92,25 @@ export function setCurrencyStore (payload){
 }
 
 // ! REVIEWS PRODUCTS
-export function getAllReviews (id){       
-  return async function(dispatch) {
-      try {   
-        const response =await axios.get("http://localhost:3001/review?id_product="+id)
-        dispatch({ type: GET_ALL_REVIEWS, payload: response.data });
-      }catch (error) {
-        console.error(error)
-      }   
+export function getAllReviews(id) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${workspace}/review?id_product=` + id)
+      dispatch({ type: GET_ALL_REVIEWS, payload: response.data });
+    } catch (error) {
+      console.error(error)
+    }
   };
 }
 
 // ! WISHLIST USER LOGGED
-export function getMyWishList (id_user){       
-  return async function(dispatch) {
-      try {   
-        const response =await axios.get("http://localhost:3001/wishlist?id_user="+id_user)
-        dispatch({ type: GET_MY_WISHLIST, payload: response.data });
-      }catch (error) {
-        console.error(error)
-      }   
+export function getMyWishList(id_user) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${workspace}/wishlist?id_user=` + id_user)
+      dispatch({ type: GET_MY_WISHLIST, payload: response.data });
+    } catch (error) {
+      console.error(error)
+    }
   };
 }

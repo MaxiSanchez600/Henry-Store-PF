@@ -20,6 +20,7 @@ import EditProduct from "../AdminPanel/EditProduct/EditProduct";
 import CartSuccess from "../CartResult/CartSuccess/CartSuccess";
 import CartFailure from "../CartResult/CartFailure/CartFailure";
 import CartPending from "../CartResult/CartPending/CartPending";
+import WishList from '../WishList/WishList'
 
 // !ACTIONS
 import Users from "../AdminPanel/Users/Users";
@@ -54,11 +55,10 @@ function App() {
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />
               <Route exact path="/home" component={Home} />
-              
               <Route exact path = "/checkout/:id" component = {Checkout}/>
-              {/* <Route exact path= "/" component {Landing}/> */}
               <Route exact path= '/home/cart' component= {Cart}/>
               <Route exact path = "/home/myorders" component = {UserOrder}/> 
+              <Route exact path = "/home/wishlist" component = {WishList}/> 
               <Route exact path = "/home/myorders/:id" component = {OrderDetail}/> 
               {(typeOfUser === "admin" )&&
               <div className='adminContainer'>

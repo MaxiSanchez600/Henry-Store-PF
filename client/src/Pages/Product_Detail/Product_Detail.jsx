@@ -300,7 +300,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                 </div>
               </div>
               <a href="#sec-2">
-                <div class="scroll-down"></div>
+                <div class={ReviewsProduct && ReviewsProduct.length !== 0 ? "scroll-down" : ''}></div>
               </a>
             </div>
             <section id="sec-2">
