@@ -41,7 +41,6 @@ function SlideBar (){
                     <h3>Ordenes</h3>
                     <ul>
                         <Link to='/admin/orders'><li className={pageActive === 'Todas las ordenes' ? "active" : "unactive"} onClick={changePage}><BsFileText className='iconLi'/>Todas las ordenes</li></Link>
-                        <li className={pageActive === 'Por despachar' ? "active" : "unactive"} onClick={changePage}><BsShuffle className='iconLi'/>Por despachar</li>
                     </ul>
                     <h3>Usuarios</h3>
                     <ul>
@@ -49,7 +48,7 @@ function SlideBar (){
                     </ul>
                     <h3>Economía</h3>
                     <ul>
-                    <Link to='/admin/economy'><li className={pageActive === 'Panel de Usuarios' ? "active" : "unactive"} onClick={changePage}><BiCoin className='iconLi'/>Panel de economía</li></Link>
+                    <Link to='/admin/economy'><li className={pageActive === 'Panel de Economía' ? "active" : "unactive"} onClick={changePage}><BiCoin className='iconLi'/>Panel de Economía</li></Link>
                     </ul>
                 </div>
             </div>
