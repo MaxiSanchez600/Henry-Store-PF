@@ -32,39 +32,40 @@
     }
   }
   .product_name {
-    white-space: nowrap;
+    // white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     font-family: "Avenir_Black";
     letter-spacing: 0.04rem;
     font-weight: 600;
     width: auto;
-    .product_stripe{
+    line-height: 0.9em;
+    .product_stripe {
       background-color: yellow;
       width: 100%;
       height: 8px;
-      margin-top: -8px;
+      margin-top: -5px;
       z-index: -10;
     }
   }
-  
-  .product_number{
+
+  .product_number {
     font-size: 1.5rem;
     font-weight: 500;
     margin-right: 6px;
     font-family: "Avenir_Black";
   }
-  .product_usd{
+  .product_usd {
     font-family: "Avenir_Book";
     font-weight: 500;
   }
-  
+
   .product_image {
     height: 12rem;
     width: 100%;
     object-fit: contain;
   }
-  
+
   .product_price {
     display: flex;
     align-items: center;
@@ -72,11 +73,11 @@
     width: 50%;
     margin-top: 0.3rem;
   }
-  .product_henry_coin{
+  .product_henry_coin {
     margin-bottom: 0.5rem;
   }
 
-  .heart_product{
+  .heart_product {
     position: relative;
     left: 6rem;
     display: flex;
@@ -84,10 +85,10 @@
     width: fit-content;
     font-size: 1.2rem;
     transition: 0.3s all ease;
-     &:hover{
+    &:hover {
       color: red;
       cursor: pointer;
-     }
+    }
   }
 }
 
@@ -108,27 +109,25 @@
   transition: 0.2s all ease-out;
 
   .product_image {
-    filter: grayscale(100%)
+    filter: grayscale(100%);
   }
-  .product_stripe{
-    background-color: #D2D2D6;
+  .product_stripe {
+    background-color: #d2d2d6;
   }
   .button_detail {
-    background-color: #D2D2D6;
-  
-    &:hover{
+    background-color: #d2d2d6;
+
+    &:hover {
       transition: 0.4s all ease;
-      background-color: #D2D2D6;
+      background-color: #d2d2d6;
       color: #000;
     }
   }
-  
 }
-.no_stock{
+.no_stock {
   color: red;
   font-family: "Avenir_Book";
   font-weight: 500;
-
 }
 .button_detail {
   background-color: $yellow_main;
@@ -143,9 +142,9 @@
   letter-spacing: 0.06rem;
   font-weight: 800;
 
-  &:hover{
+  &:hover {
     transition: 0.4s all ease;
-    background-color: #AEADB3;
+    background-color: #aeadb3;
     color: $yellow_main;
   }
 }
@@ -187,17 +186,14 @@
 }
 
 .pagination_full {
-    left: 50%;
-    bottom: 0;
+  left: 50%;
+  bottom: 0;
 }
 
-.pagination_simple{
-    padding: 30px 0;
-    line-height: 1.5;
-    position: relative;
-    width: 100%;
-    margin-top: 25%;
-
+.pagination_simple {
+  padding: 30px 0;
+  line-height: 1.5;
+  position: relative;
+  width: 100%;
+  margin-top: 25%;
 }
-
-
