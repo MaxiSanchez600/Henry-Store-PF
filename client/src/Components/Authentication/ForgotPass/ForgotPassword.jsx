@@ -29,23 +29,35 @@ const ForgotPassword = ({forgotPassClose,LoginOpen}) => {
     e.preventDefault();
     firebase.auth().sendPasswordResetEmail(form.email)
       .then( () =>{
+        
         Swal.fire({
-          title:'Verifica tu correo electrónico...',
+          title:`Verifica tu correo electrónico.`,
           icon:'info',
-         
+          iconColor: "#49AF41",
+          showConfirmButton: false,
+          timer:1000,
+          customClass:{
+            popup: 'popup-user_login',
+            title: 'title-user_login',
+          },
         })
         forgotPassClose();
       
       }).catch( (e)=> {
-        Swal.fire({
-          target: document.getElementById("modal"),
-          title:`${e}`,
-          icon:'error',
-          width:"80%",
-          height:"20%",
-          confirmButtonColor:"#3889EF ",
-          background:"#F2F3F4",
-        })
+        
+        Swal.fire({ 
+        target: document.getElementById("modal"),
+        title:`${e.message==="There is no user record corresponding to this identifier. The user may have been deleted."
+          ?"No hay ningún registro de usuario. El usuario puede haber sido eliminado.":e.message}`,
+        icon:'error',
+        buttonsStyling:false,
+        iconColor: "#F64749",
+        customClass:{
+        popup: 'popup-user_errorLogin',
+        title: 'title-user_errorLogin',
+        confirmButton: 'confirmButton-user_errorLogin',
+        icon: 'iconpopup_user_errorLogin',
+      }})
       })
   }
 

@@ -86,6 +86,7 @@ const CompleteData = () => {
         confirmButtonColor:"#3889EF ",
         background:"#F64749",
       })
+      
     }
     else{
       dataToSend=form;
