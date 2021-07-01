@@ -24,7 +24,8 @@ function WishList({ getMyWishList, MyWishList }) {
   // ! CONTENT   
   return <div className="cards_container_products">
     <div className="WishList_Content">
-      <h2> MIS FAVORITOS:</h2>
+      <h2 className="Wishlist-title"> Mis Favoritos</h2>
+      <div className="stripe_wishlist-title"></div>
     </div>
 
     <div className="all_Cards">

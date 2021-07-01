@@ -1,5 +1,35 @@
+@import "../../Sass/variables";
+
 .cards_container_products {
+    display: flex;
+    justify-content: flex-start; 
+    flex-direction: column;
+    align-items: center;
     min-height: 48rem;
     margin: 3rem;
     text-align-last: center;
+}
+.WishList_Content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+.Wishlist-title{
+    font-family: "Avenir_Black";
+    font-size: 2rem;
+}
+
+.stripe_wishlist-title {
+    background-color: $yellow_main;
+    width: 50%;
+    height: 8px;
+    margin-top: -8px;
+    z-index: -10;
+}
+.all_Cards{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
