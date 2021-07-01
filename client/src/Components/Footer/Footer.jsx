@@ -8,54 +8,54 @@ export default function Footer() {
         <footer className="footer_container">
             <div className="footer_links_container">
                 <div className="footer_links_container_display">
-                    <a className="footer_logo_container" href="https://soyhenry.com">
+                    <a className="footer_logo_container" href="https://soyhenry.com" target="_blank" rel="noreferrer">
                         <img className="footer_logo" src={Logo_Henry_white} alt="" />
                     </a>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com" target="_blank" rel="noreferrer">
                             <p>Home</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/about-us/" target="_blank" rel="noreferrer" >
                             <p>Nosotros</p>
                         </a>
                     </div>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/webfullstack" target="_blank" rel="noreferrer" >
                             <p>Carrera</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/admissions/" target="_blank" rel="noreferrer" >
                             <p>Admisiones</p>
                         </a>
                     </div>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/hiring-en/" target="_blank" rel="noreferrer" >
                             <p>Hire Henry's</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://ayuda.soyhenry.com/es/" target="_blank" rel="noreferrer" >
                             <p>FAQs</p>
                         </a>
                     </div>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://blog.soyhenry.com/" target="_blank" rel="noreferrer" >
                             <p>Blog</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/cursos-de-desarrollo-web/" target="_blank" rel="noreferrer" >
                             <p>Full Stack</p>
                         </a>
                     </div>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/henry-opiniones/" target="_blank" rel="noreferrer" >
                             <p>Opiniones</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/muro-del-amor/" target="_blank" rel="noreferrer" >
                             <p>Muro del amor</p>
                         </a>
                     </div>
                     <div className="footer_link_container">
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/terms/" target="_blank" rel="noreferrer" >
                             <p>Términos y condiciones</p>
                         </a>
-                        <a className="footer_link" href="#">
+                        <a className="footer_link" href="https://soyhenry.com/privacy/" target="_blank" rel="noreferrer" >
                             <p>Política de privacidad</p>
                         </a>
                     </div>
