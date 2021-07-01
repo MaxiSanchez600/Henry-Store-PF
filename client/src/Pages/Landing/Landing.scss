@@ -1,7 +1,6 @@
 @import "../../Sass/variables";
 
 .subtitle_landing {
-
   font-size: 36px;
   text-align: center;
   width: auto;
@@ -78,7 +77,7 @@
   }
 
   .discounted_product_name {
-    white-space: nowrap;
+    // white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     font-family: "Avenir_Black";
@@ -138,9 +137,7 @@
   }
 
   .discounted_product_price {
-    
     .discounted_product_number {
-      
       .discount_stripe {
         position: absolute;
         background-color: red;
