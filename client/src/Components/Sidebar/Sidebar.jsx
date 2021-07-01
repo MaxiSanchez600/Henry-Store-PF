@@ -1,17 +1,17 @@
-import React from 'react';
-import { useGlobalContext } from "../../context";
+import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import './SlideBar.scss';
-import { BsPersonFill } from "react-icons/bs";
-import {FaTimes,FaHome,} from 'react-icons/fa';
-import { RiAdminFill,RiLogoutCircleRLine } from "react-icons/ri";
+import { useDispatch, useSelector} from 'react-redux';
+import { useGlobalContext } from "../../context";
 import {setUSerLogin} from "../../Redux/actions/actionsUsers";
-import { useDispatch} from 'react-redux';
 import { useFirebaseApp } from "reactfire";
-import Swal from 'sweetalert2';
-import {  useSelector } from 'react-redux';
+
+import { RiAdminFill,RiLogoutCircleRLine } from "react-icons/ri";
 import { AiOutlineFileSearch } from "react-icons/ai";
+import {FaTimes,FaHome,} from 'react-icons/fa';
+import { BsPersonFill } from "react-icons/bs";
 import { BiCoin } from "react-icons/bi";
+import Swal from 'sweetalert2';
+import './SlideBar.scss';
 
 const Sidebar = () => {
 
@@ -19,15 +19,26 @@ const Sidebar = () => {
   const { isSidebarOpen, closeSidebar } = useGlobalContext();
 
   const dispatch = useDispatch();
-
   const firebase = useFirebaseApp();
+
+  useEffect(() => {
+    const handleScroll=()=>{
+      closeSidebar();
+    }
+    window.addEventListener("scroll",handleScroll)
+  }, []);
 
   const logOut = async () => {
     Swal.fire({
-      title:'Sesión Cerrada',
+      iconColor: "#49AF41",
+      title:`Sesión Cerrada`,
       icon:'success',
       showConfirmButton: false,
-      timer:1000
+      timer:2000,
+      customClass:{
+        popup: 'popup-closed_sessionUser',
+        title: 'title-closed_sessionUser',
+      },
     })
     await firebase.auth().signOut();
      dispatch(setUSerLogin({}))
@@ -36,10 +47,19 @@ const Sidebar = () => {
   }
 
   const HenryCoint=()=>{
+    let name=dataUSerLogin;
     Swal.fire({
-      title:`${dataUSerLogin.name} Tienes ${dataUSerLogin.hc} HenryCoints`,
-      icon:'success',
-    })
+      buttonsStyling:false,
+      iconColor: "#49AF41",
+      customClass:{
+          popup: 'popup-info_HC',
+          title: 'title-info_HC',
+          confirmButton: 'confirmButton-info_HC',
+    },
+      icon:"info",
+      title:`${name.name.charAt(0).toUpperCase()}${name.name.slice(1)} tienes ${dataUSerLogin.hc} HenryCoins`,
+  })
+ 
   }
 
   return (
@@ -53,13 +73,11 @@ const Sidebar = () => {
         <ul className='links'>
           <li className="liLinks" onClick={closeSidebar}><Link to="/home"><FaHome/> Home</Link></li>
           {dataUSerLogin.role==="admin"&& 
-          <>
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/admin"> <RiAdminFill/> Admin</Link> </li> 
+          }
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/profile"> <BsPersonFill/> Profile</Link> </li> 
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/myorders"> <AiOutlineFileSearch/> Mis Ordenes</Link> </li> 
-          <li className="liLinks"><span className='icon-bicoin' onClick={()=>{closeSidebar(); HenryCoint()}}><BiCoin/> HenryCoints</span></li>       
-          </>
-          }
+          <li className="liLinks"><span className='icon-bicoin' onClick={()=>{closeSidebar(); HenryCoint()}}><BiCoin/> HenryCoins</span></li>       
           <li className="liLinks"><Link to="/home" className='spanOut'  onClick={()=>{logOut();closeSidebar() }} ><RiLogoutCircleRLine/>Cerrar sesión</Link></li>
         </ul>
         

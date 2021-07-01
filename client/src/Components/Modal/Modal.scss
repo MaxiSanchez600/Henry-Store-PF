@@ -34,3 +34,98 @@
   opacity: 0.95;
 }
 
+// Sweetalert success
+.popup-user_login{
+  background-color: white;
+  width: 30rem;
+  height: 22rem;
+  color:black;
+  font-family: "Avenir_Black";
+}
+
+.title-user_login{
+  font-family: "Avenir_Roman";
+  font-weight: 100;
+  color: black;
+  font-size: 2em;
+}
+
+.confirmButton-user_login{
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: #F64749;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin: 1rem;
+  cursor: pointer;
+  transition: 0.4s all;
+  &:hover {
+      transform: scale(1.07);
+  }
+}
+
+.input-user_login{
+  background-color: black;
+  color: white;
+}
+
+.validationMessage-user_login{
+  background-color: black;
+  color: #cc0000;
+  height: 1.5rem;
+}
+
+// Sweetalert error
+.popup-user_errorLogin{
+  background-color: white;
+  width:"80%";
+  height:"20%";
+  color:black;
+  font-family: "Avenir_Black";
+  font-size: 15px;
+}
+.title-user_errorLogin{
+  font-family: "Avenir_Black";
+  color: black;
+  font-size: 2em;
+}
+.confirmButton-user_errorLogin{
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: #F64749;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin: 1rem;
+  cursor: pointer;
+  transition: 0.4s all;
+  &:hover {
+      transform: scale(1.07);
+  }
+}
+
+
+// Sweetalert success
+.popup-user_login{
+  background-color: white;
+  height: 60%;
+  color:black;
+  font-family: "Avenir_Black";
+  font-size: 18px;
+}
+
+.title-user_login{
+  font-family: "Avenir_Black";
+  font-weight: 100;
+  color: black;
+  font-size: 2em;
+}

@@ -32,7 +32,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
       await fetch(URL_BASE + 'cart/addproducttocart', options)
         .then(() =>
           Swal.fire({
-            title: `Producto agregado al Carrito &#128076`,
+            title: `Producto agregado al Carrito`,
             icon: 'success',
             showConfirmButton: false,
             timer: 1500
