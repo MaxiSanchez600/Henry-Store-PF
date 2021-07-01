@@ -43,7 +43,7 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const initialInfo = () => {
         if(editIsActive) {
-            let typeData=[];
+            let typeData = [];
             //pongo images y tags en el json
             const tagsData = productData.Tags.map(tag => tag.name_tag);
             const imagesData = productData.Images.map(element => element.name_image);
@@ -55,7 +55,7 @@ function CreateProduct ({ editIsActive, productData }) {
             }
 
             //pongo las subcategorias
-            if(productData.Caracteristics.find(element => element.name_caracteristic==='type') !== undefined){
+            if(productData.Caracteristics.find(element => element.name_caracteristic === 'type') !== undefined) {
                 typeData = productData.Caracteristics.find(element => element.name_caracteristic==='type')?.values_caracteristic;
             }
             let categoriesAux = []; // [[cat1, sub11, sub12], [cat2, sub21, sub22], etc...]
@@ -375,24 +375,22 @@ function CreateProduct ({ editIsActive, productData }) {
                 timer: 1400
             })
             .then((result) => {
-                if (result.isConfirmed) {
-                    setJson({
-                        infoProduct: {
-                            name: '',
-                            price: '',    
-                            description: '',
-                            unit_stock: '',
-                            henry_coin: '',
-                            weight: '',
-                            size: '',
-                            percentage_discount: '',  
-                        },
-                        categories: {},
-                        caracteristics: {},
-                        tags: [],
-                        images: []
-                    });
-                }
+                setJson({
+                    infoProduct: {
+                        name: '',
+                        price: '',    
+                        description: '',
+                        unit_stock: '',
+                        henry_coin: '',
+                        weight: '',
+                        size: '',
+                        percentage_discount: '',  
+                    },
+                    categories: {},
+                    caracteristics: {},
+                    tags: [],
+                    images: []
+                });
             });
         })
         .catch(error => {
