@@ -14,17 +14,18 @@ import Sidebar from "../../Sidebar/Sidebar"
 export function validate(form){
   let errors={};
   if(form.email){
-    if(!/\S+@\S+\.\S+/.test(form.email)){
+    const re = /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(form.email)){
       errors.email = 'Ingrese un Email valido..';
     } 
   }
   if(form.phone){
-    if(!/(?=.*[0-9])/.test(form.phone)){
+    if(!/^[0-9]+$/.test(form.phone)){
       errors.phone="No puede contener letras";
     }
   }
-  if(form.identification){
-    if(!/(?=.*[0-9])/.test(form.identification)){
+  if(form.identification){ 
+    if(!/^[0-9]+$/.test(form.identification)){
       errors.identification="No puede contener letras";
     }
   }
