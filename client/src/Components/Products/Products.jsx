@@ -14,8 +14,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
 
     useEffect(() => {
         if (!ListProducts.length) getAllFilteredProducts({ ...queriesFromReducer, currency: currencyactual });
-    }, [])
-    // }, [ListProducts.length, currencyactual, getAllFilteredProducts, queriesFromReducer])
+    }, []);
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
@@ -61,7 +60,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
                     !Object.keys(queriesFromReducer).length ?
                         // Aca puede ir un Loading
                         ""
-                        : "No encontramos ningun producto, prueba usar otros filtros..."
+                        : <p className="no_items_matched_message">No encontramos ningun producto, prueba usar otros filtros...</p>
                     : displayProducts
             }
         </div>
