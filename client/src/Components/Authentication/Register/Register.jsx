@@ -28,8 +28,13 @@ const Register = ({RegisterClose,LoginOpen}) => {
     Swal.fire({
       title:`Bienvenido!`,
       icon:'success',
+      iconColor: "#49AF41",
       showConfirmButton: false,
-      timer:1000
+      timer:1000,
+      customClass:{
+        popup: 'popup-user_login',
+        title: 'title-user_login',
+      },
     })
   }
   
@@ -40,6 +45,7 @@ const Register = ({RegisterClose,LoginOpen}) => {
     });
   };
 
+  //crear cuenta con correo y contraseña
   const createAccount = (e) => {
     e.preventDefault();
     if(form.password===form.confimationPass){
@@ -71,15 +77,22 @@ const Register = ({RegisterClose,LoginOpen}) => {
           }
       })
       .catch (function(error){
-        Swal.fire({
+        return Swal.fire({
           target: document.getElementById("modal"),
-          title:`${error}`,
-          icon:'error',
-          width:"80%",
-          height:"20%",
-          confirmButtonColor:"#3889EF ",
-         background:"#F2F3F4",
-        })
+          buttonsStyling:false,
+          iconColor: "#F64749",
+          customClass:{
+          popup: 'popup-user_errorLogin',
+          title: 'title-user_errorLogin',
+          confirmButton: 'confirmButton-user_errorLogin',
+          icon: 'iconpopup_user_errorLogin',
+        },
+          icon:"error",
+          title:`${error.message==="The email address is already in use by another account."
+          ?"La dirección de correo electrónico ya está siendo utilizada por otra cuenta."
+          :error.message==="Password should be at least 6 characters"?"La contraseña debe tener al menos 6 caracteres"
+          :error}`,
+      })
       })
     }else{
       setForm({
@@ -91,14 +104,19 @@ const Register = ({RegisterClose,LoginOpen}) => {
         target: document.getElementById("modal"),
         title:"las contraseñas no coinciden, vuelve a ingresarlas",
         icon:'error',
-        width:"80%",
-        height:"20%",
-        confirmButtonColor:"#3889EF ",
-       background:"#F2F3F4",
+        buttonsStyling:false,
+        iconColor: "#F64749",
+        customClass:{
+        popup: 'popup-user_errorLogin',
+        title: 'title-user_errorLogin',
+        confirmButton: 'confirmButton-user_errorLogin',
+        icon: 'iconpopup_user_errorLogin',
+      },
       })
     }
   };
 
+  //Registro con Google
   const handleGoogle = (e) => {
     e.preventDefault()
     let provider = new firebase.auth.GoogleAuthProvider()
@@ -142,16 +160,21 @@ const Register = ({RegisterClose,LoginOpen}) => {
       }).catch((error) => {
         Swal.fire({
           target: document.getElementById("modal"),
+          buttonsStyling:false,
+          iconColor: "#F64749",
+          customClass:{
+          popup: 'popup-user_errorLogin',
+          title: 'title-user_errorLogin',
+          confirmButton: 'confirmButton-user_errorLogin',
+          icon: 'iconpopup_user_errorLogin',
+        },
+          icon:"error",
           title:`${error}`,
-          icon:'error',
-          width:"80%",
-          height:"20%",
-          confirmButtonColor:"#3889EF ",
-          background:"#F2F3F4",
         })
       });
   }
 
+  //Registro con gitHub
   const handleGithub = (e) => {
     e.preventDefault()
     let provider = new firebase.auth.GithubAuthProvider()
@@ -191,15 +214,20 @@ const Register = ({RegisterClose,LoginOpen}) => {
           localStorage.setItem('userlogged', res.user.uid);
         }
       }).catch((error) => {
-        Swal.fire({
+        return Swal.fire({
           target: document.getElementById("modal"),
-          title:`${error}`,
-          icon:'error',
-          width:"80%",
-          height:"20%",
-          confirmButtonColor:"#3889EF ",
-          background:"#F2F3F4",
-        })
+          buttonsStyling:false,
+          iconColor: "#F64749",
+          customClass:{
+          popup: 'popup-user_errorLogin',
+          title: 'title-user_errorLogin',
+          confirmButton: 'confirmButton-user_errorLogin',
+          icon: 'iconpopup_user_errorLogin',
+        },
+          icon:"error",
+          title:`${error.message==="An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address."
+          ?"La cuenta ya se encuentra asociada, al correo de un asuario creado":error}`,
+         })
       });
   }
 

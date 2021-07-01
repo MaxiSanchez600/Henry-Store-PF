@@ -1,6 +1,22 @@
 
 @import '../../Sass/variables';
 
+.sidebar {
+  position: fixed;
+  top: 86px;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background:black; 
+  opacity: 0.9;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 1rem;
+  box-shadow: rgb(187, 37, 37);
+  transition: all 0.3s linear;
+  transform: translate(+100%);
+  z-index: 9999;
+}
 .sidebar-header {
   position: relative;
   display: flex;
@@ -17,7 +33,7 @@
   cursor: pointer;
   color:$gray_main;
   margin-top: 0.2rem;
-  color:$white_main;
+  color:white;
 }
 
 .close-btn:hover {
@@ -51,30 +67,30 @@
   align-items: center;
   font-size: 1.25rem;
   font-family: "Avenir_Book";
-  padding: 1rem 1rem;
+  padding: 1.3rem 1rem;
   padding-left: 40px;
-  color:$white_main;
+  color:white;
   transition: all 0.3s linear;
   letter-spacing:  0.1rem;
-  text-decoration: none
+  text-decoration: none;
+
 }
 
 .links a:hover,.spanOut:hover, .icon-bicoin:hover   {
   background: rgb(241, 245, 248);
-  color: $black_main;
+  color: black;
   font-weight: bolder;
+
 }
 //iconos
 .links a svg, .spanOut svg, .icon-bicoin svg {
   font-size: 1.5rem;
-  color:$white_main;
+  color:white;
   margin-right: 1rem;
   transition: all 0.3s linear;
 }
-
-.links a:hover svg, .spanOut:hover svg,.icon-bicoin:hover svg  {
-  color: $yellow_main;
-  background-color: $black_main;
+.links a:hover svg, .spanOut:hover svg, .icon-bicoin:hover svg {
+  color: black;
 }
 
 .social-icons {
@@ -85,32 +101,14 @@
 .social-icons a {
   font-size: 1.5rem;
   margin: 0 0.5rem;
-  color:$white_main;
+  color:white;
   transition:all 0.3s linear;
 }
-.social-icons a:hover {
-  color: $yellow_main;
-}
 
-.sidebar {
-  position: fixed;
-  top: 90px;
-  right: 0;
-  // width: 100%;
-  height: 100%;
-  background:$black_main; 
-  opacity: 0.85;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  row-gap: 1rem;
-  // box-shadow: rgb(187, 37, 37);
-  transition: all 0.3s linear;
-  transform: translate(+100%);
-  z-index: 9999;
-}
 .show-sidebar {
   transform: translate(0);
   z-index: 9999;
+ 
 }
 @media screen and (min-width: 676px) {
   .sidebar {
@@ -136,6 +134,53 @@
   font-weight: bolder;
 }
 
+// Sweetalert cerrar session
+.popup-closed_sessionUser{
+  background-color: white;
+  width:"90%";
+  height:"90%";
+  color:black;
+  font-family: "Avenir_Black";
+  font-size: 18px;
+}
 
+.title-closed_sessionUser{
+  font-family: "Avenir_Black";
+  color: black;
+  font-size: 30px;
+}
 
+// ver HC
+.popup-popup-info_HC{
+  background-color: white;
+  height: 60%;
+  color:black;
+  font-family: "Avenir_Black";
+  font-size: 18px;
+}
 
+.title-info_HC{
+  font-family: "Avenir_Black";
+  color: black;
+  font-size:28px;
+  border: none;
+}
+.confirmButton-info_HC{
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: #ffff01;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin: 1rem;
+  cursor: pointer;
+  transition: 0.4s all;
+  color: black;
+  &:hover {
+      transform: scale(1.07);
+  }
+}

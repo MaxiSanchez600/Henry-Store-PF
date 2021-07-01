@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GET_DETAIL_ORDER } from "../../../../Config/index";
 import PostReview from '../../../Reviews/PostReview'
 import "./OrderDetail.scss"
-
+import Sidebar from "../../../Sidebar/Sidebar";
 const OrderDetail = (props) => {
   const idUrl = props.match.params.id;
   const [detailOrder, setDetailOrder] = useState({});
@@ -30,7 +30,7 @@ const closeModalHandler = () => setshow(false)
   return (
     <div className={show ? 'back_drop' : 'content_ordel_detail detail2'}>
       <div className="container-table-UserOrder detail_orders" >
-        <h1>{`Detalle Orden # ${detailOrder.id_order}`}</h1>
+        <h2>{`Detalle Orden # ${detailOrder.id_order}`}</h2>
         <h3>{`Estatus: ${detailOrder.status}`}</h3>
         <h3>{`Fecha Actualizacion: ${detailOrder.updatedAt}`}</h3>
         <h3>{`Total Pagado: $${detailOrder.totalprice}`}</h3>
@@ -80,7 +80,7 @@ const closeModalHandler = () => setshow(false)
       <div className="contain_modal">
       <PostReview  show={show} closeModalHandler={closeModalHandler} id_product={idproductReview}  />
       </div>
-
+      <Sidebar />
     </div>
   );
 };

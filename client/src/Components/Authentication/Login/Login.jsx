@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { REGISTER_URL, GUEST_CART_USER} from "../../../Config/index";
 import axios from "axios";
 import { firebase } from "../../../Config/firebase-config";
+import "./Login.scss";
 // ! COMPONENTES
 import "firebase/auth";
 import { useDispatch } from 'react-redux';
@@ -25,10 +26,15 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
   if (user) {
     loginClose();
     Swal.fire({
-      title:`Bienvenido!;`,
-      icon:'success',
+      title:`Bienvenido!`,
+      icon:"success",
+      iconColor: "#49AF41",
       showConfirmButton: false,
-      timer:1000
+      timer:2000,
+      customClass:{
+          popup: 'popup-user_login',
+          title: 'title-user_login',
+      },
     })
   }
   
@@ -54,14 +60,13 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
             .post(REGISTER_URL, {
               id:res.user.uid,
               email: i.profile.email,
-              firstname: i.profile.given_name,
-              lastname: i.profile.family_name,
+              firstname: i.profile.given_name.toLowerCase(),
+              lastname: i.profile.family_name.toLowerCase(),
               image: i.profile.picture,
               registerOrigin: i.providerId,
             })
             .then((res) => {
               if(localStorage.getItem('userid') !== null){
-                // dispatch(getUserLogin(res.user.uid))
                 axios.put(GUEST_CART_USER, {
                   new_user: res.data.id_user,
                   guest_user: localStorage.getItem('userid')
@@ -73,8 +78,17 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
                 })
                 .catch((error) => {
                   Swal.fire({
+                    target: document.getElementById("modal"),
+                    buttonsStyling:false,
+                    iconColor: "#F64749",
+                    customClass:{
+                    popup: 'popup-user_errorLogin',
+                    title: 'title-user_errorLogin',
+                    confirmButton: 'confirmButton-user_errorLogin',
+                    icon: 'iconpopup_user_errorLogin',
+                  },
+                    icon:"error",
                     title:`${error}`,
-                    icon:'error',
                   })
                 });
               }else{
@@ -84,10 +98,19 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
               }
             })
             .catch((error) => {
-              Swal.fire({
+              return Swal.fire({
+                target: document.getElementById("modal"),
+                buttonsStyling:false,
+                iconColor: "#F64749",
+                customClass:{
+                popup: 'popup-user_errorLogin',
+                title: 'title-user_errorLogin',
+                confirmButton: 'confirmButton-user_errorLogin',
+                icon: 'iconpopup_user_errorLogin',
+              },
+                icon:"error",
                 title:`${error}`,
-                icon:'error',
-              })
+            })
             });
           }
           else{
@@ -98,10 +121,19 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
           }
         })
       .catch((error) => {
-        Swal.fire({
-          title:`${error}`,
-          icon:'error',
-        })
+          Swal.fire({
+            target: document.getElementById("modal"),
+            buttonsStyling:false,
+            iconColor: "#F64749",
+            customClass:{
+            popup: 'popup-user_errorLogin',
+            title: 'title-user_errorLogin',
+            confirmButton: 'confirmButton-user_errorLogin',
+            icon: 'iconpopup_user_errorLogin',
+            },
+            icon:"error",
+            title:`${error}`,
+      })
       });
   };
 
@@ -148,10 +180,20 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
         }
       })
       .catch((error) => {
-        Swal.fire({
-          title:`${error}`,
-          icon:'error',
-        })
+        return Swal.fire({
+          target: document.getElementById("modal"),
+          buttonsStyling:false,
+          iconColor: "#F64749",
+          customClass:{
+          popup: 'popup-user_errorLogin',
+          title: 'title-user_errorLogin',
+          confirmButton: 'confirmButton-user_errorLogin',
+          icon: 'iconpopup_user_errorLogin',
+        },
+          icon:"error",
+          title:`${error.message==="An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address."
+          ?"La cuenta ya se encuentra asociada, al correo de un asuario creado":error}`,
+      })
       });
   };
 
@@ -169,15 +211,22 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       })
       .catch((error) => {
         setForm(initialState);
-        Swal.fire({
+        return Swal.fire({
           target: document.getElementById("modal"),
-          title:`${error.message}`,
-          icon:'error',
-          width:"80%",
-          height:"20%",
-          confirmButtonColor:"#3889EF ",
-          background:"#F2F3F4",
-        })
+          buttonsStyling:false,
+          iconColor: "#F64749",
+          customClass:{
+          popup: 'popup-user_errorLogin',
+          title: 'title-user_errorLogin',
+          confirmButton: 'confirmButton-user_errorLogin',
+          icon: 'iconpopup_user_errorLogin',
+        },
+          icon:"error",
+          title:`${error.message==="The email address is badly formatted."?"La dirección de correo electrónico está mal formateada."
+          :error.message==="The password is invalid or the user does not have a password."?"La contraseña no es válida."
+          :error.message==="There is no user record corresponding to this identifier. The user may have been deleted."?"No hay ningún registro de usuario. Es posible que se haya eliminado al usuario."
+          :error.message}`,
+      })
       });
   };
 
@@ -236,4 +285,3 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
 };
 
 export default Login;
-

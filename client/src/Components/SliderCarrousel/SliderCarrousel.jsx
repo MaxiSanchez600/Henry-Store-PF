@@ -3,6 +3,7 @@ import IMAGES from "../../Assets/images.json";
 import { IoIosArrowBack } from "react-icons/io"
 import { IoIosArrowForward } from "react-icons/io"
 import './slidercarrousel.scss'
+import Sidebar from "../Sidebar/Sidebar";
 
 
 const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
@@ -130,6 +131,7 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
             />
           </div>
       }
+           <Sidebar />
     </div>
   );
 };

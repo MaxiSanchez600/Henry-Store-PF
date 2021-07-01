@@ -29,7 +29,8 @@ export function validate(form){
 }
 
 const CompleteData = () => {
- 
+  var dataToSend;
+
   const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
   const nationalities=useSelector((state)=>state.users.nationalities);
   const documentTipes=useSelector((state)=>state.users.documentTipes);
@@ -37,15 +38,15 @@ const CompleteData = () => {
 
     const stateFormData = {
         id:dataUSerLogin.id,
-        image:""||dataUSerLogin.image,
-        firstname: "" || dataUSerLogin.name,
-        lastname: "" || dataUSerLogin.lastname,
-        email: "" || dataUSerLogin.email,
-        phone: "" || dataUSerLogin.phone,
-        username: "" || dataUSerLogin.username,
+        image:"",
+        firstname: "" ,
+        lastname: "" ,
+        email: "" ,
+        phone: "",
+        username: "",
         nacionality:"",
         documentType:"",
-        identification: "" || dataUSerLogin.identification,
+        identification: "",
         status:"",
   };
   
@@ -59,56 +60,88 @@ const CompleteData = () => {
     dispatch(getUserLogin(userLogged));
     dispatch(getNacionalities());
     dispatch(getDocumentTypes());
+    setForm({
+      id:dataUSerLogin.id,
+      image:dataUSerLogin.image,
+      firstname: dataUSerLogin.name,
+      lastname:dataUSerLogin.lastname,
+      email: dataUSerLogin.email,
+      phone: dataUSerLogin.phone,
+      username:  dataUSerLogin.username,
+      nacionality: dataUSerLogin.nacionality,
+      documentType: dataUSerLogin.documentType,
+      identification: dataUSerLogin.identification,
+      status:"",
+  });
   }, []);
+
+  
 
   const handleonSubmit = (e) => {
     e.preventDefault();
-   
     if(Object.keys(errors).length !== 0 ){
       Swal.fire({
         title:`Errores en el formulario.. `,
         icon:'error',
         confirmButtonColor:"#3889EF ",
-        background:"#F2F3F4",
+        background:"#F64749",
       })
+      
     }
     else{
-    axios.put(PUT_DATA_USER,form)
-    .then(()=>{
+      dataToSend=form;
+      dataToSend.nacionality= nationalities.find(n=>form.nacionality===n.nacionality).id;
+      dataToSend.documentType=documentTipes.find(d=> form.documentType===d.type).id;
+
+      axios.put(PUT_DATA_USER,dataToSend)
+      .then(()=>{ 
       setEnableForm(true)
-    })
-    .then(()=>{ 
-      
-      dispatch(getUserLogin(dataUSerLogin.id));
       setCheck(null)
       Swal.fire({
-        title:`Perfil Actualizado Correctamente!`,
-        icon:'success',
+        title:`Perfil actualizado correctamente.`,
+        icon:"success",
+        iconColor: "#49AF41",
         showConfirmButton: false,
-        timer:1500
+        timer:1500,
+        customClass:{
+        popup: 'popup-update_dataUser',
+        title: 'title-update_dataUser',
+        },
       })
+      dataToSend=form;
+      dataToSend.nacionality= nationalities.find(n=>form.nacionality===n.id).nacionality;
+      dataToSend.documentType=documentTipes.find(d=> form.documentType===d.id).type;
+      dispatch(getUserLogin(userLogged));
     })
-    .catch (()=>{
-      Swal.fire({
-        title:`Username ya asignado, elija otro.. `,
-        icon:'error',
-        confirmButtonColor:"#3889EF ",
-        background:"#F2F3F4",
-      })
+    .catch ((err)=>{
+  
+      return Swal.fire({
+        buttonsStyling:false,
+        iconColor: "#F64749",
+        customClass:{
+            popup: 'popup-errorUpdate_dataUser',
+            title: 'title-errorUpdate_dataUser',
+            confirmButton: 'confirmButton-errorUpdate_dataUser',
+      },
+        icon:"error",
+        title:`Username ya asignado ${err}`,
+        text: "Para continuar es necesario elijas otro Username."
+    })
     });
   }
   };
+
 
   const handleOnChange = (e) => {
     setErrors(validate({
       ...form,
       [e.target.name]: e.target.value,
     }))
-
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
+    
   };
 
   const handleChangeCheck = (e) => {
@@ -120,8 +153,22 @@ const CompleteData = () => {
 
   const chageStateForm =(e)=>{
     e.preventDefault();
+
     if(enableForm===true){
       setEnableForm(false)
+      setForm({
+        id:dataUSerLogin.id,
+        image:dataUSerLogin.image,
+        firstname: dataUSerLogin.name,
+        lastname:dataUSerLogin.lastname,
+        email: dataUSerLogin.email,
+        phone: dataUSerLogin.phone,
+        username:  dataUSerLogin.username,
+        nacionality: dataUSerLogin.nacionality,
+        documentType: dataUSerLogin.documentType,
+        identification: dataUSerLogin.identification,
+        status:"",
+    });
     }else{
       setEnableForm(true)
     }
@@ -129,22 +176,31 @@ const CompleteData = () => {
 
   const uploadImage=async(imageSelected)=>{ 
     const formData=new FormData();
+
     formData.append("file",imageSelected);
     formData.append("upload_preset","UsersHenry");
     await axios.post("http://api.cloudinary.com/v1_1/dqyukl5cf/image/upload",formData)
+
     .then((res)=>{
       setForm({
         ...form,
         image: res.data.url,
       });
+     
       Swal.fire({
         title:`Imagen Actualizada`,
         icon:'success',
+        iconColor: "#49AF41",
         showConfirmButton: false,
         timer:1500,
         timerProgressBar:true,
         position: 'bottom-end',
-        toast:true
+        toast:true,
+        customClass:{
+          popup: 'popup-errorUpdate_dataUser',
+          title: 'title-errorUpdate_dataUser',
+          confirmButton: 'confirmButton-errorUpdate_dataUser',
+    },
       })
     })
     .catch((e)=>{
@@ -164,23 +220,13 @@ const CompleteData = () => {
   return (
     <div className="containerCompleteData">
       <div className="divNavProfile">
-        <div className="imageHenry">
-          <Link to="/home">
-                <img src={Logo_Henry_black}  alt="" width="200px" srcSet="" />
-          </Link>
-        </div>
         <div className="labelPerfil">
-          <label>Perfil</label>
+          <h1>Perfil</h1>
         </div>
         <div className="navRigth">
           <div className="ButtonEditProfile">
               <button onClick={chageStateForm}>{enableForm?"Editar Perfil":"volver"}</button>
             </div>
-          <div className="iconBack">
-            <Link to="/home">
-                <FaHome/>
-            </Link>
-          </div>
         </div>
 
       </div>
@@ -218,6 +264,7 @@ const CompleteData = () => {
                   />
                    {!enableForm&&(errors.email && (<p className="danger">{errors.email}</p>))}
                 </div>
+
                 <div className="divInfoForm">
                 <label>Telefono: </label>
                   <input
@@ -227,10 +274,11 @@ const CompleteData = () => {
                   />
                   {!enableForm&&(errors.phone && (<p className="danger">{errors.phone}</p>))}
                 </div>
+
                 <div className="divInfoForm">
                   <label>Pais: </label>
                   <input className="inputNacionality"
-                      type="text" name="nacionality" id="nacionality" value ={form.nacionality} disabled={true}  onChange={handleOnChange} 
+                      type="text" name="nacionality" id="nacionality" value={form.nacionality} disabled={true}  onChange={handleOnChange} 
                       placeholder={dataUSerLogin.nacionality ==="Undefined"?"...":dataUSerLogin.nacionality }
                     />
                     {
@@ -240,7 +288,7 @@ const CompleteData = () => {
                             <option value="">Seleccione</option>
                             {
                             nationalities.map((e)=>(
-                            <option key={e.id} value={e.id}>{e.nacionality}</option>))
+                            <option key={e.id} value={e.nacionality}>{e.nacionality}</option>))
                             } 
                           </select>
                       </div>
@@ -250,13 +298,13 @@ const CompleteData = () => {
                 <div className="divInfoForm" >
                   <label>Tipo de Documento:</label>
                   <input className="inputDocumentType"
-                      type="text" name="documentType" id="documentType" value={dataUSerLogin.documentType} disabled={true} required onChange={handleOnChange} 
+                      type="text" name="documentType" id="documentType" value={form.documentType}  disabled={true} required onChange={handleOnChange} 
                       placeholder={dataUSerLogin.documentType ==="Undefined"?"... ":dataUSerLogin.documentType }
                   />
                   { enableForm===false&&
                     documentTipes.map((e) =>
                     <div key={e.id} className="divRadio">
-                      <input type="radio" id={e.type} name="documentType" value={e.id} disabled={enableForm}  checked={check} onChange={handleChangeCheck} />
+                      <input type="radio" id={e.type} name="documentType" value={e.type} disabled={enableForm}  checked={check} onChange={handleChangeCheck} />
                       <label>{e.type}</label>
                     </div>)
                   }
@@ -280,7 +328,6 @@ const CompleteData = () => {
           <div className="imag">
              <label>Imagen de Perfil</label>
             <img src={dataUSerLogin.image||logo} alt="not found" />
-
             {enableForm===false && 
             <>
               <div class="custom-input">
