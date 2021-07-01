@@ -177,7 +177,7 @@ export default function Economy () {
                         <div className="each-currency-economy">
                             <h3 className="letters-name-black">HC</h3>
                             <form className="form-economy" onSubmit={handleHC}>
-                                <input type="number" className="exchange-input" placeholder="Nuevo valor..." onChange={handleChangeHC} value={formhc}/>
+                                <input type="number" className="exchange-input" placeholder="Nuevo valor..." onChange={handleChangeHC} step=".01" value={formhc}/>
                                 <input className="button_modify_economy" type="submit" value="Modificar"/>
                             </form>
                         </div>
@@ -187,12 +187,12 @@ export default function Economy () {
                             {exchanges?.map(e=>{
                                 return <div className="values-rows">
                                             <h4 className="letters-name-roman-title">Valor Actual:</h4>
-                                            <h4 className="letters-name-roman">1 USD = {e.currencyExChange+" "+e.currencyName}</h4>
+                                            <h4 className="letters-name-roman">{e.currencyExChange+" "+e.currencyName} = 1 USD</h4>
                                         </div>
                             })}
                             <div className="values-rows">
                             <h4 className="letters-name-roman-title">Valor Actual:</h4>
-                            <h4 className="letters-name-roman">1 USD = {henrycoin?henrycoin[0].exchange:null} HC</h4>
+                            <h4 className="letters-name-roman">1 HC = {henrycoin?henrycoin[0].exchange:null}USD</h4>
                             </div>
                         </div>
                     </div>

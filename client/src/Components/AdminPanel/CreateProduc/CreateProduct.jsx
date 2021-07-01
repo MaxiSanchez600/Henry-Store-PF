@@ -331,6 +331,7 @@ function CreateProduct ({ editIsActive, productData }) {
                 },
             });
             if(result.isDenied) return;
+            if(result.isDismissed) return;
         }
         //validación imágenes
         if(json.images.length === 0) {
@@ -348,6 +349,7 @@ function CreateProduct ({ editIsActive, productData }) {
                 },
             });
             if(result.isDenied) return;
+            if(result.isDismissed) return;
         }
         //creación del producto
         axios.post("http://localhost:3001/product", json)
