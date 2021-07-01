@@ -60,34 +60,7 @@ function Filters({
   return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
       {/* <p>{Object.keys(filtersToSend).length}</p> */}
-      {
-        Object.keys(queriesFromReducer).length ?
-          <div className="container_box">
-            {
-              Object.keys(queriesFromReducer).map((filterName) => {
-                switch (filterName) {
-                  case "tag":
-                  case "category":
-                  case "orderType":
-                  case "orderDirection":
-                  case "currency":
-                    return "";
-                  default:
-                    return (
-                      <div key={filterName} className="box_filter" id={`${filterName}_${queriesFromReducer[filterName]}`}>
-                        <p className="filter_title_selected">{`${filterName}: ${queriesFromReducer[filterName]}`}</p>
-                        <button
-                          className="button_filtered"
-                          name={filterName}
-                          onClick={e => closeSelectedFilterButton(e)}
-                        >x</button>
-                      </div>
-                    );
-                }
-              })
-            }
-          </div> : <div className="container_box"></div>
-      }
+      
 
       {/* PRECIO*/}
       <div className="name_filter">
@@ -119,7 +92,7 @@ function Filters({
         caracteristicsFromReducer.map(caracteristic => (
           <div className="name_filter" key={caracteristic.name_caracteristic}>
             <h3 className="filter_title">
-              {`${caracteristic.name_caracteristic}:`}
+              {`${(caracteristic.name_caracteristic === "type")?"Tipo":caracteristic.name_caracteristic}:`}
               <div className="title_stripe"></div>
             </h3>
             <select
@@ -128,7 +101,7 @@ function Filters({
               onChange={e => handleFilters(e)}
               id={`filter_name_${caracteristic.name_caracteristic}`}
             >
-              <option value="default" className="select_options">Elige una opcion...</option>
+              <option value="default" className="select_options">Elige una opción...</option>
               {
                 caracteristic.values_caracteristic.map(value => (
                   <option value={value} key={value} className="select_options">{value}</option>
@@ -137,6 +110,34 @@ function Filters({
             </select>
           </div>
         ))
+      }
+      {
+        Object.keys(queriesFromReducer).length ?
+          <div className="container_box">
+            {
+              Object.keys(queriesFromReducer).map((filterName) => {
+                switch (filterName) {
+                  case "tag":
+                  case "category":
+                  case "orderType":
+                  case "orderDirection":
+                  case "currency":
+                    return "";
+                  default:
+                    return (
+                      <div key={filterName} className="box_filter" id={`${filterName}_${queriesFromReducer[filterName]}`}>
+                        <p className="filter_title_selected">{`${filterName}: ${queriesFromReducer[filterName]}`}</p>
+                        <button
+                          className="button_filtered"
+                          name={filterName}
+                          onClick={e => closeSelectedFilterButton(e)}
+                        >x</button>
+                      </div>
+                    );
+                }
+              })
+            }
+          </div> : <div className="container_box"></div>
       }
     </form>
   </div>

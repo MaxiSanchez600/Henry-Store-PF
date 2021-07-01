@@ -72,12 +72,12 @@
             align-items: center;
             justify-content: start;
 
-            .image {
+            .image-navbar {
                 width: 70px;
                 height: 70px;
                 border-radius: 100px;
             
-                object-fit: cover;
+                object-fit: contain;
             }
         }
 
@@ -91,7 +91,6 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin: auto 0 10px;
 
                 .currency_text {
                     font-size: 20px;
@@ -129,6 +128,10 @@
                 justify-content: center;
 
                 .shop_cart_link {
+                    font-size: 1.5em;
+                    display: flex;
+                    align-items:center;
+                    justify-content: center;
                     color: $white_main;
                     transition: all 0.25s;
                     &:hover {
@@ -140,8 +143,9 @@
             .user_buttons_container {
                 height: 100%;
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
+                gap: 1em;
                 justify-content: space-around;
 
                 .user_button {
@@ -154,8 +158,9 @@
                     text-decoration: none;
                     border-radius: 4px;
                     height: 30px;
-                    width: 100px;
+                    width: 120px;
                     z-index: 0;
+                    padding: 0.8em 1em;
                     transition: all 500ms ease;
                     border: 2px solid $yellow_main;
                     background-color: transparent;
@@ -206,4 +211,10 @@
 
 .carrito:hover .dropdown-content {
     display: block;
+}
+
+.header_perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

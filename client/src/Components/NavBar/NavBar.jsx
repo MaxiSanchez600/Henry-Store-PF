@@ -84,7 +84,7 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
       </div> */}
       <div className="mid-box">
         <div className="links_container">
-          <Link className="navbar_link" to="/home">Catalogo</Link>
+          <Link className="navbar_link" to="/home">Catálogo</Link>
           <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/webfullstack/">Carrera</a>
           <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/about-us">Nosotros</a>
         </div>
@@ -101,13 +101,13 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
             </select>
           </div>
           <div data-tip data-for="cart_tooltip_NavBar" className="navbar_cart">
-            <Link className="shop_cart_link" to={'/home/cart'}><FaShoppingCart size="40px" /></Link>
+            <Link className="shop_cart_link" to={'/home/cart'}><FaShoppingCart/></Link>
           </div>
           {!user &&
             //Botones de login y registro 
             <div className="user_buttons_container">
-              <button className="user_button" onClick={() => setModalLogin(true)}>INGRESAR <IoEnter /></button>
-              <button className="user_button" id="buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO <FaUserAlt /></button>
+              <button className="user_button" onClick={() => setModalLogin(true)}>INGRESAR</button>
+              <button className="user_button" id="buttonRegister" onClick={() => setModalRegister(true)}>REGISTRO</button>
             </div>
           }
         </div>
@@ -115,10 +115,7 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
           {user &&
             <div className="header_perfil">
               <span onMouseMove={openSidebar}>
-                <h2>{dataUSerLogin.username}</h2>
-              </span>
-              <span onMouseMove={openSidebar}>
-                <img className="image" src={dataUSerLogin.image || logo} alt="not found" />
+                <img className="image-navbar" src={dataUSerLogin.image || logo} alt="not found" />
               </span>
             </div>
           }
