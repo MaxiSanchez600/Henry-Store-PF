@@ -31,8 +31,8 @@ function Landing({ actualCurrency, actualCurrencyName }) {
       <NavBar />
       <SliderCarrousel isBanner={true} />
       <div className="catalogue_link_container">
-        <h2 className="subtitle_landing">Nuestro Catalogo<div className="subtitle_stripe"></div></h2>
-        <Link className="catalogue_link" to="/home">Ver todo el catalogo!</Link>
+        <h2 className="subtitle_landing">Nuestro Catálogo<div className="subtitle_stripe"></div></h2>
+        <Link className="catalogue_link" to="/home">¡Ver todo el catálogo!</Link>
       </div>
       <div className="discounted_products_container">
         <h2 className="subtitle_landing">Nuestros productos Destacados<div className="subtitle_stripe"></div></h2>

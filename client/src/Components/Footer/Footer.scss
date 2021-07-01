@@ -54,13 +54,54 @@
         margin: 0 295px;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
+        padding: 50px 0;
 
-        .footer_logo_linkedin {
-            z-index: 10000000;
-            fill: $yellow_main;
-            font-size: 20px;
-            width: 20px;
-            height: 20px;
+        .footer_foot_links_container {
+            display: flex;
+            margin: 0 0 0 20px;
+            height: 75px;
+            align-items: flex-end;
+
+            .footer_social_media_logo_container {
+
+                .footer_social_media_logo {
+                    fill: $black_main;
+                    padding: 5px;
+                    width: 40px;
+                    height: 40px;
+                    margin: 0 10px;
+                    background-color: $yellow_main;
+                    border: 1px solid $yellow_main;
+                    border-radius: 50%;
+
+                    .foot_social_media_logo {
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+
+        .footer_foot_text_container {
+            display: grid;
+            justify-content: center;
+            align-items: end;
+
+            .footer_foot_text {
+                text-align: center;
+                color: $dark_gray;
+            }
+        }
+
+        .footer_foot_ycombinator_container {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            align-items: center;
+
+            .footer_foot_ycombinator_text {
+                color: $white_main;
+                font-weight: 100;
+            }
         }
     }
 }
