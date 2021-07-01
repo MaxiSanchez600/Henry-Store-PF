@@ -4,11 +4,12 @@
   display: grid;
   justify-content: center;
   padding: 100px 0;
-  margin: 50px 0;
+  height: 100vh;
   background-color: $black_main;
 
   .not_found_message_404,
   .not_found_message {
+    font-family: "Avenir_Black";
     color: $white_main;
     text-align: center;
     font-weight: 900;
@@ -33,5 +34,6 @@
     color: $yellow_main;
     text-align: center;
     font-weight: 900;
+    font-family: "Avenir_Black";
   }
 }

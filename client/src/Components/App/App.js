@@ -35,6 +35,7 @@ import OrderDetail from "../Cart/UserOrders/OrderDetail/OrderDetail.jsx"
 import Orders from "../AdminPanel/Orders/Orders";
 import CategoriesSubcat from "../AdminPanel/CategoriesSubcat/CategoriesSubcat";
 import Economy from "../AdminPanel/Economy/Economy";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -57,10 +58,9 @@ function App() {
               <Route exact path="/home" component={Home} />
               <Route exact path = "/checkout/:id" component = {Checkout}/>
               <Route exact path= '/home/cart' component= {Cart}/>
-              {/* <Route path='*' component={Error404}/> */}
               {(userLogged === null )&&
               <Route exact path="/home/profile">{<Redirect to="/home" /> }</Route>
-              }
+            }
               {(userLogged !== null )&&
               <>
               <Route exact path="/home/profile" component={CompleteData} />
@@ -86,6 +86,7 @@ function App() {
               </>   
               }
               
+              <Route path='*' component={NotFound}/>
               </Switch>
               <Route path="/home" component={Footer} />
             </BrowserRouter>
