@@ -63,30 +63,35 @@ function FilterCategories({
   // ! CONTENT
   return (
     <div className="FilterCategories">
-      <select
-        id={`filter_name_category`}
-        className="filter_menu_category"
-        name="category"
-        onChange={e => handleOptions(e)}>
-        <option value="default">Categorias</option>
+      <div className="categories_select_container">
+        <h3 className="category_filter_title">Categorias:<div className="title_stripe"></div></h3>
+        <select
+          id={`filter_name_category`}
+          className="filter_menu_category"
+          name="category"
+          onChange={e => handleOptions(e)}>
+          <option value="default">Selecciona...</option>
+          {
+            categoriesFromReducer.map(category => (
+              <option key={category.id_category} value={category.name_category}>{category.name_category}</option>
+            ))
+          }
+        </select>
+      </div>
+      <div className="selected_category_button_container">
         {
-          categoriesFromReducer.map(category => (
-            <option key={category.id_category} value={category.name_category}>{category.name_category}</option>
-          ))
+          queriesFromReducer.category ?
+            <div className="category_box_filter">
+              <p className="category_filter_title_selected">Categoria: {queriesFromReducer.category}</p>
+              <button
+                name="category"
+                onClick={e => closeSelectedFilterButton(e)}
+                className="category_button_filtered"
+              >x</button>
+            </div> :
+            ""
         }
-      </select>
-      {
-        queriesFromReducer.category ?
-          <div className="category_box_filter">
-            <p className="category_filter_title_selected">Categoria: {queriesFromReducer.category}</p>
-            <button
-              name="category"
-              onClick={e => closeSelectedFilterButton(e)}
-              className="category_button_filtered"
-            >x</button>
-          </div> :
-          ""
-      }
+      </div>
     </div>
   );
 }
