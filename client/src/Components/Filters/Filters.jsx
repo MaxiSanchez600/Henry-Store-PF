@@ -59,9 +59,6 @@ function Filters({
   // ! ****************** CONTENT ****************** */
   return <div className="content_Filters">
     <form onSubmit={e => handleSubmit(e)}>
-      {/* <p>{Object.keys(filtersToSend).length}</p> */}
-      
-
       {/* PRECIO*/}
       <div className="name_filter">
         <h3 className="filter_title">Precio:<div className="title_stripe"></div></h3>
