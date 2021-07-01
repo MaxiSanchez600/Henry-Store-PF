@@ -423,7 +423,7 @@ module.exports = (sequelize) => {
     },
     userid:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   })
 };

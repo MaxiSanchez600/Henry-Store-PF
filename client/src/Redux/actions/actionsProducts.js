@@ -1,4 +1,5 @@
 import axios from "axios"
+import { PRODUCTS_URL } from "../../Config";
 import { allProductsFilteredService, getAllCategoriesService, getCaracteristicsService, addProductToCartService } from "../services/products.service";
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
@@ -74,8 +75,7 @@ export function setCarrito(payload){
 export function postProduct (payload){       
   return async function() {
       try {   
-          await axios.post("http://localhost:3001/product", payload)
-          alert('Creado con exito')
+          await axios.post(PRODUCTS_URL, payload)
       }catch (error) {
         console.error(error)
       }   
