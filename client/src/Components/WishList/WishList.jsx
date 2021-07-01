@@ -1,34 +1,19 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getMyWishList } from '../../Redux/actions/actionsProducts';
 
-// import HeartIcon from './HeartIcon'
+function WishList({ getMyWishList }) {
 
-function WishList( { getMyWishList } ) {
-
-useEffect(() => {
-  var id_user = localStorage.getItem('userlogged');
-  getMyWishList(id_user)
-}, [])
+  // useEffect(() => {
+  //   var id_user = localStorage.getItem('userlogged');
+  //   getMyWishList(id_user)
+  // }, [])
 
   // ! CONTENT
-  return (
+  return (<>
     <div className="WishList_Content">
-     
+      <div className="imageheart"><span className="iconify" data-icon="emojione:heart-decoration" data-inline="false"></span></div>
     </div>
+  </>
   )
 }
 
-function mapStateToProps(state) {
-  return {
-      WishList: state.products.wishlist,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-      getMyWishList: (WishItem) => dispatch(getMyWishList(WishItem))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WishList);
+export default WishList

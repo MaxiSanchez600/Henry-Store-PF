@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
+import { getAllFilteredProducts, getMyWishList } from '../../Redux/actions/actionsProducts';
 import Products from '../../Components/Products/Products';
 import Filters from '../../Components/Filters/Filters';
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Order from "../../Components/Order/Order";
-function Home({ queriesFromReducer, getProductsWithoutFilters }) {
+function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, MyWishList }) {
 
     function handleResetFilters(e) {
         e.preventDefault();
@@ -31,6 +31,11 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
         getProductsWithoutFilters({});
     }
 
+    useEffect(() => {
+        let id_user = localStorage.getItem('userlogged')
+        getMyWishList(id_user)
+    }, [])
+
     return (
         <div >
             <div className="search_container">
@@ -49,7 +54,7 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
                         <Order />
                     </div>
                     <div className="products">
-                        <Products />
+                        <Products MyWishList={MyWishList} />
                     </div>
                 </div>
                 <Sidebar />
@@ -59,13 +64,16 @@ function Home({ queriesFromReducer, getProductsWithoutFilters }) {
 }
 function mapStateToProps(state) {
     return {
-        queriesFromReducer: state.products.queries
+        queriesFromReducer: state.products.queries,
+        MyWishList: state.products.wishlist,
+
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getProductsWithoutFilters: (allQueries) => dispatch(getAllFilteredProducts(allQueries))
+        getProductsWithoutFilters: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
+        getMyWishList: (Id_User) => dispatch(getMyWishList(Id_User)),
     }
 }
 

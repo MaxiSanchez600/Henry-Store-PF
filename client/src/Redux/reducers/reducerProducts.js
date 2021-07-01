@@ -1,4 +1,4 @@
-import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT, GET_ALL_REVIEWS } from '../actions/actionsProducts';
+import { FILTER_PRODUCTS, SET_TOTAL_PRICE, SET_CARRITO,GET_ONE_PRODUCT, GET_ALL_REVIEWS, GET_MY_WISHLIST } from '../actions/actionsProducts';
 import { GET_CATEGORIES, GET_CARACTERISTICS, GET_CURRENCY } from '../actions/actionsProducts'
 
 const initialState = {
@@ -71,6 +71,11 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             reviews:action.payload
         }
+        case GET_MY_WISHLIST:
+            return{
+                ...state,
+                wishlist:action.payload
+            }
         default:
             return {
                 ...state,

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import $ from 'jquery'
 import axios from "axios";
 
-function HeartIcon({ id_product }) {
+function HeartIcon({ id_product, added }) {
 
   // ! FUNCTIONS
   const handleChangex = (e) => {
@@ -37,7 +37,7 @@ function HeartIcon({ id_product }) {
   // ! CONTENT
   return (
     <div className="stage">
-      <div id={id_product} className="heart" onClick={handleChangex}></div>
+      <div id={id_product} className={added ? "heart is-active" : "heart"} onClick={handleChangex}></div>
     </div>
   );
 }

@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
-import { getAllFilteredProducts, addProductToCart, getAllReviews } from '../../Redux/actions/actionsProducts';
+import { getAllFilteredProducts, addProductToCart, getAllReviews,  } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 import AllReviews from '../../Components/Reviews/AllReviews'
 import StarRating from '../../Components/Reviews/StarRating'
-import '../../Components/Products/SocialShare/main'
 
 function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, getAllReviews, ReviewsProduct }) {
 
   const { id } = useParams();
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
-
-
 
   const [productCaracteristics, setProductCaracteristics] = useState({
     caracteristics: {}
@@ -319,7 +316,6 @@ function mapStateToProps(state) {
     ReviewsProduct: state.products.reviews,
   }
 }
-
 
 function mapDispatchToProps(dispatch) {
   return {
