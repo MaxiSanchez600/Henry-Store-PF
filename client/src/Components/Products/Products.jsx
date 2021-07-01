@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
-import { AiFillHeart } from 'react-icons/ai';
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import WishList from '../WishList/WishList'
+import HeartIcon from '../WishList/HeartIcon';
 
 
-function Products({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname }) {
+function Products({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, MyWishList }) {
 
     useEffect(() => {
         if (!ListProducts.length) getAllFilteredProducts();
@@ -24,7 +25,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
     const displayProducts = ListProducts?.slice(pagesVisited, pagesVisited + productPerPage).map((product, index) => {
         return (
             <div className={product.unit_stock > 0 ? "product_card" : "product_card_disabled"}>
-                <div className="heart_product"><AiFillHeart /></div>
+                <div> <HeartIcon id_product={product.id_product} added={MyWishList?.filter(e => e.id_product == product.id_product).length !==0 ? true : false} /> </div>
                 <img src={product.Images.length ? product.Images[0].name_image : ""} alt="" className="product_image" id={product.index} />
                 <div className="product_name">
                     {product.name}
@@ -57,7 +58,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
             {displayProducts}
         </div>
 
-        {displayProducts.length !== 0 ? <div className={displayProducts.length >7 ? "pagination_full" : "pagination_simple"}>
+        {displayProducts.length !== 0 ? <div className={displayProducts.length > 7 ? "pagination_full" : "pagination_simple"}>
             <ReactPaginate
                 previousLabel={<IoIosArrowBack />}
                 nextLabel={<IoIosArrowForward />}
@@ -70,7 +71,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
                 activeClassName={"paginationActive"}
             />
         </div> : ""}
-
+        <WishList />
     </div >
 
 }

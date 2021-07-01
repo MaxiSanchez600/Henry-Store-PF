@@ -1,0 +1,79 @@
+// ! *************** CLOSE BUTTON IN REVIEW ***************
+.close-button {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0px 10 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background: #f90202;
+  left: 108%;
+  top: 22%;
+  margin-top: -75px;
+  margin-left: -75px;
+  position: absolute;
+  display: block;
+  z-index: 200;
+  text-indent: -9999px;
+}
+.close-button:before,
+.close-button:after {
+  content: "";
+  width: 55%;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  top: 48%;
+  left: 22%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.close-button:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.close-button:hover:before,
+.close-button:hover:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+// ! *************** HEART BUTTON IN PRODUCTS ***************
+.heart {
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+  transform: scale(0.8);
+  
+  &.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+  }
+}
+
+.stage {
+  position: absolute;
+  top: -1rem;
+  left: 11rem;
+}

@@ -4,12 +4,12 @@ import anonymous_user from '../../Assets/Images/anonymous_user.png'
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const RenderReviews = ({ reviewsToRender }) => {
-    const [reviewsToShow, setReviewsToShow] = useState([]);
+    const [reviewsToShow, setReviewsToShow] = useState(reviewsToRender);
     const [next, setNext] = useState(3);
     const reviewsPerPage = 3;
-    const loopWithSlice = (start, end) => {
+    async function loopWithSlice (start, end) {
         const slicedPosts = reviewsToRender ? reviewsToRender.slice(start, end) : [];
-        setReviewsToShow(slicedPosts);
+       await setReviewsToShow(slicedPosts);
     };
 
     useEffect(() => {
@@ -19,6 +19,8 @@ const RenderReviews = ({ reviewsToRender }) => {
     const handleShowMorePosts = () => {
         loopWithSlice(0, next + reviewsPerPage);
         setNext(next + reviewsPerPage);
+
+
     };
 
     return (
@@ -39,10 +41,18 @@ const RenderReviews = ({ reviewsToRender }) => {
                     </div>
                 })
             }
-            <div className={reviewsToShow.length !==7 ? "container2" : "hidden"}>
-                <div className="bg"></div>
-               
-                <div className="button loadMore" onClick={handleShowMorePosts}><RiArrowDownSLine /> <span>VER MÁS</span></div>
+
+            <div className={reviewsToShow?.length !== 7 ? "container2" : "hidden"}>
+
+                {(reviewsToShow?.length == reviewsToRender?.length) ?
+                    '' : <>
+                        <div className="bg"></div>
+                        <div className="button loadMore" onClick={handleShowMorePosts}><RiArrowDownSLine /> <span>VER MÁS</span></div>
+                    </>
+
+
+                }
+
             </div>
         </div>
 

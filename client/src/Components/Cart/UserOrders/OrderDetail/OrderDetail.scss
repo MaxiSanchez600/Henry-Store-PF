@@ -21,21 +21,16 @@
 
 
 .contain_modal{
-    position: absolute;
     top: 12%;
-    left: calc(50% - 125px);
-    padding: 2rem;
+    left: 36%;
     border-radius: 1rem;
+    position: absolute;
 }
 
 .back_drop{
-    background: rgba(63, 61, 61, 0.9) !important;
-    height: 100%;
-    transition: all 1.3s;
-    width: 100%
+    opacity: 0.2;
 }
 
 .detail2{
-    height: 60rem;
-    margin-top: 35px;
+    min-height: 60rem;
 }

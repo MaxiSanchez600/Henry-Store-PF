@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { URL_BASE } from '../../Config/index.js'
 import { connect } from 'react-redux';
-import { getAllFilteredProducts, addProductToCart, getAllReviews } from '../../Redux/actions/actionsProducts';
+import { getAllFilteredProducts, addProductToCart, getAllReviews,  } from '../../Redux/actions/actionsProducts';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
@@ -92,6 +92,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
 
   useEffect(() => {
     if (ID_Product && ID_Product.unit_stock > 0) {
+
       setProductCaracteristics((previousState) => {
         const initialState = {
           product_id: ID_Product.id_product,
@@ -164,14 +165,28 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
 
 
 
-    let total_reviews = ReviewsProduct && ReviewsProduct.length !== 0 ? ReviewsProduct.length : 0;
-    let averageScore = 0;
-    ReviewsProduct && ReviewsProduct.map(review => {
-          averageScore += review.score;
-      })
-        let score = total_reviews === 0 ? 0 : averageScore / total_reviews;
+  let total_reviews = ReviewsProduct && ReviewsProduct.length !== 0 ? ReviewsProduct.length : 0;
+  let averageScore = 0;
+  ReviewsProduct && ReviewsProduct.map(review => {
+    averageScore += review.score;
+  })
+  let score = total_reviews === 0 ? 0 : averageScore / total_reviews;
 
+
+
+
+
+  //! SOCIAL SHARE
+  let postUrl = ID_Product && encodeURI(document.location.href);
+  let postTitle = ID_Product && encodeURI(ID_Product.name)
+  let postImg = ID_Product && encodeURI(ID_Product.Images[0].name_image)
+  let hasgtag = ["SoyHenry"]
+
+
+  //! CONTENT 
   return (
+
+
 
     <div className="content_product_detail" >
       {
@@ -184,8 +199,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        {/* <img src={ID_Product.Images[0].name_image} alt="dont found" /> */}
-                        <SliderCarousel imageList={ID_Product.Images} isBanner={false}/>
+                        <SliderCarousel imageList={ID_Product.Images} isBanner={false} />
                       </div>
                     </div>
 
@@ -193,7 +207,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                   <div className="product-content">
                     <h2 className="product-title">{ID_Product.name}</h2>
                     <div className="product-rating">
-                    <StarRating size_star="20" score={score} editable="off" completeinfo="no" />
+                      <StarRating size_star="20" score={score} editable="off" completeinfo="no" />
                       <span>{score.toFixed(1)}({total_reviews})</span>
                     </div>
                     <div className="product-price">
@@ -261,23 +275,19 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                           <button type="button" className="btn">Comparar</button>
                         </div>
                     }
-
                     <div className="social-links">
                       <p>Share At: </p>
-                      <a href="#">
+                      <a href={`https://www.facebook.com/sharer.php?u=${postUrl}`} target="_blank" className="facebook-btn">
                         <span className="iconify" data-icon="logos:facebook" data-inline="false"></span>
                       </a>
-                      <a href="#">
+                      <a href={`https://twitter.com/share?url${postUrl}&text=${postTitle}&via=HenryStore&hashtags=${hasgtag}`} target="_blank" className="twitter-btn">
                         <span className="iconify" data-icon="logos:twitter" data-inline="false"></span>
                       </a>
-                      <a href="#">
-                        <span className="iconify" data-icon="uil:instagram-alt" data-inline="false"></span>
-                      </a>
-                      <a href="#">
+                      <a href={`https://api.whatsapp.com/send?text= ${postTitle} ${postUrl}`} target="_blank" className="whatsapp-btn">
                         <span className="iconify" data-icon="logos:whatsapp" data-inline="false"></span>
                       </a>
-                      <a href="#">
-                        <span className="iconify" data-icon="logos:pinterest" data-inline="false"></span>
+                      <a href={`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`} target="_blank" className="linkedin-btn">
+                        <span class="iconify" data-icon="logos:linkedin-icon" data-inline="false"></span>
                       </a>
                     </div>
                   </div>
@@ -306,7 +316,6 @@ function mapStateToProps(state) {
     ReviewsProduct: state.products.reviews,
   }
 }
-
 
 function mapDispatchToProps(dispatch) {
   return {

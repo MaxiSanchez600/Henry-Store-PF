@@ -6,6 +6,7 @@
 @import "../Components/Products/Products.scss";
 @import '../Pages/Product_Detail/Product_Detail.scss';
 @import "../Components/Reviews/Reviews.scss";
+@import "../Components/WishList//WishList.scss";
 @import "../Components/SearchBar/SearchBar.scss";
 @import '../Components//Authentication/Login/Login.scss';
 @import "../Components/AdminPanel/AdminPanel.scss";
@@ -13,8 +14,8 @@
 /*===== PAGES =====*/
 @import '../Pages/Home/Home.scss';
 
-
 @import './global';
 @import './typography';
 @import './buttons';
+@import './animations';
 

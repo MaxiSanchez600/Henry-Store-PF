@@ -11,6 +11,7 @@ export const POST_PRODUCT = 'POST_PRODUCT';
 export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
 export const GET_CURRENCY = 'GET_CURRENCY';
 export const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS';
+export const GET_MY_WISHLIST = 'GET_MY_WISHLIST';
 
 
 /* ============================== ACTIONS ============================================== */
@@ -102,11 +103,12 @@ export function getAllReviews (id){
   };
 }
 
-export function postReview (payload){       
-  return async function() {
+// ! WISHLIST USER LOGGED
+export function getMyWishList (id_user){       
+  return async function(dispatch) {
       try {   
-          await axios.post("http://localhost:3001/product_reviews", payload)
-          alert('Review creada con exito')
+        const response =await axios.get("http://localhost:3001/wishlist?id_user="+id_user)
+        dispatch({ type: GET_MY_WISHLIST, payload: response.data });
       }catch (error) {
         console.error(error)
       }   
