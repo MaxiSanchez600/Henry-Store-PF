@@ -6,6 +6,7 @@ import ImageUploader from "../ImagesUploader/ImagesUploader";
 import './CreateProduct.scss'
 import axios from "axios"
 import Swal from 'sweetalert2';
+import { CATEGORIES_URL, CARACTERISTICS_URL, PRODUCTS_URL } from "../../../Config";
 
 function CreateProduct ({ editIsActive, productData }) {
     const [flag, setFlag] = useState(false);
@@ -30,9 +31,9 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const getInfo = async function() {
         try {   
-            const responseCat = await axios.get('http://localhost:3001/product/categories')
+            const responseCat = await axios.get(CATEGORIES_URL)
             setCatBack(responseCat.data);
-            const responseCaracteristics = await axios.get('http://localhost:3001/product/caracteristics')
+            const responseCaracteristics = await axios.get(CARACTERISTICS_URL)
             setCarBack(responseCaracteristics.data.data)
             setFlag(!flag);
         }catch (error) {
@@ -117,7 +118,7 @@ function CreateProduct ({ editIsActive, productData }) {
 
     const onClickCreateCategory = async () => {
         const { value: category } = await Swal.fire({
-            title: 'Agregue una categoría',
+            title: 'Añada una categoría',
             input: 'text',
             inputLabel: 'Nombre:',
             buttonsStyling:false,
@@ -134,7 +135,7 @@ function CreateProduct ({ editIsActive, productData }) {
             },
             inputValidator: value => {
                 if (!value) {
-                    return '¡Debe digitar un nombre para la catergoria!';
+                    return '¡Debe digitar un nombre para la catergoría!';
                 }
             }
         });
@@ -146,18 +147,18 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
-            return Swal.fire({
-                icon: 'success',
-                title: 'Agregada con éxito',
-                showConfirmButton: false,
-                timer: 1400
-              })
+            // return Swal.fire({
+            //     icon: 'success',
+            //     title: 'Agregada con éxito',
+            //     showConfirmButton: false,
+            //     timer: 1400
+            // });
         }
     };
 
     const onClickCreateCaracteristic = async () => {
         const { value: caracteristic } = await Swal.fire({
-            title: 'Agregue una caracteristica',
+            title: 'Añada una característica',
             input: 'text',
             inputLabel: 'Nombre:',
             buttonsStyling:false,
@@ -174,7 +175,7 @@ function CreateProduct ({ editIsActive, productData }) {
             },
             inputValidator: value => {
                 if (!value) {
-                    return '¡Debe digitar un nombre para la caracteristica!';
+                    return '¡Debe digitar un nombre para la característica!';
                 }
             }
         });
@@ -186,12 +187,12 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
-            return Swal.fire({
-                icon: 'success',
-                title: 'Agregada con éxito',
-                showConfirmButton: false,
-                timer: 1400
-              })
+            // return Swal.fire({
+            //     icon: 'success',
+            //     title: 'Agregada con éxito',
+            //     showConfirmButton: false,
+            //     timer: 1400
+            // });
         }
     };
 
@@ -243,17 +244,22 @@ function CreateProduct ({ editIsActive, productData }) {
             }
             if(Object.entries(json.infoProduct)[j][0] !== 'name' 
             && Object.entries(json.infoProduct)[j][0] !== 'description' 
-            && Object.entries(json.infoProduct)[j][1].toString().includes('-')) {
+            && (
+                Object.entries(json.infoProduct)[j][1].toString().includes('-')
+                || Object.entries(json.infoProduct)[j][1].toString().includes('.')
+                || Object.entries(json.infoProduct)[j][1].toString().includes(',')
+                || isNaN(Number((Object.entries(json.infoProduct)[j][1])))
+                )) {
                 return Swal.fire({
                     icon: 'warning',
-                    title: 'Verificar que ningún campo tenga números negativos.',
+                    title: 'Por favor, no utilices números negativos, decimales o letras.',
                     confirmButtonText: `OK`,
-                    buttonsStyling:false,
-                    customClass:{
-                        popup:'popCreate',
-                        title:'titlePopCreate',
-                        confirmButton:'warningBtn',
-                    },
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'popCreate',
+                        title: 'titlePopCreate',
+                        confirmButton: 'warningBtn',
+                    }
                 });
             }
         }
@@ -306,11 +312,11 @@ function CreateProduct ({ editIsActive, productData }) {
                     icon: 'warning',
                     title: 'Seleccione por lo menos un valor por cada característica.',
                     confirmButtonText: `OK`,
-                    buttonsStyling:false,
+                    buttonsStyling: false,
                     customClass:{
-                        popup:'popCreate',
-                        title:'titlePopCreate',
-                        confirmButton:'warningBtn',
+                        popup: 'popCreate',
+                        title: 'titlePopCreate',
+                        confirmButton: 'warningBtn',
                     },
                 });
             }
@@ -322,12 +328,12 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Sí`,
                 denyButtonText: `Volver`,
-                buttonsStyling:false,
+                buttonsStyling: false,
                 customClass:{
-                    popup:'popCreate',
-                    title:'titlePopCreate',
-                    confirmButton:'confirmBtnPop',
-                    denyButton:'dennyBtnPop'
+                    popup: 'popCreate',
+                    title: 'titlePopCreate',
+                    confirmButton: 'confirmBtnPop',
+                    denyButton: 'dennyBtnPop'
                 },
             });
             if(result.isDenied) return;
@@ -340,19 +346,19 @@ function CreateProduct ({ editIsActive, productData }) {
                 showDenyButton: true,
                 confirmButtonText: `Continuar de todas formas`,
                 denyButtonText: `Volver`,
-                buttonsStyling:false,
-                customClass:{
-                    popup:'popCreate',
-                    title:'titlePopCreate',
-                    confirmButton:'confirmBtnPop',
-                    denyButton:'dennyBtnPop'
+                buttonsStyling: false,
+                customClass: {
+                    popup: 'popCreate',
+                    title: 'titlePopCreate',
+                    confirmButton: 'confirmBtnPop',
+                    denyButton: 'dennyBtnPop'
                 },
             });
             if(result.isDenied) return;
             if(result.isDismissed) return;
         }
         //creación del producto
-        axios.post("http://localhost:3001/product", json)
+        axios.post(PRODUCTS_URL, json)
         .then(res => {
             if(editIsActive) {
                 return Swal.fire({
@@ -420,6 +426,7 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Precio:</label>
                                 <input className='smallInput' type='number' min='0' name='price' onChange={onChangeInputs} value={json.infoProduct.price} required></input>
+                                <label className='inputUnits'>USD</label>
                             </div>
                             <div className="inputField">
                                 <label>Descripción:</label>
@@ -428,27 +435,32 @@ function CreateProduct ({ editIsActive, productData }) {
                             <div className="inputField">
                                 <label>Stock:</label>
                                 <input className='smallInput' type='number'  min='0' name='unit_stock' onChange={onChangeInputs} value={json.infoProduct.unit_stock} required></input>
+                                <label className='inputUnits'>unidades</label>
                             </div>
                             <div className="inputField">
-                                <label>Henry coins:</label>
+                                <label title='Representa la cantidad de HC que entrega al usuario cuando éste compra el producto.'>Henry coins:</label>
                                 <input className='smallInput' type='number' min='0' name='henry_coin' onChange={onChangeInputs} value={json.infoProduct.henry_coin} required></input>
+                                <label className='inputUnits'>HC</label>
                             </div>
                             <div className="inputField">
                                 <label>Peso:</label>
                                 <input className='smallInput' type='number' min='0' name='weight' onChange={onChangeInputs} value={json.infoProduct.weight} required></input>
+                                <label className='inputUnits'>g</label>
                             </div>
                             <div className="inputField">
-                                <label>Dimensiones (Largo x Alto x Ancho):</label>
-                                <input className='normalInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
+                                <label title='Para calcular el peso volumétrico multiplicá Largo x Ancho x Alto (cm) x 250 (Kg/m3), y dividí entre 1.000'>Peso volumen*:</label>
+                                <input className='smallInput' type='number' min='0' name='size' onChange={onChangeInputs} value={json.infoProduct.size} required></input>
+                                <label className='inputUnits'>g</label>
                             </div>
                             <div className="inputField">
                                 <label>Descuento:</label>
                                 <input className='smallInput' type='number' min='0' name='percentage_discount' onChange={onChangeInputs} value={json.infoProduct.percentage_discount} required></input>
+                                <label className='inputUnits'>%</label>
                             </div>
                         </div>
                         <div className="categoryContainer">
                                 <h4>Categoría</h4>      
-                                <div>Seleccione una o mas categorias, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
+                                <div>Seleccione una o más categorías, en caso de no existir <span className='addCategory' onClick={onClickCreateCategory}>agregue una nueva:</span></div>
                                 <div className='categoriesWrap'>
                                     {catBack?.map((cat, index) => (
                                         <button 
@@ -470,8 +482,8 @@ function CreateProduct ({ editIsActive, productData }) {
                     </div>
                     <div className="createContent2">
                         <div className="caracteristicsContainer">
-                            <h4>Caracteristicas</h4>
-                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>Agregar caracteristica</span></div>
+                            <h4>Características</h4>
+                            <div>Son las propiedades que posee un producto, por ejemplo talla, color, etc. Seleccione una o <span onClick={onClickCreateCaracteristic} className='addCaracteristic'>agregue una nueva:</span></div>
                             <ul>
                                 {carBack?.map((car, index) => {
                                     if(car.name_caracteristic !== 'type') {
@@ -494,14 +506,14 @@ function CreateProduct ({ editIsActive, productData }) {
                         </div>
                         <div className="tagsContainer">
                             <h4>Tags</h4>
-                            <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida</div>
+                            <div>Los tags son palabras claves, las cuales permiten a los usuarion encontrar los productos de manera mas rápida.</div>
                             <Tags 
                                 json={json} 
                                 setJson={setJson}  
                                 textPlaceholder='presione enter para agregar un tag'
                             />
                         </div>
-                        <h4>Imagenes</h4>
+                        <h4>Imágenes</h4>
                         <ImageUploader 
                             json={json} 
                             setJson={setJson} 

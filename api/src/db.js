@@ -171,7 +171,7 @@ DocumentType.count().then((value) =>{
 })
 
 //Precarga SubCategorias
-//  const subarray = ['remera', 'pantalon', 'camisa']
+// const subarray = ['remera', 'pantalon', 'camisa']
 // SubCategory.count().then((value) =>{
 //   if(value < 9){ 
 //     const uno = SubCategory.create({

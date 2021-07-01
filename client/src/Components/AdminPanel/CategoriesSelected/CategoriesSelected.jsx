@@ -25,7 +25,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
 
     const addSubcategory = async (e) => {
         const { value: subCategory } = await Swal.fire({
-            title: 'Añade una subcategoría',
+            title: 'Añada una subcategoría',
             input: 'text',
             inputLabel: 'Nombre:',
             buttonsStyling:false,
@@ -56,12 +56,12 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                     setCatBack([...copyCatBack]);
                 }
             }
-            return Swal.fire({
-                icon: 'success',
-                title: 'Agregada con éxito',
-                showConfirmButton: false,
-                timer: 1400
-              })
+            // return Swal.fire({
+            //     icon: 'success',
+            //     title: 'Agregada con éxito',
+            //     showConfirmButton: false,
+            //     timer: 1400
+            // });
         }
     };
     
@@ -75,7 +75,7 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                             <button onClick={onClose} name={cat}>x</button>
                         </div>
                         <div>
-                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subcategoria:</div>
+                            <div className='checkText'>Seleccione o <span className='addSubCategory' onClick={addSubcategory} title={cat}>agregue</span> una subcategoría:</div>
                             <div className="checksContainer">
                                 {catBack.find( catBack => catBack.name_category === cat)?.SubCategories?.map( (subCat, i) => {
                                     

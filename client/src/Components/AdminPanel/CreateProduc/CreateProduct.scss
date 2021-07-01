@@ -191,6 +191,9 @@ box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
     cursor: pointer;
 }
 
+.inputUnits {
+    margin-left: 5px;
+}
 .popCreate{
     font-family: 'Avenir_Roman';
     box-shadow: 0 0 10px 1px #d0d0d0;
@@ -308,4 +311,8 @@ box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
     &:hover {
         transform: scale(1.07);
     }
+}
+
+.finalBtnContainer {
+    margin-bottom: 24px;
 }

@@ -41,6 +41,9 @@
 .card-footer-disabled {
     &:hover {
         cursor: not-allowed;
+        border: none;
+        color: #87868a;
+        background: none;
     }
 }
 

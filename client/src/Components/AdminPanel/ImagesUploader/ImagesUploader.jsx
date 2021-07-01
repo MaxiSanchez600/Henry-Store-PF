@@ -31,11 +31,11 @@ function ImageUploader ({ json, setJson }){
             arrAux.push(res.data.url);
             setProgress(0);
             setProgressVisible(false);
+            setJson({
+                ...json,
+                images: [...json.images, ...arrAux]
+            });
         }
-        setJson({
-            ...json,
-            images: [...json.images, ...arrAux]
-        });
     };
 
     const handleOnClose = (url) => {

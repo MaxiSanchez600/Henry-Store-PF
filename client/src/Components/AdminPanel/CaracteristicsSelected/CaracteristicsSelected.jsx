@@ -5,7 +5,7 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
 
     const addValue = async e => {
         const { value: valueCar } = await Swal.fire({
-            title: 'Agregue un valor',
+            title: 'Añada un valor',
             input: 'text',
             inputLabel: 'Nombre:',
             buttonsStyling:false,
@@ -36,12 +36,12 @@ function CaracteristicsSelected({ json, setJson, carBack, setCarBack }) {
                     setCarBack([...copyCarBack]);
                 }
             }
-            return Swal.fire({
-                icon: 'success',
-                title: 'Agregado con éxito',
-                showConfirmButton: false,
-                timer: 1400
-              })
+            // return Swal.fire({
+            //     icon: 'success',
+            //     title: 'Agregado con éxito',
+            //     showConfirmButton: false,
+            //     timer: 1400
+            // });
         }
     };
 
