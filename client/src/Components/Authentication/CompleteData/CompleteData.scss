@@ -146,10 +146,13 @@
         width: 280px;
         height: 40px;
         padding: 0 25px;
-        font-size: 15px;
+        font-size: 16px;
         width: 240px;
         height: 35px;
         
+      }
+      input::placeholder {
+        font-size: 16px;
       }
       .inputDocumentType {
         width: 80px;
@@ -186,6 +189,7 @@
         font-size: 10px;
       }
     }
+    
   }
 }
 

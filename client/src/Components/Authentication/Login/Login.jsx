@@ -30,7 +30,7 @@ const Login = ({ loginClose, registerOpen, ForgotPassOpen }) => {
       icon:"success",
       iconColor: "#49AF41",
       showConfirmButton: false,
-      timer:2000,
+      timer:4000,
       customClass:{
           popup: 'popup-user_login',
           title: 'title-user_login',

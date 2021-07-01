@@ -78,15 +78,23 @@ export function CartDetail(props){
         const responsejson = await response.json()
         props.setCarrito(responsejson);
     
-        Swal.fire({
-        title:`Producto eliminado del carrito `,
-        icon:'info',
-        showConfirmButton: false,
-        timer:1500,
-        timerProgressBar:true,
-        position: 'bottom-end',
-        toast:true
-      })
+
+          Swal.fire({
+            title:`Producto eliminado del carrito `,
+            icon:'success',
+            iconColor: "#49AF41",
+            showConfirmButton: false,
+            timer:1500,
+            timerProgressBar:true,
+            position: 'bottom-end',
+            toast:true,
+            customClass:{
+            popup: 'popup-errorUpdate_dataUser',
+            title: 'title-errorUpdate_dataUser',
+            confirmButton: 'confirmButton-errorUpdate_dataUser',
+            },
+            })
+       
     }
 
     return(

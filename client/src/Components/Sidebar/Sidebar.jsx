@@ -34,7 +34,7 @@ const Sidebar = () => {
       title:`Sesión Cerrada`,
       icon:'success',
       showConfirmButton: false,
-      timer:2000,
+      timer:4000,
       customClass:{
         popup: 'popup-closed_sessionUser',
         title: 'title-closed_sessionUser',
@@ -79,7 +79,7 @@ const Sidebar = () => {
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/myorders"> <AiOutlineFileSearch/> Mis Ordenes</Link> </li> 
           <li className="liLinks" onClick={closeSidebar}> <Link  to="/home/wishlist"> <AiTwotoneHeart/> Mis Favoritos</Link> </li> 
           <li className="liLinks"><span className='icon-bicoin' onClick={()=>{closeSidebar(); HenryCoint()}}><BiCoin/> HenryCoins</span></li>       
-          <li className="liLinks"><Link to="/home" className='spanOut'  onClick={()=>{logOut();closeSidebar() }} ><RiLogoutCircleRLine/>Cerrar sesión</Link></li>
+          <li className="liLinks"><Link to="/home" className='spanOut'  onClick={()=>{logOut();setTimeout(function(){closeSidebar()}, 4000);  }} ><RiLogoutCircleRLine/>Cerrar sesión</Link></li>
         </ul>
         
       </div>

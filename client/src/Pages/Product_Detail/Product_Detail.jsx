@@ -32,11 +32,17 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
       await fetch(URL_BASE + 'cart/addproducttocart', options)
         .then(() =>
           Swal.fire({
-            title: `Producto agregado al Carrito`,
-            icon: 'success',
+            title:`Producto agregado al Carrito.`,
+            icon:'success',
+            iconColor: "#49AF41",
             showConfirmButton: false,
-            timer: 1500
-          }))
+            timer:1500,
+            customClass:{
+              popup: 'popup-addCart',
+              title: 'title-addCart',
+            },
+          })
+          )
     }
     else {
       if (localStorage.getItem('userid') === null) {
@@ -56,10 +62,15 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
         await fetch(URL_BASE + 'cart/addproducttocart', options)
           .then(() =>
             Swal.fire({
-              title: `Producto agregado al Carrito`,
-              icon: 'success',
+              title:`Producto agregado al carrito.`,
+              icon:'success',
+              iconColor: "#49AF41",
               showConfirmButton: false,
-              timer: 1500
+              timer:1500,
+              customClass:{
+                popup: 'popup-addCart',
+                title: 'title-addCart',
+              },
             }))
       }
       else {
@@ -75,12 +86,18 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
         }
         await fetch(URL_BASE + 'cart/addproducttocart', options)
           .then(() =>
-            Swal.fire({
-              title: `Producto agregado al Carrito`,
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1500
-            }))
+          Swal.fire({
+            title:`Producto agregado .`,
+            icon:'success',
+            iconColor: "#49AF41",
+            showConfirmButton: false,
+            timer:1500,
+            customClass:{
+              popup: 'popup-addCart',
+              title: 'title-addCart',
+            },
+           })
+            )
       }
     }
   }
