@@ -1,0 +1,233 @@
+@import "../../Sass/variables";
+
+.subtitle_landing {
+
+  font-size: 36px;
+  text-align: center;
+  width: auto;
+  margin: 40px auto 60px;
+  font-weight: 900;
+
+  .subtitle_stripe {
+    background-color: $yellow_main;
+    width: 100%;
+    height: 16px;
+    margin-top: -18px;
+    z-index: -10;
+  }
+}
+
+.catalogue_link_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  justify-content: center;
+
+  .catalogue_link {
+    color: $black_main;
+    padding: 20px;
+    border: 1px solid $yellow_main;
+    border-radius: 8px;
+    background-color: $yellow_main;
+    transition: all 0.25s;
+    font-size: 18px;
+    font-weight: 900;
+
+    &:hover {
+      color: $yellow_main;
+      border: 1px solid $black_main;
+      background-color: $black_main;
+      font-weight: 100;
+    }
+  }
+}
+
+.discounted_products_container {
+  display: grid;
+  width: 100%;
+  padding: 50px 0;
+  margin: 0 50px 150px 0;
+
+  .all_products_discounted {
+    margin: 0 0 0 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    grid-gap: 2rem;
+  }
+
+  .discounted_product_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 355px;
+    width: 100%;
+    border-radius: 25px;
+    padding: 20px 30px 30px 30px;
+    background: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    overflow: hidden;
+    transition: 0.2s all ease-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  .discounted_product_name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Avenir_Black";
+    letter-spacing: 0.075rem;
+    font-weight: 600;
+
+    .discounted_product_stripe {
+      background-color: yellow;
+      width: 100%;
+      height: 8px;
+      margin-top: -8px;
+      z-index: -10;
+    }
+  }
+
+  .discounted_product_image {
+    height: 12rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .older_price_container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    white-space: nowrap;
+
+    .discount_percentage {
+      margin: 2.5px 0 0 0;
+      color: red;
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+    }
+  }
+
+  .discounted_product_price,
+  .discounted_newer_product_price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 0.3rem;
+
+    .discounted_product_number {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-right: 6px;
+      font-family: "Avenir_Black";
+      white-space: nowrap;
+    }
+
+    .discounted_product_usd {
+      font-family: "Avenir_Book";
+      font-weight: 500;
+    }
+  }
+
+  .discounted_product_price {
+    
+    .discounted_product_number {
+      
+      .discount_stripe {
+        position: absolute;
+        background-color: red;
+        width: 100%;
+        height: 4px;
+        top: 10px;
+        left: -2.5px;
+        transform: rotate(-5deg);
+      }
+    }
+  }
+
+  .discounted_product_henry_coin {
+    margin-bottom: 0.5rem;
+  }
+
+  .discounted_heart_product {
+    position: relative;
+    left: 6rem;
+    display: flex;
+    justify-content: flex-end;
+    width: fit-content;
+    font-size: 1.2rem;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
+  }
+}
+
+.discounted_product_card_disabled {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 355px;
+  width: 100%;
+  border-radius: 25px;
+  padding: 20px 30px 30px 30px;
+  background: #ffffff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  overflow: hidden;
+  transition: 0.2s all ease-out;
+
+  .discounted_product_image {
+    filter: grayscale(100%);
+  }
+
+  .discounted_product_stripe {
+    background-color: #d2d2d6;
+  }
+  .discounted_button_detail {
+    background-color: #d2d2d6;
+
+    &:hover {
+      transition: 0.4s all ease;
+      background-color: #d2d2d6;
+      color: #000;
+    }
+  }
+}
+.discounted_no_stock {
+  color: red;
+  font-family: "Avenir_Book";
+  font-weight: 500;
+}
+
+.discounted_button_detail {
+  background-color: $yellow_main;
+  color: black;
+  border-radius: 8px;
+  width: 11rem;
+  height: 3.5em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-family: "Avenir_Black";
+  letter-spacing: 0.06rem;
+  font-weight: 800;
+
+  &:hover {
+    transition: 0.4s all ease;
+    background-color: #aeadb3;
+    color: $yellow_main;
+  }
+}
