@@ -203,7 +203,7 @@ module.exports = (sequelize) => {
     email:{
       type:DataTypes.STRING,
       allowNull: true,
-      unique: true,
+      unique: false,
     },
     phone:{
       type:DataTypes.STRING,
