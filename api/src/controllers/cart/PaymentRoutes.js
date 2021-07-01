@@ -1,7 +1,8 @@
 const {CurrencyChange, Order, User, Role, HenryExchange, Nacionality} = require('../../db');
 const { Sequelize, or } = require('sequelize');
 const Op = Sequelize.Op;
-const url = "http://localhost:3000"
+// const url = "http://localhost:3000"
+const url = "https://soyhenry-store.web.app"
 
 const paymentMethods = {
     createPayment: async (req, res) =>{
