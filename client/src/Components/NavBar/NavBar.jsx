@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect, useSelector } from 'react-redux';
+import { useUser } from "reactfire";
+import { useDispatch } from 'react-redux';
+
 import Login from "../Authentication/Login/Login";
 import Register from "../Authentication/Register/Register";
 import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
-import FilterCategories from "../FilterCategories/FilterCategories";
-import SearchBar from "../SearchBar/SearchBar";
+// import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
-import { useSelector } from 'react-redux';
-import { useUser } from "reactfire";
 import { useGlobalContext } from "../../context"
-import henry from "../../Assets/Images/new_logo.png"
+import Logos from "../../Assets/logos.json";
 import { FaShoppingCart } from 'react-icons/fa'
 import { IoEnter } from "react-icons/io5"
 import { FaUserAlt } from "react-icons/fa"
 import { URL_BASE } from '../../Config/index.js'
-import { useDispatch } from 'react-redux';
-import { setCurrencyStore } from "../../Redux/actions/actionsProducts";
+import { setCurrencyStore, getAllFilteredProducts } from "../../Redux/actions/actionsProducts";
 
 // ! COMPONENTES
 import "firebase/auth";
 import axios from "axios";
 
 
-const NavBar = () => {
+const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
   const dispatch = useDispatch();
   const dataUSerLogin = useSelector((state) => state.users.dataUSerLogin);
   const [ModalLogin, setModalLogin] = useState(false);
@@ -38,16 +38,21 @@ const NavBar = () => {
     })
   }
 
+  const actualCurrency = localStorage.getItem("currency");
+  // const actualCurrencyName = localStorage.getItem("currencyname");
+
   useEffect(() => {
     getCurrencies()
-  }, [])
+    sendFiltersToActions({ ...queriesFromReducer, currency: actualCurrency });
+  }, [actualCurrency])
 
   const onHandleChangeSelect = (e) => {
     console.log(e.target.options[e.target.options.selectedIndex].getAttribute("name"))
     localStorage.setItem("currencyname", (e.target.options[e.target.options.selectedIndex].getAttribute("name")))
     localStorage.setItem("currency", e.target.value)
     dispatch(setCurrencyStore({ value: e.target.value, name: e.target.options[e.target.options.selectedIndex].getAttribute("name") }))
-
+    // console.log("localStorage.getItem('currency'): ", localStorage.getItem("currency"));
+    sendFiltersToActions({ ...queriesFromReducer, currency: e.target.value });
   }
   // ! CONTENT
   return (
@@ -66,20 +71,24 @@ const NavBar = () => {
       </Modal>
 
       <Modal isOpened={ModalForgotPass} onClose={() => setModalForgotPass(false)}>
-        <ForgotPassword isOpened={ModalForgotPass} 
-                        forgotPassClose={() => setModalForgotPass(false)}
-                        LoginOpen={() => setModalLogin(true)}
+        <ForgotPassword isOpened={ModalForgotPass}
+          forgotPassClose={() => setModalForgotPass(false)}
+          LoginOpen={() => setModalLogin(true)}
         />
       </Modal>
       <Link className="left-box" to="/">
-        <img className="logohenry" src={henry} alt="not" />
-        <p className="store_text">STORE</p>
+        <img className="logohenry" src={Logos[0].src_logo} alt="not" />
+        {/* <p className="store_text">STORE</p> */}
       </Link>
       {/* <div className="left-box">
       </div> */}
       <div className="mid-box">
-        <SearchBar />
-        <FilterCategories />
+        <div className="links_container">
+          <Link className="navbar_link" to="/home">Catalogo</Link>
+          <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/webfullstack/">Carrera</a>
+          <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/about-us">Nosotros</a>
+        </div>
+        {/* <FilterCategories /> */}
       </div>
       <div className="right-box">
         <div className="buttons-under-profile">
@@ -119,4 +128,16 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+function mapStateToProps(state) {
+  return {
+    queriesFromReducer: state.products.queries,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    sendFiltersToActions: (allQueries) => dispatch(getAllFilteredProducts(allQueries)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
