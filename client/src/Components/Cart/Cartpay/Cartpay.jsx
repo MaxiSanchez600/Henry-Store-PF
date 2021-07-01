@@ -35,7 +35,6 @@ export function Cartpay(props){
 
     useEffect(async () =>{
       sethenryExchange(await henryExchangeRoute())
-      console.log(henryExchange)
       sethc(0)
     },[localStorage.getItem('userlogged'), localStorage.getItem('userid')])
 
@@ -45,7 +44,6 @@ export function Cartpay(props){
     }
     
     let onSubmitCart = () =>{
-
       if(props.carritoactual.length > 0){
         let useractual = (localStorage.getItem('userlogged') !== null) ? localStorage.getItem('userlogged') : localStorage.getItem('userid')
         axios.post(URL_BASE + `cart/setpriceandgetid`, {

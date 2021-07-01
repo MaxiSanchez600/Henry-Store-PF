@@ -59,6 +59,7 @@ export function CartList(props){
 
     //Escucho un cambio en el estado por si se actualizan los amount o se borran
     useEffect(() =>{
+        console.log(props.carritoactual)
         setCarrito(props.carritoactual)
     }, [props.carritoactual])
 

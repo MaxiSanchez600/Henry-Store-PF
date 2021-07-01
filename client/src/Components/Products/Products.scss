@@ -206,3 +206,56 @@
   width: 100%;
   margin-top: 25%;
 }
+
+.older_price_container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+
+  .discount_percentage {
+    margin: 2.5px 0 0 0;
+    color: red;
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+
+.discounted_product_price,
+.discounted_newer_product_price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 0.3rem;
+
+  .discounted_product_number {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 6px;
+    font-family: "Avenir_Black";
+    white-space: nowrap;
+  }
+
+  .discounted_product_usd {
+    font-family: "Avenir_Book";
+    font-weight: 500;
+  }
+}
+
+.discounted_product_price {
+
+  .discounted_product_number {
+
+    .discount_stripe {
+      position: absolute;
+      background-color: red;
+      width: 100%;
+      height: 4px;
+      top: 10px;
+      left: -2.5px;
+      transform: rotate(-5deg);
+    }
+  }
+}

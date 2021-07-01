@@ -15,10 +15,12 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
   const ID_Product = ListProducts.find(el => el.id_product === parseInt(id));
 
   const [productCaracteristics, setProductCaracteristics] = useState({
+    discount: "",
     caracteristics: {}
   });
 
   let sendproduct = async () => {
+    console.log(productCaracteristics)
     if (localStorage.getItem('userlogged') !== null) {
       //Esta logeado
       productCaracteristics.user_id = localStorage.getItem('userlogged')
@@ -116,9 +118,9 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
 
   useEffect(() => {
     if (ID_Product && ID_Product.unit_stock > 0) {
-
       setProductCaracteristics((previousState) => {
         const initialState = {
+          discount: ID_Product.percentage_discount,
           product_id: ID_Product.id_product,
           amount: 1,
           caracteristics: {}
@@ -134,6 +136,7 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
   let handleproductCaracteristics = (e) => {
     e.preventDefault();
     const name = e.target.getAttribute("name").split("_")[0];
+
     if (e.target.getAttribute("name") !== "amount") {
       setProductCaracteristics({
         ...productCaracteristics,
@@ -234,11 +237,17 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                       <StarRating size_star="20" score={score} editable="off" completeinfo="no" />
                       <span>{score.toFixed(1)}({total_reviews})</span>
                     </div>
+                    {(ID_Product.percentage_discount > 0) ?<div className = "discount_productdetail_padre">
+                      <div className="product-price">
+                        <span>${(ID_Product.price * currencyactual) - ((((ID_Product.price * currencyactual) * ID_Product.percentage_discount) / 100))}</span>
+                        <label>{currencyactualname}</label>
+                      </div>
+                      <label className = "discount_productdetail"><span>{ID_Product.percentage_discount}%OFF</span> de {ID_Product.price * currencyactual}</label>
+                    </div>:
                     <div className="product-price">
-                      <span>${ID_Product.price * currencyactual}</span>
-                      <label>{currencyactualname}</label>
-                    </div>
-
+                    <span>${(ID_Product.price * currencyactual)}</span>
+                    <label>{currencyactualname}</label>
+                  </div>}
                     <div className="product-detail">
                       <p>{ID_Product.description}</p>
                       {

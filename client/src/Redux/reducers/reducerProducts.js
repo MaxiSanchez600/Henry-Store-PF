@@ -36,9 +36,18 @@ const rootReducer = (state = initialState, action) => {
             let hc = 0;
             let hcorder = 0;
             action.payload.forEach(producto =>{
-                total = total + (producto.precio * producto.actual_amount)
-                hc = hc + (producto.hc * producto.actual_amount)
+                if(producto.discount > 0){
+                    total = total + ((producto.precio - ((producto.precio * producto.discount) / 100)) * producto.actual_amount)
+                    console.log(producto.precio)
+                    console.log(producto.discount)
+                    hc = hc + (producto.hc * producto.actual_amount)
+                }
+                else{
+                    total = total + ((producto.precio * producto.actual_amount))
+                    hc = hc + (producto.hc * producto.actual_amount)
+                }
             })
+            console.log(total)
             return{
                 ...state,
                 carrito: action.payload,

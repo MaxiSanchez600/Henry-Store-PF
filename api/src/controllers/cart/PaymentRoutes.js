@@ -27,7 +27,7 @@ const paymentMethods = {
                 description: "Henry E-Commerce merch",
                 quantity: 1,
                 currency_id: 'ARS',
-                unit_price: (parseInt(totalprice) * currency)
+                unit_price: (parseFloat(totalprice) * currency)
 
               }
             ],

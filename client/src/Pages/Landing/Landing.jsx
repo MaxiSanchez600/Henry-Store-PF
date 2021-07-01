@@ -55,9 +55,7 @@ function Landing({ actualCurrency, actualCurrencyName }) {
                   <div className="discounted_newer_product_price">
                     <h5 className="discounted_product_number">
                       {
-                        (product.price * actualCurrency) === ((product.price * actualCurrency) / product.percentage_discount) ?
-                          `${(product.price * actualCurrency) / product.percentage_discount} ${actualCurrencyName}` :
-                          `${((product.price * actualCurrency) / product.percentage_discount).toFixed(2)} ${actualCurrencyName}`
+                          `${((product.price * actualCurrency) - (((product.price * actualCurrency) * product.percentage_discount) / 100)).toFixed(2)} ${actualCurrencyName}`
                       }
                     </h5>
                   </div>

@@ -104,7 +104,7 @@ export default async function actionsUponOrders( id, idUser, name, prevstate, hc
                     id: idUser,
                     hc: hcSpend-hcEarned
                 })
-                let renewstock = axios.put(`${workspace}/cart/addproductsstockorder?orderid=${id}`)
+                let renewstock = axios.put(`${workspace}/cart/addproductstockorder?orderid=${id}`)
                 Promise.all([order,hcUser,renewstock])
                 .then(()=>{
                     refreshOrders()
@@ -218,7 +218,7 @@ export default async function actionsUponOrders( id, idUser, name, prevstate, hc
                     id: idUser,
                     hc: hcSpend-hcEarned
                 })
-                let renewstock = axios.put(`${workspace}/cart/addproductsstockorder?orderid=${id}`)
+                let renewstock = axios.put(`${workspace}/cart/addproductstockorder?orderid=${id}`)
                 Promise.all([order,hcUser,renewstock])
                 .then(()=>{
                   refreshOrders()

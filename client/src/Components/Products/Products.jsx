@@ -30,10 +30,28 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
                     {product.name}
                     <div className="product_stripe"></div>
                 </h3>
+               {(product.percentage_discount > 0) ? <div>
+                    <div className="older_price_container">
+                        <div className="discounted_product_price">
+                        <h5 className="discounted_product_number">
+                            <div className="discount_stripe"></div>
+                            {`${product.price * currencyactual} ${currencyactualname}`}
+                        </h5>
+                        </div>
+                        <p className="discount_percentage">{`%${product.percentage_discount} OFF`}</p>
+                    </div>
+                    <div className="discounted_newer_product_price">
+                        <h5 className="discounted_product_number">
+                        {
+                            `${((product.price * currencyactual) - (((product.price * currencyactual) * product.percentage_discount) / 100)).toFixed(2)} ${currencyactualname}`
+                        }
+                        </h5>
+                    </div>
+                </div> :
                 <div className="product_price">
                     <h5 className="product_number">{product.price * currencyactual}</h5>
                     <h5 className="product_usd"> {currencyactualname}</h5>
-                </div>
+                </div>}
                 <div className="product_stock">
                     <h5>
                         {product.unit_stock ? `${product.unit_stock} Unidades` : <p className="no_stock">SIN STOCK</p>}

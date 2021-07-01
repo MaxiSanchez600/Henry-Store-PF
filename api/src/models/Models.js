@@ -329,7 +329,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     totalprice: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: true
     },
     spenthc:{

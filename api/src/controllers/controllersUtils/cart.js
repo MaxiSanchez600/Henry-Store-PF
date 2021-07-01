@@ -43,6 +43,7 @@ const addCart = async (product_id, amount, caracteristics, orderid) => {
 
         //Agrego un objeto nuevo (producto) al array de productos de la order
         productos.push({
+            discount: product.dataValues.percentage_discount,
             product_id: productid,
             product_name: product.dataValues.name,
             orderdetail_id: orderid,

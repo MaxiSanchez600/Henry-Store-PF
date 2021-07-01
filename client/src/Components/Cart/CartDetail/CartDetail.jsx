@@ -114,7 +114,8 @@ export function CartDetail(props){
                             <option value = {element} selected = 'selected'>{element}</option> :
                             <option value = {element}>{element}</option>)}
                         </select>
-                        <h2>{(props.product.precio * amount) * props.currencyactual}{props.currencyactualname}</h2>
+                        {(props.product.discount > 0) ? <h2>{(((props.product.precio - ((props.product.precio * props.product.discount) / 100)) * amount) * props.currencyactual)}{props.currencyactualname}</h2>
+                        : <h2>{(props.product.precio * amount) * props.currencyactual}{props.currencyactualname}</h2>}
                         <h2>{props.product.hc * amount + ' HC por tu compra'}</h2>
                 </div>
                 <div className = 'CartOptions_CartDetail'>
