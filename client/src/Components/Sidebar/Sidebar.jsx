@@ -57,7 +57,7 @@ const Sidebar = () => {
           confirmButton: 'confirmButton-info_HC',
     },
       icon:"info",
-      title:`${name.name.charAt(0).toUpperCase()}${name.name.slice(1)} tienes ${dataUSerLogin.hc} HenryCoins`,
+      title:`${name.name?name.name+" t":"T"}ienes ${dataUSerLogin.hc} HenryCoins`,
   })
  
   }
