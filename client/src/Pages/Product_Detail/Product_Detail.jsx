@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import SliderCarousel from '../../Components/SliderCarrousel/SliderCarrousel';
 import AllReviews from '../../Components/Reviews/AllReviews'
 import StarRating from '../../Components/Reviews/StarRating'
+import NotFound from '../../Components/NotFound/NotFound';
 
 function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, currencyactualname, getAllReviews, ReviewsProduct }) {
 
@@ -300,16 +301,16 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
                     }
                     <div className="social-links">
                       <p>Share At: </p>
-                      <a href={`https://www.facebook.com/sharer.php?u=${postUrl}`} target="_blank" className="facebook-btn">
+                      <a href={`https://www.facebook.com/sharer.php?u=${postUrl}`} target="_blank" className="facebook-btn" rel="noreferrer">
                         <span className="iconify" data-icon="logos:facebook" data-inline="false"></span>
                       </a>
-                      <a href={`https://twitter.com/share?url${postUrl}&text=${postTitle}&via=HenryStore&hashtags=${hasgtag}`} target="_blank" className="twitter-btn">
+                      <a href={`https://twitter.com/share?url${postUrl}&text=${postTitle}&via=HenryStore&hashtags=${hasgtag}`} target="_blank" className="twitter-btn" rel="noreferrer">
                         <span className="iconify" data-icon="logos:twitter" data-inline="false"></span>
                       </a>
-                      <a href={`https://api.whatsapp.com/send?text= ${postTitle} ${postUrl}`} target="_blank" className="whatsapp-btn">
+                      <a href={`https://api.whatsapp.com/send?text= ${postTitle} ${postUrl}`} target="_blank" className="whatsapp-btn" rel="noreferrer">
                         <span className="iconify" data-icon="logos:whatsapp" data-inline="false"></span>
                       </a>
-                      <a href={`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`} target="_blank" className="linkedin-btn">
+                      <a href={`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`} target="_blank" className="linkedin-btn" rel="noreferrer">
                         <span class="iconify" data-icon="logos:linkedin-icon" data-inline="false"></span>
                       </a>
                     </div>
@@ -323,7 +324,8 @@ function Product_Detail({ ListProducts, getAllFilteredProducts, currencyactual, 
             <section id="sec-2">
               <AllReviews ReviewsProduct={ReviewsProduct} />
             </section>
-          </div> : ""
+          {/* </div> : "" */}
+          </div> : <NotFound message="Lo sentimos, este producto parece haber sido borrado por el administrador"/>
       }
 
     </div>

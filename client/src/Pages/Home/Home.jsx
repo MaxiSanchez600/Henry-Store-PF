@@ -10,10 +10,8 @@ import Order from "../../Components/Order/Order";
 function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, MyWishList }) {
 
     const allQueries = Object.keys(queriesFromReducer);
-    // console.log("allQueries: ", allQueries);
 
     const [currency, ...removedCurrency] = [...allQueries];
-    // console.log("removedCurrency: ", removedCurrency);
 
     useEffect(() => {
         document.body.scrollTop = 0;
@@ -24,7 +22,6 @@ function Home({ queriesFromReducer, getProductsWithoutFilters, getMyWishList, My
         e.preventDefault();
 
         for (let i = 0; i < removedCurrency.length; i++) {
-            // console.log("removedCurrency[i]: ", removedCurrency[i]);
             const filterToBeRemoved = document.getElementById(`filter_name_${removedCurrency[i]}`);
             if (filterToBeRemoved) {
                 switch (filterToBeRemoved.type) {

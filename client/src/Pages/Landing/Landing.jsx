@@ -16,15 +16,11 @@ function Landing({ actualCurrency, actualCurrencyName }) {
 
   async function getProductsWithHigherDiscount() {
     setProductsWithHighestDiscount(await axios.get(`${PRODUCTS_URL}orderType=percentage_discount&orderDirection=DESC&limit=6`).then(res => res.data.data));
-    // console.log("productsWithHighestDiscount: ", productsWithHighestDiscount);
   }
 
   useEffect(() => {
     if (!productsWithHighestDiscount.length) getProductsWithHigherDiscount();
   }, []);
-
-
-  // console.log("productsWithHighestDiscount: ", productsWithHighestDiscount);
 
   return (
     <div>

@@ -8,7 +8,6 @@ import Login from "../Authentication/Login/Login";
 import Register from "../Authentication/Register/Register";
 import logo from '../../Assets/Images/Logo_H_white.png'
 import Modal from "../Modal/Modal";
-// import FilterCategories from "../FilterCategories/FilterCategories";
 import ForgotPassword from "../Authentication/ForgotPass/ForgotPassword";
 import { useGlobalContext } from "../../context"
 import Logos from "../../Assets/logos.json";
@@ -39,7 +38,6 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
   }
 
   const actualCurrency = localStorage.getItem("currency");
-  // const actualCurrencyName = localStorage.getItem("currencyname");
 
   useEffect(() => {
     getCurrencies()
@@ -51,7 +49,6 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
     localStorage.setItem("currencyname", (e.target.options[e.target.options.selectedIndex].getAttribute("name")))
     localStorage.setItem("currency", e.target.value)
     dispatch(setCurrencyStore({ value: e.target.value, name: e.target.options[e.target.options.selectedIndex].getAttribute("name") }))
-    // console.log("localStorage.getItem('currency'): ", localStorage.getItem("currency"));
     sendFiltersToActions({ ...queriesFromReducer, currency: e.target.value });
   }
   // ! CONTENT
@@ -78,17 +75,13 @@ const NavBar = ({ queriesFromReducer, sendFiltersToActions }) => {
       </Modal>
       <Link className="left-box" to="/">
         <img className="logohenry" src={Logos[0].src_logo} alt="not" />
-        {/* <p className="store_text">STORE</p> */}
       </Link>
-      {/* <div className="left-box">
-      </div> */}
       <div className="mid-box">
         <div className="links_container">
           <Link className="navbar_link" to="/home">Catálogo</Link>
           <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/webfullstack/">Carrera</a>
           <a className="navbar_link" target="_blank" rel="noreferrer" href="https://soyhenry.com/about-us">Nosotros</a>
         </div>
-        {/* <FilterCategories /> */}
       </div>
       <div className="right-box">
         <div className="buttons-under-profile">

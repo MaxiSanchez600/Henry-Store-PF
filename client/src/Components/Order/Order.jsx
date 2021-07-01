@@ -21,7 +21,7 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
   function closeOrderButton(e) {
     e.preventDefault();
     const filterToBeRemoved = document.getElementById(`filter_name_${e.target.name}`);
-    console.log("filterToBeRemoved: ", filterToBeRemoved);
+    // console.log("filterToBeRemoved: ", filterToBeRemoved);
     if (filterToBeRemoved) filterToBeRemoved.value = "default";
     setOrderType("");
     setOrderDirection("");
@@ -42,7 +42,7 @@ function Order({ queriesFromReducer, sendFiltersToActions }) {
           id={`filter_name_orderType`}
           className="order_list_select"
         >
-          <option value="default">Elige una opcion...</option>
+          <option value="default">Elige una opción...</option>
           <option value="ASC">Menor precio</option>
           <option value="DESC">Mayor precio</option>
         </select>

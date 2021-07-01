@@ -19,9 +19,6 @@ const SliderCarousel = ({ imageList = IMAGES, isBanner = false }) => {
           setTimeout(() => setCurrentImage(currentImage === imageListLength - 1 ? 0 : currentImage + 1), 2500);
         }
       }
-      // for (let i = 0; i < imageListLength; i++) {
-      //   continue;
-      // }
     }
   }, [imageList, imageListLength, isBanner, clickedButton, currentImage]);
 
