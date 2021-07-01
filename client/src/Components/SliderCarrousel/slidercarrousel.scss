@@ -1,7 +1,6 @@
 @import '../../Sass/variables';
 
 .carruosel_container {
-    margin: 10px 0;
 
     .Carrousel_SliderCarrousel {
 
@@ -106,17 +105,16 @@
 
     .banner_carrousel_display {
         display: grid;
-        grid-template-columns: 1800px 2px 2px;
+        grid-template-columns: 100% 2px 2px;
         align-items: center;
         justify-content: center;
         height: 100%;
         position: relative;
 
         .image_container {
-            margin: 0 0 0 -7px;
 
             .banner_image {
-                width: 1817px;
+                width: 100%;
             }
 
         }
