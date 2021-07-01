@@ -56,12 +56,12 @@ function CategoriesSelected ({ json, setJson, catBack, setCatBack }){
                     setCatBack([...copyCatBack]);
                 }
             }
-            // return Swal.fire({
-            //     icon: 'success',
-            //     title: 'Agregada con éxito',
-            //     showConfirmButton: false,
-            //     timer: 1400
-            // });
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+            });
         }
     };
     

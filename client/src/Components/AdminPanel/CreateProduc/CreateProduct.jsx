@@ -147,12 +147,12 @@ function CreateProduct ({ editIsActive, productData }) {
                     SubCategories: []
                 }
             ]);
-            // return Swal.fire({
-            //     icon: 'success',
-            //     title: 'Agregada con éxito',
-            //     showConfirmButton: false,
-            //     timer: 1400
-            // });
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+            });
         }
     };
 
@@ -187,12 +187,12 @@ function CreateProduct ({ editIsActive, productData }) {
                     values_caracteristic: []
                 }
             ]);
-            // return Swal.fire({
-            //     icon: 'success',
-            //     title: 'Agregada con éxito',
-            //     showConfirmButton: false,
-            //     timer: 1400
-            // });
+            return Swal.fire({
+                icon: 'success',
+                title: 'Agregada con éxito',
+                showConfirmButton: false,
+                timer: 1400
+            });
         }
     };
 
