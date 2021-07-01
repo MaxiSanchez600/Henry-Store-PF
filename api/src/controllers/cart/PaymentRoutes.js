@@ -1,15 +1,12 @@
-const {CurrencyChange, Order, User, Role} = require('../../db');
+const {CurrencyChange, Order, User, Role, HenryExchange, Nacionality} = require('../../db');
 const { Sequelize, or } = require('sequelize');
 const Op = Sequelize.Op;
 const url = "http://localhost:3000"
 
 const paymentMethods = {
     createPayment: async (req, res) =>{
-        console.log(req.query)
-        let {totalprice, orderid, addressid} = req.query
-        console.log(totalprice)
+        let {totalprice, orderid, addressid, residencia} = req.query
         let currency = 0;
-
         await CurrencyChange.findOne({where:{currencyName: "ARS"}})
         .then(value =>{
             console.log(value)
@@ -35,33 +32,30 @@ const paymentMethods = {
               }
             ],
             back_urls: {
-                success: url + `/home/cart/success/${orderid}/${addressid}`,
-                failure: "https://www.youtube.com/watch?v=wEtEm0Y6EYc&ab_channel=MercadoPagoDevelopers",
-                pending: "https://image.shutterstock.com/image-illustration/pending-rubber-stamp-260nw-120765172.jpg"
+                success: url + `/home/cart/success/${orderid}/${addressid}/${residencia}`,
+                failure: url + `/home/cart/failure/`,
+                pending: url + `/home/cart/pending/`
             },
             auto_return: "all"
         }
         mercadopago.preferences.create(preference)
         .then(response =>{
             let global = {}
+            global.currency = currency
             global.id = response.body.id;
-            console.log(global.id)
-            // res.send({
-            //     "success": "1",
-            //     "src" : "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js",
-            //     "global_id" : response.body.id,
-            //     "data_header_color" : "#61277B",
-            //     "data_button_label" : "Comprar"
-            // }
-            // );
             res.send(global)
         })
     },
 
     OrderToPagado: async (req, res, next) =>{
-        const {orderid, direcid, paymentid, userid} = req.query
+        const {orderid, direcid, paymentid, userid, residenceid} = req.query
         let email = ""
         let pricetotal;
+        let pais;
+        await Nacionality.findOne({where: {id_nacionality: residenceid}})
+        .then(value =>{
+            pais = value.name_nacionality
+        })
         await User.findOne({where:{id_user: userid}})
         .then(value =>{
             email = value.dataValues.email
@@ -73,12 +67,15 @@ const paymentMethods = {
             auth: {
               user: 'henrystorecommerce@gmail.com',
               pass: 'Bluebuff123'
+            },
+            tls: {
+                rejectUnauthorized: false
             }
         });
 
         var mailOptions = {
             from: 'henrystorecommerce@gmail.com',
-            to: 'maxsanchezg@gmail.com',
+            to: email,
             subject: 'Confirmacion de pago Henry Store',
             text: 'Gracias por su compra, su numero de orden es ' + orderid
         };
@@ -102,17 +99,38 @@ const paymentMethods = {
                     }
                 })
                 transporter.sendMail(mailOptions, async function(error, info){
-                    value.status = "pagado"
-                    value.UserAddressId = direcid
+                    if(direcid !== 'undefined'){
+                        value.status = "pagado"
+                        value.UserAddressId = direcid
+                    }
+                    else{
+                        value.status = "coordinar"
+                    }
+                    value.NacionalityIdNacionality = residenceid
                     value.paymentid = paymentid
                     await value.save()
                 });
             }
-            res.send(pricetotal + "")
+            let send = {
+                pricetotal: pricetotal,
+                pais: pais
+            }
+            res.json(send)
         })
         .catch(error =>{
             next(error)
         })
+    },
+
+
+    getHenryExchange: (req, res, next) =>{
+       HenryExchange.findAll()
+       .then(value =>{
+            return res.send(value[0].exchange + "")
+       })
+       .catch(error =>{
+           next(error)
+       })
     }
 
 }

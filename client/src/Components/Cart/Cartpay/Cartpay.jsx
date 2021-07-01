@@ -3,9 +3,10 @@ import './Cartpay.scss'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import axios from 'axios'
-import { URL_BASE, henryExchange } from '../../../Config/index.js'
+import { URL_BASE, henryExchangeRoute} from '../../../Config/index.js'
 
 export function Cartpay(props){
+    const [henryExchange, sethenryExchange] = React.useState(0)
     let history = useHistory()
     const [hc, sethc] = React.useState(0)
     let onClickLabel = (e) =>{
@@ -32,7 +33,9 @@ export function Cartpay(props){
       }
     }
 
-    useEffect(() =>{
+    useEffect(async () =>{
+      sethenryExchange(await henryExchangeRoute())
+      console.log(henryExchange)
       sethc(0)
     },[localStorage.getItem('userlogged'), localStorage.getItem('userid')])
 

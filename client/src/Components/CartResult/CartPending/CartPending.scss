@@ -1,0 +1,21 @@
+@import "../../../Sass/variables";
+
+#CartPending {
+  width: 80%;
+  margin: 0 auto;
+  min-height: 66.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    text-align: center;
+    font-family: "Avenir_Black";
+    font-size: 4em;
+    letter-spacing: -3px;
+  }
+  p {
+    text-align: center;
+    font-family: "Avenir_Roman";
+    font-size: 1.3em;
+  }
+}

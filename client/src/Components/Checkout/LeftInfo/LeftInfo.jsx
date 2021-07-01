@@ -58,7 +58,7 @@ export default function LeftInfo({orderid}){
             </div>
             {(webactual === "userinfo") && <UserEdit nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
             {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality === "Argentina")) && <AddressEdit orderid = {orderid} nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
-            {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality !== "Argentina")) && <NoAddressEdit nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
+            {(webactual === "addressinfo" && (nacionality.filter(nacion => (nacion.id + "") === (residencia + ""))[0].nacionality !== "Argentina")) && <NoAddressEdit orderid = {orderid} nextClick = {nextClick} volverClick = {volverClick} residenciaSelected = {residencia}/>}
         </div>
     )
 }

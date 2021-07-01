@@ -4,7 +4,8 @@ import { URL_BASE } from '../../../Config/index.js'
 import { connect } from 'react-redux'
 import CartDetail from '../CartDetail/CartDetail'
 import {setCarrito} from '../../../Redux/actions/actionsProducts'
-
+import { Fragment } from 'react'
+import {Link} from "react-router-dom";
 
 export function CartList(props){
     //sirve de algo este state? no esta leido user ni setUser
@@ -67,10 +68,12 @@ export function CartList(props){
     },[props.userid])
 
     return( 
-            <div className = 'CartContenedor_CartList'>
-                    {(props.carritoactual.length > 0 && carrito.length === 0) && <h1>Cargando carrito</h1>}
-                    {carrito.map(producto => <CartDetail userid = {getUser} product = {producto}></CartDetail>)}
-            </div>
+            <Fragment>
+            {props.carritoactual.length > 0 ? <div className = 'CartContenedor_CartList'>
+            {carrito.map(producto => <CartDetail userid = {getUser} product = {producto}></CartDetail>)}
+            </div> : <div><h1 className = "CartContenedorH1Error_CartList">No hay productos en tu carrito.</h1> <Link to = "/home" className = "LinkRedirect_CartList">Volver al catalogo</Link></div>}
+            </Fragment>
+
     )
 }
 

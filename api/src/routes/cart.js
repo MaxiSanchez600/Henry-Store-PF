@@ -10,6 +10,7 @@ const getCurrencyFromDB = require('../controllers/cart/getCurrency.js')
 const setPriceSetID = require('../controllers/cart/setPrice.js')
 const UserAddressRoutes = require('../controllers/cart/UserAddress.js')
 const paymentMethods = require('../controllers/cart/PaymentRoutes.js')
+const cartProducts = require('../controllers/cart/OrderCart.js')
 const router = Router();
 
 router.post('/addproducttocart', add.addProduct)
@@ -28,6 +29,8 @@ router.get('/getaddressbyid', UserAddressRoutes.GetAddressById)
 router.put('/updateaddress', UserAddressRoutes.UpdateAddress)
 router.get('/createpayment', paymentMethods.createPayment)
 router.put('/ordentopagado', paymentMethods.OrderToPagado)
-
+router.get('/gethenryexchange', paymentMethods.getHenryExchange)
+router.put('/removeproductstockorder', cartProducts.removeStock)
+router.put('/addproductstockorder', cartProducts.addStock)
 
 module.exports = router;

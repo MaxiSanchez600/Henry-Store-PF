@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./AddressEdit.scss"
-import {GET_USER_ADDRESS, GET_PAYMENT_ID, GET_ORDER} from '../../../../Config/index.js'
+import {GET_USER_ADDRESS, GET_PAYMENT_ID, GET_ORDER, henryExchangeRoute} from '../../../../Config/index.js'
 import axios from 'axios';
 import AddressUserList from "./AddressUserList/AddressUserList.jsx"
 import ADDAddress from './ADDAddress/ADDAddress';
@@ -8,6 +8,7 @@ import RENAMEAddress from './RENAMEAddress/RENAMEAddress';
 import PaymentFinal from './PaymentFinal/PaymentFinal';
 
 export default function AddressEdit({nextClick, volverClick, residenciaSelected, orderid}){
+    const [henryExchange, sethenryExchange] = React.useState(0)
     const iduser = (localStorage.getItem('userlogged') !== null) ? localStorage.getItem('userlogged') : (localStorage.getItem('userid') !== null) && localStorage.getItem('userid');
     const [UserAddresses, setUserAddresses] = React.useState([])
     const [addressSelected, setaddressSelected] = React.useState(undefined)
@@ -20,15 +21,18 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
 
     //false => add direc
     //true => edit direc 
-    var MercadoPago = require('mercadopago');
-    const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {})
-    const mpcheck= ((preferenceid) =>{
-        mp.checkout({
-            preference: {
-                id: preferenceid
-            }
-        });
-    })
+     var MercadoPago = require('mercadopago');
+     const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {
+         locale: 'es-AR'
+     })
+    
+     const mpcheck= ((preferenceid) =>{
+         mp.checkout({
+             preference: {
+                 id: preferenceid
+             }
+         });
+     })
 
     const goBack = (() =>{
         volverClick(residenciaSelected)
@@ -37,7 +41,8 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
     const getOrderPrice = (() =>{
         return axios.get(GET_ORDER + `?id=${orderid}`)
         .then(value =>{
-            return (value.data.totalprice - ((value.data.totalprice * value.data.spenthc) / 100))
+            return (value.data.totalprice - (value.data.spenthc * henryExchange))
+            //(order.totalprice - (order.spenthc * henryExchange)) * currency
         })
         .catch(error =>{
             alert(error)
@@ -48,9 +53,10 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
             if(!isPago){
                 setisLoading(true)
                 setispago(true)
-                axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${idaddress}`)
+                axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${idaddress}&residencia=${residenciaSelected}`)
                 .then(value =>{
                     const script = document.createElement('script');
+                    console.log(value.data.id)
                     script.type = 'text/javascript';
                     script.src =
                         'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
@@ -64,7 +70,8 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
             }
     })
 
-    useEffect(() =>{
+    useEffect(async () =>{
+        sethenryExchange(await henryExchangeRoute())
         axios.get(GET_USER_ADDRESS + `/?userid=${iduser}`)
         .then(value =>{
             setUserAddresses(value.data)

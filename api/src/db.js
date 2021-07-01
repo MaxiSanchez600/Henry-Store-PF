@@ -118,12 +118,17 @@ OrderDetailCaracteristic.belongsTo(OrderDetail);
 User.hasMany(UserAddress);
 UserAddress.belongsTo(User);
 
+//Relacion Nacionalidad Usuario
 Nacionality.hasMany(UserAddress)
 UserAddress.belongsTo(Nacionality)
 
 //Relacion Order
 UserAddress.hasMany(Order)
 Order.belongsTo(UserAddress)
+
+//Realcion Order Nacionality
+Nacionality.hasMany(Order)
+Order.belongsTo(Nacionality)
 
 
 //Precarga Role
