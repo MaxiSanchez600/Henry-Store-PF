@@ -22,7 +22,7 @@ export default function AddressEdit({nextClick, volverClick, residenciaSelected,
     //false => add direc
     //true => edit direc 
      var MercadoPago = require('mercadopago');
-     const mp = new MercadoPago('TEST-f7149905-e21f-4ea3-a559-1527bc66dcee', {
+     const mp = new MercadoPago("APP_USR-6642840300672372-062619-0deaff518a075f2dc836a4492dc55f75-209521005", {
          locale: 'es-AR'
      })
     

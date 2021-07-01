@@ -100,7 +100,7 @@ const paymentMethods = {
                 })
                 transporter.sendMail(mailOptions, async function(error, info){
                     if(direcid !== 'undefined'){
-                        value.status = "pagado"
+                        value.status = "pagada"
                         value.UserAddressId = direcid
                     }
                     else{
