@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import {workspace} from '../../Config/index'
 
 const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) => {
 
@@ -24,9 +25,8 @@ const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) =>
       "id_product": id_product,
       "id_user": id_user
     }
-    axios.post(`http://localhost:3001/review`, content_Review)
+    axios.post(`${workspace}/review`, content_Review)
       .then(res => {
-
         Swal.fire({
           title: 'Reseña Añadida Exitosamente!',
           icon: 'success',
@@ -40,9 +40,11 @@ const PostReview = ({ show, closeModalHandler, id_order_review, id_product }) =>
             validationMessage: 'validationMessage-order-info2',
             confirmButton: 'confirmButton-order-info2',
           },
+        }).then(e=>{
+          closeModalHandler()
+          window.location.reload(false)
         })
-        closeModalHandler()
-
+    
       })
       .catch(err => {
         console.log(err)

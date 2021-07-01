@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { getAllFilteredProducts } from '../../Redux/actions/actionsProducts';
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import WishList from '../WishList/WishList'
 import HeartIcon from '../WishList/HeartIcon';
 
 
@@ -79,7 +78,6 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
                 activeClassName={"paginationActive"}
             />
         </div> : ""}
-        <WishList />
     </div >
 
 }
