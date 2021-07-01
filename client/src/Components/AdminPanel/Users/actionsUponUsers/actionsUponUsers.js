@@ -96,12 +96,28 @@ export default async function actionsUponUsers(name, id, origin, boolean, rol, p
               .then(()=>{
                 refreshAfterAction()
                 Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#49AF41",
+                  customClass:{
+                    popup: 'popup-order-success',
+                    title: 'title-order-success',
+                    input: 'input-order-success',
+                    confirmButton: 'confirmButton-order-success',
+                  },
                   icon:"success",
                   title:`El usuario recibio sus HC`,
               })
               })
               .catch(()=>{
                 Swal.fire({
+                  buttonsStyling:false,
+                  iconColor: "#F64749",
+                  customClass:{
+                    popup: 'popup-order-error',
+                    title: 'title-order-error',
+                    input: 'input-order-error',
+                    confirmButton: 'confirmButton-order-error',
+                  },
                   icon:"error",
                   title:`Error en la transacción`,
               })

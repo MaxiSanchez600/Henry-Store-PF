@@ -64,6 +64,14 @@ export async function actionsUponProducts (idProd,reset) {
             .then(()=>{
               reset(true)
               Swal.fire({
+                buttonsStyling:false,
+                iconColor: "#49AF41",
+                customClass:{
+                  popup: 'popup-order-success',
+                  title: 'title-order-success',
+                  input: 'input-order-success',
+                  confirmButton: 'confirmButton-order-success',
+                },
                 icon:"success",
                 title:`Stock renovado`,
                 text:`${number} Unid. disponibles` 
@@ -71,6 +79,14 @@ export async function actionsUponProducts (idProd,reset) {
             })
             .catch(()=>{
               Swal.fire({
+                buttonsStyling:false,
+                iconColor: "#F64749",
+                customClass:{
+                popup: 'popup-order-error',
+                title: 'title-order-error',
+                input: 'input-order-error',
+                confirmButton: 'confirmButton-order-error',
+                },
                 icon:"error",
                 title:`Error en cambio de stock`,
             })

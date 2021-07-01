@@ -5,12 +5,21 @@ export default async function sendShippingURL () {
         title: 'Ingresa el código de seguimiento',
         input: 'text',
         inputLabel: 'Inserte link aquí',
+        buttonsStyling:false,
+        iconColor: "#F64749",
+        customClass:{
+            popup:'popCreate',
+            title:'titlePopCreate',
+            confirmButton:'confirmBtnCreate',
+            input:'inputPopCreate',
+        },
         inputValidator: (value) => {
           if (!value) {
             return 'Necesitas enviar un link!'
           }
         }
       })
+      if(shipping.isDismissed) return;
       if (shipping) {
           return shipping
       }
