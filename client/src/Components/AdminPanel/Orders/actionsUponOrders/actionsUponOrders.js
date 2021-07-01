@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import { ADMIN_ORDERS, LOGIN_URL } from "../../../../Config/index"
+import { ADMIN_ORDERS, LOGIN_URL, workspace } from "../../../../Config/index"
 import axios from 'axios'
 import "./actionsUponOrders.scss"
 import sendShippingURL from './sendShippingURL'
@@ -104,7 +104,8 @@ export default async function actionsUponOrders( id, idUser, name, prevstate, hc
                     id: idUser,
                     hc: hcSpend-hcEarned
                 })
-                Promise.all([order,hcUser])
+                let renewstock = axios.put(`${workspace}/cart/addproductsstockorder?orderid=${id}`)
+                Promise.all([order,hcUser,renewstock])
                 .then(()=>{
                     refreshOrders()
                     Swal.fire({
@@ -217,7 +218,8 @@ export default async function actionsUponOrders( id, idUser, name, prevstate, hc
                     id: idUser,
                     hc: hcSpend-hcEarned
                 })
-                Promise.all([order,hcUser])
+                let renewstock = axios.put(`${workspace}/cart/addproductsstockorder?orderid=${id}`)
+                Promise.all([order,hcUser,renewstock])
                 .then(()=>{
                   refreshOrders()
                   Swal.fire({
