@@ -212,16 +212,16 @@ box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
         margin-top: 25px;
     }
 
-    .inputPopCreate:focus{
-        box-shadow: 0 0 10px #FFFF01;
-        border: 1px solid #FFFF01;
-    }
+    // .inputPopCreate:focus{
+    //     // box-shadow: 0 0 10px #FFFF01;
+    //     // border: 1px solid #FFFF01;
+    // }
 
     .confirmBtnCreate{
         border-radius: 20px;
         border: none;
-        color: white;
-        background-color: black;
+        color: #000;
+        background-color: #FFFF01;
         font-size: 12px;
         font-weight: bold;
         padding: 12px 30px;
@@ -238,10 +238,10 @@ box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
 }
 
 .warningBtn{
-    background-color: #f8bb86;
+    background-color: #FFFF01;
     border-radius: 20px;
     border: none;
-    color: white;
+    color: #000;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 30px;
@@ -257,10 +257,10 @@ box-shadow: 1px 1px 25px 10px rgba(248, 250, 139, 0.4);
 }
 
 .confirmBtnPop{
-    background-color: #49AF41;
+    background-color: #FFFF01;
     border-radius: 20px;
     border: none;
-    color: white;
+    color: #000;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 30px;
