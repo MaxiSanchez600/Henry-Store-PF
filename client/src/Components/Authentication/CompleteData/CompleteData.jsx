@@ -6,31 +6,33 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import {getNacionalities,getDocumentTypes} from "../../../Redux/actions/actionsUsers";
-import { Link } from "react-router-dom";
 import {getUserLogin} from "../../../Redux/actions/actionsUsers";
 import logo from "../../../Assets/Images/Logo_H_black.png";
-import Logo_Henry_black from "../../../Assets/Images/Logo_Henry_black.png";
-import {FaHome,} from 'react-icons/fa';
 import Sidebar from "../../Sidebar/Sidebar"
 
 
 export function validate(form){
   let errors={};
-  if(!/\S+@\S+\.\S+/.test(form.email)){
-    errors.email = 'Ingrese un Email valido..';
-  } 
-  if(!/(?=.*[0-9])/.test(form.phone)){
-    errors.phone="No puede contener letras";
+  if(form.email){
+    if(!/\S+@\S+\.\S+/.test(form.email)){
+      errors.email = 'Ingrese un Email valido..';
+    } 
   }
-  if(!/(?=.*[0-9])/.test(form.identification)){
-    errors.identification="No puede contener letras";
+  if(form.phone){
+    if(!/(?=.*[0-9])/.test(form.phone)){
+      errors.phone="No puede contener letras";
+    }
+  }
+  if(form.identification){
+    if(!/(?=.*[0-9])/.test(form.identification)){
+      errors.identification="No puede contener letras";
+    }
   }
   return errors;
 }
 
 const CompleteData = () => {
   var dataToSend;
-
   const dataUSerLogin=useSelector((state)=>state.users.dataUSerLogin);
   const nationalities=useSelector((state)=>state.users.nationalities);
   const documentTipes=useSelector((state)=>state.users.documentTipes);
@@ -38,7 +40,7 @@ const CompleteData = () => {
 
     const stateFormData = {
         id:dataUSerLogin.id,
-        image:"",
+        image:""||dataUSerLogin.image,
         firstname: "" ,
         lastname: "" ,
         email: "" ,
@@ -57,9 +59,12 @@ const CompleteData = () => {
   var userLogged = localStorage.getItem('userlogged');
 
   useEffect(() => {
-    dispatch(getUserLogin(userLogged));
     dispatch(getNacionalities());
     dispatch(getDocumentTypes());
+    dispatch(getUserLogin(userLogged))
+  }, []);
+  
+  useEffect(()=>{
     setForm({
       id:dataUSerLogin.id,
       image:dataUSerLogin.image,
@@ -68,80 +73,143 @@ const CompleteData = () => {
       email: dataUSerLogin.email,
       phone: dataUSerLogin.phone,
       username:  dataUSerLogin.username,
-      nacionality: dataUSerLogin.nacionality,
-      documentType: dataUSerLogin.documentType,
+      nacionality: dataUSerLogin.nacionality==="Undefined"?dataUSerLogin.nacionality="":dataUSerLogin.nacionality,
+      documentType: dataUSerLogin.documentType==="Undefined"?dataUSerLogin.documentType="":dataUSerLogin.documentType,
       identification: dataUSerLogin.identification,
       status:"",
   });
-  }, []);
-
-  
+  },[dataUSerLogin,enableForm])
 
   const handleonSubmit = (e) => {
     e.preventDefault();
     if(Object.keys(errors).length !== 0 ){
-      Swal.fire({
-        title:`Errores en el formulario.. `,
-        icon:'error',
-        confirmButtonColor:"#3889EF ",
-        background:"#F64749",
-      })
+       Swal.fire({
+        buttonsStyling:false,
+        iconColor: "#F64749",
+        customClass:{
+        popup: 'popup-errorUpdate_dataUser',
+        title: 'title-errorUpdate_dataUser',
+        confirmButton: 'confirmButton-errorUpdate_dataUser',
+      },
+        icon:"error",
+        title:`Errores en el formulario.`,
+        text: "Para continuar es necesario corrigas los campos marcados."
+       })
+
+       if(errors.phone){
+        setErrors({})
+        setForm({
+          ...form,
+         phone: dataUSerLogin.phone===null?"":dataUSerLogin.phone,
+         });
+       }
+       if(errors.email){
+        setErrors({})
+        setForm({
+          ...form,
+          email: dataUSerLogin.email===null?"":dataUSerLogin.email
+         });
+       }
+       if(errors.identification){
+        setErrors({})
+        setForm({
+          ...form,
+          identification: dataUSerLogin.identification===null?"":dataUSerLogin.identification,
+         });
+       }
       
     }
     else{
       dataToSend=form;
-      dataToSend.nacionality= nationalities.find(n=>form.nacionality===n.nacionality).id;
-      dataToSend.documentType=documentTipes.find(d=> form.documentType===d.type).id;
+      (dataToSend.nacionality==="")?dataToSend.nacionality="":dataToSend.nacionality=(nationalities.find(n=>form.nacionality===n.nacionality).id);
+      (dataToSend.documentType==="")?dataToSend.documentType="":dataToSend.documentType=documentTipes.find(d=> form.documentType===d.type).id;
 
       axios.put(PUT_DATA_USER,dataToSend)
       .then(()=>{ 
-      setEnableForm(true)
-      setCheck(null)
-      Swal.fire({
-        title:`Perfil actualizado correctamente.`,
-        icon:"success",
-        iconColor: "#49AF41",
-        showConfirmButton: false,
-        timer:1500,
-        customClass:{
-        popup: 'popup-update_dataUser',
-        title: 'title-update_dataUser',
-        },
+        setEnableForm(true)
+        setCheck(null)
+        Swal.fire({
+          title:`Perfil actualizado correctamente.`,
+          icon:"success",
+          iconColor: "#49AF41",
+          showConfirmButton: false,
+          timer:1500,
+          customClass:{
+          popup: 'popup-update_dataUser',
+          title: 'title-update_dataUser',
+          },
+        })
+        dataToSend=form;
+        (dataToSend.nacionality==="")?dataToSend.nacionality="":dataToSend.nacionality= nationalities.find(n=>form.nacionality===n.id).nacionality;
+        (dataToSend.documentType==="")?dataToSend.documentType="":dataToSend.documentType=documentTipes.find(d=> form.documentType===d.id).type;
+        dispatch(getUserLogin(userLogged));
       })
-      dataToSend=form;
-      dataToSend.nacionality= nationalities.find(n=>form.nacionality===n.id).nacionality;
-      dataToSend.documentType=documentTipes.find(d=> form.documentType===d.id).type;
-      dispatch(getUserLogin(userLogged));
-    })
     .catch ((err)=>{
-  
-      return Swal.fire({
-        buttonsStyling:false,
-        iconColor: "#F64749",
-        customClass:{
-            popup: 'popup-errorUpdate_dataUser',
-            title: 'title-errorUpdate_dataUser',
-            confirmButton: 'confirmButton-errorUpdate_dataUser',
-      },
-        icon:"error",
-        title:`Username ya asignado ${err}`,
-        text: "Para continuar es necesario elijas otro Username."
+      setForm({
+        id:dataUSerLogin.id,
+        image:dataUSerLogin.image,
+        firstname: dataUSerLogin.name,
+        lastname:dataUSerLogin.lastname,
+        email: dataUSerLogin.email,
+        phone: dataUSerLogin.phone,
+        username:  dataUSerLogin.username,
+        nacionality: dataUSerLogin.nacionality==="Undefined"?dataUSerLogin.nacionality="":dataUSerLogin.nacionality,
+        documentType: dataUSerLogin.documentType==="Undefined"?dataUSerLogin.documentType="":dataUSerLogin.documentType,
+        identification: dataUSerLogin.identification,
+        status:"",
+    });
+
+    return Swal.fire({
+      buttonsStyling:false,
+      iconColor: "#F64749",
+      customClass:{
+      popup: 'popup-errorUpdate_dataUser',
+      title: 'title-errorUpdate_dataUser',
+      confirmButton: 'confirmButton-errorUpdate_dataUser',
+    },
+      icon:"error",
+      title:`Username ya asignado`,
+      text: "Para continuar es necesario elijas otro Username."
     })
     });
-  }
+    }
   };
-
-
-  const handleOnChange = (e) => {
+  const handleOnChangeEmail=(e)=>{
     setErrors(validate({
       ...form,
-      [e.target.name]: e.target.value,
+      email: e.target.value,
     }))
+    setForm({
+      ...form,
+      email: e.target.value,
+    });
+  }
+  const handleOnChangeIdent=(e)=>{
+    setErrors(validate({
+      ...form,
+      identification: e.target.value,
+    }))
+    setForm({
+      ...form,
+      identification: e.target.value,
+    });
+  }
+  const handleOnChangeTel=(e)=>{
+    setErrors(validate({
+      ...form,
+      phone: e.target.value,
+    }))
+    setForm({
+      ...form,
+      phone: e.target.value,
+    });
+  }
+
+  const handleOnChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
-    
   };
 
   const handleChangeCheck = (e) => {
@@ -153,40 +221,29 @@ const CompleteData = () => {
 
   const chageStateForm =(e)=>{
     e.preventDefault();
-
     if(enableForm===true){
       setEnableForm(false)
-      setForm({
-        id:dataUSerLogin.id,
-        image:dataUSerLogin.image,
-        firstname: dataUSerLogin.name,
-        lastname:dataUSerLogin.lastname,
-        email: dataUSerLogin.email,
-        phone: dataUSerLogin.phone,
-        username:  dataUSerLogin.username,
-        nacionality: dataUSerLogin.nacionality,
-        documentType: dataUSerLogin.documentType,
-        identification: dataUSerLogin.identification,
-        status:"",
-    });
     }else{
-      setEnableForm(true)
+      setErrors({})
+      setForm({
+        email: dataUSerLogin.email===null?"":dataUSerLogin.email,
+        phone: dataUSerLogin.phone===null?"":dataUSerLogin.phone,
+        identification: dataUSerLogin.identification===null?"":dataUSerLogin.identification,
+    });
+      setEnableForm(true);
     }
   }
 
   const uploadImage=async(imageSelected)=>{ 
     const formData=new FormData();
-
     formData.append("file",imageSelected);
     formData.append("upload_preset","UsersHenry");
     await axios.post("http://api.cloudinary.com/v1_1/dqyukl5cf/image/upload",formData)
-
     .then((res)=>{
       setForm({
         ...form,
         image: res.data.url,
-      });
-     
+    });
       Swal.fire({
         title:`Imagen Actualizada`,
         icon:'success',
@@ -197,11 +254,11 @@ const CompleteData = () => {
         position: 'bottom-end',
         toast:true,
         customClass:{
-          popup: 'popup-errorUpdate_dataUser',
-          title: 'title-errorUpdate_dataUser',
-          confirmButton: 'confirmButton-errorUpdate_dataUser',
-    },
-      })
+        popup: 'popup-errorUpdate_dataUser',
+        title: 'title-errorUpdate_dataUser',
+        confirmButton: 'confirmButton-errorUpdate_dataUser',
+        },
+        })
     })
     .catch((e)=>{
       Swal.fire({
@@ -238,14 +295,14 @@ const CompleteData = () => {
                   <label>Nombre: </label>
                   <input
                     type="text" name="firstname" id="firstname" value={form.firstname} disabled={enableForm} onChange={handleOnChange} 
-                    placeholder={dataUSerLogin.name || "Escribe tu Nombre..."}
+                    placeholder={dataUSerLogin.name || "Escribe tu nombre..."}
                   />
                 </div>
                 <div className="divInfoForm">
                 <label>Apellido: </label>
                   <input
                     type="text" name="lastname" id="lastname" value={form.lastname} disabled={enableForm} onChange={handleOnChange}
-                    placeholder={dataUSerLogin.lastname || "Escribe tu Apellido..."}
+                    placeholder={dataUSerLogin.lastname || "Escribe tu apellido..."}
                   />
                 </div>
                 <div className="divInfoForm">
@@ -258,7 +315,7 @@ const CompleteData = () => {
                 <div className="divInfoForm">
                 <label>Correo: </label>
                   <input
-                    type="text" name="email" id="email" value={form.email}  disabled={enableForm} onChange={handleOnChange} 
+                    type="text" name="email" id="email" value={form.email}  disabled={enableForm} onChange={handleOnChangeEmail} 
                     placeholder={dataUSerLogin.email || "Escribe tu email..."}
                     className={!enableForm&&(errors.email&&"inputError")}
                   />
@@ -268,7 +325,7 @@ const CompleteData = () => {
                 <div className="divInfoForm">
                 <label>Telefono: </label>
                   <input
-                    type="text" name="phone" id="phone" value={form.phone} disabled={enableForm}  onChange={handleOnChange} 
+                    type="text" name="phone" id="phone" value={form.phone} disabled={enableForm}  onChange={handleOnChangeTel} 
                     placeholder={dataUSerLogin.phone || "Numero Telefonico..."}
                     className={!enableForm&&(errors.phone&&"inputError")}
                   />
@@ -279,7 +336,7 @@ const CompleteData = () => {
                   <label>Pais: </label>
                   <input className="inputNacionality"
                       type="text" name="nacionality" id="nacionality" value={form.nacionality} disabled={true}  onChange={handleOnChange} 
-                      placeholder={dataUSerLogin.nacionality ==="Undefined"?"...":dataUSerLogin.nacionality }
+                      placeholder={dataUSerLogin.nacionality ===""?"...":dataUSerLogin.nacionality }
                     />
                     {
                       enableForm===false&&
@@ -299,7 +356,7 @@ const CompleteData = () => {
                   <label>Tipo de Documento:</label>
                   <input className="inputDocumentType"
                       type="text" name="documentType" id="documentType" value={form.documentType}  disabled={true} required onChange={handleOnChange} 
-                      placeholder={dataUSerLogin.documentType ==="Undefined"?"... ":dataUSerLogin.documentType }
+                      placeholder={dataUSerLogin.documentType ===""?"...":dataUSerLogin.documentType }
                   />
                   { enableForm===false&&
                     documentTipes.map((e) =>
@@ -313,8 +370,8 @@ const CompleteData = () => {
                 <div className="divInfoForm">
                   <label>Num. Identificacion: </label>
                   <input
-                    type="text" name="identification" id="identification" value={form.identification}  onChange={handleOnChange} disabled={enableForm}  
-                    placeholder={dataUSerLogin.identification ==="Undefined"?"numero de identidad...":dataUSerLogin.identification }
+                    type="text" name="identification" id="identification" value={form.identification}  onChange={handleOnChangeIdent} disabled={enableForm}  
+                    placeholder={dataUSerLogin.identification ===null?"numero de identidad...":dataUSerLogin.identification }
                     className={!enableForm&&(errors.identification&&"inputErrorIdentification")}
                   />
                   {!enableForm&&(errors.identification && (<p className="danger">{errors.identification}</p>))}
@@ -327,7 +384,7 @@ const CompleteData = () => {
 
           <div className="imag">
              <label>Imagen de Perfil</label>
-            <img src={dataUSerLogin.image||logo} alt="not found" />
+            <img src={form.image||logo} alt="not found" />
             {enableForm===false && 
             <>
               <div class="custom-input">

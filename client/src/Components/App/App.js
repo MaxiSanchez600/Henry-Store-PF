@@ -1,6 +1,6 @@
 // ! MODULES
 import "../../Sass/Main.scss";
-import { BrowserRouter, Route, Switch,} from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import {config} from '../../Config/firebase-config.js'
 import { FirebaseAppProvider } from 'reactfire'
 import React, {Suspense} from "react";
@@ -38,6 +38,7 @@ import Economy from "../AdminPanel/Economy/Economy";
 function App() {
   const { closeSidebar} = useGlobalContext();
   let typeOfUser=localStorage.getItem("rol");
+  var userLogged = localStorage.getItem('userlogged');
 
   return (
     <div className="App" onClick={closeSidebar}>
@@ -51,13 +52,18 @@ function App() {
               <Route exact path = "/home/cart/pending/" component = {CartPending} />
               <Route exact path="/" component={Landing}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
-              <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path="/home/item/:id" component={Product_Detail} />
               <Route exact path="/home" component={Home} />
-              
               <Route exact path = "/checkout/:id" component = {Checkout}/>
               {/* <Route exact path= "/" component {Landing}/> */}
               <Route exact path= '/home/cart' component= {Cart}/>
+              {/* <Route path='*' component={Error404}/> */}
+              {(userLogged === null )&&
+              <Route exact path="/home/profile">{<Redirect to="/home" /> }</Route>
+              }
+              {(userLogged !== null )&&
+              <>
+              <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path = "/home/myorders" component = {UserOrder}/> 
               <Route exact path = "/home/myorders/:id" component = {OrderDetail}/> 
               {(typeOfUser === "admin" )&&
@@ -73,9 +79,12 @@ function App() {
               <Route exact path="/admin/editProduct/:id" render={(props)=>(
                 <EditProduct {...props}/>)}>
               </Route>
+             
               </div>
               }
-              {/* <Route path='*' component={Error404}/> */}
+              </>   
+              }
+              
               </Switch>
               <Route path="/home" component={Footer} />
             </BrowserRouter>
