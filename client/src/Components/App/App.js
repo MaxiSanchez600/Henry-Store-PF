@@ -34,6 +34,7 @@ import OrderDetail from "../Cart/UserOrders/OrderDetail/OrderDetail.jsx"
 import Orders from "../AdminPanel/Orders/Orders";
 import CategoriesSubcat from "../AdminPanel/CategoriesSubcat/CategoriesSubcat";
 import Economy from "../AdminPanel/Economy/Economy";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   const { closeSidebar} = useGlobalContext();
@@ -46,20 +47,19 @@ function App() {
             <BrowserRouter>
               <Route path="/home" component={NavBar}/>
               <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/home/item/:id" component={Product_Detail} />
+              <Route exact path= '/home/cart' component= {Cart}/>
               <Route exact path = "/home/cart/success/:orderid/:addressid/:residenceid" component = {CartSuccess}/>
               <Route exact path = "/home/cart/failure/" component = {CartFailure} />
               <Route exact path = "/home/cart/pending/" component = {CartPending} />
-              <Route exact path="/" component={Landing}/>
               <Route exact path="/home/working" component={WorkingOnIt}/>
               <Route exact path="/home/profile" component={CompleteData} />
-              <Route exact path="/home/item/:id" component={Product_Detail} />
-              <Route exact path="/home" component={Home} />
-              
-              <Route exact path = "/checkout/:id" component = {Checkout}/>
-              {/* <Route exact path= "/" component {Landing}/> */}
-              <Route exact path= '/home/cart' component= {Cart}/>
               <Route exact path = "/home/myorders" component = {UserOrder}/> 
               <Route exact path = "/home/myorders/:id" component = {OrderDetail}/> 
+
+              <Route exact path = "/checkout/:id" component = {Checkout}/>
               {(typeOfUser === "admin" )&&
               <div className='adminContainer'>
               <Route path="/admin" component={SlideBar} />
@@ -75,7 +75,7 @@ function App() {
               </Route>
               </div>
               }
-              {/* <Route path='*' component={Error404}/> */}
+              <Route path="*" component={NotFound} />
               </Switch>
               <Route path="/home" component={Footer} />
             </BrowserRouter>
