@@ -1,8 +1,8 @@
 // export const PRODUCTS_URL = `https://soyhenry-store.herokuapp.com/products?`;
 import axios from 'axios'
 
-export const URL_BASE = 'http://localhost:3001/';
-export const workspace = "http://localhost:3001";
+export const URL_BASE = 'http://64.227.105.153:3000/';
+export const workspace = "http://64.227.105.153:3000";
 export const PRODUCTS_URL = `${workspace}/product?`;
 export const REGISTER_URL= `${workspace}/auth/register`;
 export const LOGIN_URL= `${workspace}/auth/login` ;
