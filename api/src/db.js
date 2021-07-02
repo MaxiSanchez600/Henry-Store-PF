@@ -2,12 +2,24 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
+const { dbUser, dbPass, dbHost, dbName } = require('./utils/config/index.js')
 
 // Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize('postgres://gikjaanr:3CHn7xU7h3O35FirU85blH6z-Nh0xf8-@otto.db.elephantsql.com/gikjaanr', {
+// const sequelize = new Sequelize('postgres://gikjaanr:3CHn7xU7h3O35FirU85blH6z-Nh0xf8-@otto.db.elephantsql.com/gikjaanr', {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
+
+// Conexion a DigitalOcean => `porrt 25060
+const sequelize = new Sequelize('postgresql://doadmin:hzm7xw6zq9ybdb1z@db-postgresql-nyc3-44884-do-user-9328473-0.b.db.ondigitalocean.com:25060/defaultdb', {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  "dialect": "postgres",
+  "dialectOptions": {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  }
 });
 
 // Conexion Local => Pruebas
@@ -30,37 +42,37 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 modelDefiners.forEach(model => model(sequelize));
 
- //Capitalizamos los nombres de los modelos ie: product => Product
- let entries = Object.entries(sequelize.models);
- let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
- sequelize.models = Object.fromEntries(capsEntries);
+//Capitalizamos los nombres de los modelos ie: product => Product
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 const { Product, Category, SubCategory, Caracteristic, Tag, ProductCaracteristic, ProductCategory,
   ProductTag, KindPromotion, ProductPromotion, Review, User, DocumentType, UserStatus, Role, Favorite,
-  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange, UserAddress, HenryExchange} = sequelize.models;
+  Wishlist, Image, Nacionality, Order, OrderDetail, OrderDetailCaracteristic, CurrencyChange, UserAddress, HenryExchange } = sequelize.models;
 
 
 //Relacion Tag Productos
-Tag.belongsToMany(Product, {through: ProductTag});
-Product.belongsToMany(Tag, {through: ProductTag});
+Tag.belongsToMany(Product, { through: ProductTag });
+Product.belongsToMany(Tag, { through: ProductTag });
 
 //Relacion Productos Category
-Category.belongsToMany(Product, {through: ProductCategory});
-Product.belongsToMany(Category, { through: ProductCategory});
+Category.belongsToMany(Product, { through: ProductCategory });
+Product.belongsToMany(Category, { through: ProductCategory });
 
 //Relacion Category SubCategory - Genero Getters y Setters
 Category.hasMany(SubCategory);
-SubCategory.belongsTo(Category); 
+SubCategory.belongsTo(Category);
 
 //Relacion Productos Caracteristic
-Product.belongsToMany(Caracteristic, {through: {model: ProductCaracteristic, unique: false}});
-Caracteristic.belongsToMany(Product, {through: {model: ProductCaracteristic, unique: false}});
+Product.belongsToMany(Caracteristic, { through: { model: ProductCaracteristic, unique: false } });
+Caracteristic.belongsToMany(Product, { through: { model: ProductCaracteristic, unique: false } });
 
 //Relacion Productos Promotions
-KindPromotion.belongsToMany(Product, {through: ProductPromotion});
-Product.belongsToMany(KindPromotion, {through: ProductPromotion});
+KindPromotion.belongsToMany(Product, { through: ProductPromotion });
+Product.belongsToMany(KindPromotion, { through: ProductPromotion });
 
 //Relacion Productos Review
 Product.hasMany(Review);
@@ -83,12 +95,12 @@ UserStatus.hasMany(User);
 User.belongsTo(UserStatus);
 
 //Relacion Usuario Favoritos
-User.belongsToMany(Product, {through: Favorite})
-Product.belongsToMany(User, {through: Favorite})
+User.belongsToMany(Product, { through: Favorite })
+Product.belongsToMany(User, { through: Favorite })
 
 //Relacion Producto Favoritos
-User.belongsToMany(Product, {through: Wishlist})
-Product.belongsToMany(User, {through: Wishlist})
+User.belongsToMany(Product, { through: Wishlist })
+Product.belongsToMany(User, { through: Wishlist })
 
 //Relacion Producto Foto
 Product.hasMany(Image);
@@ -109,7 +121,7 @@ OrderDetail.belongsTo(Order);
 //Relacion Producto OrderDetal
 Product.hasMany(OrderDetail);
 OrderDetail.belongsTo(Product);
-  
+
 //Relacion OrderDetail OrderDetalCaracteristic
 OrderDetail.hasMany(OrderDetailCaracteristic);
 OrderDetailCaracteristic.belongsTo(OrderDetail);
@@ -132,10 +144,10 @@ Order.belongsTo(Nacionality)
 
 
 //Precarga Role
-Role.count().then((value) =>{
-  if(value < 4){
-    let arrayconst = [Role.create({rol: 'user'}), Role.create({rol: 'admin'}), Role.create({rol: 'superadmin'}), Role.create({rol: 'guest'})]
-    arrayconst.map(async (element) =>{
+Role.count().then((value) => {
+  if (value < 4) {
+    let arrayconst = [Role.create({ rol: 'user' }), Role.create({ rol: 'admin' }), Role.create({ rol: 'superadmin' }), Role.create({ rol: 'guest' })]
+    arrayconst.map(async (element) => {
       console.log('Se cargo el rol' + element)
       await element
     })
@@ -143,15 +155,15 @@ Role.count().then((value) =>{
 })
 
 //Precarga Status
- UserStatus.count().then((value) => {
-   if(value < 3){
-     let arrayconst = [UserStatus.create({name_status: 'Incompleto'}), UserStatus.create({name_status: 'Completo'}),UserStatus.create({name_status: 'Undefined'})]
-     arrayconst.map(async (element) =>{
-       console.log('Se cargo el estado' + element)
-       await element
-     })
-   }
- })
+UserStatus.count().then((value) => {
+  if (value < 3) {
+    let arrayconst = [UserStatus.create({ name_status: 'Incompleto' }), UserStatus.create({ name_status: 'Completo' }), UserStatus.create({ name_status: 'Undefined' })]
+    arrayconst.map(async (element) => {
+      console.log('Se cargo el estado' + element)
+      await element
+    })
+  }
+})
 
 //Precarga Categorias
 //  Category.count().then((value) => {
@@ -165,10 +177,10 @@ Role.count().then((value) =>{
 // }) 
 
 //Precarga documentTypes
-DocumentType.count().then((value) =>{
-  if(value < 5){
-    let arrayconst = [DocumentType.create({name_document_type: 'DNI'}), DocumentType.create({name_document_type: 'RUN'}), DocumentType.create({name_document_type: 'CC'}),  DocumentType.create({name_document_type: 'IFE'}),DocumentType.create({name_document_type: 'Undefined'})]
-    arrayconst.map(async (element) =>{
+DocumentType.count().then((value) => {
+  if (value < 5) {
+    let arrayconst = [DocumentType.create({ name_document_type: 'DNI' }), DocumentType.create({ name_document_type: 'RUN' }), DocumentType.create({ name_document_type: 'CC' }), DocumentType.create({ name_document_type: 'IFE' }), DocumentType.create({ name_document_type: 'Undefined' })]
+    arrayconst.map(async (element) => {
       console.log('Se cargo el documenttype' + element)
       await element
     })
@@ -229,7 +241,7 @@ DocumentType.count().then((value) =>{
 //     })
 //   }
 // })
- 
+
 //Precarga de caracteristic
 //  Caracteristic.count().then((value) =>{
 //   if(value < 4){
@@ -243,9 +255,9 @@ DocumentType.count().then((value) =>{
 // }) 
 
 //Precarga de Nacionalidades
-Nacionality.count().then((value) =>{
-  if(value < 5){
-    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile','Undefined']
+Nacionality.count().then((value) => {
+  if (value < 5) {
+    let constarray = ['Argentina', 'Colombia', 'Mexico', 'Chile', 'Undefined']
     constarray.forEach(element => {
       Nacionality.create({
         name_nacionality: element
@@ -254,8 +266,8 @@ Nacionality.count().then((value) =>{
   }
 })
 
-CurrencyChange.count().then((value) =>{
-  if(value < 4){
+CurrencyChange.count().then((value) => {
+  if (value < 4) {
     CurrencyChange.create({
       currencyName: 'ARS',
       currencyExChange: 160
@@ -275,10 +287,10 @@ CurrencyChange.count().then((value) =>{
   }
 })
 
-HenryExchange.count().then((value) =>{
-  if(value < 1){
+HenryExchange.count().then((value) => {
+  if (value < 1) {
     HenryExchange.create({
-      exchange:1,
+      exchange: 1,
     })
   }
 })
