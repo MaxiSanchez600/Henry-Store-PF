@@ -11,9 +11,10 @@ export function Cartpay(props){
     const [hc, sethc] = React.useState(0)
     let onClickLabel = (e) =>{
       if(localStorage.getItem('userlogged') !== null){
-          if(e.target.innerText === 'Maximo'){
-            if(props.userhc > 100){
-              sethc(100)
+          if(e.target.innerText === 'Máximo'){
+            console.log(props)
+            if((props.userhc * henryExchange) > props.pricetotal){
+              sethc(0)
             }
             else{
               sethc(props.userhc)
@@ -23,7 +24,8 @@ export function Cartpay(props){
             sethc(0)
           }
           else{
-            if(hc + parseInt(e.target.innerText) <= 100){
+            console.log((hc + parseInt(e.target.innerText)) * henryExchange)
+            if(((hc + parseInt(e.target.innerText)) * henryExchange) < props.pricetotal){
               if(!(hc + parseInt(e.target.innerText) > props.userhc))
               {
                 sethc(hc + parseInt(e.target.innerText))

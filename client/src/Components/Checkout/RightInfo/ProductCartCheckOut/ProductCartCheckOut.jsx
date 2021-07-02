@@ -38,7 +38,7 @@ export default function ProductCartCheckOut({productInfo}){
                     <h2 className = 'h2Multi_PCCC'>x{product.actual_amount}</h2>
                 </div>
                 <div>
-                    <h1 className = 'h1ProductTotal_PCCC'>{(((product.precio) - ((product.precio * product.discount) / 100)) * product.actual_amount) * currency}</h1>
+                    <h1 className = 'h1ProductTotal_PCCC'>{((((product.precio) - ((product.precio * product.discount) / 100)) * product.actual_amount) * currency).toFixed(2)}</h1>
                     <label className = 'CurrencyName_PCCC'>{currencyname}</label>
                     <MdKeyboardArrowDown className = {["Arrow_PCCC", (carac === true) ? onclickicon : ((carac === false) && onclickiconback)].filter(e => !!e).join(' ')}></MdKeyboardArrowDown>
                 </div>

@@ -29,9 +29,9 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
 
     const getOrderPrice = (() =>{
         return axios.get(GET_ORDER + `?id=${orderid}`)
-        .then(value =>{
-            setTotal(value.data.totalprice)
-            return (value.data.totalprice - (value.data.spenthc * henryExchange))
+        .then(async value =>{
+            setTotal((value.data.totalprice - (value.data.spenthc * await henryExchangeRoute())))
+            return (value.data.totalprice - (value.data.spenthc * await henryExchangeRoute()))
             //(order.totalprice - (order.spenthc * henryExchange)) * currency
         })
         .catch(error =>{
@@ -40,7 +40,7 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
     })
 
      useEffect(async () =>{
-        await sethenryExchange(await henryExchangeRoute())
+         sethenryExchange(await henryExchangeRoute())
          axios.get(GET_NACIONALITIES)
          .then(value =>{
             setResidencia(value.data.filter(nacion => (nacion.id + "") === (residenciaSelected + ""))[0].nacionality)
@@ -48,7 +48,6 @@ export default function NoAddressEdit({nextClick, volverClick, residenciaSelecte
          axios.get(GET_PAYMENT_ID + `?totalprice=${await getOrderPrice()}&orderid=${orderid}&addressid=${undefined}&residencia=${residenciaSelected}`)
                 .then(value =>{
                     setars(value.data.currency)
-                    console.log(value.data.id)
                     const script = document.createElement('script');
                     script.type = 'text/javascript';
                     script.src =

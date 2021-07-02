@@ -35,7 +35,7 @@ function Landing({ actualCurrency, actualCurrencyName }) {
         <div className="all_products_discounted">
           {
             productsWithHighestDiscount.length ?
-              productsWithHighestDiscount.map(product => (
+              productsWithHighestDiscount.filter(product => product.percentage_discount > 0).map(product => (
                 <div className={product.unit_stock > 0 ? "discounted_product_card" : "discounted_product_card_disabled"}>
                   <div className="discounted_heart_product"><AiFillHeart /></div>
                   <img src={product.Images.length ? product.Images[0].name_image : ""} alt="" className="discounted_product_image" id={product.index} />

@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { GET_DETAIL_ORDER } from "../../../../Config/index";
+import { GET_DETAIL_ORDER, henryExchangeRoute } from "../../../../Config/index";
 import PostReview from '../../../Reviews/PostReview'
 import "./OrderDetail.scss"
 import Sidebar from "../../../Sidebar/Sidebar";
 import { getAllReviews } from '../../../../Redux/actions/actionsProducts';
 
-const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) => {
+const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER, currency}) => {
   const idUrl = match.params.id;
   const [detailOrder, setDetailOrder] = useState({});
+  const [total, settotal] = React.useState()
 
   useEffect(() => {
     axios.get(`${GET_DETAIL_ORDER}?idUrl=${idUrl}`)
-      .then((response) => {
+      .then(async (response) => {
+        console.log(response.data)
+        settotal(parseFloat(response.data.totalprice - (response.data.spenthc * await henryExchangeRoute())))
         setDetailOrder(response.data)
         // console.log(response.data)
       })
@@ -38,7 +41,7 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
         <h1>{`Detalle Orden # ${detailOrder.id_order}`}</h1>
         <h3>{`Estatus: ${detailOrder.status}`}</h3>
         <h3>{`Fecha Actualizacion: ${detailOrder.updatedAt}`}</h3>
-        <h3>{`Total Pagado: $${detailOrder.totalprice * localStorage.getItem("currency")}`}</h3>
+        <h3>{`Total Pagado: $${total * currency}`}</h3>
         {/* <h4>Cantidad de productos comprados: {detailOrder.products.length}</h4>  */}
         <table className="content-table-UserOrder">
           <tr className={show ? 'back_drop' : "content-row-Title"}>
@@ -71,11 +74,11 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
                       <p>{characteristic.name_caracteristic} : {characteristic.values_caracteristic}</p>
                     )}
                   </td>
-                  <td>{`$ ${prod.price * localStorage.getItem("currency")}`}</td>
+                  <td>{`$ ${total * currency}`}</td>
                   <td>{prod.product_amount}</td>
                   <td>{prod.price * prod.product_amount}</td>
                   <td>{prod.percentage_discount} %</td>
-                  <td>{((prod.price * prod.product_amount) - ((prod.price * prod.product_amount) * prod.percentage_discount) / 100) * localStorage.getItem("currency")}</td>
+                  <td>{total * currency}</td>
 
                   {(OneReview[0].UserReviews && OneReview[0].UserReviews.length === 0) ?
                     <td>
@@ -133,6 +136,7 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
 function mapStateToProps(state) {
   return {
     REVIEWS_ORDER: state.products.reviews,
+    currency: state.products.currency
   }
 }
 

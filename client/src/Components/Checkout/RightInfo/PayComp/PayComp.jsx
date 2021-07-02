@@ -21,7 +21,7 @@ export default function PayComp({orderid}){
             <div className = 'TotalPrice_PayComp'>
                 <h1 className = 'Total_PayComp'>TOTAL</h1>
                 <div className = 'OrderCurrency_PayComp'>
-                    <h1 className = 'Order_PayComp'>{orderpricefinal}</h1>
+                    <h1 className = 'Order_PayComp'>{orderpricefinal.toFixed(2)}</h1>
                     {/* {(props.pricetotal - (hc * henryExchange)) * props.currencyactual} {props.currencyactualname} */}
                     <label className = 'CurrencyName_PayComp'>{currencyname}</label>
                 </div>

@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Sidebar from "../../../Sidebar/Sidebar";
 import axios from 'axios';
-import {GET_MYORDERS} from "../../../../Config/index";
+import {GET_MYORDERS, henryExchangeRoute} from "../../../../Config/index";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router-dom";
 import './UserOrder.scss'
@@ -11,11 +11,16 @@ const UserOrder = () => {
 
 var userLogged = localStorage.getItem('userlogged');
 const [orders, setOrders] = useState([]);
-
-    useEffect(() => {
+const [total, settotal] = React.useState()
+    const getprice = (async () =>{
+        let ex = await henryExchangeRoute()
+        return ex
+    })
+    useEffect(async () => {
     axios.get(`${GET_MYORDERS}?id=${userLogged}`)
-    .then((response) => { 
-        setOrders(response.data)   
+    .then(async(response) => { 
+        setOrders(response.data) 
+        settotal(parseFloat(response.data[0].totalprice - (response.data[0].spenthc * await henryExchangeRoute())))  
     })
     }, []);
 
@@ -46,7 +51,7 @@ const [orders, setOrders] = useState([]);
                             <td>{`${order.createdAt.slice(0,10).split("-").reverse().join("-")} - ${order.createdAt.slice(11,16)} `}</td>
                             <td>{order.spenthc}</td>
                             <td>{order.givenhc}</td>
-                            <td>{`  $ ${order.totalprice * localStorage.getItem("currency")}`}</td>
+                            <td>{`  $ ${total * localStorage.getItem("currency")}`}</td>
                             <td className="icon-eye"><Link to={`/home/myorders/${order.id_order}`} ><MdRemoveRedEye/></Link></td> 
                             <td></td>
                         </tr>)
