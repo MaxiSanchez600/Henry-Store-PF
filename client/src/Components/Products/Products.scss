@@ -3,7 +3,7 @@
 .cards_container_products {
   margin: 0 6.5rem 0 0;
   width: 100%;
-
+  padding-right: 10em;
   .all_Cards {
     margin: 1.5rem;
     display: grid;
@@ -204,7 +204,6 @@
   line-height: 1.5;
   position: relative;
   width: 100%;
-  margin-top: 25%;
 }
 
 .older_price_container {

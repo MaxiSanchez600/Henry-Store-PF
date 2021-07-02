@@ -11,16 +11,16 @@ const { dbUser, dbPass, dbHost, dbName } = require('./utils/config/index.js')
 // });
 
 // Conexion a DigitalOcean => `porrt 25060
-const sequelize = new Sequelize('postgresql://doadmin:hzm7xw6zq9ybdb1z@db-postgresql-nyc3-44884-do-user-9328473-0.b.db.ondigitalocean.com:25060/defaultdb', {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  "dialect": "postgres",
-  "dialectOptions": {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  }
-});
+// const sequelize = new Sequelize('postgresql://doadmin:hzm7xw6zq9ybdb1z@db-postgresql-nyc3-44884-do-user-9328473-0.b.db.ondigitalocean.com:25060/defaultdb', {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   "dialect": "postgres",
+//   "dialectOptions": {
+//     ssl: {
+//       rejectUnauthorized: false,
+//     },
+//   }
+// });
 
 // Conexion Local => Pruebas
 // const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
