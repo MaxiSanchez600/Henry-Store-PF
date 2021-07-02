@@ -10,6 +10,7 @@ export default function Economy () {
         CLP: {value:""},
         MXN: {value:""},
         COP: {value:""},
+        USD: {value:""},
     }
     const [exchanges,setExchanges] = useState([])
     const [henrycoin,setHenrycoin] = useState()
