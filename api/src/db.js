@@ -5,16 +5,16 @@ const path = require('path');
 const {dbUser,dbPass,dbHost,dbName} = require ('./utils/config/index.js')
 
 // Conexion a Elephant => Agarrar Datos
-const sequelize = new Sequelize('postgres://gikjaanr:3CHn7xU7h3O35FirU85blH6z-Nh0xf8-@otto.db.elephantsql.com/gikjaanr', {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
-
-// Conexion Local => Pruebas
-// const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+// const sequelize = new Sequelize('postgres://gikjaanr:3CHn7xU7h3O35FirU85blH6z-Nh0xf8-@otto.db.elephantsql.com/gikjaanr', {
 //   logging: false, // set to console.log to see the raw SQL queries
 //   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// }); 
+// });
+
+// Conexion Local => Pruebas
+const sequelize = new Sequelize(`postgres://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+}); 
 
 const basename = path.basename(__filename);
 

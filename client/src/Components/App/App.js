@@ -63,6 +63,7 @@ function App() {
             }
               {(userLogged !== null )&&
               <>
+              <Switch>
               <Route exact path="/home/profile" component={CompleteData} />
               <Route exact path = "/home/myorders" component = {UserOrder}/> 
               <Route exact path = "/home/wishlist" component = {WishList}/> 
@@ -80,10 +81,11 @@ function App() {
               <Route exact path="/admin/editProduct/:id" render={(props)=>(
                 <EditProduct {...props}/>)}>
               </Route>
-              <Route path='*' component={NotFound}/>
              
               </div>
               }
+              <Route path='*' component={NotFound}/>
+              </Switch>
               </>   
               }
               

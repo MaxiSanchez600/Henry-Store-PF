@@ -66,10 +66,10 @@ export function Cartpay(props){
               <div className= "topPrice_pay">
                 <div className = 'TotalPrice_CartPay'>
                   <h2 className ='Label1_Cartpay'>TOTAL</h2>
-                  <h2 className ='Label2_Cartpay'>{(props.pricetotal - (hc * henryExchange)) * props.currencyactual} {props.currencyactualname}</h2>
+                  <h2 className ='Label2_Cartpay'>{((props.pricetotal - (hc * henryExchange)) * props.currencyactual).toFixed(2)} {props.currencyactualname}</h2>
                 </div>
                 {(localStorage.getItem('userlogged') != null) ? <label className ='Label3_Cartpay'>¡Utilizando {hc} de tus <span>{props.userhc} Henry Coins</span> ahorras <span>{(hc * henryExchange) * props.currencyactual} {props.currencyactualname}</span></label> : <label label className ='Label3_Cartpay'>Al no estar logeado no dispones de <span>Henry Coins</span> para
-                utlizar en tu compra.</label>}
+                utilizar en tu compra.</label>}
               </div>
               <div className = 'HC_CartPay'>
                   <div className = 'HCAmount_CartPay'>
@@ -82,7 +82,7 @@ export function Cartpay(props){
                   <label onClick = {onClickLabel} value = {10}>10</label>
                   <label onClick = {onClickLabel} value = {5}>5</label>
                   <label onClick = {onClickLabel} value = {1}>1</label>
-                  <label onClick = {onClickLabel} value = 'm'>Maximo</label>
+                  <label onClick = {onClickLabel} value = 'm'>Máximo</label>
                   <label onClick = {onClickLabel} value = 'r'>Reset</label>
                 </div>
                 {(localStorage.getItem('userlogged') != null) ? <label>¡Al estar logeado con esta compra ganas <span>{props.hctotal} Henry Coins!</span></label>

@@ -1,8 +1,8 @@
 const {CurrencyChange, Order, User, Role, HenryExchange, Nacionality} = require('../../db');
 const { Sequelize, or } = require('sequelize');
 const Op = Sequelize.Op;
-// const url = "http://localhost:3000"
-const url = "https://soyhenry-store.web.app"
+const url = "http://localhost:3000"
+// const url = "https://soyhenry-store.web.app"
 
 const paymentMethods = {
     createPayment: async (req, res) =>{
@@ -16,7 +16,7 @@ const paymentMethods = {
         .catch(error =>{
             next(error)
         })
-
+        console.log(totalprice*currency)
         var mercadopago = require('mercadopago');
         mercadopago.configure({
             access_token: "APP_USR-6642840300672372-062619-0deaff518a075f2dc836a4492dc55f75-209521005"
@@ -28,7 +28,7 @@ const paymentMethods = {
                 description: "Henry E-Commerce merch",
                 quantity: 1,
                 currency_id: 'ARS',
-                unit_price: (parseFloat(totalprice) * currency)
+                unit_price: (parseFloat(totalprice * currency))
 
               }
             ],
@@ -83,6 +83,7 @@ const paymentMethods = {
 
         Order.findOne({where:{id_order: orderid}})
         .then(async value =>{
+            console.log(value)
             pricetotal = (value.totalprice - ((value.totalprice * value.spenthc) / 100))
             if(value.status === "carrito"){
                 let spenthc = value.spenthc
