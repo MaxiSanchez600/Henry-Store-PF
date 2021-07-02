@@ -17,7 +17,7 @@ function Products({ ListProducts, getAllFilteredProducts, currencyactual, curren
 
     // ! ************ PAGINATION ******************
     const [pageNumber, setPageNumber] = useState(0);
-    const productPerPage = 12;
+    const productPerPage = 8;
     const pagesVisited = pageNumber * productPerPage;
     //agrego un ? para hacer condicional y no explote el map
 
