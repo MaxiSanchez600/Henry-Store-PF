@@ -94,7 +94,7 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
                           setshow(true);
                           setidproductReview(prod.id_product)
                         }}>
-                        CALIFICA!
+                        ¡CALIFICA!
                           <span className="bubbles">
                             <span className="bubble"></span>
                             <span className="bubble"></span>

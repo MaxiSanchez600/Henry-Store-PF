@@ -80,6 +80,7 @@ function App() {
               <Route exact path="/admin/editProduct/:id" render={(props)=>(
                 <EditProduct {...props}/>)}>
               </Route>
+              <Route path='*' component={NotFound}/>
              
               </div>
               }
