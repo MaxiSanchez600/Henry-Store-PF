@@ -53,6 +53,11 @@ const paymentMethods = {
         let email = ""
         let pricetotal;
         let pais;
+        let hcvalue;
+        await HenryExchange.findOne()
+        .then(value =>{
+            hcvalue = value.exchange
+        })
         await Nacionality.findOne({where: {id_nacionality: residenceid}})
         .then(value =>{
             pais = value.name_nacionality
@@ -84,7 +89,7 @@ const paymentMethods = {
         Order.findOne({where:{id_order: orderid}})
         .then(async value =>{
             console.log(value)
-            pricetotal = (value.totalprice - ((value.totalprice * value.spenthc) / 100))
+            pricetotal = (value.totalprice - (value.spenthc * hcvalue))
             if(value.status === "carrito"){
                 let spenthc = value.spenthc
                 let givenhc = value.givenhc

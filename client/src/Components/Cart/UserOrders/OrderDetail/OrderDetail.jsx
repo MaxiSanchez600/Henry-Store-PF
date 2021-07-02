@@ -38,7 +38,7 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
         <h1>{`Detalle Orden # ${detailOrder.id_order}`}</h1>
         <h3>{`Estatus: ${detailOrder.status}`}</h3>
         <h3>{`Fecha Actualizacion: ${detailOrder.updatedAt}`}</h3>
-        <h3>{`Total Pagado: $${detailOrder.totalprice}`}</h3>
+        <h3>{`Total Pagado: $${detailOrder.totalprice * localStorage.getItem("currency")}`}</h3>
         {/* <h4>Cantidad de productos comprados: {detailOrder.products.length}</h4>  */}
         <table className="content-table-UserOrder">
           <tr className={show ? 'back_drop' : "content-row-Title"}>
@@ -71,11 +71,11 @@ const OrderDetail = ({ getAllReviews, ReviewsProduct, match, REVIEWS_ORDER }) =>
                       <p>{characteristic.name_caracteristic} : {characteristic.values_caracteristic}</p>
                     )}
                   </td>
-                  <td>{`$ ${prod.price}`}</td>
+                  <td>{`$ ${prod.price * localStorage.getItem("currency")}`}</td>
                   <td>{prod.product_amount}</td>
                   <td>{prod.price * prod.product_amount}</td>
                   <td>{prod.percentage_discount} %</td>
-                  <td>{(prod.price * prod.product_amount) - ((prod.price * prod.product_amount) * prod.percentage_discount) / 100}</td>
+                  <td>{((prod.price * prod.product_amount) - ((prod.price * prod.product_amount) * prod.percentage_discount) / 100) * localStorage.getItem("currency")}</td>
 
                   {(OneReview[0].UserReviews && OneReview[0].UserReviews.length === 0) ?
                     <td>

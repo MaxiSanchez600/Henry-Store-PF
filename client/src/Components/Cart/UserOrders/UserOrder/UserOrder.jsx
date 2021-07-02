@@ -46,7 +46,7 @@ const [orders, setOrders] = useState([]);
                             <td>{`${order.createdAt.slice(0,10).split("-").reverse().join("-")} - ${order.createdAt.slice(11,16)} `}</td>
                             <td>{order.spenthc}</td>
                             <td>{order.givenhc}</td>
-                            <td>{`  $ ${order.totalprice}`}</td>
+                            <td>{`  $ ${order.totalprice * localStorage.getItem("currency")}`}</td>
                             <td className="icon-eye"><Link to={`/home/myorders/${order.id_order}`} ><MdRemoveRedEye/></Link></td> 
                             <td></td>
                         </tr>)
